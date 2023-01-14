@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>RPC Broekr V. 1.1 Systems Manual: Intorduction/Overview</TITLE></HEAD>
+<BODY>
+<P><FONT SIZE="4" FACE="arial,helv"><B>Introduction</B></FONT></P>
+<P><FONT SIZE="3" FACE="arial,helv"><B>Topics</B></FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#Overview">Overview</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#how_does_it_work">How Does It
+All Work?</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#system_overview_diagram">System
+Overview</A></FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="Overview">Overview</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC Broker is considered to be part of
+the infrastructure of <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>. It
+establishes a common and consistent foundation for client/server applications
+being written as part of <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC Broker is a bridge connecting the
+client application front-end on the workstation (e.g., Delphi GUI applications)
+to the M-based data and business rules on the server. It links one part of a
+program running on a workstation to its counterpart on the server. Therefore,
+the RPC Broker assists in opening the traditionally proprietary <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> software to Commercial Off-the-Shelf (COTS)
+and Hybrid Open Systems Technology (HOST) products.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC Broker includes the following:</FONT></P>
+<UL>
+<LI><FONT>A common communications driver interface that handles the
+device-specific characteristics of the supported communications protocol.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">An interface component separate from the
+communications driver that interprets the message, executes the required code,
+and eventually returns data to the communications driver.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">A common file that all applications use
+to store the information on the queries to which they respond (i.e., REMOTE
+PROCEDURE file [#8994]).</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Architecture that supports multiple GUI
+and client front-ends.</FONT></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">This version of the Broker also includes
+the Broker Development Kit (BDK). The BDK provides <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+application programmers with the following features:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">The capability to develop new <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> client/server software using the Broker Delphi
+component (i.e., TRPCBroker) in the 32-bit environment (e.g., create
+Delphi-based GUI client/server <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+applications).</FONT><BR><BR>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution.gif" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> Please note that version 1.1 of the
+Broker supports Delphi V. 3.0 as well as Delphi V. 2.0. However, the next
+version of the Broker will <I>no longer</I> provide support for Delphi V. 2.0.</B></FONT></P></TD></TR></TABLE><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Support for COTS/HOST client/server
+software using the Broker Dynamic Link Library (DLL).</FONT></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC Broker does the following:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Operates in a 32-bit environment (i.e.,
+client workstations running Microsoft Windows 95 or Windows NT operating
+systems) while supporting <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+applications previously developed in the 16-bit environment (e.g., PCMM).</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Provides support for
+<A HREF="chapter_1.html#single_signon">single signon</A>. Users need only sign
+on once when accessing both a <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+roll-and-scroll (e.g., Lab, Pharmacy) and a <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+client/server GUI-based application (e.g., PCMM, CPRS) on the same workstation,
+regardless of which application is started first.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Provides new and enhanced Broker
+management and configuration tools (e.g., <A HREF="chapter_3.html#rpctest">new
+debugging tools</A>, new <A HREF="chapter_1.html#site_parameters_file">RPC
+BROKER SITE PARAMETERS file (#8994.1)</A>, enhanced
+<A HREF="chapter_1.html#listeners_ports">Broker Listener</A>).</FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="how_does_it_work">How Does
+It All Work?</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The process begins on a user's workstation
+(i.e., PC), running Microsoft Windows, which is either connected directly or
+remotely via a modem to a hospital's local area network (LAN). The workstation
+must be able to run some version of Transmission Control Protocol/Internet
+Protocol (TCP/IP). For more specific environment requirements, please refer to
+the <I>RPC Broker V. 1.1 Installation Guide</I>.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>Currently only Winsock-compliant
+TCP/IP protocol is supported on the LAN or remotely as Point-to-Point Protocol
+(PPP) or Serial Line Internet Protocol (SLIP). You must use RAS (Remote Access
+Service) or Dialup Networking to connect to the server using PPP or SLIP. For
+the setup of RAS or Dialup Networking, please refer to the appropriate operating
+system's documentation.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">When a user starts a <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> program on the client, the program requests a
+connection with a server. The server is continuously running at least one Broker
+&quot;Listener&quot; job in the background whose sole purpose is to establish
+connections with clients.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Once the Listener receives a connection
+request, it does the following:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">Validates the message.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Creates (spawns, jobs off) another
+process &quot;Handler.&quot; The Handler process does the work to satisfy the
+client's requests.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Goes back to listening.</FONT></LI></OL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">When the connection to the server is
+established, users who are not already logged into the server are asked to
+identify themselves by logging in with their Access and
+<A HREF="chapter_2.html#change_verify_code">Verify codes</A>. With the
+implementation of <A HREF="chapter_1.html#single_signon">single signon</A>,
+users are considered already logged in to the server if they have previously
+logged in to a <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> GUI or
+roll-and-scroll application that is still running on their workstation. After a
+successful login, the application is active on both the server and the client.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">As you manipulate the interface, your
+client process is reading and writing data to the server. The reading and
+writing is carried out as messages traveling over the TCP/IP link. In the
+message sent to the server, client applications will include the name of the
+requested RPC to be activated and its associated parameters. These RPCs will be
+written in M and registered in a file containing available and authorized RPCs
+(i.e., REMOTE PROCEDURE file [#8994]). Upon receipt by the server, the message
+is decoded, the requested remote procedure call is activated, and the results
+are returned to the calling application.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The server receives a message from the
+client and parses out the name of the remote procedure call and its parameters.
+The Broker module on the server looks up the remote procedure call in the REMOTE
+PROCEDURE file (#8994), verifies that the RPC is allowed to run in the context
+of the application, and executes the RPC using the passed parameters. At this
+point the server side of the application processes the request and returns the
+result of the operation. The result of the call contains either several values
+or a single value. If the operation is a query, then the result is a set of
+records that satisfy that query. If the operation is to simply file the data on
+the server or it is unnecessary to return any information, then, typically,
+notification of the success of the operation will be returned to the client.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>This version of the RPC Broker
+supports messaging for non-Delphi client applications (e.g., Borland C++,
+Microsoft Visual Basic, or other COTS Windows-based products). The RPC Broker
+Version 1.1 supplies a set of functions providing a Dynamic Link Library (DLL)
+interface that allows non-Delphi applications to conform to the client side
+interface of the Broker. For more specific information about the Broker DLLs,
+please refer to the Online RPC Broker Developer's Guide (i.e., BROKER.HLP).</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="system_overview_diagram">System
+Overview</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The following diagram gives an overview of
+the <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>/Broker environment:</FONT></P>
+<CENTER>
+<P><IMG SRC="system.gif" ALT="System Overview Diagram" WIDTH="623" HEIGHT="704"></P></CENTER>
+<HR></BODY></HTML>

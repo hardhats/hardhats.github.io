@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS8</TITLE></HEAD>
+<BODY>
+<H1>VIII.  PROGRAMMER-UTILITY INCOMPATIBILITIES CAUSED BY ENHANCEMENTS TO CHCS
+FILEMAN</H1>
+<P>In this Section, and the next, we turn to discrepancies between the two
+systems that are significant specifically to the MUMPS programmer. 
+Non-programmers, therefore, may find this section particularly opaque.</P>
+<H2>A. Calls to the date-handling routines</H2>
+<H3>Julian and Zulu date formats</H3>
+<P>CHCS FileMan's date-reading utility, '%DT', has been enhanced to accept
+Julian-format dates.  Thus &quot;J57033&quot; is acceptible input for the date &quot;February
+2, 1957&quot;.  &quot;Zulu&quot;-format dates (which include time in terms of
+Greenwich Mean Time) are also allowed as input.</P>
+<P>Portability effect: Uncertain.  One might call this a &quot;user feature&quot;
+rather than a &quot;programming feature&quot;, but it is unlikely that a user
+would enter dates in this way, whereas it is possible that a CHCS programmer has
+taken advantage of this 'trick', sending an 'X' variable in the Julian (or, less
+likely, Zulu) form to the ^%DT routine in a silent call.</P>
+<H3>NOW function in ^%DT</H3>
+<P>This programmer entry point, an Extrinsic Function, returns the time at the
+moment of execution in FileMan date format.  If the single parameter of the
+Function is equal to the string &quot;S&quot;, the date format includes seconds.
+ In other words, the value of</P>
+<H3>$$NOW^%DT(&quot;S&quot;)</H3>
+<P>is a numeric containing up to six decimal digits.</P>
+<P>Portability effect: Requires conversion.  The NOW^%DT entry point does not
+appear in DHCP FileMan, but an equivalent could be easily constructed. Cf. the
+VA entry point NOW^%DTC.</P>
+<H3>X^%DTC</H3>
+<P>This programmer entry point converts a number, taken to be the number of
+seconds since midnight, into a fractional FileMan date.</P>
+<P>Portability effect: Requires conversion.  The X^%DTC entry point does not
+appear in DHCP FileMan, but an equivalent could be easily constructed.</P>
+<H2>B. Calls to the ^DIC routine </H2>
+<P>CHCS FileMan's &quot;^DIC&quot; lookup routine functions differently from
+the DHCP FileMan lookup in some subtle respects.</P>
+<H3><A NAME="N">Input beginning with &quot;``&quot;</A></H3>
+<P>The ^DIC routine in both CHCS FileMan and DHCP FileMan accepts input in the
+form</P>
+<BLOCKQUOTE>
+<P>`N</P></BLOCKQUOTE>
+<P>where &quot;`&quot; is the literal &quot;accent grave&quot; character, and N
+is some existing canonic Internal Entry Number for the File specified by the
+variable 'DIC'.  In CHCS FileMan, the ^DIC routine has an enhancement that is
+useful in looking up Entries in those Files whose Entries are Pointers to
+another File.  For such Files, input can be in the form</P>
+<BLOCKQUOTE>
+<P>``N</P></BLOCKQUOTE>
+<P>This means, &quot;find an Entry (or Entries) which points to Entry Number
+'N' in the pointed-to File.&quot;  This feature, like the &quot;`N&quot;
+feature, is one that a user can take advantage of, but it is more commonly used
+by programmers.</P>
+<P>Portability Effect: SERIOUS  Any lookup of the form &quot;``N&quot; will
+fail if ported to DHCP FileMan.  Unfortunately, this incompatibility can crop up
+in Input Templates (and straight call to ^DIE) as well as in calls to ^DIC,
+because the process of selecting a multiple to edit within an Input Template
+equates to a call to ^DIC.  A CHCS programmer not uncommonly includes in an
+Input Template specifications like</P>
+<BLOCKQUOTE>
+<P>EDIT WHICH FIELD: MULTIPLE///``45</P></BLOCKQUOTE>
+<P>meaning, &quot;select the multiple whose pointer value is 45&quot;.  MUMPS
+re-programming would be required to reproduce this same functionality under VA
+FileMan.</P>
+<H3>Input ending in a &quot;?&quot;</H3>
+<P>Another subtle discrepancy between the two versions of ^DIC is that, in CHCS
+FileMan, if the input variable 'X' is an alphanumeric string terminating with &quot;?&quot;,
+then CHCS will strip off the &quot;?&quot;, try to match the remainder of the
+string, and, even if an exact match is found, will go further to see if the
+string begins any other lookup value in the File.  In other words, this feature
+is CHCS FileMan's way of forcing a lookup to be done in the way DHCP FileMan
+normally does lookups when the &quot;O&quot; parameter is not present in the
+'DIC(0)' parameter string.  Obviously, though, the two features are
+incompatible.  Again, the &quot;terminating question-mark&quot; is a feature
+available to users, as well as to programmers, but it's doubtful that many CHCS
+users know of its existence!</P>
+<P>Portability Effect: Uncertain.  It is possible that a CHCS programmer could
+produce code that sends the input string 'X' to the ^DIC routine with a &quot;?&quot;
+suffixed to it.</P>
+<P>Such a ^DIC call, when ported to DHCP FileMan would obviously fail, because
+DHCP FileMan would not strip off the suffixed &quot;?&quot;.  The difficulty
+would be to locate such a ^DIC call.  It would be trivially easy to fix the
+problem once it was located: just remove the adding of the &quot;?&quot;, since
+DHCP's lookup would work, by default, the way the CHCS lookup was being forced
+to work.</P>
+<H3>'DIC(&quot;DR&quot;)' as an array</H3>
+<P>In calling the ^DIC routine, the input variable 'DIC(&quot;DR&quot;)' has
+always been treated by FileMan as a string controlling which 'Identifier' Fields
+will be asked or 'stuffed' when the ^DIC routine 'LAYGOs' a new Entry.  In CHCS
+FileMan's ^DIC routine, DIC(&quot;DR&quot;) is allowed to be an array. 
+Specifically, DIC(&quot;DR&quot;,2,N) can be set to control asking or 'stuffing'
+data at a Multiple level at LAYGO, where 'N' is the subfile number of the
+multiple.</P>
+<P>Portability Effect: Requires conversion.  Calls to ^DIC using an DIC(&quot;DR&quot;)
+input array need to be re-programmed in any code ported to DHCP.  The workaround
+might be to have DIC(&quot;DR&quot;) name an [Input Template].</P>
+<H3>The 'DIC(&quot;PROMPT&quot;)' variable</H3>
+<P>In CHCS FileMan, if 'DIC(&quot;PROMPT&quot;) is defined when ^DIC is called,
+the string value of 'DIC(&quot;PROMPT&quot;)' is used as the displayed name of
+the File into which ^DIC is doing its lookup.  Thus, for example, the existence
+of 'DIC(&quot;PROMPT&quot;) defined equal to &quot;GUARANTOR&quot; will cause
+the</P>
+<BLOCKQUOTE>
+<P>Are you adding a new PATIENT?</P></BLOCKQUOTE>
+<P>query to be displayed as:</P>
+<BLOCKQUOTE>
+<P>Are you adding a new GUARANTOR?</P></BLOCKQUOTE>
+<P>DHCP FileMan's ^DIC routine does not offer this functionality.</P>
+<P>Portability effect: Uncertain.  'DIC(&quot;PROMPT&quot;)' allows the
+developer to customize the ^DIC dialogue with the user in a way which might be
+called &quot;cosmetic&quot;, since it has no effect on what the user is actually
+allowed to type, or on how data is stored.  Nevertheless, CHCS developers have
+occasionally used this feature to make data entry more understandable to a user.
+ To replicate such ease of use in a portation to DHCP might require creating a &quot;special
+lookup routine&quot; that mimics ^DIC, with captions changed.</P>
+<H3>MIX^DIC Entry point</H3>
+<P>CHCS FileMan offers the same functionality as does DHCP FileMan with the
+entry point 'MIX^DIC1'.  However, CHCS FileMan includes an identical 'MIX^DIC'
+entry point, which has been documented.  DHCP FileMan doesn't have this entry
+point.</P>
+<P>Portability effect: Require conversion.  Any occurrence of 'MIX^DIC' found
+in CHCS code needs to be changed to 'MIX^DIC1' to run in DHCP FileMan.</P>
+<H2>C. Calls to the ^DIE routine </H2>
+<H3>The 'DIE(&quot;SAVE&quot;)' input variable</H3>
+<P>CHCS FileMan allows a programmer to call ^DIE with a specification that any
+data changes made during the call to ^DIE shall be &quot;mirrored&quot;, as it
+were, in some array (Global or local) other than the actual data Global into
+which the changes are filed.  When ^DIE quits, then, the calling programmer can
+more easily determine &quot;what the user did&quot;, by examining the contents
+of the scrath array, which was named by the DIE(&quot;SAVE&quot;) variable when
+^DIE was called. DHCP FileMan has no such feature.</P>
+<P>Portability Effect: SERIOUS.  Any (scrolling-mode) call to ^DIE made by a
+CHCS MUMPS routine would have to be examined if transported to DHCP.  If the
+call were found to include a DIE(&quot;SAVE&quot;) variable, code subsequent to
+the call would surely be found to examine the array named by DIE(&quot;SAVE&quot;)
+in some way.  Such code would have to be re-worked by a programmer, since in the
+DHCP environment, ^DIE would never set anything into the named scratch array.</P>
+<H3>The 'DIE(&quot;NOFILE&quot;)' input variable</H3>
+<P>CHCS FileMan recognizes the presence of a variable 'DIE(&quot;NOFILE&quot;)'
+when calling ^DIE, which simply tells FileMan to ask for data from the user as
+it normally would, but not to file that data in the database.  This feature is
+often used by programmers in conjunction with the one just mentioned: with 'DIE(&quot;SAVE&quot;)'
+defined along with 'DIE(&quot;NOFILE&quot;)', the programmer can have ^DIE
+gather up answers, then examine those answers in the temporary &quot;mirror of
+changes&quot;, and then either force those changes to be filed, by passing them
+back to ^DIE in a &quot;stuff&quot; mode, or else take some other action to
+elicit &quot;better&quot; input from the user.</P>
+<P>Portability effect: SERIOUS.   Since DHCP FileMan does not recognize the
+'DIE(&quot;NOFILE&quot;)' parameter, and files all data it collects, any CHCS
+code using that parameter would have to be re-worked by a programmer before
+porting it to a DHCP environment.</P>
+<H3>The 'DIE(&quot;AUDIT&quot;)' input variable</H3>
+<P>CHCS FileMan recognizes the presence of a variable 'DIE(&quot;AUDIT&quot;)'
+when calling ^DIE, which forces all data-changes to be audited (using the ^DIAU
+and ^DIET Globals mentioned above on Page 9).  This 'DIE(&quot;AUDIT&quot;)'
+flag thus overrides the normal 'audit' status of the File being edited.</P>
+<P>Portability effect: SERIOUS  DHCP FileMan has not equivalent feature.  If a
+CHCS programmer goes to the trouble of &quot;forcing auditing&quot;, it is
+likely to be because, after the ^DIE call, he intends to examine the ^DIET or
+^DIAU globals, which of course do not exist in DHCP FileMan.  A workaround to
+such programming is not, in general, obvious.  Of course, it is possible that in
+some cases, a CHCS programmer &quot;forces auditing&quot; just as a kind of
+general security measure not intrinsic to the application itself.  In either
+case, though, it is very important to realise that DHCP FileMan will ignore the
+'DIE(&quot;AUDIT&quot;)' variable, thereby subverting some security-related
+intention of any CHCS programmer who has used it!</P>
+<H2>D. Calls to the ^DIP Routine </H2>
+<H3>The 'BY' variable</H3>
+<P>The ^DIP input variable &quot;BY&quot; has often proved difficult to use,
+because its delimiting character, the comma, often occurs within a desired Sort
+Field name, or Compted Expression.  Also, the 255-character length limitation on
+a single MUMPS variable is constraining when a Sort specification is unusually
+complicated.  For these reasons, CHCS FileMan allows the programmer calling ^DIP
+to pass sort values in an array called 'BY', alternatively to passing them
+within the single string called 'BY'.  DHCP FileMan does not recognize the &quot;BY
+array&quot;.</P>
+<P>Portability Effect: Requires conversion.  CHCS Code calling ^DIP with a &quot;BY
+array&quot; would fail to run (i.e, crash!) if ported to DHCP FileMan.  Any CHCS
+code being ported to DHCP needs to be vetted for such ^DIP calls.  The general
+work-around would be to create a Sort Template, and then replace the &quot;BY
+array&quot; with a &quot;BY string&quot; equal to the [bracketed] name of that
+Sort Template.</P>
+<P>It should also be remembered that &quot;BY&quot; values containing &quot;;1&quot;,
+&quot;;2&quot; and &quot;^GLOBAL(&quot; specifications will not work properly
+under DHCP FileMan.  Such calls may need to be totally re-worked.  See above,
+Page 14.</P>
+<H3>The 'DIOBEGIN' variable </H3>
+<P>In CHCS FileMan, an optional input variable 'DIOBEGIN' is recognized.  This
+variable is a string of MUMPS code which is executed before the printout begins.
+DHCP FileMan recognizes an equivalent input variable named 'DIOBEG'.  However,
+as mentioned elsewhere, CHCS FileMan outputs a form-feed to a printer device
+after executing the code found in 'DIOBEG'.</P>
+<P>Portability Effect: Requires conversion.  Any CHCS code which calls ^DIP
+needs to be examined; if the optional 'DIOBEGIN' variable is set, it must be
+re-named 'DIOBEG' in code ported to DHCP, and the form-feed discrepancy
+mentioned above must be considered.</P>
+<H3>The 'ZTSAVE' variable</H3>
+<P>The 'TaskMan' module of CHCS Kernel has been re-written several times over
+since 1987.  One modification introduced into CHCS TaskMan has signicance for
+programmers who call the CHCS FileMan 'DIP' output module.  Specifically, the
+change involves any code that calls ^DIP:</P>
+<BLOCKQUOTE>
+<P>1) with the possibility that the output job will be queued; and</P>
+<P>2) passes local variables (other than FileMan parameters) to ^DIP</P></BLOCKQUOTE>
+<P>For example, a programmer might write</P>
+<BLOCKQUOTE>
+<P>S MYVAR=3.14159,MYSTRING=&quot;SPECIAL&quot;,%IS=&quot;Q&quot; ....  D
+EN1^DIP</P></BLOCKQUOTE>
+<P>If the user then answers the</P>
+<BLOCKQUOTE>
+<P>DEVICE: Q</P></BLOCKQUOTE>
+<P>prompt so as to invoke queueing to TaskMan, or if the '%ZIS' Device Handler
+forces queueing for some reason, the programmer probably intends that, when the
+'DIP' output finally runs at the queued time, it will have access to the defined
+MUMPS variables &quot;MYVAR&quot; and &quot;MYSTRING&quot;.  In CHCS, this will
+not automatically be true. CHCS TaskMan has been modified so that a tasked
+FileMan output job does not &quot;inherit&quot; all the MUMPS local variables
+that were in the tasking job's 'partition' at the time the output was queued. 
+This modification was made for the purpose of improving performance, but,
+unfortunately, it is not backwards-compatible.</P>
+<P>Portability effect: Requires conversion.  Code calling ^DIP that would work
+under DHCP FileMan may need to be modified to run under CHCS.  Any non-FileMan
+local variables passed to ^DIP that need to be available for queueing must now
+be 'declared' by naming them in the MUMPS 'ZTSAVE' local array.  For example, to
+make the code above work as intended, it would need the addition of</P>
+<BLOCKQUOTE>
+<P>S ZTSAVE(&quot;MYVAR&quot;)=&quot;&quot;,ZTSAVE(&quot;MYSTRING&quot;)=&quot;&quot;</P></BLOCKQUOTE>
+<P>or, more simply,</P>
+<BLOCKQUOTE>
+<P>S ZTSAVE(&quot;MY*&quot;)=&quot;&quot;</P></BLOCKQUOTE>
+<P>As a general workaround, the even more general</P>
+<BLOCKQUOTE>
+<P>S ZTSAVE(&quot;*&quot;)=&quot;&quot;</P></BLOCKQUOTE>
+<P>should be invoked before any questionable ^DIP call, to tell CHCS FileMan to
+save off all local variables to the TaskMan process.</P>
+<H2>E. Calls to ScreenMan routines </H2>
+<P>CHCS FileMan uses the &quot;DIJ&quot; namespace for all routines and globals
+used by its ScreenMan module.  As noted in the ScreenMan writeup (Section VII,
+above), a program invokes a CHCS ScreenMan editing session, not by a special
+entry point equivalent to DHCP's &quot;^DDS&quot;, but rather by calling the
+time-honored data editing routine, ^DIE, specifying (in the input parameter
+'DR') the name of an Input Template that exists as a ScreenMan screen on the
+current system.  Note, therefore, that in CHCS, the exact same routine call</P>
+<BLOCKQUOTE>
+<P>SET DR=&quot;[TEMPLATENAME]&quot;,DA=1 DO ^DIE</P></BLOCKQUOTE>
+<P>might, in one environment, present the user with a Screen, while elsewhere
+it might initiate an old-fashioned scrolling-mode dialog!  The portability
+difficulties created by this 'alternate paradigm' as to the relationship of
+Templates to Screens have been presented in Section VII.</P>
+<P>Most of the programmer calls to &quot;^DIJ*&quot;-namespaced routines in the
+CHCS application suite will be found within ScreenMan templates.  The most
+common of these calls is</P>
+<BLOCKQUOTE>
+<P>DO REFR^DIJE</P></BLOCKQUOTE>
+<P>which refreshes the Screenman screen, and is therefore equivalent to the</P>
+<BLOCKQUOTE>
+<P>DO REFRESH^DDSUTL</P></BLOCKQUOTE>
+<P>call in DHCP ScreenMan, Version 21.</P>
+<P>Some CHCS screens also contain the code</P>
+<BLOCKQUOTE>
+<P>DO CB^DIJED  or</P>
+<P>DO CB^DIJUTL</P></BLOCKQUOTE>
+<P>These (equivalent) calls &quot;clear the bottom&quot; of the display screen
+so that the programmer can then use those few lines as a crude kind of &quot;pop-up&quot;
+window. The DHCP ScreenMan call</P>
+<BLOCKQUOTE>
+<P>DO HLP^DDSUTL(...)</P></BLOCKQUOTE>
+<P>would provide the same functionality, if the intent were simply to WRITE
+some line or lines of text in what DHCP calls the &quot;command area&quot; of
+the screen. In some cases, though, the developer clears this bottom area and
+then programs a small MUMPS dialogue with the user; this kind of kludgy
+programming might be obviated in the DHCP ScreenMan environment through use of
+the &quot;Form-only Fields&quot; mentioned in Section VII.</P>
+<P>A subset of the ScreenMan code, viewed as a separate programmer utility in
+its own right, has been dubbed &quot;DisplayMan&quot; in the CHCS terminology. 
+DisplayMan, the &quot;DIJD*&quot; namespace of routines, allows the programmer
+to display to the user an array of information within a specified number of
+lines on the CRT screen.  The user can then scroll through this array if it does
+not all fit in the available window, much as the DHCP user uses the so-called &quot;Browser&quot;
+that has been added to Version 21 of DHCP FileMan.  The DisplayMan programmer,
+however, builds his own array (local or Global), rather than referencing a
+Word-Processing text, and he indicates, by array subscripting, which of the
+display lines of the array the user is allowed to cursor to.  Furthermore, the
+MUMPS code that calls the ^DIJD utility can set parameters that allow the user
+to mark the displayed array, either just once, or in several places.  An output
+local array returned from ^DIJD then tells the calling program if and where the
+display has been marked by the user.</P>
+<P>Portability effect: SERIOUS.  The DisplayMan utility is used in a great
+number of places within the existing suite of CHCS hospital applications,
+notably in the Order Entry module.  Since no such stand-alone utility exists
+within DHCP FileMan, it must be stressed that to port any of the large CHCS
+application packages into a DHCP FileMan environment, some DHCP version of &quot;DisplayMan&quot;
+would need to be written.    Such hypothetical new code could certainly borrow a
+lot from the &quot;Browser&quot; utility in Version 21, but the &quot;marking&quot;
+capability would need to be added.</P>
+<P ALIGN="RIGHT"><A HREF="chcs9.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

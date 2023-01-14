@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type"><title>% routine</title>
+
+<meta content="George Timson" name="author">
+</head><body>
+<table bgcolor="#f8afb5" border="0" width="100%">
+<tbody>
+<tr>
+<td width="100%">
+<h2 align="center">THE "%"<br>
+ROUTINE</h2>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">Medsphere&#8217;s &#8220;%&#8221; routine contains nine
+APIs to help
+programmers with routine transfer and version control.<span style="">&nbsp;
+</span>All these APIs are intended to work in any
+Kernel environment -- VA, IHS, or Medsphere. &nbsp;The author of
+this routine is George Timson. &nbsp; &nbsp;<a href="%EF%B9%AA.RSA.txt">Download
+it here in ".RSA" format</a>.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style="margin-top: 0in;" start="1" type="A">
+<li class="MsoNormal" style=""><b style="">Routines
+in &#8220;.m&#8221; format<o:p></o:p></b></li>
+</ol>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style=""><o:p>&nbsp;</o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style="">OUT^%</b> <span style="">&nbsp;</span>Sends
+MUMPS routines
+out to a file directory (&#8220;path&#8221;) in GT.M format, as individual &#8220;.m&#8221;
+files.<span style="">&nbsp; </span>User
+specifies path and routine set.</p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style="">COMPARE^%</b><span style="">&nbsp;
+</span>Compares routines
+as stored in a file directory (&#8220;path&#8221;) in GT.M or Cache format with
+routines on file in
+the current namespace, in side-by-side &#8216;diff&#8217; format.<span style="">&nbsp;
+</span>User can list individual routines, or use
+wildcards (e.g., &#8220;DI*&#8221;)</p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style="">IN^%</b> <span style="">&nbsp;</span>Reads
+in and files
+MUMPS routines from a file directory (&#8220;path&#8221;).<span style="">&nbsp;
+</span>Routines are expected to be in GT.M format, as individual
+&#8220;.m&#8221;
+files.<span style="">&nbsp; </span>User
+specifies path and routine set.<span style="">&nbsp; </span>User
+can list individual routines, or use wildcards
+(e.g., &#8220;DI*&#8221;)</p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><u><o:p><span style="text-decoration: none;">&nbsp;</span></o:p></u></p>
+<ol style="margin-top: 0in;" start="2" type="A">
+<li class="MsoNormal" style=""><b style="">Patch
+numbers on second lines of routines</b></li>
+</ol>
+<p class="MsoNormal"><u><o:p><span style="text-decoration: none;">&nbsp;</span></o:p></u></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style="">ONE^%</b> <span style="">&nbsp;</span>Looks
+for an
+individual patch number on the second lines of a specified set of
+routines.<span style="">&nbsp; </span>Patch
+&#8220;number&#8221; can be
+non-numeric, like &#8220;MSC&#8221;.<span style="">&nbsp; </span>User
+specifies
+routine set, and output is a list of the routines on file in the
+current
+namespace that have that patch number.</p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style="">VER^%</b> <span style="">&nbsp;</span>Looks
+at all the patch
+numbers on the second lines of a specified set of routines.<span style="">&nbsp; </span>Patch &#8220;numbers&#8221; can be
+non-numeric, like
+&#8220;MSC&#8221;.<span style="">&nbsp; </span>User
+specifies routine set, and
+output is a list of &#8220;numbers&#8221; (e.g.,<span style="">&nbsp;
+</span>&#8220;1-3,8-22,24-888,MSC&#8221;)</p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><o:p>&nbsp;</o:p></p>
+<ol style="margin-top: 0in;" start="3" type="A">
+<li class="MsoNormal" style=""><b style="">Comparison
+across namespaces<o:p></o:p></b></li>
+</ol>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style=""><o:p>&nbsp;</o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style="">ROUCI^%</b> (or simply <b style="">^%</b>)<span style="">&nbsp; </span>Asks for a list of
+routines, and compares
+them from the current namespace to another one, in side-by-side &#8216;diff&#8217;
+format.<span style="">&nbsp; </span></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style=""><o:p>&nbsp;</o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><b style="">DD^%</b><span style="">&nbsp;
+</span>Asks for a range of
+File numbers, and compares those files from the current namespace to
+another
+one, in side-by-side &#8216;diff&#8217; format.<span style="">&nbsp;
+</span>Comparison can be either:<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>DATA
+DICTIONARY ONLY</p>
+<p class="MsoNormal" style="margin-left: 1in; text-indent: 0.5in;">FILE ENTRIES
+ONLY</p>
+<p class="MsoNormal" style="margin-left: 1in; text-indent: 0.5in;">DATA
+DICTIONARY AND
+FILE ENTRIES</p>
+<p class="MsoNormal" style="margin-left: 15pt;">MSC
+FileMan offers this same
+functionality as sub-option 3 of the TRANSFER Option.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="margin-left: 15pt;"><b style="">BUILD^%</b> (or <b style="">B^%</b>)<span style="">&nbsp; </span>Asks for a KIDS Build in
+the current
+namespace, and uses the definition of that Build to compare routines,
+files and
+file definitions from one namespace to another one, in side-by-side
+&#8216;diff&#8217;
+format.<span style="">&nbsp; </span>The two
+namespaces being
+compared can both be different from the current namespace.<span style="">&nbsp; </span>Thus, for example, two
+unmodified FOIA
+releases can be compared with respect to the components of a particular
+Medsphere Build.</p>
+<p class="MsoNormal" style="margin-left: 15pt;"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="margin-left: 15pt;"><b style="">INSTALL^%</b> (or<b style=""> I^%</b>)
+Asks
+for a <i style="">loaded KIDS Install</i> in the
+current namespace and uses the definition of that incoming Build in the
+same
+way as BUILD^% (above) does.<span style="">&nbsp; </span></p>
+<p class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><u><o:p></o:p></u></p>
+</body></html>

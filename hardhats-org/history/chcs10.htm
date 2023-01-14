@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS10</TITLE></HEAD>
+<BODY>
+<H1>X. DATA EXTRACTION IN THE TWO SYSTEMS -- DIFROM, TAPEMAN, FILEGRAMS AND
+ARCHIVING</H1>
+<P>As any database grows over time, data storage capacity eventually becomes
+limited, and the need arises to archive and purge old information.  Often, too,
+it is desired to extract some of the data in machine-readable form for
+transmission to other databases.  These two related functionalities, archiving
+and data transport, have been implemented by FileMan developers over the years
+in a variety of ways.</P>
+<P>The task has proved to be difficult because there are several competing
+needs to be considered.  Ideally, there would be, for simplicity's sake, one
+extraction method, and it would be</P>
+<BLOCKQUOTE>
+<P>Generalized (to handle any File, any data type)</P>
+<P>Standard (so that it works on any MUMPS machine, with a variety of media)</P>
+<P>Scalable (so that it handles very large volumes of data, as well as small)</P>
+<P>Selective (so that it can extract precisely what is needed)</P>
+<P>Complete (so that it can purge and restore anything it can extract)</P>
+<P>and Efficient (so that, in the worst case, a disk can be emptied faster than
+it is being filled!)</P></BLOCKQUOTE>
+<P>The first attempt at solving the data-extraction problem was the utility
+known as &quot;DIFROM&quot;, a subset of FileMan routines which still exists in
+both the DHCP and CHCS systems.  DIFROM at least had the virtue of generality;
+one could use it, ad hoc, to transport the Data Definition and/or the contents
+of any FileMan File.  (As one V.A. physician mordantly noted, &quot;FileMan
+means never knowing what you're going to DIFROM&quot;.)  And DIFROM was Standard
+because what it generated was MUMPS routines; every MUMPS system has to be able
+to load MUMPS routines.  The generated routines would simply be executed on a
+target system to restore the data and the database definition, thus guaranteeing
+a certain conceptual completeness.  Because it generated MUMPS routines, though,
+DIFROM was not totally scalable; every &quot;package&quot; it created needed to
+fit into a certain maximum number of routines.  Also, the process was not
+particularly CPU-efficient at either end.  But the main reason DIFROM could not
+be used well for archiving was that, although it can be made selective with
+respect to which Field data is to be transported, it didn't allow the selection
+of particular records to be moved.  In Relational terminology, the DIFROM user
+can select table &quot;columns&quot;, but not &quot;rows&quot;.</P>
+<P>After 1986, separate development efforts in the VA and at SAIC led to many
+idiosyncratic changes in the two versions of DIFROM, often dictated by differing
+institutional policies.  The most general unilateral enhancement of DIFROM in
+CHCS FileMan is the ability to ask an initialization routine, just before it
+installs data, to print out a comparison of the data and data structures it is
+importing with those that already are in existence on the target system.  The
+resulting printout (often quite lengthy) can assure a diligent System Manager as
+to what an update to his database will entail. On the VA side, DIFROM was
+enhanced so that its File-installation packages could be transmitted from site
+to site via the Electronic Mail system called MailMan, which has been part of
+the DHCP Kernel of utilities since 1984.</P>
+<P>Meanwhile, during the 1986-1990 period, DHCP and CHCS programmers created
+two new packages, each attempting to implement selective data extraction from
+FileMan databases in a generalised way.  The two approaches were quite
+different.  The CHCS package was called &quot;TapeMan&quot;, and the VA version
+(much of which was actually produced by the Indian Health Service) implemented &quot;FileGrams&quot;.
+TapeMan, as its name implied, was conceptualized as a tape-handling utility,
+storing data on tape in much the same way that it is stored in FileMan Globals. 
+FileGrams, by contrast, are extracts of data in the form of MailMan messages
+which are machine-built and machine-readable, but are also &quot;expanded&quot;
+enough from FileMan's internal Global format so that they are human-readable as
+well.  It is worth mentioning that the CHCS project made an effort to implement
+FileGrams in a limited way, based on format information that was available from
+the VA around 1992.  One could imagine that this work might aid in data
+interchange between the two systems at some future time.</P>
+<P>In Version 21 of DHCP FileMan, the VA has released a prototype archiving
+system based on the concept of the FileGram, and also on the longstanding
+FileMan concept of a Search Template.  File Entries are selected by a Search,
+and put in temporary storage in FileGram form.  This work is logged in an
+Archive Activity File, #1.11. Other Archive Options then allow the system
+manager to write the temporary record to tape, and to purge the archived
+entries.</P>
+<P>The CHCS TapeMan utility evolved into a somewhat similar set of options. It
+used Search Templates, too, but the &quot;column&quot; specification was done
+with Print Templates (including the catch-all &quot;[CAPTIONED]&quot; Template),
+rather than with FileGrams.  The output, non-human-readable, went directly to a
+tape device.  An &quot;ARCHIVE TAPE RECORD&quot; File (number .99) kept track of
+every run, and this on-line File could be queried to see the history of any
+Entry's archiving.  Other TapeMan modules allowed one not only to purge the
+Entries one had written to tape, but also to restore later one or all of the
+Entries from a tape.  Note that VA Archiving, by comparison, does not allow data
+restoration.</P>
+<P>Although &quot;TapeMan&quot; can still be found in the &quot;DIR*&quot;
+namespace of CHCS FileMan, it was never widely used in the DOD hospitals.  The
+larger hospitals had immense amounts of data to purge every month, and TapeMan
+was not much more efficient than DIFROM in extracting information.  One could
+say, really, that TapeMan met four of the six archiving criteria (Generality,
+Standardness, Scalability, and Completeness), but was too inefficient, and,
+given the complex interrelationships between various CHCS Files, was still not
+selective enough to do what the DOD felt needed to be done.</P>
+<P>What kind of archiving system supplanted TapeMan at the large DOD sites
+since 1990?</P>
+<P>A very idiosyncratic one, which foregoes the advantages of Generality,
+Standardness, and Completeness, in favor of Selectivity, Efficiency, and the
+massive scale of optical-disk technology.</P>
+<P>First of all, the DOD (like the VA?) essentially abandoned the requirement
+that archived data could, at some later date, be reinstalled automatically into
+the on-line database.  This decision was made in light of the fact that the
+application Data Dictionary definitions in CHCS were evolving very rapidly; it
+seemed hopeless to expect that data written off at one moment in time would
+match structurally the data definitions that might be in effect years later,
+when retrieval was attempted.</P>
+<P>It was decided, rather, to specify a new, &quot;permanent&quot; data
+structure into which all archived FileMan information would be funnelled.  The
+only kind of retrieval from this (non-FileMan) structure is by ad hoc queries
+(for individual Entries) or searches (across a whole File), the results of which
+are simply displayed or printed when needed.</P>
+<P>The physical underpinnings of the new CHCS system are impressive. At the
+large sites, a separate piece of hardware (a VAXstation 3100) serves as a
+dedicated archiving CPU, in order to minimize the impact of archiving on the
+production cluster.  This archiving processor's function is to put archive-ready
+data out to a write-once (&quot;WORM&quot;) optical disk.  The index to data
+stored on the WORM drive is maintained on a conventional magnetic disk that is
+also accessed by the archiving CPU.  There is an Ethernet link between the
+archive system and the production system; the archiving process runs on the
+VAXstation 3100, pulling data directly off production disk drives.</P>
+<P>Each field in the CHCS FileMan database is flagged with an Attribute (not
+found in DHCP FileMan) that tells the archiving system what data should be saved
+to the WORM drive.  General criteria have also been hard-coded, specifying, for
+example, that inpatient data is ready to be archived 60 days after the record of
+the admission is complete, while outpatient data is held for 18 months.  Thus,
+archive data is selected in a very complex way, application by application, in a
+process that navigates intricately from File to File.</P>
+<P>A full archive run is scheduled once a month.  Site staff can tell the
+system to scan the production disks only at nonpeak processing times, and,
+again, the scan is done by the 3100 processor, over the Ethernet.  When
+archive-ready data is found by this scan, it is moved to a &quot;staging area&quot;
+on the archive system, where it is transformed for &quot;WORM&quot; storage. 
+This transformation includes turning internal Pointer numbers into
+human-readable names.  Data is written to the WORM as VMS files, not as MUMPS
+globals.</P>
+<P>It should be emphasized that the CHCS archiving system is built to run on
+specific hardware and software, viz., the VAXstation, VMS, the Ethernet, and the
+WORM drive.</P>
+<P>The system is therefore extremely vendor-dependent.</P>
+<P>A fuller description of the CHCS archive design can be found in Donna
+Beckman-Cunningham's article, &quot;Designing an Optical Base Archive System&quot;,
+in MUMPS Computing, Volume 22, Number 3, June, 1992.  The four paragraphs above
+are a precis of that article.</P>
+<P>In terms of portability of applications, the alternative archiving
+techniques presented in this Section are probably not crucially relevant.  It
+should be obvious, though, that if a major CHCS application were ported to a
+DHCP environment, serious consideration would need to be given as to whether
+large amounts of Global data could be selectively purged in accordance with the
+designers' intentions by the construction of new &quot;FileGrams&quot;. It
+should be emphasized that hard-code algorithms, not Computed Expressions, are
+used in CHCS to trace through various Files to find archive-ready data.  Going
+the other way, therefore, if a large DHCP application were ported to CHCS, new
+archiving code would have to be written to select any of that application's data
+for long-term WORM storage.</P>
+<P ALIGN="RIGHT"><A HREF="chcs11.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

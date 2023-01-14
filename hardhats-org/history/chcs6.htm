@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS6</TITLE></HEAD>
+<BODY>
+<H1>VI.  USER-INTERACTION INCOMPATIBILITIES CAUSED BY ENHANCEMENTS TO DHCP
+FILEMAN</H1>
+<H2>A.  INPUT TEMPLATES</H2>
+<H3>'REQ' Fields in DHCP Input Templates </H3>
+<P>A DHCP Input Template is allowed to include &quot;;REQ&quot; Specifiers on
+individual Fields.</P>
+<P>The purpose of such a Specifier is that, when the user runs the (scrolling)
+Input Template, he is &quot;required&quot; to enter data for such Fields that
+have empty values, just as though those Fields had been designed as &quot;MANDATORY&quot;
+in the Data Dictionary.  CHCS FileMan Input Templates do not recognize this
+Specifier, and therefore do not support this functionality, which could be very
+significant in the design of a particular application.</P>
+<P>Portability Effect: SERIOUS  Any Input Template ported from a DHCP
+environment to a CHCS environment needs to be examined for occurences of the &quot;;REQ&quot;
+Specifier, since it must be assumed that a developer who has explicitly added
+this Specifier must have a reason for doing so. Accomplishing the equivalent
+functionality under CHCS FileMan is not as simple as making the Field &quot;Required
+in the Database&quot;!  A general workaround  for this incompatibility is not
+apparent.</P>
+<H3>'DUP' Fields in DHCP Input Templates</H3>
+<P>A DHCP Input Template is allowed to include &quot;;DUP&quot; Specifiers on
+individual Fields. The purpose of such a Specifier is that, when the user runs
+the (scrolling) Input Template, the 'previous answer' to such a 'DUP'-specified
+Field will be 'remembered', and can be retrieved by the user just by typing a
+space character.</P>
+<P>Of course, Pointer-valued Fields in both FileMan systems have always had the
+&quot;space-bar&quot; input feature, by virtue of the way the general &quot;^DIC&quot;
+lookup program works.  CHCS FileMan, however, does not have the general &quot;;DUP&quot;
+feature.</P>
+<P>Portability Effect: Minor.  A DHCP Application could easily contain an Input
+Template that included a &quot;;DUP&quot; specification on one or more of its
+Fields. Such a specification would be ignored by CHCS FileMan, and the user of
+that system would not (if he knew about the feature) be allowed to retrieve a
+'previous answer' just by hitting the space bar.  Of course, the CHCS user might
+become more than a little frustrated if the DHCP developer had somehow included
+with the Template a user-visible message to the effect that the space-bar could
+be used!</P>
+<H2>B.  MISCELLANEOUS USER-INTERACTION DISCREPANCIES CAUSED BY DHCP
+ENHANCEMENTS</H2>
+<H3><A NAME="EXACT">Lookup doesn't generally stop at exact match </A></H3>
+<P>This is one of the most recurrently-troubling user-interaction differences
+between CHCS and DHCP FileMan.  &quot;Recurrent&quot;, because of course the
+FileMan lookup module is used everywhere within the system.  &quot;Troubling&quot;,
+because the difference in behavior is so obvious to the user.</P>
+<P>If a File, for example, contains two Entries, named &quot;SUSAN&quot; and &quot;SUSANNA&quot;,
+and the user makes a &quot;partial&quot; answer:</P>
+<BLOCKQUOTE>
+<P>Select Entry: SUSA</P></BLOCKQUOTE>
+<P>then, in both systems, he will see the two matching Entry names displayed,
+and be asked to choose which one he wants.  If, however, he knows the full,
+exact spelling of the Entry he wants, and tries to</P>
+<BLOCKQUOTE>
+<P>Select Entry: SUSAN</P></BLOCKQUOTE>
+<P>VA FileMan will not generally accept the input &quot;SUSAN&quot; as an exact
+spelling of one of the Entry names, but will echo back</P>
+<BLOCKQUOTE>
+<P>1   SUSAN</P>
+<P>2   SUSANNA</P>
+<P>Choose 1 or 2:</P></BLOCKQUOTE>
+<P>CHCS FileMan, by contrast, will straightforwardly assume &quot;SUSAN&quot;
+as the selection.</P>
+<P>Portability Effect: Uncertain.  One wants to call this a &quot;cosmetic&quot;
+difference between the two systems (on the user level), but personal experience
+indicates that this is a discrepancy in behavior that continues to jar the user
+who interacts with both systems.  In Section VIII, below, we will point out a
+potentially &quot;Serious&quot; aspect of this discrepancy, from a programming
+perspective: some calls to the &quot;^DIC&quot; lookup module may rely on exact
+matches being made.</P>
+<H3>Aborting output by typing '^'</H3>
+<P>When any kind of FileMan report (including a Data Dictionary listing) is
+displayed on a video terminal with keyboard, VA FileMan allows the user who
+reads the report to type a &quot;^&quot; character at the end of any display
+page, thereby aborting the report.  CHCS FileMan (Version 25) only allows this
+kind of report-termination to be done through an implementation-specific feature
+(i.e., typing CONTROL-C at any moment during the display).</P>
+<P>Portability Effect: Minor.  User-training only.</P>
+<H3>'CAPTIONED' output can show Computed Fields </H3>
+<P>In using the 'Inquire' option, the DHCP user of 'STANDARD CAPTIONED OUTPUT'
+is asked whether he wants to see COMPUTED FIELDS in the Display.  At the cost of
+always being asked an extra question in this 'easy-to-use' option, the user is
+thus given more flexibility.  If, however, the user has no knowledge of the
+current File's Data Dictionary setup, the question is merely awkward, because
+the naive user doesn't know whether Computed fields exist in the File.</P>
+<P>Portability Effect: Minor.  User-training only.</P>
+<H3>'Uneditable' Fields don't display and pause </H3>
+<P>In DHCP scroll-mode editing of a Field that has been designated
+'UNEDITABLE', if the Field already has a value for a particular Entry, then the
+user sees something different than the CHCS user: In DHCP FileMan, the
+uneditable data is simply shown to the user along with a &quot;(No Editing)&quot;
+message, and the user does not need to hit 'RETURN' (as in CHCS) in order to
+pass the Field.</P>
+<P>Portability Effect: Minor.  User-training only.</P>
+<P ALIGN="RIGHT"><A HREF="chcs7.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

@@ -1,0 +1,375 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="VistA Infrastructure (VI) APIs: Introduction">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information & Technology,OI&T,OIT,VISTA,kernel,toolkit,rpc broker,broker,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,introduction">
+    <meta name="description"
+	      content="VistA Infrastructure (VI) APIs: Introduction">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180808">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>VistA Infrastructure (VI) APIs: Introduction</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/vi_heading_apis.gif"
+			   ALT="VistA Infrastructure (VI) APIs: Kernel, Toolkit, and RPC Broker Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+		</TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">APIs Introduction</A></H3> 
+    <H4>Content Information</H4>
+    <P>The VistA Infrastructure (VI) Application Program Interfaces (APIs) contents list can be displayed in the following four ways:</P> 
+    <OL> 
+	  <LI>
+	    <B>Category List:</B>
+		<BR>
+		<BR>
+		APIs are listed alphabetically by category
+	    type (default). Within each category, APIs are then listed in alphabetical order by 
+        routine name of the entry point. Within each routine grouping, 
+        APIs are then listed in alphabetical order by tag name of the 
+        routine entry point.
+        <BR>
+        <BR>
+      </LI> 
+      <LI>
+		<B>Routine Names Alphabetic List:</B>
+		<BR>
+		<BR>
+		APIs are listed 
+        alphabetically by routine name. Within each routine grouping, 
+        APIs are then listed in alphabetical order by tag name of the 
+        routine entry point.
+        <BR>
+        <BR>
+      </LI> 
+	  <LI>
+		<B>Tag Names Alphabetic List:</B>
+		<BR>
+		<BR>
+		APIs are listed 
+        alphabetically by tag name of the routine entry point.
+        <BR>
+        <BR>
+      </LI> 
+      <LI>
+	    <B>Reference Type List</B>:<BR>
+		<BR>
+		APIs are listed by reference type (i.e., Supported or Controlled Subscription). Within each reference 
+        type, APIs are then listed in alphabetical order by routine name 
+        of the entry point. Within each routine grouping, APIs are then listed in alphabetical order by 
+        tag name of the routine entry point.
+      </LI> 
+    </OL>
+    <HR COLOR="003399"> 
+    <H4>API Information</H4>
+    <P>Each VistA Infrastructure (VI) API displays the following information in the order listed:</P>
+    <OL> 
+      <LI>
+	    <B>API Name</B> (required):
+		<BR>
+        <BR>
+        This is the name of the API and is followed by a colon
+        and a brief descriptive phrase of its use. It is written in one of the
+        following formats:
+        <BR>
+        <BR>
+		<UL> 
+	      <LI>
+			<B>^ROUTINE or TAG^ROUTINE</B>&#8212;This format is used when the API is
+            an entry point that does <I>not</I> take any input parameters in a
+            parameter list (i.e., no parenthesis following the routine
+            name).
+            <BR>
+            <BR>
+          </LI> 
+		  <LI>
+			<B>TAG^ROUTINE()</B>&#8212;This format is used when the API
+            is a <B>procedure</B>. Parentheses following the routine
+            name indicate that the API may take input
+            parameters.
+            <BR>
+            <BR>
+          </LI> 
+		  <LI>
+		    <B>$$TAG^ROUTINE()</B>&#8212;This format is used when the
+            API is an extrinsic <B>function</B>.&nbsp; Parentheses
+            following the routine name indicate that the API may
+            take input parameters.
+          </LI> 
+	    </UL>
+        <p>For example:</p>
+        <p>&nbsp;&nbsp;&nbsp; MAIL^XLFNSLK(): Get IP Addresses for a
+        Domain Name</p>
+        <p>In this case &quot;<strong>MAIL</strong>&quot; is the tag name,
+        &quot;<strong>XLFNSLK</strong>&quot; is the routine name, and the parenthesis
+        indicate that this API may take input parameters. The lack of
+        &quot;<strong>$$</strong>&quot; preceding the tag name indicates that this API
+        is a <B>procedure</B>. The brief text that follows the colon
+        gives you a general idea of what this API does.</p>
+        <p>Another example:</p>
+        <p>&nbsp;&nbsp;&nbsp; $$ADDRESS^XLFNSLK(): Conversion (Domain
+        Name to IP Addresses)</p>
+        <p>In this case &quot;<strong>ADDRESS</strong>&quot; is the tag name,
+        &quot;<strong>XLFNSLK</strong>&quot; is the routine name, and the parenthesis
+        indicate that this API may take input parameters. The
+        &quot;<strong>$$</strong>&quot; preceding the tag name indicates that this API
+        is an extrinsic <B>function</B>. The brief text that follows
+        the colon gives you a general idea of what this API does.</p>
+      </LI> 
+	  <LI>
+	    <B>Reference Type</B> (required):
+		<BR>
+		<BR>
+		The Reference Type indicates the Integration Control Registration (ICR) 
+		for the API:
+        <BR>
+        <BR>
+		<UL> 
+		  <LI>
+		    <B>Supported Reference</B>&#8212;An API of this type is open for use by any
+            VistA application. It has been recorded as a Supported
+			Reference in the IA database on FORUM. VistA software
+            applications do <i> not</i> need to request an IA to use it.
+            <BR>
+            <BR>
+          </LI> 
+		  <LI>
+		    <B>Controlled Subscription Reference</B>&#8212;An API of
+            this type is controlled in its use. Permission to use the
+            API is granted by the custodial package (software
+            application, such as Kernel) on a case-by-case basis.
+          </LI> 
+		</UL>
+        <p><strong>NOTE:</strong> Private APIs are <em>not</em> documented in this 
+		manual.</p>
+      </LI> 
+	  <LI>
+	    <B>Category</B> (required):
+		<BR>
+		<BR>
+		The Category indicates the
+        general category to which the API belongs.
+        <BR>
+        <BR>
+      </LI> 
+	  <LI>
+	    <B>Integration Control Registration</B> (required):
+	    <BR>
+	    <BR>
+	    The Integration Control Registration indicates the
+		Supported or Controlled Subscription Reference Integration Control Registration (ICR) number for the API.
+        <BR>
+        <BR>
+      </LI> 
+	  <LI>
+	    <B>Description</B> (required):
+		<BR>
+		<BR>
+	    This section provides
+        an overall description of the API.
+        Please include the patch reference ID (e.g., XU*8.0*999) if this 
+        API is being released via a patch.
+        <BR>
+        <BR> 
+      </LI> 
+      <LI>
+        <B>Format</B> (required):
+        <BR>
+        <BR>
+        This section displays the format (usage) of the API. Optional
+        parameters appear inside rectangular brackets <B>[ ]</B>. For
+        example, tag^routine(x[,y]), the <B>x</B> input parameter is required 
+		and the <B>y</B> input
+        parameter is optional. Rectangular brackets around a leading
+        period <B>[.]</B> in front of a parameter indicate that you
+        can optionally pass that parameter by reference.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        <B>Input Parameters / Input Variables</B> (optional):
+        <BR>
+        <BR>
+        This section lists all input parameters/variables for the API:
+        <BR>
+        <BR>
+        <UL>
+          <LI>
+		    <B>Input Parameters</B>&#8212;Input passed in a parameter
+            list to procedure and
+            function APIs. For documentation purposes only, parameters are shown in lowercase.
+            <BR>
+            <BR>
+          </LI> 
+		  <LI>
+		    <B>Input Variables</B>&#8212;Input variables passed through the symbol table
+            to APIs without a parameter list.&nbsp; For documentation 
+            purposes only, variables are shown in uppercase.
+          </LI> 
+        </UL>
+        <P>All input parameters <I>must</I> indicate whether they are
+        &quot;required&quot; or &quot;optional.&quot;</P>
+      </LI>
+      <LI>
+        <B>Output / Output Parameters / Output Variables</B> (optional):
+        <BR>
+        <BR>
+        This section lists all output or output variables returned by the API:
+        <BR>
+        <BR>
+		<UL> 
+		  <LI>
+	        <B>Output</B>&#8212;Output returned through a &quot;pass
+            by reference&quot; variable from a
+            procedure or the return value of an extrinsic function API.
+            <BR>
+            <BR>
+          </LI> 
+		  <LI>
+		    <B>Output Parameters</B>&#8212;Output parameters returned
+            by the API.
+            <BR>
+            <BR>
+          </LI> 
+		  <LI>
+		    <B>Output Variables</B>&#8212;Output variables returned
+            through the symbol table from an API.
+            <BR>
+            <BR>
+          </LI> 
+		</UL>
+      </LI>
+      <LI>
+        <B>Details</B> (optional):
+        <BR>
+        <BR>
+        This section provides any additional&nbsp; information regarding the use
+        of the API.
+        This should include anything <i>not</i> already included in the API 
+        &quot;Description&quot; section.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        <B>Examples</B> (required):
+        <BR>
+        <BR>
+        This section provides one or more examples demonstrating the 
+		use/functionality of the API (<i>not</i> all APIs have 
+        examples).
+      </LI>
+    </OL>
+    <P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/08/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/api_intro.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

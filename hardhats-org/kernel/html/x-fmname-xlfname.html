@@ -1,0 +1,330 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$FMNAME^XLFNAME">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$FMNAME^XLFNAME,$$fmname,xlfname,name standardization,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$FMNAME^XLFNAME">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$FMNAME^XLFNAME</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+	<H3><A NAME="navskip">$$FMNAME^XLFNAME</A>(): Convert HL7 Formatted Name to Name</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Name Standardization,
+	<B>ICR#:</B> 3065</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$FMNAME^XLFNAME extrinsic function converts an HL7 formatted input 
+	<strong>name</strong> to a
+	<ACRONYM TITLE="Veterans Health Information Systems and Technology">VistA </ACRONYM>formatted name.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$FMNAME^XLFNAME([.]name[,flags][,delim])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>[.]name:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) This is the HL7 name to be converted; it can be passed 
+		  by reference. If the <b>C</b> flag is used, the name components are returned in
+		  nodes descendent from this parameter (see 
+		  "<A HREF="#output"
+		      CLASS="bodylink"
+			  TITLE="See the Output for $$FMNAME^XLFNAME">Output</A>").</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>flags:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Flags to controls processing. Possible values are:</P> 
+		  <UL> 
+		    <LI>
+		      <b>C&#151;</b>Return name components in the <strong>NAME</strong> array (see
+			  <A HREF="#output"
+			     CLASS="bodylink"
+				 TITLE="See the Output for $$FMNAME^XLFNAME">Output</A>).
+		      <BR>
+		      <BR>
+		    </LI> 
+			<LI>
+			  <b>L#&#151;</b>Truncate the returned name to a maximum Length of
+			  <B>#</B> characters, where <B>#</B> is an integer between <strong>1</strong> and <strong>256</strong>.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  <b>M&#151;</b>Return the name in mixed case, with the first letter of
+			  each name component capitalized.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  <b>S&#151;</b>Return the name in standardized form.
+			</LI> 
+		  </UL>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>delim:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) The delimiter used in the HL7 formatted name (default = <B>^</B>).</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>name:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>If the <strong>flags</strong> input parameter contains a <b>C</b>, the component parts
+		  of the name are returned in the <strong>NAME</strong> array:</P> 
+		  <pre>    NAME("FAMILY) = Family (Last) Name<BR>     NAME("GIVEN") = Given (First) Name(s)<BR>     NAME("MIDDLE") = Middle Name(s)<BR>     NAME("SUFFIX") = Suffix(es)</pre>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="details">Details</A></H4> 
+	<P>If the <b>L#</b> flag is used, and the resulting name is longer than <B>#</B>,
+	the following pruning algorithm is performed to shorten the name:</P> 
+	<OL> 
+	  <LI>
+	    Truncate Middle Name from the right-most position until only the initial 
+		character is left.
+		<BR>
+		<BR>
+	  </LI> 
+	  <LI>
+	    Drop suffix.
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    Truncate Given Name from the right-most position until only the initial 
+		character is left.
+		<BR>
+		<BR>
+	  </LI> 
+	  <LI>
+	    Truncate Family Name from the right-most position.
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    Truncate the name from the right.
+	    <BR>
+	    <BR>
+	  </LI> 
+	</OL>
+	<p>&nbsp;</p>
+	<h4>Examples</h4> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>Convert an HL7 formatted name to a VistA name:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMNAME^XLFNAME(&quot;XUUSER^SIXTY^K.^JR^MR.^PHD")
+</B>
+&gt;<B>W X</B>
+XUUSER,SIXTY K. JR
+
+ 
+&gt;<B>S X=$$FMNAME^XLFNAME(&quot;XUUSER^SIXTY^K.^JR^MR.^PHD","S")
+</B>
+&gt;<B>W X</B>
+XUUSER,SIXTY K JR
+
+ 
+&gt;<B>S X=$$FMNAME^XLFNAME(&quot;XUUSER^SIXTY^K.^JR^MR.^PHD","M")
+</B>
+&gt;<B>W X</B>
+Xuuser,Sixty K. Jr
+
+ 
+&gt;<B>S X=$$FMNAME^XLFNAME(&quot;XUUSER^SIXTY^K.^JR^MR.^PHD","SL12")
+</B>
+&gt;<B>W X</B>
+XUUSER,SI K</PRE>
+        </td>
+      </tr>
+    </table>   
+	<H4>Example 2</H4> 
+	<P>Convert an HL7 formatted name where the tilde character (<B>~</B>) is the delimiter to a
+	standard name:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMNAME^XLFNAME(&quot;XUUSER~SIXTY~K.~JR~MR","S","~")</B>
+
+&gt;<B>W X</B>
+XUUSER,SIXTY K JR</PRE>           
+        </td>
+      </tr>
+    </table>	 
+    <H4>Example 3</H4> 
+	<P>Convert an HL7 formatted name to a standard name, and return the
+	components of that name in the MYNAME array:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S MYNAME=&quot;XUUSER^SIXTY^K.^JR^MR.^PHD"</B>
+
+&gt;<B>W $$FMNAME^XLFNAME(.MYNAME,"CS")</B>
+XUUSER,SIXTY K JR
+
+&gt;<B>ZW MYNAME</B>
+MYNAME=XUUSER^SIXTY^K.^JR^MR.^PHD
+MYNAME(&quot;DEGREE&quot;)=PHD
+MYNAME("FAMILY&quot;)=XUUSER
+MYNAME("GIVEN&quot;)=SIXTY
+MYNAME("MIDDLE")=K.
+MYNAME(&quot;PREFIX&quot;)=MR.
+MYNAME("SUFFIX")=JR</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-fmname-xlfname.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

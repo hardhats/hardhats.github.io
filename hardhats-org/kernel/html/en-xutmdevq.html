@@ -1,0 +1,306 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: EN^XUTMDEVQ">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,EN^XUTMDEVQ,EN,XUTMDEVQ,taskman,supported">
+    <meta name="description"
+	      content="Kernel APIs: EN^XUTMDEVQ">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: EN^XUTMDEVQ</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">EN^XUTMDEVQ</A>(): Run a Task (Directly or Queued)</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> TaskMan,
+	<B>ICR#:</B> 1519</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The EN^XUTMDEVQ API encapsulates the logic to handle both direct printing and
+	queuing in a single call.</P>
+    <P>EN^XUTMDEVQ calls <a href="zis.html"
+	                        title="^%ZIS API"
+	                        class="bodylink">^%ZIS</a> to query the user for
+	device selection. The user can choose a device on which to run the job directly
+	or choose to queue the job.</P>
+    <P>After calling <a href="zis.html"
+	                    title="^%ZIS API"
+	                    class="bodylink">^%ZIS</a>, EN^XUTMDEVQ looks to
+	see if the queuing was chosen. If so, EN^XUTMDEVQ uses the values from the
+	<strong>ztrtn</strong>, <strong>ztdesc</strong>, and <strong>ztsave</strong> input parameters to queue the job to the chosen
+	device. If the user did <i>not</i> choose to queue, EN^XUTMDEVQ runs the job directly
+	using the <strong>ztrtn</strong> input parameter. Thus, EN^XUTMDEVQ provides a simple way to
+	facilitate both queuing and running a job directly.</P>
+    <P>If the <strong>IOP</strong> variable
+	is defined before calling EN^XUTMDEVQ, it has the same effect as it does
+	if defined before a <a href="zis.html"
+	                       title="^%ZIS API"
+	                       class="bodylink">^%ZIS</a> call.</P>
+    <P>If the <strong>ZTPRI</strong> or <strong>ZTKIL</strong> variables are
+	defined before calling EN^XUTMDEVQ, they have the same effect as they do
+	if defined before an 
+	<a href="ztload.html"
+	   title="^%ZTLOAD API"
+	   class="bodylink">^%ZTLOAD</a> call. Other ^%ZTLOAD input variables have no
+	effect, however.</P>
+    <P>You do <I>not</I> need to "<strong>USE IO</strong>" in the routine specified in
+	the <strong>ztrtn</strong> input parameter; <strong>IO</strong> is the current device, whether the job is
+	queued or run directly. Also, you do <i>not</i> need to pass <b>Q</b> in the top-level of
+	the <strong>%ZIS</strong> input array; if the top-level of the array does <i>not</i> 
+	contain <b>Q</b>, <b>Q</b>
+	is appended to it (to allow queuing).</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  EN^XUTMDEVQ(ztrtn,ztdesc,.ztsave[,.%zis][,retztsk])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>ztrtn:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) The API that TaskMan will <strong>DO</strong> to start the task. You 
+          can specify it as any of the following:</P>
+		  <ul>
+			<li>
+			  &quot;<strong>LABEL^ROUTINE</strong>&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;<strong>^ROUTINE</strong>&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;<strong>ROUTINE</strong>&quot;
+			</li>
+		  </ul>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>ztdesc:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) Task description, up to <strong>200</strong> characters
+		  describing the task, with the software application name at the front.</P>
+		</TD>
+      </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>.ztsave:</B>
+	    </TD>
+		<TD VALIGN="TOP">
+		  <P>(required) Pass by reference. Set up this array in the same format
+		  as the <strong>ztsave</strong> input array is set up for the  
+	      <a href="ztload.html"
+	         title="^%ZTLOAD API"
+	         class="bodylink">^%ZTLOAD</a> TaskMan API. The array you
+		  set up in <strong>ztsave</strong> is passed directly as <strong>ztsave</strong> to TaskMan if the user chooses to
+		  queue the job.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>.%ZIS:</B>
+	    </TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) Pass by reference. String containing input
+		  specifications for the Device Handler. Set up the array in the same way as the
+		  <strong>%ZIS</strong> array is set up for the 
+		  <A HREF="zis.html"
+		     TITLE="^%ZIS API"
+		     CLASS="bodylink">^%ZIS Standard Device Call</A> API. The array you set up in
+		  the <strong>%zis</strong> input parameter is passed directly as 
+			<strong>%ZIS</strong> to the Device
+		  Handler.
+		  <BR>
+		  <BR>
+		  All <strong>%ZIS</strong> subscripts from the regular 
+		  <a href="zis.html"
+	         title="^%ZIS API"
+	         class="bodylink">^%ZIS</a> call ("<strong>A</strong>", "<strong>B</strong>",
+		  "<strong>HFSMODE</strong>", etc.) can be passed in the <strong>%ZIS</strong> input array.</P>
+		</TD>
+	  </TR> 
+      <TR>
+	    <TD VALIGN="TOP">
+	      <B>retztsk:</B>
+	    </TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) This is the return task number (i.e., <strong>ZTSK</strong>). 
+          Put a number in this parameter, such that <strong>$G(RETZTSK)</strong>, then
+		  <strong>ZTSK</strong> exists as an output variable. Otherwise, 
+		  <strong>ZTSK</strong> does <I>not</I> exist as an output variable.</P>
+        </TD>
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Variable</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>ZTSK:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>If a number is entered in the <strong>retztsk</strong> input parameter, the task 
+          number assigned to a task is returned.</P>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>Sample report:</P>
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE>ZZYZOPT     ;ISC-SF/doc 
+     ;;1.0;;
+EN   ;
+     N ZZEN K X,DIC S DIC=9.6,DIC(0)="AEMO" D ^DIC
+     Q:+Y'&gt;0  S ZZEN=+Y
+     ;
+     K ZTSAVE S ZTSAVE("ZZEN")=""
+     D EN^XUTMDEVQ("P^ZZYZOPT","Print from BUILD File",.ZTSAVE)
+     Q
+P    ;
+     ; code for printout
+     ;
+     W !,"Here goes the body of the report!"
+     W !,"ZZEN = ",ZZEN
+     Q</PRE>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/en-xutmdevq.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

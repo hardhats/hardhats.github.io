@@ -1,0 +1,203 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: KILL^XUSCLEAN">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,KILL^XUSCLEAN,KILL,XUSCLEAN,signon security,supported">
+    <meta name="description"
+	      content="Kernel APIs: KILL^XUSCLEAN">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs:KILL^XUSCLEAN</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+	<H3><A NAME="navskip">KILL^XUSCLEAN</A>: Clear All but Kernel Variables</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Signon/Security,
+	<B>ICR#:</B> 10052</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The KILL^XUSCLEAN API clears the partition of all but key variables essential to
+	Kernel. Application developers are allowed to use this call to clean up
+	application variables and leave the local symbol table unchanged when returning
+	from an option or as otherwise required by SAC Standards.
+	<BR>
+	<BR>
+	In the past, options that have called KILL^XUSCLEAN have occasionally created problems for
+	other options that had defined software-wide variables. For example, a user
+	might enter the top-level menu for a software application, which could have an
+	entry action that retrieved site parameters into a local variable that is
+	supposed to remain defined while in any menu of that software application,
+	between options. But if the user could then reach a secondary menu option that
+	happened to call KILL^XUSCLEAN, a side effect would be the <strong>KILL</strong>ing off the
+	previously defined software-wide variable.
+	<BR>
+	<BR>
+	KILL^XUSCLEAN now provides a
+    way for sites and developers to work around this problem. For any menu-type
+	option, the PROTECTED VARIABLES (#1840) field in the OPTION (#19) file allows you to
+	enter a comma-delimited list of variables to protect from being <strong>KILL</strong>ed by
+	KILL^XUSCLEAN. Once a user enters a menu subtree descendent from the protected
+	menu, the variables are protected until the menu subtree is exited.
+	<BR>
+	<BR>
+	So, for example, to protect a software-wide variable for an entire software
+	application, you can enter that variable in the PROTECTED VARIABLES (#1840) field for
+	the top-level menu in the software application. As long as a user does <i>not</i> exit
+	the top-level menu of the software application's menu tree, the software-wide
+	variable is protected from all calls to KILL^XUSCLEAN. &quot;Up-arrow Jumps&quot; 
+	(using a caret; <strong>^</strong>) into a menu tree also work fine, as long as the menu that has been 
+	protected is in the menu path made by the jump.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  KILL^XUSCLEAN</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%"><B>none.</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>none.</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/kill-xusclean.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

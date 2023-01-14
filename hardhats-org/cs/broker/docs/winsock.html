@@ -1,0 +1,712 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE> Broker FAQ/Troubleshooting: Winsock Messages</TITLE></HEAD>
+<BODY BGCOLOR="#ffffff">
+<H3><A NAME="WINSOCK">Common Winsock API Error/Status Messages</A></H3>
+<H4><A NAME="Winsock_List">List of Error/Status Messages</A></H4>
+<P>The following is a list of possible error codes along with their extended
+explanations. Errors are listed in alphabetical order by error macro. We have
+also included a list of <A HREF="#Winsock_sites">other sites for Winsock
+information</A>.</P>
+<PRE>NOTE: The following list of error/status messages were copied from the
+      <I>Windows Sockets 2 Application Programming Interface</I> document, Revision
+      2.2.0, May 10, 1996.<BR><BR></PRE>
+<TABLE WIDTH="100%">
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEACCES</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10013)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Permission denied.</I> An attempt was made to
+access a socket in a way forbidden by its access permissions. An example is
+using a broadcast address for <B>sendto()</B> without broadcast permission
+being set using <B>setsockopt(SO_BROADCAST).</B>
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEADDRINUSE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10048)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Address already in use.</I>  Only one usage of
+each socket address (protocol/IP address/port) is normally permitted. This error
+ occurs if an application attempts to <B>bind()</B> a socket to an IP
+address/port that has already been used for an existing socket, or a socket that
+wasn't closed properly, or one that is still in the process of closing. For
+server applications that need to <B>bind()</B> multiple sockets to the same
+port number, consider using <B>setsockopt(SO_REUSEADDR)</B>. Client
+applications usually need not call <B>bind()</B> at all - <B>connect()</B>
+will choose an unused port automatically.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEADDRNOTAVAIL</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10049)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Cannot assign requested address.</I> The
+requested address is not valid in its context. Normally results from an attempt
+to <B>bind()</B> to an address that is not valid for the local machine, or <B>connect()</B>/<B>sendto()</B>
+an address or port that is not valid for a remote machine (e.g. port 0).</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEAFNOSUPPORT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10047)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Address family not supported by protocol
+family.</I> An address incompatible with the requested protocol was used. All
+sockets are created with an associated &quot;address family&quot; (i.e. AF_INET
+for Internet Protocols) and a generic protocol type (i.e. SOCK_STREAM). This
+error will be returned if an incorrect protocol is explicitly requested in the
+<B>socket()</B> call, or if an address of the wrong family is used for a
+socket, e.g. in <B>sendto()</B>.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEALREADY</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10037)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Operation already in progress.</I>  An
+operation was attempted on a non-blocking socket that already had an operation
+in progress - i.e. calling <B>connect()</B> a second time on a non-blocking
+socket that is already connecting, or canceling an asynchronous request
+(WSAAsyncGetXbyY()) that has already been canceled or completed.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAECONNABORTED</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10053)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Software caused connection abort.</I> An
+established connection was aborted by the software in your host machine,
+possibly due to a data transmission time-out or protocol error.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B><A NAME="WSAECONNREFUSED">WSAECONNREFUSED</A></B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10061)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Connection refused.</I> No connection could be
+made because the target machine actively refused it.  This usually results from
+trying to connect to a service that is inactive on the foreign host - i.e. one
+with no server application running.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAECONNRESET</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10054)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Connection reset by peer.</I> A existing
+connection was forcibly closed by the remote host. This normally results if the
+peer application on the remote host is suddenly stopped, the host is rebooted,
+or the remote host used a &quot;hard close&quot; (see <B>setsockopt(SO_LINGER)</B>)
+on the remote socket.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEDESTADDRREQ</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10039)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Destination address required.</I>  A required
+address was omitted from an operation on a socket. For example, this error will
+be returned if <B>sendto()</B> is called with the remote address of ADDR_ANY.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEFAULT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10014)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Bad address.</I> The system detected an invalid
+pointer address in attempting to use a pointer argument of a call.  This error
+occurs if an application passes an invalid pointer value, or if the length of
+the buffer is too small.  For instance, if the length of an argument which is a
+struct sockaddr is smaller than sizeof(struct sockaddr).
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEHOSTDOWN</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10064)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Host is down.</I> A socket operation failed
+because the destination host was down.  A socket operation encountered a dead
+host.  Networking activity on the local host has not been initiated. These
+conditions are more likely to be indicated by the error WSAETIMEDOUT.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEHOSTUNREACH</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10065)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>No route to host.</I> A socket operation was
+attempted to an unreachable host. See WSAENETUNREACH.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEINPROGRESS</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10036)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Operation now in progress.</I>  A blocking
+operation is currently executing. Windows Sockets only allows a single blocking
+operation to be outstanding per task (or thread), and if any other function call
+is made  (whether or not it references that or any other socket) the function
+fails with the WSAEINPROGRESS error.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B><A NAME="WSAEINTR">WSAEINTR</A></B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10004)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Interrupted function call.</I> A blocking
+operation was interrupted by a call to <B>WSACancelBlockingCall()</B>.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEINVAL</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10022)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Invalid argument.</I> Some invalid argument was
+supplied (for example, specifying an invalid level to the
+<B>setsockopt()</B> function). In some instances, it also refers to the current
+state of the socket - for instance, calling <B>accept()</B> on a socket that is
+not <B>listen()</B>ing.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEISCONN</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10056)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Socket is already connected.</I> A connect
+request was made on an already connected socket. Some implementations also
+return this error if <B>sendto()</B> is called on a connected SOCK_DGRAM socket
+(For SOCK_STREAM sockets, the <I>to</I> parameter in <B>sendto()</B> is
+ignored), although other implementations treat this as a legal occurrence.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEMFILE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10024)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Too many open files.</I> Too many open sockets.
+Each implementation may have a maximum number of socket handles available,
+either globally, per process or per thread.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEMSGSIZE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10040)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Message too long.</I> A message sent on a
+datagram socket was larger than the internal message buffer or some other
+network limit, or the buffer used to receive a datagram into was smaller than
+the datagram itself.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAENETDOWN</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10050)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Network is down.</I> A socket operation
+encountered a dead network. This could indicate a serious failure of the network
+system (i.e. the protocol stack that the Winsock DLL runs over), the network
+interface, or the local network itself.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAENETRESET</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10052)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Network dropped connection on reset.</I> The
+host you were connected to crashed and rebooted. May also be returned by <B>setsockopt()</B>
+if an attempt is made to set SO_KEEPALIVE on a connection that has already
+failed.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAENETUNREACH</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10051)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Network is unreachable.</I> A socket operation
+was attempted to an unreachable network. This usually means the local software
+knows no route to reach the remote host.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAENOBUFS</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10055)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>No buffer space available.</I> An operation on
+a socket could not be performed because the system lacked sufficient buffer
+space or because a queue was full.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAENOPROTOOPT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10042)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Bad protocol option.</I> An unknown, invalid or
+unsupported option or level was specified in a <B>getsockopt()</B> or <B>setsockopt()</B>
+call.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAENOTCONN</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10057)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Socket is not connected.</I> A request to send
+or receive data was disallowed because the socket is not connected and (when
+sending on a datagram socket using <B>sendto()</B>) no address was supplied.
+Any other type of operation might also return this error - for example, <B>setsockopt()</B>
+setting SO_KEEPALIVE if the connection has been reset.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAENOTSOCK</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10038)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Socket operation on non-socket.</I> An
+operation was attempted on something that is not a socket. Either the socket
+handle parameter did not reference a valid socket, or for <B>select()</B>, a
+member of an fd_set was not valid.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEOPNOTSUPP</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10045)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Operation not supported.</I> The attempted
+operation is not supported for the type of object referenced.  Usually this
+occurs when a socket descriptor to a socket that cannot support this operation,
+for example, trying to accept a connection on a datagram socket.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEPFNOSUPPORT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10046)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Protocol family not supported.</I> The protocol
+family has not been configured into the system or no implementation for it
+exists. Has a slightly different meaning to WSAEAFNOSUPPORT, but is
+interchangeable in most cases, and all Windows Sockets functions that return one
+of these specify WSAEAFNOSUPPORT.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEPROCLIM</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10067)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Too many processes.</I> A Windows Sockets
+implementation may have a limit on the number of applications that may use it
+simultaneously. <B>WSAStartup()</B> may fail with this error if the limit has
+been reached.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEPROTONOSUPPORT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10043)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Protocol not supported.</I> The requested
+protocol has not been configured into the system, or no implementation for it
+exists. For example, a <B>socket()</B> call requests a SOCK_DGRAM socket, but
+specifies a stream protocol.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEPROTOTYPE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10041)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Protocol wrong type for socket.</I> A protocol
+was specified in the <B>socket()</B> function call that does not support the
+semantics of the socket type requested.  For example,  the ARPA Internet UDP
+protocol cannot be specified with a socket type of SOCK_STREAM.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAESHUTDOWN</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10058)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Cannot send after socket shutdown.</I> A
+request to send or receive data was disallowed because the socket had already
+been shut down in that direction with a previous <B>shutdown()</B> call. By
+calling <B>shutdown()</B> a  partial close of a socket is requested, which is a
+signal that sending or receiving or both has been discontinued.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAESOCKTNOSUPPORT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10044)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Socket type not supported.</I> The support for
+the specified socket type does not exist in this address family. For example,
+the optional type SOCK_RAW might be selected in a <B>socket()</B> call, and the
+implementation does not support SOCK_RAW sockets at all.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAETIMEDOUT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10060)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Connection timed out.</I> A connection attempt
+failed because the connected party did not properly respond after a period of
+time, or established connection failed because connected host has failed to
+respond.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEWOULDBLOCK</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10035)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Resource temporarily unavailable.</I> This
+error is returned from operations on non-blocking sockets that cannot be
+completed immediately, for example <B>recv()</B> when no data is queued to be
+read from the socket. It is a non-fatal error, and the operation should be
+retried later. It is normal for WSAEWOULDBLOCK to be reported as the result from
+calling <B>connect()</B> on a non-blocking SOCK_STREAM socket, since some time
+must elapse for the connection to be established.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAHOST_NOT_FOUND</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(11001)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Host not found.</I> No such host is known. The
+name is not an official host name or alias, or it cannot be found in the
+database(s) being queried. This error may also be returned for protocol and
+service queries, and means the specified name could not be found in the relevant
+database.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSA_INVALID_HANDLE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Specified event object handle is invalid.</I>
+An application attempts to use an event object, but the specified handle is not
+valid.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSA_INVALID_PARAMETER</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>One or more parameters are invalid.</I> An
+application used a Winsock function which directly maps to a Win32 function. 
+The Win32 function is indicating a problem with one or more parameters.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAINVALIDPROCTABLE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Invalid procedure table from service provider.</I>
+A service provider returned a bogus procedure table to WS2_32.DLL. (Usually
+caused by one or more of the function pointers being NULL.)
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAINVALIDPROVIDER</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Invalid service provider version number.</I> A
+service provider returned a version number other than 2.0.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSA_IO_PENDING</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Overlapped operations will complete later.</I>
+The application has initiated an overlapped operation which cannot be completed
+immediately.  A completion indication will be given at a later time when the
+operation has been completed.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSA_IO_INCOMPLETE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Overlapped I/O event object not in signaled
+state.</I> The application has tried to determine the status of an overlapped
+operation which is not yet completed.  Applications that use <B>WSAWaitForMultipleEvents</B>()
+in a polling mode to determine when an overlapped operation has completed will
+get this error code until the operation is complete.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSA_NOT_ENOUGH_MEMORY</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Insufficient memory available.</I> An
+application used a Winsock function which directly maps to a Win32 function. The
+Win32 function is indicating a lack of required memory resources.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSANOTINITIALISED</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10093)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Successful WSAStartup() not yet performed.</I>
+Either the application hasn't called <B>WSAStartup()</B>, or
+<B>WSAStartup()</B> failed. The application may be accessing a socket which the
+current active task does not own (i.e. trying to share a socket between tasks),
+or <B>WSACleanup()</B> has been called too many times.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSANO_DATA</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(11004)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Valid name, no data record of requested type.</I>
+The requested name is valid and was found in the database, but it does not have
+the correct associated data being resolved for. The usual example for this is a
+hostname -&gt; address translation attempt (using <B>gethostbyname</B>() or
+<B>WSAAsyncGetHostByName</B>()) which uses the DNS (Domain Name Server), and an
+MX record is returned but no A record - indicating the host itself exists, but
+is not directly reachable.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSANO_RECOVERY</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(11003)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>This is a non-recoverable error.</I> This
+indicates some sort of non-recoverable error occurred during a database lookup.
+This may be because the database files (e.g. BSD-compatible HOSTS, SERVICES or
+PROTOCOLS files) could not be found, or a DNS request was returned by the server
+with a severe error.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAPROVIDERFAILEDINIT</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Unable to initialize a service provider.</I>
+Either a service provider's DLL could not be loaded (<B>LoadLibrary()</B>
+failed) or the provider's WSPStartup/NSPStartup function failed.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSASYSCALLFAILURE</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>System call failure.</I> Returned when a system
+call that should never fail does. For example, if a call to <B>WaitForMultipleObjects()</B>
+fails or one of the registry APIs fails trying to manipulate the
+protocol/namespace catalogs.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSASYSNOTREADY</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10091)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Network subsystem is unavailable.</I> This
+error is returned by <B>WSAStartup()</B> if the Windows Sockets implementation
+cannot function at this time because the underlying system it uses to provide
+network services is currently unavailable. Users should check:
+<UL>
+<LI>That the appropriate Windows Sockets DLL file is in the current path
+</LI>
+<LI>That they are not trying to use more than one Winsock implementation
+simultaneously. If there is more than one WINSOCK.DLL on your system, be sure
+the first one in the path is appropriate for the network subsystem currently
+loaded
+</LI>
+<LI>The Winsock implementation documentation to be sure all necessary
+components are currently installed and configured correctly
+</LI></UL></TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSATRY_AGAIN</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(11002)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Non-authoritative host not found.</I> This is
+usually a temporary error during hostname resolution and means that the local
+server did not receive a response from an authoritative server.  A retry at some
+time later may be successful.</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAVERNOTSUPPORTED</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10092)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>WINSOCK.DLL version out of range.</I> The
+current Winsock implementation does not support the Windows Sockets
+specification version requested by the application. Check that no old Windows
+Sockets DLL files are being accessed.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSAEDISCON</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(10094)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Graceful shutdown in progress.</I> Returned by
+<B>recv</B>(), <B>WSARecv</B>() to indicate the remote party has initiated a
+graceful shutdown sequence.
+</TD></TR>
+<TR>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD></TR>
+<TR>
+<TD WIDTH="277" BGCOLOR="#66ccff"><B>WSA_OPERATION_ABORTED</B></TD>
+<TD WIDTH="360" BGCOLOR="#66ccff"><B>(OS dependent)</B>
+</TD></TR>
+<TR>
+<TD COLSPAN="2" WIDTH="637"><I>Overlapped operation aborted.</I> An overlapped
+operation was canceled due to the closure of the socket, or the execution of the
+SIO_FLUSH command in <B>WSAIoctl</B>()
+</TD></TR></TABLE>
+<P><A HREF="#WINSOCK">Return to Top</A></P>
+<HR SIZE="5" WIDTH="100%">
+<H4><A NAME="Winsock_sites">Other Sites for Winsock Information</A></H4>
+<P>For help on Winsock go to the following Internet web addresses:</P>
+<UL>
+<LI>Winsock FAQ:  <A HREF="http://www.well.com/user/nac/alt-winsock-faq.html">http://www.well.com/user/nac/alt-winsock-faq.html</A></LI>
+<LI>Windows Sockets Help File:  <A HREF="winsock.hlp">Windows Sockets An Open
+Interface for Network Programming under Microsoft Windows  Version 1.1 20
+January 1993</A></LI>
+<LI>Microsoft Winsock 1.1 Specification: 
+<A HREF="http://www.microsoft.com/products/developer/winsock/default.htm">http://www.microsoft.com/products/developer/winsock/default.htm</A></LI>
+<LI>Intel Winsock 2.0 Specification: 
+<A HREF="http://www.intel.com/IAL/Winsock2">http://www.intel.com/IAL/Winsock2</A></LI>
+<LI>Stardust Winsock 2 Information:  <A HREF="http://www.stardust.com">http://www.stardust.com</A></LI></UL>
+<P><A HREF="#WINSOCK">Return to Top</A></P>
+<HR SIZE="5" WIDTH="100%"></BODY></HTML>

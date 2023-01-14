@@ -1,0 +1,233 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel Toolkit APIs: RESTART^XDRMERG">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,toolkit,programmer,developer,programmer manual,developer's guide,apis,application programming interface,application,programming,interface,entry point,RESTART^XDRMERG,RESTART,XDRMERG,Duplicate Record Merge,supported">
+    <meta name="description"
+	      content="Kernel Toolkit APIs: RESTART^XDRMERG">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel Toolkit APIs: RESTART^XDRMERG</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/toolkit_heading_APIs.gif"
+			   ALT="Kernel Toolkit 7.3 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+	<H3><a name="navskip">RESTART^XDRMERG</a>(): Restart Merge</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit&#8212;Duplicate Record Merge,
+	<B>ICR#:</B> 2365</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The RESTART^XDRMERG API restarts a merge that has been stopped. The information necessary for restarting can be viewed using the CHKLOCAL^XDRMERG2 API (see LOCAL MERGE STATUS).</P>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  RESTART^XDRMERG(file,arraynam,phase,currfile,currien)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>file:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Specifies the file number of the file in which the indicated entries are to be merged.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>arraynam:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) This parameter contains the name of the array as a closed root under which the subscripts indicating the 
+		  <strong>FROM</strong> and <strong>TO</strong> entries are found. The data can have either two or four subscripts descendent from the array, which is passed.</P>
+          <p><b>REF:</b> For examples of its usage, see the &#8220;Overview&#8221; section in the "Toolkit&#8212;Duplicate Record Merge" section in the <i>Kernel 
+	      8.0 &amp; Kernel Toolkit 7.3 Developer's Guide</i>.</p>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>phase:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) This parameter indicates the phase of the merge process in which the merge should be restarted. The value is a number in the range of <strong>1</strong> to <strong>3</strong>, with no decimal places:</P>
+		  <ul>
+			<li>
+			  <strong>Phase 1</strong> is usually quite short and is the merge of the specified entries in the primary file.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  <strong>Phase 2</strong> is the merging of entries in files that are DINUMed to the primary file and changing pointers that can be identified from cross-references.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  <strong>Phase 3</strong> is finding pointer values by searching each entry in a file. This is usually the longest phase of the merge process.
+			</li>
+		  </ul>
+        	<P>&nbsp;</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>currfile:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) This is the current file number on which the merge process is operating.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>currien:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) This is the current internal entry number in the file on which the merge process is operating.</P>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>none.</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>&nbsp;</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+    <p>&nbsp;</p>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/restart-xdrmerg.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

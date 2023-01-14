@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <title>Kernel Bugs</title>
+  <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+</head>
+<body bgcolor="#ffffff" link="#000066" text="#000000" vlink="#336633">
+<table border="0" cellpadding="6" cellspacing="6" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><img src="../images/logo.gif" height="79"
+ width="120"><br>
+      <b><font face="Arial"><font size="+2"> Kernel Work-arounds </font></font></b></td>
+      <td align="center" width="80%">
+      <center>
+      <p><a href="../index.html"><img src="../images/shopSHomeOff.gif"
+ alt="Home Page" align="top" border="0" height="76" width="54"></a> <a
+ href="../m/Mmain.html"><img src="../images/shopSMOff.gif" alt="M |"
+ align="top" border="0" height="76" width="54"></a> <a
+ href="../fileman/FMmain.html"><img src="../images/shopSFmOff.gif"
+ alt="FileMan |" align="top" border="0" height="76" width="54"></a> <a
+ href="KRNmain.html"><img src="../images/shopSKrnOn.gif" alt="Kernel |"
+ align="top" border="0" height="76" width="54"></a> <a
+ href="../cs/CSmain.html"><img src="../images/shopSCsOff.gif"
+ alt="CS/MM/Web |" align="top" border="0" height="86" width="62"></a> <a
+ href="../tools/TOOLSmain.html"><img src="../images/shopSPgmOff.gif"
+ alt="Programmer Tools |" align="top" border="0" height="86" width="54"></a>
+      <a href="../apps/APPSmain.html"><img
+ src="../images/shopSAppOff.gif" alt="Applications" align="top"
+ border="0" height="76" width="54"></a> </p>
+      </center>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<center>
+<table cellpadding="6" cellspacing="6" width="100%">
+  <tbody>
+    <tr>
+      <td bgcolor="#e6e6e6" valign="top" width="151">
+      <ul>
+        <li><font size="-1"><a href="#Before">Before loading the
+routines</a></font></li>
+        <li><a href="#MGR"><font size="-1">After loading the "MGR"
+('%') routines</font></a></li>
+        <li><a href="#KIDS"><font size="-1">After loading the 'KIDS'
+routines (XPD*)</font></a></li>
+        <li><font size="-1"><a href="#After">After finishing the
+installation</a></font></li>
+      </ul>
+      </td>
+      <td bgcolor="#fff" valign="top" width="439"> <a name="Before"></a>
+      <h2>A. Before loading the routines</h2>
+      <h3>Stub routines "%T", "XMB", and "ZU"</h3>
+      <p>If you have no "%T" routine on your system, create one that
+just QUITs. %T is <em>not</em> a DHCP routine, but some versions of
+'XMYPOST' call it, erroneously.</p>
+      <p>Similarly, in the "production" namespace, if there is no 'XMB'
+routine to start with, create a dummy one that just quits.</p>
+      <p>Also, make sure you start out with a 'ZU' routine. This is the
+routine to which your user startups will be tied. It should contain an
+ERR tag, for error trapping. To start with, a "stub routine" like the
+following is good enough:</p>
+      <p>ZU G ^XUS<br>
+ERR QUIT</p>
+      <hr>
+      <h2><a name="MGR"></a>B. After loading the "MGR" ('%') routines</h2>
+      <h3>ZISX</h3>
+      <p>Make sure that there is a copy of the 'ZISX' routine in the <b>production</b>
+account. If not, copy it over from 'MGR'.</p>
+      <hr>
+      <h2><a name="KIDS"></a>C. After loading the 'KIDS' routines (XPD*)</h2>
+      <h3>VERSION^XPDUTL</h3>
+      <p>An installation of the Kernel can get hung up thinking that it
+is not entitled to update the 'XU' package. To kludge around this, add
+a temporary line after tag</p>
+      <p>VERSION^XPDUTL</p>
+      <p>which reads:</p>
+      <p>I X="XU" Q 7.1</p>
+      <h3><br>
+      </h3>
+      <h3>MAIN+9^XUTMTR4</h3>
+      <p>Make sure tag MAIN+9^XUTMTR4 reads as follows:</p>
+      <p>S $Y=0,(ZTOUT,ZTCOUNT)=0,(ZTFIRST,ZTNEWPG)=1</p>
+      <p>'Setting $Y' within a parenthesized list causes an error in
+some implementations.<br>
+      </p>
+      <br>
+      <hr>
+      <h2><a name="After"></a>D. After finishing the installation</h2>
+      <h3>Volume set ID</h3>
+      <p>In order to help ensure that MailMan and TaskMan run
+correctly, be sure that the 'Volume Set' named in</p>
+      <p>^%ZOSF("VOL")</p>
+      <p>is matched by Files 14.7, 14.5, and 8989.3. </p>
+      <p>For example, if ^%ZOSF("VOL")="AAA", then there should be an
+Entry named "AAA" in File 14.7 (the TASKMAN SITE PARAMETERS File), an
+Entry named "AAA" in File 14.5, (the VOLUME SET File), and the entry in
+File 8989.3 (the KERNEL SYSTEMS PARAMETER File) should have a "VOLUME
+SET" multiple named "AAA", too.</p>
+      <p>That File 8989.3 is supposed to be set up by the routine named
+XVIRPOST. If you do not have an entry in File 8989.3, you will have to
+build it in order for Kernel Sign-on to run properly.<br>
+      <br>
+      </p>
+      <h3>Programmer access</h3>
+      <p> When you've created the first user in the NEW PERSON file,
+you can 'give him programmer access' by entering the following code in
+direct mode:</p>
+      <p>SET $PIECE(^($O(^VA(200,"A"),-1),0),"^",4)="@"</p>
+      <p>This is "the procedure" mentioned in the Kernel V8
+Installation Guide on page 65 under the heading <i><b>Finish Setting
+Up First User Account</b></i>.<br>
+      <br>
+      </p>
+      <h3>"Service/Section"</h3>
+      <p>Speaking of the NEW PERSON file, you'll probably want to use
+FileMan to Modify Attributes of this File. For example, field 29,
+"SERVICE/SECTION" should probably be made <em>non-mandatory</em>.<br>
+      <br>
+      </p>
+      <h3>Re-cross-reference PACKAGE file</h3>
+      <p>When you are done installing the Kernel, it's not a bad idea
+to use FileMan's "RE-CROSS-REFERENCE" utility on File 9.4, the PACKAGE
+File. This is especially advisable if you have installed the system
+using a Global load of MUMPS globals.<br>
+      </p>
+      <p><br>
+      </p>
+      <h3>Number of output lines -- XUPARAM routine</h3>
+      <p>The Kernel is set up to restrict the number of lines of output
+to a "Spool" or "HFS" (file) device. The appropriate parameter is found
+in File 8989.3. Alternatively, since aborted output tends to make for
+grumpy users, you may (optionally) override this restriction by
+changing tag SPOOL^XUPARAM so that it reads</p>
+      <p>SPOOL QUIT 999999999<br>
+      <br>
+      </p>
+      <h3>Maximum number of users -- XUS routine</h3>
+      <p>Similarly, users are frustrated when they cannot sign on.
+Change tag SET1+2^XUS so that "y^1" is replaced by "y^999". This will
+forestall the </p>
+      <p>"Maximum number of users already signed on"</p>
+      <p>message, at log-on.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<center>
+<p>
+<script language="JavaScript"><!--
+
+document.write("</center><font face=\"arial,helv\" size=1> This page last updated on " + document.lastModified+".</font>")
+
+//--></script><!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Thanks to Metropolitan Community College of Nebraska for the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+following javascript function //--></p>
+</center>
+<p align="center"><font face="Arial" size="1">Search | </font><a
+ href="../index.html"><font face="Arial" size="1">Home</font></a><font
+ face="Arial" size="1"> | </font><a href="../m/Mmain.html"><font
+ face="Arial" size="1">MUMPS</font></a><font face="Arial" size="1">| </font><a
+ href="../fileman/FMmain.html"><font face="Arial" size="1">Fileman</font></a><font
+ face="Arial" size="1"> | </font><a href="KRNmain.html"><font
+ face="Arial" size="1">Kernel</font></a><font face="Arial" size="1"> | </font><a
+ href="../cs/CSmain.html"><font face="Arial" size="1">C/S, Mailman, Web</font></a><font
+ face="Arial" size="1"> | </font><a href="../tools/TOOLSmain.html"><font
+ face="Arial" size="1">Programmer Tools</font></a><font face="Arial"
+ size="1">| </font><a href="../apps/APPSmain.html"><font face="Arial"
+ size="1">Applications</font></a></p>
+</body>
+</html>

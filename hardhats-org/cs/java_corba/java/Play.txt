@@ -1,0 +1,73 @@
+
+//Title:        Clinical Information Resource Network
+//Version:      
+//Copyright:    Copyright (c) 1997
+//Author:       Bob Yacobucci
+//Company:      Department Of Veteran Affairs
+//Description:  
+
+package gov.va.vista.cirn;
+
+import java.awt.*;
+import gov.va.vista.kernel.*;
+import borland.jbcl.layout.*;
+import java.awt.event.*;
+
+public class Play extends WorkBenchItem {
+  Label messageLbl = new Label();
+  MenuBar menuBar1 = new MenuBar();
+  Menu menu1 = new Menu();
+  MenuItem menuShowForm2 = new MenuItem();
+  MenuItem menuItem1 = new MenuItem();
+  Button button1 = new Button();
+  BorderLayout borderLayout1 = new BorderLayout();
+
+  public Play() {
+    new SignOn().startLogon(this);
+    try  {
+      jbInit();
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void main(String[] args) {
+    Play play1 = new Play();
+  }
+
+  private void jbInit() throws Exception {
+    this.setLayout(borderLayout1);
+    messageLbl.setBackground(Color.pink);
+    messageLbl.setFont(new Font("Dialog", 1, 16));
+    messageLbl.setAlignment(1);
+    messageLbl.setText("Hello World - I am logged on to VISTA!!");
+    menu1.setLabel("Custom");
+    menuShowForm2.setLabel("Show Form 2");
+    menuShowForm2.setActionCommand("");
+    menuShowForm2.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        menuShowForm2_actionPerformed(e);
+      }
+    });
+    menuItem1.setLabel("Item 1");
+    button1.setLabel("My Custom Button");
+    this.add(messageLbl, BorderLayout.CENTER);
+    this.add(button1, BorderLayout.SOUTH);
+    menuBar1.add(menu1);
+    menu1.add(menuItem1);
+    menu1.add(menuShowForm2);
+  }
+
+  public String getTitle() {
+    return "My Demo Window";
+  }
+
+  public MenuBar getMenuBar() {
+    return menuBar1;
+  }
+
+  void menuShowForm2_actionPerformed(ActionEvent e) {
+    Session.getSession().getWorkBench().setWorkBenchItem(new Play2());
+  }
+}

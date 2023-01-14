@@ -1,0 +1,1187 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>RPC Broker V. 1.1 Systems Manual:  Chapter 1 - System Features</TITLE></HEAD>
+<BODY>
+<P><FONT SIZE="4" FACE="arial,helv"><B><A NAME="system_features">System
+Features</A></B></FONT></P>
+<P><FONT SIZE="3" FACE="arial,helv"><B>Topics</B></FONT></P>
+<UL>
+<LI><FONT SIZE="3" FACE="arial,helv"><B><A NAME="client_features">Client
+Features</A></B></FONT>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#client_agent">RPC Broker
+Client Agent</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#connect_to">&quot;Connect To&quot;
+Application Window</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#servers_program">Edit Broker
+Servers Program</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#stand-alone_programs">Stand-alone
+Programs and their Associated Help Files</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#hosts_file">HOSTS File</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#client_manager">What Happened
+to the Client Manager?</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#vista-ini">What Happened to
+the VISTA.INI File?</A></FONT></LI></UL><BR><BR></LI>
+<LI><FONT SIZE="3" FACE="arial,helv"><B><A NAME="server_features">Server
+Features</A></B></FONT>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#listeners_ports">Broker
+Listeners and Ports</A></FONT>
+<UL>
+<LI><FONT><A HREF="#starting_stopping">Starting and Stopping Listeners</A></FONT></LI>
+<LI><FONT><A HREF="#starting_via_option">Starting Listeners via an Option</A></FONT></LI>
+<LI><FONT><A HREF="#obtaining_port">Obtaining an Available Listener Port (for
+Alpha/VMS systems only)</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#mserver">MSM for NT 4.3.0
+MSERVER Replaces RPC Broker Listener Process</A></FONT></LI></UL></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#load_balancing">Load Balancing
+on Alpha Systems</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#site_parameters_file">RPC
+BROKER SITE PARAMETERS file</A></FONT>
+<UL>
+<LI><A HREF="#box-volume_pairs">Editing BOX-VOLUME Pairs</A></LI></UL></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#mserver">MSM for NT 4.3.0
+MSERVER Replaces RPC Broker Listener Process</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#single_signon">Integrated
+Single Signon for Multiple User Sessions</A></FONT>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#enabling_single_signon">Enabling
+Single Signon</A></FONT></LI></UL></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#message_structure">RPC Broker
+Message Structure</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#timeouts">Client/Server
+Timeouts</A></FONT></LI></UL></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="client_agent">RPC Broker
+Client Agent</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC Broker Client Agent program (i.e.,
+<A NAME="CLAGENT.EXE-1">CLAGENT.EXE</A>) runs in support of the
+<A HREF="#single_signon">single signon</A> process (a.k.a. auto signon). This
+program automatically and continuously runs in the background on the client
+workstation and normally should <I>not</I> be closed or shut down by the user.
+A satellite dish icon will be displayed in the System Tray indicating the Broker
+Client Agent is running. The icon will change when an active connection is made
+to the server, and a green line indicating an active connection will emanate
+from the satellite dish.</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><IMG
+SRC="clagent.gif" ALT="Client Agent Dialog Box" WIDTH="374" HEIGHT="140"></P></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">By double clicking on the Client Agent
+icon, you can see how many active connections are currently open. However, the &quot;Active
+connections&quot; count may include &quot;orphan&quot; connections that are no
+longer active. Use this count as an approximate count only.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>The &quot;Start Client Agent with
+Windows&quot; checkbox should be checked so that <A HREF="#single_signon">single
+signon</A>, if allowed, will be operational. By default, this box is checked.
+However, if a particular workstation is not always connected to the network upon
+startup, you may wish to prevent Client Agent from starting automatically. You
+can always reset it to start automatically by starting Client Agent manually
+first and re-checking this check box.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="connect_to">&quot;Connect To&quot;
+Application Window</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Upon logging in to a <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> client/server application, users may be
+presented the &quot;Connect To&quot; application window as displayed in Figure 3
+below. This application window may be used by Delphi <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+client/server applications that wish to allow users to select a server name and
+associated port from a list of servers entered into the Windows
+<A NAME="Registry1">Registry</A>. For example, this can be useful when you want
+to run the application in either a Test or Production account.</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><IMG
+SRC="getserverinfo.gif" ALT="Connect To Dialog Box" WIDTH="310" HEIGHT="186"></P></CENTER>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>To add additional server names and
+ports to the Windows Registry, please refer to the &quot;<A
+HREF="#servers_program">Edit Broker Servers Program</A>&quot; topic below.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="servers_program">Edit Broker
+Servers Program</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">If someone in IRM wishes to add, modify,
+or delete servers and ports to be used by the Broker, they will run the Edit
+Broker Servers program (i.e., ServerList.EXE, see Figure below) to modify or add
+Listeners/Ports to the Windows <A NAME="Registry2">Registry</A>. ServerList.EXE
+can be copied to any workstation for this purpose.</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><IMG
+SRC="serverlist.gif" ALT="Broker Server Edit Program" WIDTH="622" HEIGHT="339"></P></CENTER>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>This program only displays
+<A HREF="#hosts_file">HOSTS file</A> entries; it does not edit the HOSTS file.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Adding Entries:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">You are given two methods of adding new
+server entries to the Registry:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">A list of servers available from your
+<A HREF="#hosts_file">HOSTS file</A> is displayed in the Servers in Hosts file
+list box on the left of the dialog box. Thus, you don't have to remember and
+type the server names yourself. Select one or more from the list and press the
+Add Hosts Server button. This creates the new grid line(s) with the server(s)
+selected automatically &quot;stuffed&quot; into the Server cell(s). Complete
+each new entry by typing in the appropriate port(s). When finished, press OK.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Alternatively, you can press the Add
+Server button on the right of the dialog box. This creates a new grid line.
+Enter the name of the server you want added. Complete each new entry by typing
+in the appropriate port(s). When finished, press OK. The program will attempt to
+resolve the server name to an IP address either through the Domain Name Service
+(<A NAME="DNS-1">DNS</A>) or by looking it up in the <A HREF="#hosts_file">HOSTS
+file</A> on the client workstation. If this is successful, the new entry will be
+added to the Registry. If the server name cannot be resolved, an error message
+will be displayed and you will have to correct your entry.</FONT></LI></OL>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>Hint: If you're running a PC Network
+with Windows NT, the BROKERSERVER added to the Services list on the NT network
+will speed up client access times (i.e., keeps it from having to do a double
+lookup with first IP then service, it merely looks at the Services list).</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Modifying Entries:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">In order to modify or change a server or
+port, simply place the cursor in the appropriate Server or Port field and make
+the change. When finished, press OK.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>Server names must be resolvable
+through DNS or the <A HREF="#hosts_file">HOSTS file</A>.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Deleting Entries:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">In order to delete a pre-existing entry
+just click in the Del column. An asterisk appears in the Del column signifying a
+deletion. Another click toggles the deletion off. When finished, press OK.</FONT></P>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="stand-alone_programs">Stand-alone
+Programs and their Associated Help Files</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Each of the following stand-alone Broker
+programs, distributed with this version of the Broker, have an associated help
+file that must reside in the
+<I>same</I> directory in order to provide online help for that particular
+stand-alone program:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="BORDER" CELLSPACING="1" CELLPADDING="7" WIDTH="576">
+<TR>
+<TD WIDTH="40%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P><B><FONT SIZE="2" FACE="arial,helv">Stand-alone Program</FONT></B></P></TD>
+<TD WIDTH="39%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P><B><FONT SIZE="2" FACE="arial,helv">Associated Help File</FONT></B></P></TD>
+<TD WIDTH="22%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P><B><FONT SIZE="2" FACE="arial,helv">Location</FONT></B></P></TD></TR>
+<TR>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">BROKERPROGPREF.EXE</FONT></P></TD>
+<TD WIDTH="39%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">BROKERPROGPREF.HLP</FONT></P>
+</TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Programmer Workstation</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><A HREF="#client_agent">CLAGENT.EXE</A></FONT></P></TD>
+<TD WIDTH="39%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">CLAGENT.HLP</FONT></P></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">End-user Workstation</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><A HREF="chapter_3.html#rpctest">RPCTEST.EXE</A></FONT></P></TD>
+<TD WIDTH="39%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">RPCTEST.HLP</FONT></P></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">End-user Workstation</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><A HREF="#servers_program">SERVERLIST.EXE</A></FONT></P></TD>
+<TD WIDTH="39%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">SERVERLIST.HLP</FONT></P></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Programmer Workstation</FONT></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">The installation of the Broker will
+automatically load these associated files into the same directory. If you choose
+to &quot;export&quot; a stand-alone program (e.g., <A HREF="#servers_program">SERVERLIST.EXE</A>)
+to another client workstation, make sure you include its associated help file
+and place them both in the <I>same</I> directory.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For more information on the
+BROKERPROGPREF.EXE, please refer to the Online RPC Broker Developer's Guide
+(i.e., BROKER.HLP).<BR><BR>For more information on the CLAGENT.EXE, please
+refer to the &quot;<A HREF="#client_agent">RPC Broker Client Agent&quot;</A> 
+topic.<BR><BR>For more information on the <A HREF="chapter_3.html#rpctest">RPCTEST.EXE</A>,
+please refer to the Chapter 3, &quot;<A HREF="chapter_3.html">Troubleshooting</A>&quot;
+topic.<BR><BR>For more information on the SERVERLIST.EXE, please refer to the &quot;<A
+HREF="#servers_program">Edit Broker Servers Program</A>&quot; topic.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="hosts_file">HOSTS File</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">The HOSTS file is an ASCII text file that
+contains a list of the servers and their IP addresses. However, use of the HOSTS
+file is <I>not</I> a requirement for the Broker. The use of the HOSTS file
+depends on the way the local area network (LAN) is implemented and managed at a
+site. Clients can bypass the HOSTS file and use <A NAME="DNS-2">DNS</A>, DHCP
+(Dynamic Host Configuration Protocol), or WINS (Windows Name Service).</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">To modify or add servers to the HOSTS
+file, edit the file using a text editor (e.g., Microsoft Notepad).</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The following table illustrates where you
+can find this file based on your client Windows operating system (OS):</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE
+BORDER="BORDER" CELLSPACING="1" BORDERCOLOR="#000000" CELLPADDING="7" WIDTH="552">
+<TR>
+<TD VALIGN="TOP" WIDTH="38%" BGCOLOR="#eeeeee">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Version of Windows OS</B></FONT></P></TD>
+<TD VALIGN="TOP" WIDTH="62%" BGCOLOR="#eeeeee">
+<P><FONT SIZE="2" FACE="arial,helv"><B>File (Location and Name)</B></FONT></P></TD></TR>
+<TR>
+<TD WIDTH="38%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Windows 95</FONT></P></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">C:\WINDOWS\HOSTS</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="38%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Windows NT 3.51</FONT></P></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">C:\WINDOWS\SYSTEM32\DRIVERS\ETC\HOSTS
+</FONT></P>
+</TD></TR>
+<TR>
+<TD WIDTH="38%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Windows NT 4.0</FONT></P></TD>
+<TD WIDTH="62%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">C:\WINNT\SYSTEM32\DRIVERS\ETC\HOSTS
+</FONT></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">A sample of the Windows 95 HOSTS file
+(i.e., C:\WINDOWS\HOSTS.SAM) is displayed below (modifications/additions made to
+this sample file are italicized):</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="1">
+<TR>
+<TD>
+<PRE> # Copyright (c) 1994 Microsoft Corp. 
+ #
+ # This is a sample HOSTS file used by Microsoft TCP/IP for Chicago
+ #                                                                   
+ # This file contains the mappings of IP addresses to host names. Each
+ # entry should be kept on an individual line. The IP address should
+ # be placed in the first column followed by the corresponding host
+ # name. The IP address and the host name should be separated by at
+ # least one space.
+ # 
+ # Additionally, comments (such as these) may be inserted on individual
+ # lines or following the machine name denoted by a '#' symbol.
+ #  
+ # For example:
+ #
+ #  102.54.94.97    rhino.acme.com     # source server
+ #  38.25.63.10     x.acme.com         # x client host
+ # 
+ #     <I>IP</I>             <I>Host</I>
+ #   <I>ADDRESS</I>          <I>Name</I>            <I>Description</I>
+ #      |               |                  |
+ #      |               |                  |         
+ #      V               V                  V 
+    127.0.0.1        localhost       # loopback
+    192.1.1.1       <I>BROKERSERVER</I>     <I># Broker Server</I>
+</PRE></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">The last entry in this file (i.e.,
+BROKERSERVER) was added to the sample HOSTS file for illustration purposes. We
+recommend you put in an entry that points to the main server you intend using
+with the Broker the majority of the time (e.g., BROKERSERVER). <B>V</B><I><FONT
+FACE="Century Schoolbook" SIZE="2">IST</FONT></I><B><FONT
+FACE="Century Schoolbook">A</FONT></B> applications can specify any server they
+wish.</FONT></P>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> A DHCPSERVER entry is still required
+for software that uses Version 1.0 of the Broker. You may want to create an
+additional entry for BROKERSERVER in your HOSTS file or DNS. However,
+<I>do not remove</I> the DHCPSERVER entry already present.</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Adding Entries:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">To add entries in the HOSTS file:</FONT></P>
+<OL TYPE="a">
+<LI TYPE="a"><FONT SIZE="2" FACE="arial,helv">Move the cursor to the end of
+the last line displayed in the file.</FONT><BR><BR></LI>
+<LI TYPE="a"><FONT SIZE="2" FACE="arial,helv">Press the Enter Key to create a
+new line.</FONT><BR><BR></LI>
+<LI TYPE="a"><FONT SIZE="2" FACE="arial,helv">On the new line, enter the
+desired IP address beginning in the first column, as described in Figure 5
+above. As recommended, add an appropriate IP address for the BROKERSERVER Host
+name as the next entry below &quot;127.0.0.1&quot;.</FONT><BR><BR></LI>
+<LI TYPE="a"><FONT SIZE="2" FACE="arial,helv">After typing the IP address,
+type at least one space and enter the Host name that corresponds to that IP
+address. As recommended, type in BROKERSERVER as the next entry below &quot;loopback&quot;.<BR><BR>For
+example, the entry for a server at your site with an IP address of 192.1.1.1
+would look like the following:<BR><BR></FONT>
+<PRE>     127.0.0.1    localhost     # loopback      <B>&lt;---existing entry</B>
+
+     192.1.1.1    BROKERSERVER  # Broker Server <B>&lt;---added entry</B></PRE><BR><BR></LI>
+<LI TYPE="a"><FONT SIZE="2" FACE="arial,helv">Repeat steps a - d until you
+have entered all of the IP addresses and corresponding Host names you wish to
+enter.</FONT><BR><BR></LI>
+<LI TYPE="a"><FONT SIZE="2" FACE="arial,helv">When your entries are complete,
+use Notepad's <B>File | Save</B> command to save the HOSTS file.</FONT><BR><BR>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>Do not save the HOSTS file with an
+extension!</I></FONT></P></TD></TR></TABLE><BR><BR></LI>
+<LI TYPE="a"><FONT SIZE="2" FACE="arial,helv">Close the HOSTS file.</FONT></LI></OL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Modifying Entries:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">To modify entries in the HOSTS file:</FONT></P>
+<OL TYPE="a">
+<LI><FONT SIZE="2" FACE="arial,helv">Move the cursor to the line to be
+modified.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Modify the IP address, Host name, or
+both.</FONT>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Make sure that at least one space
+separates the IP address from the corresponding Host name.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Make sure you have an entry for
+BROKERSERVER in this file.</FONT><BR><BR></LI></UL></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Repeat steps a - b until you have
+modified all of the IP addresses and corresponding Host names you wish to
+change.</FONT><BR><BR></LI>
+<LI>	<FONT SIZE="2" FACE="arial,helv">When your entries are complete, use
+Notepad's <B>File | Save</B> command to save the HOSTS file.</FONT><BR><BR>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>Do not save the HOSTS file with an
+extension!</I></FONT></P></TD></TR></TABLE><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Close the HOSTS file.</FONT></LI></OL>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="client_manager">What
+Happened to the Client Manager?</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">The Client Manager, previously distributed
+with version 1.0 of the Broker, is no longer used by this version of the Broker.
+In version 1.0 of the Broker, the Client Manager provided two types of services:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">It was used to invoke the
+<A NAME="RPCBI.DLL">RPCBI.DLL</A>.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">It was used by developers to set
+programmer preferences for using the TRPCBroker component.</FONT></LI></OL>
+<P><FONT SIZE="2" FACE="arial,helv">The RPCBI.DLL that was distributed with
+the RPC Broker V. 1.0 is no longer used, thus, the Client Manager is no longer
+required with this version of the Broker. Configuration of programmer
+preferences will now be done via the Broker Programmer Preferences Application
+Window.</FONT></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For more information on the Broker
+Programmer Preferences Application Window, please refer to the &quot;RPC Broker
+Programmer Preference Editor&quot; topic in the Online RPC Broker Developer's
+Guide (i.e., BROKER.HLP).</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> The RPCBI.DLL and Client Manager
+(i.e., CLMAN.EXE) installed with Broker V. 1.0 must <I>not</I> be removed from
+the vista/broker directory on the client workstation. They are still required
+for 16-bit Broker-based applications created using version 1.0 of the Broker
+(e.g., PCMM).</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="vista-ini">What Happened to
+the VISTA.INI File?</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">The VISTA.INI file will no longer be used
+by applications built with Version 1.1 of the Broker. However, this file will
+continue to be used by applications built using version 1.0 of the Broker (e.g.,
+PCMM). During the installation of the Broker, relevant data from the VISTA.INI
+file will be moved to the Windows <A NAME="Registry3">Registry</A>. Subsequent
+reads and writes will be done via the Registry.</FONT></P>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> The VISTA.INI file created with
+Broker V. 1.0 must not be removed from the Windows directory on the client
+workstation. It is still required for 16-bit Broker-based applications created
+using version 1.0 of the Broker (e.g., PCMM).</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">The following are a list of items from the
+present VISTA.INI file and their disposition with this version of the Broker:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="BORDER" CELLSPACING="1" CELLPADDING="7" WIDTH="553">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="42%" BGCOLOR="#eeeeee">
+<P><B><FONT SIZE="2" FACE="arial,helv">VISTA.INI File Item</FONT></B></P></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="58%" BGCOLOR="#eeeeee">
+<P><B><FONT SIZE="2" FACE="arial,helv">Disposition</FONT></B></P></TD></TR>
+<TR>
+<TD WIDTH="42%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">ClientManagerPath<BR><BR>ErrorRetry<BR><BR>ClientManagerState</FONT></P>
+
+</TD>
+<TD WIDTH="58%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Client Manager items - <I>not</I> moved
+to the Registry.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="42%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">IdeConnect<BR><BR>ClearParameters<BR><BR>ClearResults<BR><BR>ListenerPort<BR><BR>Server</FONT></P>
+</TD>
+<TD WIDTH="58%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Programmer items - moved to the Registry
+via a developer workstation installation (to be edited by the new Configuration
+form).</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="42%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">SignonPos<BR><BR>SignonSiz<BR><BR>IntroBackCol<BR><BR>IntroTextFont</FONT></P>
+</TD>
+<TD WIDTH="58%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Signon items - moved to the Registry
+(these did <I>not</I> exist in version 1.0). These items will now be edited
+from the Signon form.</FONT></P>
+<P><IMG SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"><I><FONT
+SIZE="2" FACE="arial,helv">For more information, please refer to the &quot;<A
+HREF="chapter_2.html#customize_signon_window">Users Can Customize Signon Window</A>&quot;
+topic in Chapter 2 of this manual.</FONT></I></P></TD></TR>
+<TR>
+<TD WIDTH="42%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">HostsPath</FONT></P></TD>
+<TD WIDTH="58%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">No longer useful (i.e., Broker V. 1.1
+Delphi code will <I>not</I> reference it).</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="42%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">[RPCBroker_Servers] section</FONT></P></TD>
+<TD WIDTH="58%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Server/Port pairs - moved to the Registry
+via general workstation installations. These entries will now be edited via the
+Edit Broker Servers application.</FONT></P>
+<P><IMG SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"><I><FONT
+SIZE="2" FACE="arial,helv">For more information, please refer to the &quot;<A
+HREF="#servers_program">Edit Broker Servers Program</A>&quot; topic in this
+chapter.</FONT></I></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="listeners_ports">Broker
+Listeners and Ports</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">This version of the Broker allows sites to
+start <I>multiple</I> Broker Listener processes in <I>one</I> account. Sites
+can now also run <I>multiple</I> Listeners in the <I>same</I> UCI-volume, on
+<I>different</I> IP addresses/CPUs, listening to the <I>same</I> port. If you
+need to run several Broker Listeners on the same IP address/CPU (e.g., one for a
+Production account and another for a Test account), they must all be using
+different ports. For example, if the Listener in the Production account is on
+port 9200, start another Listener in the Test account on port 9201.
+Alternatively, you may want to allocate entire ranges of ports for various
+accounts. If the IP addresses/CPUs are different, then the port can be the same.
+For example, this means that you can run a Broker Listener on every machine
+listening on port 9200. This will be important when using <A NAME="DNS-3">DNS</A>
+for distributing client connections across several machines.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Clients and servers in a medical center
+must agree on some known &quot;application service ports&quot;. We started to
+use port 9200 for the Broker Listener as a convention but a medical center may
+fire up several servers, as long as the combination of IP and Port is unique.
+Clients will attempt to connect to the servers on these established ports. Port
+9200 was an example; hospitals could choose anything they have available greater
+than 1024 (i.e., sockets 1 to 1024 are reserved for standard, well-known
+services like SMTP, FTP, Telnet, etc.).</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">It is possible that your port selection
+may conflict with someone else using the same port on the same machine. However,
+this should not affect you if you are running on <I>different</I> machines.
+Someday hospitals may want to query each other. When this happens, hospitals
+would have to agree on a known service port. In the Internet community, port 25
+is mail and everyone is guaranteed to find an SMTP server attached to that port.
+We may eventually have a service port that all hospitals would have to support
+to allow for inter-medical center communications.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Related Topics:</B></FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#starting_stopping">Starting
+and Stopping Listeners</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#starting_via_option">Starting
+Listeners via an Option</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#obtaining_port">Obtaining an
+Available Listener Port (for Alpha/VMS systems only)</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#mserver">MSM for NT 4.3.0
+MSERVER Replaces RPC Broker Listener Process</A></FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="starting_stopping">Starting
+and Stopping Listeners </A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The preferred method for starting and
+stopping Listeners in DSM and OpenM is through the <A NAME="status_field">STATUS</A>
+field of the
+<A HREF="#site_parameters_file">RPC BROKER SITE PARAMETERS file (#8994.1)</A>.
+While TaskMan is running, you should be able to start and stop Listeners at any
+time by setting the STOPPED Listener to START and a RUNNING Listener to STOP.
+Out of the six possible states: START, STARTING, RUNNING, STOP, STOPPING, and
+STOPPED, you can only enter START when a Listener is STOPPED and STOP when a
+Listener is RUNNING. The other states are controlled by the Broker itself.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>DSM sites must have TaskMan started
+via DCL, if they want to use the <A HREF="#site_parameters_file">RPC BROKER
+SITE PARAMETERS file (#8994.1)</A> settings to start Listeners on other nodes.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">To set the STATUS field, invoke VA FileMan
+V. 21.0 using Q^DI and edit the new <A HREF="#site_parameters_file">RPC BROKER
+SITE PARAMETERS file (#8994.1)</A>. Set this field either to START or STOP and,
+assuming that TaskMan is running, the Listener will be started or stopped
+accordingly. When STATUS is set to START, the field will change to RUNNING.
+Conversely, when STATUS is set to STOP, the field will change to STOPPED.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv"><A NAME="start_listener_directly">To
+start up a Listener directly:</A></FONT></P>
+<OL TYPE="a">
+<LI><FONT SIZE="2" FACE="arial,helv">Log into your M server</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Enter the following at the M prompt:</FONT><BR><BR>
+<PRE>    &gt;<B>D STRT^XWBTCP(Listener port)</B></PRE>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>As a convention, the RPC Broker uses
+9200 as the Listener port, however, sites can choose any available port greater
+than 1024.</I></FONT></P></TD></TR></TABLE></LI></OL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><A NAME="stop_listener_directly">To stop
+a Listener directly:</A></FONT></P>
+<OL TYPE="a">
+<LI><FONT SIZE="2" FACE="arial,helv">Log into your M server</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Enter the following at the M prompt:</FONT><BR><BR>
+<PRE>    &gt;<B>D STOP^XWBTCP(Listener port)</B></PRE>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>It is important to stop all Listeners
+before shutting down the system!</I></FONT></P></TD></TR></TABLE></LI></OL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="starting_via_option">Starting
+Listeners via an Option</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The XWB LISTENER STARTER option can be
+used to start one or more Broker Listeners at one time. Additionally, this
+option can be used to automatically start all of the Listener processes you need
+when TaskMan starts up, such as after the system is rebooted or configuration is
+restarted.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The XWB LISTENER STARTER option works in
+combination with the new <A NAME="controlled_by_listener_starter">CONTROLLED BY
+LISTENER STARTER</A> (#2) subfield of a Port (#1) subfield of a Listener (#7)
+multiple field in the <A HREF="#site_parameters_file">RPC BROKER SITE
+PARAMETERS file (#8994.1)</A>. The CONTROLLED BY LISTENER STARTER field is a
+YES/NO set of codes type field. All of the Listener entries in this file that
+have CONTROLLED BY LISTENER STARTER set to YES will be started when the XWB
+LISTENER STARTER option is run.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>DSM sites must have TaskMan started
+via DCL, if they want to use the XWB LISTENER STARTER option to automatically
+start Listener processes.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">In order to automatically start the
+Listener(s) when TaskMan is restarted (i.e., in addition to the entries in the
+<A HREF="#site_parameters_file">RPC BROKER SITE PARAMETERS file [#8994.1]</A>),
+enter the XWB LISTENER STARTER option in the <A NAME="option_scheduling_file">OPTION
+SCHEDULING file</A> (#19.2). Schedule this option with SPECIAL QUEUING set to
+STARTUP. You can do this by using the TaskMan option:
+<A NAME="Schedule-Unschedule">Schedule/Unschedule Options</A>:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="1">
+<TR>
+<TD>
+<PRE> Select Systems Manager Menu Option: <B>TASKMAN</B> Management
+ Select Taskman Management Option: <B>SCH</B>edule/Unschedule Options
+ Select OPTION to schedule or reschedule:<B> XWB LISTENER STARTER &lt;RET&gt;</B>
+  Start RPC Broker Listeners
+         ...OK? Yes// <B>&lt;RET&gt;</B>  (Yes)
+      (R)
+                        Edit Option Schedule
+    Option Name:   <B>XWB LISTENER STARTER</B>
+    Menu Text:    Start RPC Broker Listeners			TASK ID:
+__________________________________________________________________________
+  QUEUED TO RUN AT WHAT TIME:
+DEVICE FOR QUEUED JOB OUTPUT:
+ QUEUED TO RUN ON VOLUME SET:
+      RESCHEDULING FREQUENCY:
+             TASK PARAMETERS:
+            SPECIAL QUEUEING:   <B>STARTUP</B>
+__________________________________________________________________________</PRE></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>If you are an MSM 4.3.0 site or
+greater and using MSERVER instead of the Broker Listener, the XWB LISTENER
+STARTER option is not applicable to your site. Please refer to the &quot;<A
+HREF="#mserver">MSM for NT 4.3.0 MSERVER Replaces RPC Broker Listener Process</A>&quot;
+topic below.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="obtaining_port">Obtaining an
+Available Listener Port (for Alpha/VMS systems only)</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">To obtain the TCP/IP address for your
+local server on an Alpha/VMS system enter the following command at the system $
+prompt:</FONT></P>
+<PRE>    $  <B>UCX SHOW DEV</B></PRE>
+<P><FONT SIZE="2" FACE="arial,helv">You will get a list showing the following
+kinds of information:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="1">
+<TR>
+<TD>
+<PRE>                               Port                     Remote
+Device_socket  Type    Local  Remote  Service           Host
+  bg3         STREAM    5001       0  HL7              0.0.0.0
+  bg23        STREAM    9700       0  Z3ZTEST          0.0.0.0
+  bg24        STREAM    9600       0  ZSDPROTO         0.0.0.0</PRE></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">For example, if 9200 shows up in the Local
+Port column, some other application is already using this port number and you
+should choose another port.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>If IRM wishes to add, modify, or
+delete servers and ports used by the Broker, please refer to the &quot;<A
+HREF="#servers_program">Edit Broker Servers Program</A>&quot; topic in this
+chapter.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="load_balancing">Load
+Balancing on Alpha Systems</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">The Broker, like any telnet or IP process,
+can be load balanced on DSM Alpha systems if UCX 4.1 is running. The actual
+steps on configuring UCX for load balancing can be acquired from the ALPHA/AXP
+technical support group and will not be discussed here.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Multiple Broker servers can run on the
+same port as long as the machine IP addresses are unique. This is <I>not</I> a
+Broker requirement; it is a TCP/IP requirement. This capability is necessary for
+UCX load balancing. The multiple servers will receive a common alias that will
+be the connection destination.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">In UCX, you should use the <A NAME="BIND">BIND</A>
+alias:</FONT></P>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">For example:</FONT></P>
+<P><FONT FACE="Courier New" SIZE="2"></FONT></P>
+<CENTER>
+<TABLE BORDER="1">
+<TR>
+<TD>
+<PRE>   UCX&gt; <B>show host vista.sitename.med.va.gov</B>
+       
+        BIND database
+   Server:   152.999.999.xxx    999TNG
+   Host address      Host name
+   152.999.999.yy1   VISTA.SITENAME.MED.VA.GOV
+   152.999.999.yy2   VISTA.SITENAME.MED.VA.GOV
+   152.999.999.yy3   VISTA.SITENAME.MED.VA.GOV
+   152.999.999.yy4   VISTA.SITENAME.MED.VA.GOV
+   152.999.999.yy5   VISTA.SITENAME.MED.VA.GOV</PRE></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">In order to use load balancing, your
+client workstation needs to have <A NAME="DNS-4">DNS</A> enabled and pointing
+to the IP address of the DNS server in the list. The Broker on the client will
+use the PC's DNS or <A HREF="#hosts_file">HOSTS file</A> to resolve the
+BROKERSERVER host name. In the previous example, the first DNS server is
+152.999.999.xxx.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">For example, If you want PCMM GUI to be &quot;balanced,&quot;
+use the Edit Broker Servers program to edit the servers in the Registry and add
+in the alias VISTA.<I>sitename</I>.MED.VA.GOV.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For more information on adding
+servers to the Registry, please refer to the &quot;<A HREF="#servers_program">Edit
+Broker Servers Program</A>&quot; topic.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">You don't want the alias in the
+<A HREF="#hosts_file">HOSTS file</A> because the HOSTS file is for static
+bindings only. If you want to put the alias in the HOSTS file, then you will
+have to make sure that the DNS server is first in the DNS list. Thus, when the
+user selects the BIND alias, the DNS will resolve it to one of the unique IP
+addresses and <I>not</I> to the HOSTS static assignment.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>DSM sites do not need to have TaskMan
+started in a DCL context in order to use load balancing.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="site_parameters_file">RPC
+BROKER SITE PARAMETERS file</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC BROKER SITE PARAMETERS file
+(#8994.1) includes fields that can be used to better manage the Broker Listeners
+and ports. For example, the LISTENER field is a multiple that should contain all
+the Listeners that you're planning to run on your system. A simple change of the
+STATUS subfield from STOPPED to START will start that particular Listener.
+Conversely, you can STOP a RUNNING Listener as well. Also, this file is used in
+conjunction with the XWB LISTENER STARTER option that can be used to
+automatically start up a Broker Listener.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>DSM sites must have TaskMan started
+via DCL, if they want to use the RPC BROKER SITE PARAMETERS file (#8994.1)
+settings to start Listeners on other nodes.</I></FONT></P></TD></TR></TABLE>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For more information on automatically
+starting the Broker Listener(s) via the <A HREF="#starting_via_option">XWB
+LISTENER STARTER option</A>, please refer to the &quot;<A
+HREF="#listeners_ports">Broker Listeners and Ports</A>&quot; topic.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="box-volume_pairs">Editing
+BOX-VOLUME Pairs</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">Access to the BOX-VOLUME PAIR (#.01)
+subfield of the LISTENER (#7) field in the <A HREF="#site_parameters_file">RPC
+BROKER SITE PARAMETERS file (#8994.1)</A> is limited. The reason for this is to
+prevent sites adding inappropriate entries in this field by way of casual
+editing through FileMan. The appropriate entries are all the BOX-VOLUME pairs
+that can read and write to the ^XWB global (i.e., where the RPC BROKER SITE
+PARAMETERS file resides). However, when editing this pointer-type field, you may
+see <I>other</I> BOX-VOLUME combinations that are in your
+<A NAME="taskman_site_parameters_file">TASKMAN SITE PARAMETER file (#14.7)</A>.
+Jobs running in those other BOX-VOLUME combinations cannot reach the ^XWB
+global, and thus, those BOX-VOLUME combinations would not be appropriate.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">In order to edit the BOX-VOLUME pairs, you
+need to set the XWBCHK variable to the string &quot;ALLOW&quot; at the
+programmer prompt prior to invoking FileMan. For example:</FONT></P>
+<PRE>    &gt;<B>S XWBCHK=&quot;ALLOW&quot; D Q^DI</B></PRE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">The following is an example of a
+BOX-VOLUME pair:</FONT></P>
+<PRE>    KDE:ISC6A2</PRE>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="mserver">MSM for NT 4.3.0
+MSERVER Replaces RPC Broker Listener Process</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">MSM for NT in version 4.3.0 introduced a
+new generic TCP/IP Listener MSERVER. MSERVER is an actual routine in the
+Manager's UCI that runs and listens to all of the ports that you specify in
+SYSGEN. When a connection is established to one of these ports, MSERVER launches
+your code at some TAG^ROUTINE that you specify. This is similar to VMS' UCX
+utility. If you are running a Beta version of MSM 4.3 for NT, we encourage you
+to upgrade to 4.3.0. Once you upgrade, you should stop using the RPC Broker
+Listener and switch to the MSERVER.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Before MSERVER can be used, it must be
+configured using SYSGEN. The following is an example from the CIO Field Office
+in San Francisco:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">In the Manager's UCI run SYSGEN.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">In sequence pick the following options:</FONT>
+<OL TYPE="a">
+<LI><FONT SIZE="2" FACE="courier new">3 - Edit Configuration Parameters</FONT></LI>
+<LI><FONT SIZE="2" FACE="courrier new">15 - Network Configuration</FONT></LI>
+<LI><FONT SIZE="2" FACE="courrier new">12 - User-Defined Services</FONT></LI></OL><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Enter an unused index number and set it
+up as indicated below:</FONT>
+<OL TYPE="a">
+<LI><FONT FACE="Courier New" SIZE="2">Enter Service Name &lt;RPC BROKER&gt;:
+<B>RPC BROKER</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Enter Routine Reference &lt;MSM^XWBTCPC&gt;:
+<B>MSM^XWBTCPC</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Select UCI &lt;VAH,MNT&gt;: <B>VAH,MNT</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Enter Partition Size &lt;80&gt;: <B>80</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Enter Password &lt;&gt;: <B>&lt;RET&gt;</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Enter TCPIP Port Number &lt;9200&gt;:
+<B>9200</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Autostart? &lt;YES&gt;: <B>YES</B><BR><BR><FONT
+SIZE="2" FACE="arial,helv">However, specifying YES for Autostart is not enough
+for MSERVER to start up when MSM is started. You must also add MSERVER to the
+Automatic Startup List as indicated in Steps 4-6 below.</FONT></FONT></LI></OL><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">To schedule MSERVER to start
+automatically when MSM comes up, go to the SYSGEN main menu.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">In sequence pick the following options:</FONT>
+<OL TYPE="a">
+<LI><FONT FACE="Courier New" SIZE="2">3 - Edit Configuration Parameters</FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">3 - Autostart and Automounts</FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">5 - Automatic Partition Startup</FONT></LI></OL><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Enter an unused index number and set it
+up as indicated below:</FONT>
+<OL TYPE="a">
+<LI><FONT FACE="Courier New" SIZE="2">Enter UCI name &lt;MGR&gt;: <B>MGR</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Enter Entry Reference &lt;STARTUP^MSERVER(&quot;RPC
+BROKER&quot;)&gt;: <B>STARTUP^MSERVER(&quot;RPC BROKER&quot;)</B></FONT></LI>
+<LI><FONT FACE="Courier New" SIZE="2">Enter partition size &lt;SYSTEM&gt;:
+<B>SYSTEM</B></FONT></LI></OL></LI></OL>
+<P><BR></P>
+<P><FONT><FONT SIZE="2" FACE="arial,helv">To start MSERVER manually, in the
+Manager's UCI, type the following at the programmer prompt:</FONT></FONT></P>
+<PRE>    &gt;<B>J STARTUP^MSERVER(&quot;RPC Broker&quot;)</B></PRE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">To shut down MSERVER in the Manager's UCI,
+type the following at the programmer prompt:</FONT></P>
+<PRE>    &gt;<B>J SHUTDOWN^MSERVER(&quot;RPC Broker&quot;)</B></PRE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">If you're successfully using MSERVER,
+discontinue using the Broker Listener. That means you shouldn't use the
+STRT^XWBTCP and STOP^XWBTCP entry points or the <A HREF="#site_parameters_file">RPC
+BROKER SITE PARAMETERS file</A>.</FONT></P>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="single_signon">Integrated
+Single Signon for Multiple User Sessions</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">This version of the RPC Broker supports
+Kernel's single signon from a client workstation to the server. Users need only
+sign on once (i.e., enter their Access and
+<A HREF="chapter_2.html#change_verify_code">Verify codes</A>) when accessing
+both a
+<B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> roll-and-scroll (e.g., Lab,
+Pharmacy) and a <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+client/server GUI-based application (e.g., PCMM, CPRS) on the same workstation,
+regardless of which application is started first. Once logged into the server,
+the user will <I>not</I> be asked to re-enter their Access and Verify codes for
+any subsequent <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> applications
+they may start.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>Single signon is facilitated on the
+client side by the <A HREF="#client_agent">Broker Client Agent application
+(clagent.exe)</A> and is only available for Telnet-based sessions in the
+roll-and-scroll environment.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Related Topics:</B></FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#enabling_single_signon">Enabling/Disabling
+Single Signon</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#client_agent">RPC Broker
+Client Agent</A></FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="enabling_single_signon">Enabling/Disabling
+Single Signon</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Control of the single signon functionality
+is maintained and administered on the server for both <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> client/server applications (i.e., GUI) and the
+roll-and-scroll environment (i.e., terminal sessions). In support of that
+functionality a new field, <A NAME="default_auto_sign-on">DEFAULT AUTO SIGN-ON</A>,
+was added to the <A NAME="kernel_systems_parameters">Kernel System Parameters
+file (#8989.3)</A> and
+<A NAME="auto_sign-on">AUTO SIGN-ON</A> was added to the
+<A NAME="new_person_file">NEW PERSON file</A> (#200). The valid values for
+these fields are Yes, No, or Disabled.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">These new fields, in conjunction with the
+existing multiple signon fields, give the sites control of the implementation of
+single signon for users in both the GUI and roll-and-scroll environments. The
+values in the AUTO SIGN-ON and <A NAME="multiple_sign-on">MULTIPLE SIGN-ON</A>
+fields in the NEW PERSON file (#200) take precedence over the values in the
+DEFAULT AUTO SIGN-ON and
+<A NAME="default_multiple_sign-on">DEFAULT MULTIPLE SIGN-ON</A> fields in the
+Kernel System Parameters file (#8989.3). Therefore, the fields in the NEW PERSON
+file are checked first. If the user fields in the NEW PERSON file are null, the
+values in the KERNEL SYSTEM PARAMETERS file will be used.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>The AUTO SIGN-ON field in the NEW
+PERSON file and the DEFAULT AUTO SIGN-ON field in the Kernel System Parameters
+file are initially set to null.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> Single signon is <I>not</I>
+supported on MSM systems. All MSM sites must set the DEFAULT AUTO SIGN-ON field
+in the KERNEL SYSTEM PARAMETERS file (#8989.3) to Disabled.</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> If a user is <I>not</I> allowed
+multiple signons, they will only be allowed to initiate a <I>single</I> session
+(i.e., automatically disallowing single signon).</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Related Topics:</B></FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#example-1">Example 1</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#example-2">Example 2</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#file_settings">File Settings</A></FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="example-1">Example 1</A>:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,hevl">If a user has an active <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> session and has the following characteristics:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Allowed multiple signons (i.e., the
+MULTIPLE SIGN-ON field in the New Person file (#200) is set to Yes)</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Allowed auto signon (i.e., the AUTO
+SIGN-ON in the New Person file (#200) is set to Yes)</FONT></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">They will be allowed to start another <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> session <I>without</I> having to re-enter
+their Access/<A HREF="chapter_2.html#change_verify_code">Verify codes</A>.</FONT></P>
+<P><B></B></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="example-2">Example 2</A>:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">If a user has an active <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> session and has the following characteristics:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Allowed multiple signons (i.e., the
+MULTIPLE SIGN-ON field in the New Person file (#200) is set to Yes)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Not allowed auto signon (i.e., the AUTO
+SIGN-ON field in the New Person file (#200) is set to No)</FONT></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">They will be allowed to start another <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> session, however, they <I>must</I> re-enter
+their Access and <A HREF="chapter_2.html#change_verify_code">Verify codes</A>.</FONT></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="file_settings">File Settings</A>:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The following table can be used as a guide
+to control multiple signons and single signon (a.k.a. auto signon) for some
+typical situations:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="BORDER" CELLSPACING="3" CELLPADDING="7" WIDTH="600">
+<TR>
+<TD VALIGN="TOP" WIDTH="44%" BGCOLOR="#eeeeee">
+<P><FONT SIZE="2" FACE="arial,helv"><B> Description</B></FONT></P></TD>
+<TD VALIGN="TOP" WIDTH="28%" BGCOLOR="#eeeeee">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B><SUP>*</SUP>User
+Settings</B></FONT></P></TD>
+<TD VALIGN="TOP" WIDTH="28%" BGCOLOR="#eeeeee">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B><SUP>**</SUP>System
+Settings</B></FONT></P></TD></TR>
+<TR>
+<TD VALIGN="TOP" COLSPAN="3" BGCOLOR="#ffffff">
+<P><FONT SIZE="2" FACE="arial,helv">Multiple Signon:</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Disallow <I>all</I> users from having
+multiple signons</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">No/Null</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">No</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Allow <I>individual</I> users to have
+multiple signons</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Yes</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">No</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Allow <I>all</I> users to have multiple
+signons</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Yes/Null</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Yes</FONT></P></TD></TR>
+<TR>
+<TD VALIGN="TOP" COLSPAN="3" BGCOLOR="#ffffff">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Auto Signon:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">NOTE: With the exception for disabling
+auto signon, the following settings are only affective when users are allowed
+multiple signons. 
+</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Stop auto signon</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Any Value</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><SUP>&#134;</SUP>Disabled</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Allow <I>individual</I> users to have
+auto signon</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Yes</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">No</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Disallow <I>individual</I> users from
+having auto signon</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">No</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Yes</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Allow <I>all</I> users to have auto
+signon</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Yes/Null</FONT></P></TD>
+<TD WIDTH="28%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv">Yes</FONT></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><SUP>&#134;</SUP>Sites may choose to
+disable single signon (stops calls to the Broker Client Agent) for all users in
+the following situations:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Network problems</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Broker not installed</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">During installation of the Broker</FONT></LI></UL>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> Single signon is <I>not</I>
+supported in MSM systems. All MSM sites must set the DEFAULT AUTO SIGN-ON field
+in the KERNEL SYSTEM PARAMETERS file (#8989.3) to Disabled.</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><SUP>*</SUP>User Settings refers to the
+NEW PERSON file (#200) and the following fields:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">MULTIPLE SIGN-ON (#200,200.04)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">AUTO SIGN-ON (#200,200.18)</FONT></LI></UL>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> The User Settings override the System
+Settings <I>except</I> when <I>disabling</I> single signon!</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><SUP>**</SUP>System Settings refers to
+the Kernel System Parameters file (#8989.3) and the following fields:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">DEFAULT MULTIPLE SIGN-ON (#8989.3,204)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">DEFAULT AUTO SIGN-ON (#8989.3,218)</FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="message_structure">RPC
+Broker Message Structure</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">The messages that are sent from a server
+to a client contain either several values or a single value. Presently, the RPC
+Broker messages are bound by the Windows <A NAME="WINSOCK.DLL">WINSOCK.DLL</A>
+specifications and the size of the symbol table. The server receives a message
+from the client and parses out the name of the remote procedure call and its
+parameters. The Broker module on the server looks up the remote procedure call
+in the
+<A NAME="remote_procedure_file">REMOTE PROCEDURE file</A> (#8994) and executes
+the RPC using the passed parameters. At this point the server side of the
+application processes the request and returns the result of the operation. If
+the operation is a query, then the result is a set of records that satisfy that
+query. If the operation is to simply file the data on the server or it is
+unnecessary to return any information, then, typically, notification of the
+success of the operation will be returned to the client.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The basic RPC Broker message structure
+consists of the following:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">A header portion (which includes the name
+of the remote procedure call)</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">The body of the message (which includes
+descriptors, length computations, and M parameter data)</FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><B><FONT SIZE="3" FACE="arial,helv"><A NAME="timeouts">Client/Server
+Timeouts</A></FONT></B></P>
+<P><FONT SIZE="2" FACE="arial,helv">The issue of timeouts is complex in a
+client/server environment. This complicates, and even impedes, the server's
+ability to recognize that the user has abandoned the session(s). Because the
+user may be working with applications that rely solely on the client, long
+periods of time may elapse that the server would traditionally have counted
+against the user's time-out. However, such monitoring has little meaning for GUI
+applications. This facet must also be addressed when training users who will be
+accessing <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> via workstations.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The Broker itself does <I>not</I>
+implement any timeout mechanisms in a traditional <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+sense. However, a Broker connection will timeout after ten hours of inactivity
+at which point the server job will terminate. Ten hours was chosen not for
+security reasons, but rather to clean up servers from abandoned applications.</FONT></P>
+<P><BR></P>
+<HR></BODY></HTML>

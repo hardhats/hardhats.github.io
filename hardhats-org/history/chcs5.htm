@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS5</TITLE></HEAD>
+<BODY>
+<H1>V.  USER-INTERACTION INCOMPATIBILITIES CAUSED BY ENHANCEMENTS TO CHCS
+FILEMAN</H1>
+<H2>A.  INPUT TEMPLATES</H2>
+<H3>&quot;;F&quot; and &quot;;N&quot; Multiple Fields in CHCS Input Templates
+</H3>
+<P>A CHCS Input Template is allowed to include &quot;;F&quot; and &quot;;N&quot;
+Specifiers on individual multiple-valued Fields.  A &quot;;F&quot; specifier &quot;Forces&quot;
+LAYGO; whatever entry the user makes to the multiple is considered to be &quot;new&quot;,
+as though the user had typed it with quotation marks around it.  Contrariwise, a
+&quot;;N&quot; specifier means &quot;No&quot; LAYGO is allowed for that
+multiple; the user can only choose from whatever Multiple values already exist. 
+The Specifier syntax is case-insensitive, so that &quot;;f&quot; and &quot;;n&quot;
+are also allowed.  DHCP FileMan Input Templates do not recognize this Specifier,
+and therefore do not support this functionality, which could be significant in
+the design of a particular application.</P>
+<P>Portability Effect: Requires conversion.  Any (scrolling-mode) Input
+Template ported from a CHCS environment to a DHCP environment needs to be
+examined for occurences of the &quot;;F&quot; and &quot;;N&quot; Specifiers. 
+Converting such a Template to run in a DHCP environment exactly as it does in
+CHCS would probably entail special programming that makes separate ^DIE calls
+for each Multiple.</P>
+<H3>&quot;Going down twice&quot; into a Multiple Field in CHCS FileMan</H3>
+<P>CHCS FileMan fixed a bug which still exists in DHCP FileMan Version 20.
+Suppose, within one Input Template, we want a user to descend into a certain
+Multiple Field more than once.  For example, if ADMISSION were a Multiple Field
+in the PATIENT File, we might want the user to edit first the DISCHANGE DATE
+under one ADMISSION multiple, and then edit some &quot;top-level&quot; data
+about the PATIENT, and then edit the TYPE OF ADMISSION under a different
+ADMISSION multiple.  DHCP FileMan would be confused by such an Input Template
+specification, and would &quot;go down twice&quot; to the same lower-level
+fields, DISCHARGE DATE and TYPE OF ADMISSION.</P>
+<P>Portability Effect: Requires conversion.  (Scrolling-mode) Input Templates
+built in a CHCS environment could specify such a &quot;double descent&quot; into
+a multiple.  They would not be useable in DHCP FileMan because they have a
+different structure. Fortunately, this structure makes them easy to identify in
+an automated way: they are characterized by at least one non-integer subscript
+dependent from the Global node ^DIE(Template,&quot;DR&quot;).</P>
+<P>For example, a Template to do the kind of editing described in the previous
+paragraph would look something like:</P>
+<BLOCKQUOTE>
+<P>^DIE(Template,0)              = DOUBLE-DOWN^2940101...</P>
+<P>^DIE(Template,&quot;DR&quot;,1,2)       = 401;.02;401;^2.01;</P>
+<P>^DIE(Template,&quot;DR&quot;,2,2.95)    = 1;</P>
+<P>^DIE(Template,&quot;DR&quot;,2.01,2.95) = .02;</P></BLOCKQUOTE>
+<P>Note the &quot;2.01&quot; subscript just above.  Converting such a Template
+to run in a DHCP environment exactly as it does in CHCS would probably entail
+separating the one Template into two, with a little special programming.</P>
+<H2>B.  MISCELLANEOUS USER-INTERACTION DISCREPANCIES CAUSED BY CHCS
+ENHANCEMENTS</H2>
+<H3>Lookup dialogue at &quot;?&quot; input offers user a better display </H3>
+<P>In the general FileMan lookup routine (^DIC), the user can enter a &quot;?&quot;
+when asked to select an Entry.  If there is a large number of Entries from which
+to select (more than 18 or so), the user is asked something like</P>
+<P>DO YOU WANT THE ENTIRE LIST? and at this point is allowed to enter an
+up-arrow(^) followed by a string of characters.  This means, &quot;show me the
+list, starting from this character string&quot;.  In CHCS FileMan, the list of
+Entry names then displayed may include that input character string, if it is the
+exact name of an Entry.  In DHCP FileMan, though, the display will begin with an
+Entry Name that follows the character string.  For example, in DHCP, the
+following dialogue could occur:</P>
+<BLOCKQUOTE>
+<P>Select FILE NAME: ?</P>
+<P>DO YOU WANT THE ENTIRE FILE LIST? ^FORM </P>
+<P>FUNCTION          (47 Entries)</P>
+<P>HOSPITAL          (4 Entries)</P>
+<P>.</P>
+<P>.</P></BLOCKQUOTE>
+<P>In CHCS FileMan, the user would see, more appropriately,</P>
+<BLOCKQUOTE>
+<P>Select FILE NAME: ?</P>
+<P>DO YOU WANT THE ENTIRE FILE LIST? ^FORM </P>
+<P>FORM              (345 Entries)</P>
+<P>FUNCTION          (47 Entries)</P>
+<P>HOSPITAL          (4 Entries)</P>
+<P>.</P>
+<P>.</P></BLOCKQUOTE>
+<P>Portability Effect: Minor.  This is perhaps an almost trivial difference in
+system behavior, but one which could require some user re-training if a CHCS
+user found himself in a DHCP FileMan &quot;world&quot;.</P>
+<P ALIGN="RIGHT"><A HREF="chcs6.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

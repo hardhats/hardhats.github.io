@@ -1,0 +1,1142 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: ENS^%ZISS">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,ENS^%ZISS,ENS,%ZISS,device handler,supported">
+    <meta name="description"
+	      content="Kernel APIs: ENS^%ZISS">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: ENS^%ZISS</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">ENS^%ZISS</A>: Set Up Screen Handling Variables</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Device Handler,
+	<B>ICR#:</B> 10088</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The ENS^%ZISS API is used for screen management. It sets up screen handling
+	variables and other terminal type attributes.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  ENS^%ZISS</PRE> 
+    <P>Make sure to perform the following steps before calling this API:</P>
+    <OL>
+      <LI>
+        <strong>NEW</strong> all <i>non</i>-namespaced variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Set all input variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Call the API.
+      </LI>
+    </OL>
+	<H4><A NAME="input_parameters">Input Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOST(0):</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Internal entry number of the selected device's subtype
+		  as recorded in the TERMINAL TYPE (#3.2) file.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>%ZIS:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) If you define <strong>%ZIS = "I"</strong>, the output array 
+		  <strong>IOIS</strong>
+		  (mapping escape codes sent by input keys to input keys) is
+		  created.
+		  <BR>
+		  <BR>
+		  <b>REF:</b> For a description of the <strong>IOIS</strong> nodes created, see the 
+		  &quot;<a href="#output"
+		           title="Output Variables"
+		           class="bodylink">Output Variables</a>&quot; section.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Variables</A></H4> 
+	<P><b>NOTE:</b> Not all characteristics are possible on all terminal 
+	types for all output variables. The <strong>IOEFLD</strong> and 
+	<strong>IOSTBM</strong> variables are used with indirection.
+	Also, <strong>IOSTBM</strong> requires the setting of <strong>IOTM</strong> and 
+	<strong>IOBM</strong> as input 
+    variables for the top and bottom margins.</P>
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOARM0:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Auto repeat mode off.</P>
+		</TD>
+      </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOARM1:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Auto repeat mode on.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOAWM0:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Auto wrap mode off.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOAWM1:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Auto wrap mode on.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOBOFF:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Blink off.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOBON:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Blink on.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOCOMMA:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad's comma.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOCUB:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Cursor backward.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOCUD:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Cursor down.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOCUF:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Cursor forward.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOCUON:</B>
+	    </TD>
+		<TD VALIGN="TOP" 
+		    WIDTH="85%">
+	      <P>Cursor on.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOCUOFF:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Cursor off.</P>
+	    </TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOCUU:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Cursor up.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IODCH:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Delete character.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IODHLB:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Double-high/wide bottom.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IODHLT:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Double-high/wide top.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IODL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Delete line.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IODWL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Doublewide length.</P>
+	    </TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOECH:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Erase character.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOEDALL:</B>
+	    </TD>
+	    <TD VALIGN="TOP"
+	        WIDTH="85%">
+		  <P>Erase in display entire page.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOEDBOP:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Erase in display from beginning of page to cursor.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOEDEOP:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Erase in display from cursor to end of page.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOEFLD:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Erase field (<strong>*</strong>use through indirection, such as,
+			<strong>W @IOEFLD</strong>).</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOELALL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Erase in line entire line.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOELBOL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Erase in line from beginning of line to cursor.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOELEOL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Erase in line from cursor to end of line.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOENTER:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad's Enter.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOFIND:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Find key.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOHDWN:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Half down.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOHOME:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Home cursor.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOHTS:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Horizontal tab set.</P>
+		</TD>
+      </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOHUP:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Half up.</P>
+		</TD>
+      </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOICH:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Insert character.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOIL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Insert line.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOIND:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Index.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOINHI:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>High intensity.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOINLOW:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Low intensity.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOINORM:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Normal intensity.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOINSERT:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Insert key.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP0:</B>
+	    </TD>
+	    <TD VALIGN="TOP"
+	        WIDTH="85%">
+		  <P>Keypad <strong>0</strong>.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP1:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>1</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP2:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>2</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP3:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>3</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP4:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>4</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP5:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>5</strong>.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP6:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>6</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP7:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>7</strong>.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP8:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>8</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKP9:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad <strong>9</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOIRM0:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Replace mode.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOIRM1:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Insert mode.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOKPAM:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad application mode on.</P>
+		</TD>
+	  </TR>
+	  <TR>
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>IOKPNM:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad numeric mode on.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOMC:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Print screen.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOMINUS:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad's minus.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IONEL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Next line.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IONEXTSC:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Next screen.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPERIOD:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad's period.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPF1:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Function key <strong>1</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPF2:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Function key <strong>2</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPF3:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Function key <strong>3</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPF4:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Function key <strong>4</strong>.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPREVSC:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Previous screen.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPROP:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Proportional spacing.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPTCH10:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><strong>10</strong> Pitch.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPTCH12:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><strong>12</strong> Pitch.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOPTCH16:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><strong>16</strong> Pitch.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IORC:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Restore cursor.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOREMOVE:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad's Remove.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IORESET:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Reset.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IORI:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Reverse index.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IORLF:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Reverse line feed.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IORVOFF:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Reverse video off.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IORVON:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Reverse video on.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOSC:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Save cursor.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOSGR0:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Turn off select graphic rendition attributes.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOSELECT:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Keypad's Select.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOSTBM:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Set top and bottom margins (<strong>*</strong>use through indirection, such as, 
+		  <strong>W @IOSTBM</strong>; <strong>IOTM</strong> and <strong>IOBM</strong> <i>must</i> be defined as the top and bottom margins.)</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOSWL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Singlewide length.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOTBC:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Tab clear.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOTBCALL:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>Clear all tabs.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOUOFF:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Underline off.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOUON:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Underline on.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOIS:</B>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>This array is created as follows:</P>
+		  <PRE>  IOIS(escape_code)=KEYNAME</PRE>
+		  <P>Where <strong>escape_code</strong> is the escape code generated by pressing the key
+		  <strong>KEYNAME</strong> on the selected terminal, and <strong>KEYNAME</strong> can be one of the following:</P>
+		  <ul>
+		    <li>
+		      <strong>COMMA</strong>
+		    </li>
+			<li>
+			  <strong>DO</strong>
+			</li>
+			<li>
+			  <strong>ENTER</strong>
+			</li>
+			<li>
+			  <strong>FIND</strong>
+			</li>
+			<li>
+			  <strong>HELP</strong>
+			</li>
+			<li>
+			  <strong>INSERT</strong>
+			</li>
+			<li>
+			  <strong>IOCUB</strong>
+			</li>
+			<li>
+			  <strong>IOCUD</strong>
+			</li>
+			<li>
+			  <strong>IOCUF</strong>
+			</li>
+			<li>
+			  <strong>IOCUU</strong>
+			</li>
+			<li>
+              <strong>KP0</strong>
+            </li>
+			<li>
+			  <strong>KP1</strong>
+			</li>
+			<li>
+			  <strong>KP2</strong>
+			</li>
+			<li>
+			  <strong>KP3</strong>
+			</li>
+			<li>
+			  <strong>KP4</strong>
+			</li>
+			<li>
+			  <strong>KP5</strong>
+			</li>
+			<li>
+			  <strong>KP6</strong>
+			</li>
+			<li>
+			  <strong>KP7</strong>
+			</li>
+			<li>
+			  <strong>KP8</strong>
+			</li>
+			<li>
+			  <strong>KP9</strong>
+			</li>
+			<li>
+			  <strong>MINUS</strong>
+			</li>
+			<li>
+			  <strong>NEXTSCRN</strong>
+			</li>
+			<li>
+			  <strong>PERIOD</strong>
+			</li>
+			<li>
+			  <strong>PF1</strong>
+			</li>
+			<li>
+			  <strong>PF2</strong>
+			</li>
+			<li>
+			  <strong>PF3</strong>
+			</li>
+			<li>
+			  <strong>PF4</strong>
+			</li>
+			<li>
+			  <strong>PREVSCRN</strong>
+			</li>
+			<li>
+			  <strong>REMOVE</strong>
+			</li>
+			<li>
+			  <strong>SELECT</strong>
+			</li>
+		  </ul>
+	    </TD>
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/ens-ziss.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

@@ -1,0 +1,326 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel Toolkit APIs: $$RPLCLST^XTIDTRM">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,VUID,DATA STANDARDIZATION,TERM,REPLACEMENT TERM,VistA Legacy,OED,Office of Enterprise Development,VHA Unique ID (VUID),Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$RPLCLST^XTIDTRM,RPLCLST,XTIDTRM,data standardization,supported">
+    <meta name="description"
+	      content="Kernel Toolkit APIs: $$RPLCLST^XTIDTRM">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180817">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel Toolkit APIs: $$RPLCLST^XTIDTRM</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/toolkit_heading_APIs.gif"
+			   ALT="Kernel Toolkit 7.3 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><a name="_Toc158517363">$$RPLCLST^XTIDTRM()</A>: Get List of Replacement Terms, w/Optional Status Date and History (Term/Concept)</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> 
+	Toolkit&#8212;Data Standardization,
+	<B>ICR#:</B> 5078</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$RPLCLST^XTIDTRM extrinsic function traverses the REPLACED BY VHA STANDARD TERM 
+	(#99.97) field forwards and backwards to find all terms that are replacement terms for the input entry and all terms for which the input entry is a replacement. This is recursively done so that each potential branch of replacement terms forwards and backwards is traversed.</P>
+    <P><b>REF:</b> For an overview of the Data Standardization API set, read 
+    <a href="xt_7_3_111_patch_desc.html"
+       TITLE="To the Data Standardization API set overview."
+       class="bodylink">Data Standardization APIs</a>.
+    <br>
+    <br>
+    For a chart mapping the Data Standardization API set in context, read  
+	<a href="xt_7_3_111_patch_desc.html#Replacement_Relationships"
+	   TITLE="To the Replacement Relationships chart showing the mapping the Data Standardization API set in context."
+	   class="bodylink">Replacement Relationships</a>.</P> 
+    <H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$RPLCLST^XTIDTRM(file,ien,drctn,statdate,stathst,outarr)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>file:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) File number.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>ien:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Entry number.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+          <b>drctn:</b>
+        </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (optional) Flags denoting which directions to follow the trail of replacement terms.  Possible flag values are:
+		  <ul>
+			<li>
+			  <b>F (default)&#8212;</b>Follow the trail forwards.
+			  <br>
+			  <br>
+            </li>
+			<li>
+			  <b>B&#8212;</b>Follow the trail backwards.
+			  <br>
+		      <br>
+            </li>
+			<li>
+			  <b>*&#8212;</b>Follow the trail in both directions (same as <b>FB</b>/<b>BF</b>).
+			</li>
+		  </ul>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <b>statdate:</b>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (optional) VA FileMan date/time in which to return term's status. 
+		  Defaults to current date/time.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <b>stathst:</b>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (optional) Flag denoting if a term's full status history should be included in the output: 
+		  <ul>
+		    <li>
+		      <strong>0 (default)&#8212;</strong>No
+		      <br>
+			  <br>
+            </li>
+			<li>
+			  <strong>1&#8212;</strong>Yes
+			</li>
+		  </ul>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<h4><a name="Input/Output">Input/Output</a></h4>
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>outarr:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <strong>I:</strong> (required) Array to put trail of replacement terms into (closed root)
+		  <br>
+		  <strong>O:</strong> The output array contains the list terms to which the input 
+		  entry is somehow related.
+		  <ul>
+		    <li>
+		      OutArr(1..<i>n</i>) = Term ^ StatusCode (based on input StatDate)
+		      <br>
+			  <br>
+            </li>
+			<li>
+			  OutArr(1..<i>n</i>,StatusDateTime) = StatusCode on this date/time
+			  <br>
+			  <br>
+			  This node is only returned if StatHst is set to <strong>1</strong> (<strong>Yes</strong>)
+			  <br>
+			  <br>
+            </li>
+			<li>
+			  OutArr("INDEX",Term) = 1..<i>n</i>
+			</LI>
+		  </ul>
+		  <p>Where:</p>
+		  <ul>
+			<li>
+			  <strong>Term</strong> is in the format <strong>IEN;FileNumber</strong>.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  <strong>StatusCode</strong>:
+			  <br>
+			  <br>
+			  <ul>
+			    <li>
+			      <strong>1&#8212;</strong>Active.
+		          <br>
+			      <br>
+			    </li>
+			    <li>
+			      <strong>0&#8212;</strong>Inactive.
+			      <br>
+			      <br>
+			    </li>
+			  </ul>
+		    </li>
+			<li>
+			  <strong>StatusDateTime</strong> is in VA FileMan format.
+	        </li>
+		  </ul>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+           <PRE>&gt;<B>S X=$$RPLCLST^XTIDTRM(File,IEN,Drctn,StatDate,StatHst,OutArr)</B></PRE>          
+        </td>
+      </tr>
+    </table> 
+	<P>The $$RPLCLST^XTIDTRM extrinsic function sets <strong>X=IEN_";"_FileNumber</strong> of the entry that ultimately replaces the input entry:</P>
+    <p><b>NOTE:</b></p>
+    <ul>
+	  <li>
+	    <strong>NULL</strong> is returned on error. This typically occurs when the 
+        input entry does <i>not</i> exist.
+        <br>
+	    <br>
+	  </li>
+	  <li>
+	    If the input entry is <i>not</i> replaced by another term then a reference to the input 
+        term is returned.
+      </li>
+    </ul>
+    <p>&nbsp;</p>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/17/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-rplclst-xtidtrm.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

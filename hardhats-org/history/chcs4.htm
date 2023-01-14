@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS4</TITLE></HEAD>
+<BODY>
+<H1>IV. DISCREPANCY CAUSED BY DHCP ENHANCEMENT TO OUTPUT ROUTINES</H1>
+<H2>A. Storage of &quot;FROM and &quot;TO&quot; values in DHCP Sort Templates
+</H2>
+<P>DHCP FileMan has made a small internal &quot;enhancement&quot;, in that,
+when a Sort Template is stored, the &quot;FROM&quot; and &quot;TO&quot; values
+for each level of sorting are stored as entered by the user, as well as in a
+form internally-meaningful to FileMan.  The &quot;internally-meaningful&quot;
+form is consistent with the previously-used Global structure, and therefore is
+consistent with CHCS FileMan. The DHCP &quot;user versions&quot; of the Sort
+values, however, are appended (with a delimiting &quot;^&quot; character) to the
+&quot;internally-meaningful&quot; values, in the same Global node.  Thus, for
+example, a Sort Template (with Internal Entry Number 'N') that sorts by &quot;DOB&quot;
+from &quot;JAN 1, 1850&quot; to &quot;DEC 31, 1899&quot; would look like:</P>
+<P>^DIBT(N,0)       = TEMPLATE NAME^...</P>
+<P>^DIBT(N,2,1)     = 2^.03^DOB^</P>
+<P>^DIBT(N,2,1,&quot;F&quot;) = 1500100.99999^JAN 1, 1850^1/1/50</P>
+<P>^DIBT(N,2,1,&quot;T&quot;) = 1991231.9999^DEC 31, 1899^12/31/99</P>
+<P>In Version 21 of DHCP FileMan, this extra information is used in the display
+of the FROM-TO logic that appears in Data Dictionary listings, and is also shown
+in a prompt to a user re-editing the Template.  (Strangely, in Version 20 the &quot;user
+versions&quot; were not used for any discernible purpose at all.  Note, too, the
+ambiguity of &quot;1/1/50&quot; in the example.)</P>
+<P>Portability Effect: Requires conversion.  A Sort Template containing &quot;F&quot;
+and &quot;T&quot; nodes that look like the above would confuse CHCS FileMan. 
+The straightforward, automatible conversion is simply to replace any &quot;F&quot;
+and &quot;T&quot; nodes with their first &quot;^&quot;-pieces.</P> 
+<P ALIGN="RIGHT"><A HREF="chcs5.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

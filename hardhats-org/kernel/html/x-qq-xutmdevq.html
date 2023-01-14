@@ -1,0 +1,447 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$QQ^XUTMDEVQ">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$QQ^XUTMDEVQ,$$QQ,XUTMDEVQ,taskman,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$QQ^XUTMDEVQ">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180814">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$QQ^XUTMDEVQ</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$QQ^XUTMDEVQ</A>(): Double Queue&#8212;Direct Queuing in a Single Call</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> TaskMan,
+	<B>ICR#:</B> 1519</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$QQ^XUTMDEVQ extrinsic function encapsulates the logic to handle 
+    direct queuing in a single call. This extrinsic function does a double 
+    queuing:</P>
+    <UL>
+      <LI>
+        Queue up the second task to a device, but do <I>not</I> schedule the task in TaskMan.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Queue up the first task to <strong>ZTIO=&quot;&quot;</strong> and schedule it.
+      </LI>
+    </UL>
+	<P>If it takes a long time to gather and print data, users should split the job into two tasks:</P>
+    <OL>
+      <LI>
+        <strong>Gather Data&#8212;</strong>The first task gathers the data.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        <strong>Print Data&#8212;</strong>The second task prints the data.
+      </LI>
+    </OL>
+	<P>Separating the data-gathering task from the data print task helps avoid 
+    unnecessarily tying up a printer while large amounts of data are gathered.</P>
+	<P>The task number of the second task (i.e., print data) is added to the 
+    saved variables with the name <strong>XUTMQQ</strong>. This makes it easier to schedule the 
+    second task when the first task (i.e., gather data) has finished.</P>
+    <P>To schedule the second task to run at the end of the first task, you <i>must</i> call 
+    the <A HREF="x-reqq-xutmdevq.html"
+           CLASS="bodylink"
+           TITLE="$$REQQ^XUTMDEVQ API">$$REQQ^XUTMDEVQ</A> API.</P>
+    <p><strong>NOTE:</strong> This API was released with Kernel Patches XU*8.0*275 and updated with Kernel Patch XU*8.0*389.</p>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$QQ^XUTMDEVQ(%rtn[,%desc][,%var1][,%voth1][,%zis][,iop][,%wr],%rtn2[,%desc2][,%var2][,%voth2])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       ID="table1"> 
+	  <TR> 
+        <TD VALIGN="TOP"
+            WIDTH="15%">
+          <B>%rtn:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) First task that TaskMan runs, usually a search 
+          and build sorted data type process (i.e., gather data). The API that TaskMan will <strong>DO</strong> to 
+          start the task. You can specify it as any of the following:</P>
+		  <ul>
+			<li>
+			  &quot;LABEL^ROUTINE&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;^ROUTINE&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;ROUTINE&quot;
+			</li>
+		  </ul>
+		  <P>The [tag]^routine that TaskMan runs.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>%desc:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) First task description, up to <strong>200</strong> characters 
+          describing the task, with the software application name at the 
+          front. Defaults to name of
+          <br>
+		  [tag]^routine.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>%var1:</B>
+	    </TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) <strong>ZTSAVE</strong> values for the first task. Single value or 
+          passed by reference, this is used to <strong>SET ZTSAVE()</strong>. It can be a 
+          string of variable names separated by &quot;<B>;</B>&quot;. Each <B>;</B>-piece 
+          is used as a subscript in <strong>ZTSAVE</strong>.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>.%voth1:</B>
+		</TD>
+		<TD VALIGN="TOP">
+	      <P>(optional) First task other parameter. Passed by reference, <strong>%voth(sub)=&quot;&quot;</strong> or 
+          explicit value sub&#8212;this is any other <strong>%ZTLOAD</strong> variable besides <strong>ZTRTN</strong>, 
+          <strong>ZTDESC</strong>, <strong>ZTIO</strong>, and <strong>ZTSAVE</strong>. For example:</P>
+          <PRE>  %VOTH(&quot;ZTDTH&quot;)==$H</PRE>
+        </TD>
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>%zis:</B>
+		</TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) Default value <b>MQ</b>. Passed by reference, standard <strong>%ZIS</strong> variable array for 
+          calling the Device Handler. Except for one difference, the second 
+          task of the job is tasked to this device call.
+          <BR>
+          <BR>
+          Exception:</P>
+          <UL>
+            <LI>
+              IF <strong>$D(%ZIS)=0</strong> then default value is <b>MQ</b> and call the Device Handler.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              If <strong>$D(%ZIS)=1,%ZIS=&quot;&quot;</strong> then queue the second task also with <strong>ZTIO=&quot;&quot;</strong> (i.e., do 
+			  <i>not</i> do the Device Handler call).
+            </LI>
+          </UL>
+        </TD>
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>iop:</B>
+		</TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) The <strong>IOP</strong> variable as defined in Kernel's 
+		  Device Handler. Default value <b>Q</b>&#8212;if <strong>IOP</strong> is passed and <strong>IOP</strong> does 
+		  <i>not</i> start with <b>Q;</b> then <b>Q;</b> is added.</P>
+        </TD>
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>%wr:</B>
+		</TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) If <strong>%WR&gt;0</strong> then write text to the screen as to whether 
+          or <i>not</i> the queuing was successful.</P>
+        </TD>
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>%rtn2:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Second task that TaskMan runs, usually a print 
+          process (i.e., print data). The API that TaskMan will <strong>DO</strong> to start the task. You can specify 
+          it as any of the following:</P>
+		  <ul>
+			<li>
+			  &quot;LABEL^ROUTINE&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;^ROUTINE&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;ROUTINE&quot;
+			</li>
+		  </ul>
+        </TD> 
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP">
+	      <B>%desc2:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+	      <P>(optional) Second task description, up to <strong>200</strong> characters 
+          describing the task, with the software application name at the 
+          front. Default to name of
+          <br>
+		  [tag]^routine.</P>
+        </TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP">
+		  <B>%var2:</B>
+		</TD>
+		<TD VALIGN="TOP">
+	      <P>(optional) <strong>ZTSAVE</strong> values for the second task. Single value or passed 
+          by reference, this is used to <strong>S ZTSAVE()</strong>. It can be a string 
+          of variable names separated by &quot;<B>;</B>&quot;. Each <B>;</B>-piece 
+		  is used as a subscript in ZTSAVE.</P>
+          <UL>
+            <LI>
+              If <strong>%var1</strong> is <I>not</I> passed and <strong>$D(%VAR)</strong>, then also send 
+              <strong>%VAR</strong> data to the second task.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              If <strong>$D(%VAR1)</strong>, then do <I>not</I> send <strong>%VAR</strong> data to the second task.
+            </LI>
+          </UL>
+        </TD>
+	  </TR>
+      <TR>
+		<TD VALIGN="TOP">
+		  <B>.%voth2:</B>
+		</TD>
+		<TD VALIGN="TOP">
+	      <P>(optional) Second task other parameter, usually <i>not</i> needed. 
+          Passed by reference, <strong>%voth(sub)=&quot;&quot;</strong> or explicit value sub&#8212;this is 
+          any other <strong>%ZTLOAD</strong> variable besides <strong>ZTRTN</strong>, <strong>ZTDESC</strong>, <strong>ZTIO</strong>, and <strong>ZTSAVE</strong>. For 
+          example:</P>
+          <PRE>  %VOTH(&quot;ZTDTH&quot;)==$H</PRE>
+          <P><B>NOTE:</B> If <strong>%voth1(&quot;ZTDTH&quot;)</strong> is passed, it is ignored as it is 
+          necessary to <strong>S ZTDTH=&quot;@&quot;</strong> for the second task&#8212;this creates the 
+          task but does <i>not</i> schedule it.</P>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       ID="table2"> 
+	<TR> 
+	  <TD VALIGN="TOP"
+	      WIDTH="15%"><B>returns:</B>
+	  </TD> 
+	  <TD VALIGN="TOP"
+	      WIDTH="85%"> 
+	    <P>Returns:</P>
+	    <UL>
+          <LI>
+            <strong>ztsk1^ztsk2&#8212;</strong>If successfully queued:
+            <BR>
+            <br>
+          <UL>
+            <LI>
+              <strong>ztsk1 = ZTSK</strong> value of first task.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <strong>ztsk2 = ZTSK</strong> value of second task.
+              <BR>
+              <BR>
+            </LI>
+          </UL>
+            </LI>
+            <LI>
+              <strong>-1&#8212;</strong>If unsuccessful device call or failed the <strong>%ZTLOAD</strong> call.
+            </LI>
+          </UL>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>This example is a job that consists of gathering information and then 
+    printing it. Assume that the gathering takes a few hours. You do <i>not</i> want 
+    the device that the user selects to be tied up for that time, so you divide 
+    the job into two tasks. The first task gathers the information, and the 
+    second task prints it. Use $$QQ^XUTMDEVQ to select the device, schedule 
+    the gather task, and queue the print task. Use the 
+    <A HREF="x-reqq-xutmdevq.html"
+       CLASS="bodylink"
+       TITLE="$$REQQ^XUTMDEVQ API">$$REQQ^XUTMDEVQ</A> 
+    API to schedule the print task when the gather task finishes.
+    <BR>
+    <BR>
+    <B>NOTE:</B> This is the easiest way to divide a job into two tasks.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>ARHBQQ   ;SFVAMC/GB - Demo of 'gather' and 'print' in 2 tasks ;1/19/06  08:31
+         ;;1.1
+QQ       ;
+         N X
+         S X=$$QQ^XUTMDEVQ("GATHERQ^ARHBQQ","ARHB Gather",,,,,1,"PRINTQ^ARHBQQ","ARHB Print")
+         W !,"X=",X
+         Q
+GATHERQ  ;
+         N ARHJ,X
+         S ZTREQ="@"
+         S ARHJ="ARHB-QQ"_"-"_$J_"-"_$H ; namespace + unique ID
+         K ^XTMP(ARHJ) ; Use ^XTMP to pass a lot of data between tasks.
+         S ^XTMP(ARHJ,0)=$$FMADD^XLFDT(DT,1)_U_DT ; Save-thru and create dates.
+         S ^XTMP(ARHJ)="HI MOM!" ; Pretend this is a lot of data!
+         ; XUTMQQ holds the ZTSK of the print task
+         S X=$$REQQ^XUTMDEVQ(XUTMQQ,$H,"ARHJ") ; Schedule print task to start
+         Q
+PRINTQ   ;
+         S ZTREQ="@"
+         ;U IO ; Don't need this if invoked using a ^XUTMDEVQ API.
+         W !,"The secret message is: '",$G(^XTMP(ARHJ)),"'"
+         K ^XTMP(ARHJ)
+         Q</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/14/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-qq-xutmdevq.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

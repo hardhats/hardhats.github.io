@@ -1,0 +1,409 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$CREATE^XUSAP">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$CREATE^XUSAP,$$CREATE,XUSAP,application proxy user,application proxy,proxy,user,controlled subscription">
+    <meta name="description"
+	      content="Kernel APIs: $$CREATE^XUSAP">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$CREATE^XUSAP</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$CREATE^XUSAP</A>(): Create Application Proxy User</H3> 
+	<P><B>Reference Type:</B> Controlled Subscription, <B>Category:</B> 
+    Signon/Security, <B>ICR#:</B> 4677</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$CREATE^XUSAP extrinsic function is a <i>non</i>-interactive API to create an 
+    Application Proxy User to support J2EE middle-tier applications. The Application Proxy User 
+    represents an application and <I>not</I> an end-user.</P>
+    <P><strong>CAUTION: If the user running this extrinsic function does 
+	</strong> <i><strong>not</strong></i><strong> 
+	hold the XUMGR security key, it returns an error upon the filing of the 
+	Application Proxy as the User Class.</strong></P>
+    <P><strong>NOTE:</strong> This API was released with Kernel Patch XU*8.0*361.</P>
+    <H5>Overview</H5>
+    <P>The Application Proxy User is a special category of user account that gets 
+    created in the 
+    NEW PERSON (#200) file and can run internal tasks or execute authorized Remote Procedure Calls (RPCs). The Application Proxy represents an application and 
+	<i>not</i> an end-user. The Application Proxy user account <i>must</i> adhere to the following criteria:</P>
+    <UL>
+      <LI>
+        The name added to the NEW PERSON (#200) file <I>must</I> be unique and 
+		<i>must</i> be namespaced in accordance with M Programming Standards and Conventions (SAC) 
+		Section 2.6, &#8220;Name Requirements.&#8221;
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        It <I>must</I> have a user class of &quot;Application Proxy,&quot; as defined 
+        in the USER CLASS (#201) file and pointed to by the USER CLASS (#9.5) field in the NEW PERSON 
+		(#200) file.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        It <I>must not</I> have an Access or Verify code assigned to it.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        It <I>must not</I> have a Primary menu assigned to it.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        It <I>must</I> have one or more Secondary menu options assigned to it. The Secondary menu option 
+		<i>must</i> be owned by the application that the Application Proxy represents, or the application 
+		<i>must</i> have an Integration Control Registration (ICR) with the option owner. The Secondary menu option contains a list of RPCs that the Application Proxy is authorized to call, as described in the &#8220;RPC Security&#8221; section 
+		in the <i>RPC Broker User Guide</i>.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        The RPCs that the menu options reference <I>must</I> have the APP 
+        PROXY ALLOWED (#.11) field in the REMOTE PROCEDURE (#8994) file set to 
+        <b>YES</b>. The RPCs <i>must</i> be owned by the application that the Application Proxy represents, or the application 
+	    <i>must</i> have an ICR with the RPC owner.
+		<br>
+		<br>
+      </LI>
+	  <LI>
+        The use of an Application Proxy <i>must</i> be restricted to accessing <i>non</i>-protected data. Federal laws specify when an actual end-user 
+	    <i>must</i> be represented when accessing Personally Identifiable Information (PII) and Protected Health Information (PHI).  Information regarding user authentication, identity, auditing, and authorization 
+	    can be found in:
+	    <br>
+        <br>
+	    <ul>
+	      <LI>
+            <i>VA Information Security Handbook 6500 Appendix F</i>
+            <br>
+            <br>
+          </LI>
+		  <LI>
+            National Institute of Standards and Technology (NIST) e-Authentication Guidelines (800-63-2)
+            <br>
+            <br>
+          </LI>
+		  <LI>
+            Health Insurance Portability and Accountability Act of 1996 (HIPAA) federal law 45 CFR § 160 &amp; § 164
+          </LI>
+	    </ul>
+	  </LI>
+    </UL>
+    <h5>Application Proxy Privacy and Auditing</h5>
+    <p>Many VistA data interactions by human end-users <i>must</i> be represented with accurate and unambiguous user identity information, so that VistA audit mechanisms function as intended. Application Proxy user accounts do 
+	<i>not</i> identify the user and should be avoided, especially where the interaction is with PHI/PII data (regulated by federal law). The use of Application Proxy user accounts should be limited to background processes and machine-to-machine interactions.</p>
+    <h5>Application Proxy Permission</h5>
+    <p>Permission to use the $$CREATE^XUSAP API should be done early in the development process; as use of Application Proxy user accounts are reviewed by VA management due to security concerns.</p>
+    <H4><A NAME="format">Format</A></H4> 
+    <PRE>  $$CREATE^XUSAP(proxyusername[,filemanaccesscode][,options])</PRE> 
+    <H4><A NAME="input_parameters">Input Parameters</A></H4> 
+    <TABLE BORDER="1"
+           CELLPADDING="5"
+           BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+        <TD VALIGN="TOP"
+            WIDTH="15%"><B>proxyusername:</B>
+        </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) This is the name of the Application Proxy User (e.g., VPR,APPLICATION PROXY). 
+          This name <I>must</I> be unique and should be namespaced.</P>
+        </TD> 
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>filemanaccesscode:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+	      <P>(optional) This is the VA FileMan Access code. It <I>cannot</I> be an at-sign (<B>@</B>).
+          <BR>
+          <BR>
+          <B>NOTE:</B> For more information, see the <I>VA FileMan Advanced User Manual</I>.</P> 
+        </TD> 
+	  </TR>
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>options:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) This is the name of a single option name (e.g., VPR APPLICATION PROXY) or an array of options, such as 
+		  <strong>XUOPT(&quot;XMUSER&quot;)=1</strong>. 
+          Applications can only access the Remote Procedure Calls (RPCs) 
+          contained in the options provided in this input parameter. RPCs 
+          are tied to &quot;<strong>B</strong>&quot;-type options.</P> 
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+	      <P>Returns:</P>
+          <UL>
+            <LI>
+              <strong>IEN of entry created in NEW PERSON (#200) file&#8212;</strong>Successful; writes new Application Proxy User to the 
+              NEW PERSON (#200) file.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <strong>&quot;0^Name In Use&quot;&#8212;</strong>Unsuccessful; Application Proxy User of that name 
+				already exists in the NEW PERSON (#200) file.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <strong>-1&#8212;</strong>Unsuccessful due to either of the following:
+			  <ul>
+			    <li>
+				  Could <em>not</em> create Application Proxy User.
+				  <br>
+				  <br> 
+				</li>
+				<li>
+				  Error in call to UPDATE^DIE.
+                  <BR>
+                  <BR>
+                  <B>NOTE:</B> For more information on UPDATE^DIE-related error, 
+                  users should check <strong>^TMP(&quot;DIERR&quot;,$J)</strong>.
+		        </li>
+			  </ul>		
+            </LI>
+          </UL>
+        </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4><A NAME="example">Examples</A></H4> 
+	<H5><A NAME="good_example">Application Proxy Example (Good)</A></H5> 
+	<P>The following example shows a <I>successful</I> creation of an 
+    Application Proxy User:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>    &gt;<B>IF $$CREATE^XUSAP("</B>VPR,APPLICATION PROXY<B>","","</B>VPR APPLICATION PROXY<B>")&gt;0 W !,"Proxy Created"</B>
+
+    Proxy Created</PRE>   
+        </td>
+      </tr>
+    </table>	
+    <p>The following is an example of an Application Proxy user account that is provisioned correctly:</p>
+    <table border="1"
+           width="100%"
+           cellspacing="3"
+           cellpadding="3">
+	  <tr>
+	    <td>
+	      <pre>NAME: VPR,APPLICATION PROXY             DATE ENTERED: SEP 01, 2011
+  CREATOR: XUUSER,ONE
+SECONDARY MENU OPTIONS: VPR APPLICATION PROXY
+  TIMESTAMP: 62335,62903
+User Class: APPLICATION PROXY           ISPRIMARY: Yes</pre>
+        </td>
+	  </tr>
+    </table>
+    <p>The <strong>Proxy User List</strong> [XUSAP PROXY LIST] option lists the current Application Proxy user accounts, as shown in the following 
+	sample listing:</p>
+	<table border="1" width="100%" cellspacing="3" cellpadding="3">
+	  <tr>
+	    <td>
+	      <pre>PROXY USER LIST                                JAN 28,2016  09:44    PAGE 1
+NAME                                 User Class          IsPrimary  Active
+--------------------------------------------------------------------------------
+
+XOBVTESTER,APPLICATION PROXY         APPLICATION PROXY   Yes        
+ANRVAPPLICATION,PROXY USER           APPLICATION PROXY   Yes        
+VPFS,APPLICATION PROXY               APPLICATION PROXY   Yes        
+RADIOLOGY,OUTSIDE SERVICE            APPLICATION PROXY   Yes        
+LRLAB,HL                             APPLICATION PROXY   Yes        
+LRLAB,POC                            APPLICATION PROXY   Yes        
+TASKMAN,PROXY USER                   APPLICATION PROXY   Yes        
+CLINICAL,DEVICE PROXY SERVICE        APPLICATION PROXY   Yes        
+NHIN,APPLICATION PROXY               APPLICATION PROXY   Yes        
+EDPTRACKING,PROXY                    APPLICATION PROXY   Yes        
+KAAJEE,PROXY                         APPLICATION PROXY   Yes        
+VPR,APPLICATION PROXY                APPLICATION PROXY   Yes        
+AUTHORIZER,IB REG                    APPLICATION PROXY   Yes        
+HOWDY,BOT                            APPLICATION PROXY   Yes        
+LRLAB,TASKMAN                        APPLICATION PROXY   Yes        
+VIABAPPLICATIONPROXY,VIAB            APPLICATION PROXY   Yes</pre>
+        </td>
+	  </tr>
+    </table>
+    <p><strong>CAUTION: Some of the listed Application Proxy user accounts do
+	</strong> <i><strong>not</strong></i><strong> follow the rules for namespacing. There are 
+	other serious infractions in current applications using Application Proxy user accounts, 
+	which puts the VA in the position of violating federal privacy laws by accessing PHI/PII information.
+	</strong> 
+	<i><strong>VA Handbook 6500 Appendix F</strong></i><strong> lists VA System Security Controls that are applicable to Application Proxy user accounts as well as human end-users. An Application Proxy should 
+	</strong> 
+	<i><strong>never</strong></i><strong> be used to circumvent VA System Security Controls.</strong></p>
+    <H5><A NAME="bad_example">Application Proxy Example (Bad)</A></H5>
+    <p>The following is an example of an Application Proxy user account that is <i>not</i> provisioned correctly:</p>
+    <table border="1" width="100%" cellspacing="3" cellpadding="3">
+	  <tr>
+	    <td>
+	      <pre>NAME: TASKMAN,PROXY USER                FILE MANAGER ACCESS CODE: #
+  DATE ENTERED: JUN 9,2009              CREATOR: LABTECH,FORTYEIGHT
+  NAME COMPONENTS: 200
+  SIGNATURE BLOCK PRINTED NAME: PROXY USER TASKMAN
+  TIMESTAMP: 62362,53550
+User Class: APPLICATION PROXY           ISPRIMARY: Yes</pre>
+        </td>
+	  </tr>
+    </table>
+    <p>If provisioned correctly, the name &#8220;TASKMAN,PROXY USER&#8221; would be identified by the Kernel (XU) namespace, such as &#8220;XUTASKMAN,PROXY USER&#8221;.  This particular Application Proxy does 
+	<i>not</i> require access to any menu options or RPCs, so it does <i>not</i> contain a SECONDARY MENU OPTION.</p>
+    <p>Another example of an Application Proxy user account that is <i>not</i> provisioned correctly:</p>
+    <table border="1"
+           width="100%"
+           cellspacing="3"
+           cellpadding="3">
+	  <tr>
+	    <td>
+	      <pre>NAME: CLINICAL,DEVICE PROXY SERVICE     DATE ENTERED: JUN 30,2010
+  CREATOR: XUUSER,ONE
+SECONDARY MENU OPTIONS: MD GUI MANAGER
+SECONDARY MENU OPTIONS: MD GUI USER
+  TIMESTAMP: 61907,71682
+User Class: APPLICATION PROXY           ISPRIMARY: Yes</pre>
+        </td>
+	  </tr>
+    </table>
+    <p>In this example, the SECONDARY MENU OPTIONs are in the Clinical Procedures (MD) namespace, so that if provisioned correctly, &#8220;CLINICAL,DEVICE PROXY SERVICE&#8221; would be more appropriately named &#8220;MDCLINICAL,DEVICE PROXY SERVICE&#8221;.</p>
+    <P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-create-xusap.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

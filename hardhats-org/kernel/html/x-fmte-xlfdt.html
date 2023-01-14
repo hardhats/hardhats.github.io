@@ -1,0 +1,540 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$FMTE^XLFDT">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$fmte^xlfdt,$$fmte,xlfdt,date functions,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$FMTE^XLFDT">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$FMTE^XLFDT</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$FMTE^XLFDT</A>(): Convert VA FileMan Date to External Format</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Date Functions,
+	<B>ICR#:</B> 10103</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$FMTE^XLFDT extrinsic function converts a VA FileMan formatted input date to an 
+    external formatted date.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$FMTE^XLFDT(x[,y])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>x:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) VA FileMan date.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>y:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Affects output as follows:</P> 
+		  <UL> 
+			<LI>
+			  If <strong>NULL</strong>, <strong>`$D(y)</strong>, return the written-out format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>`$D(y)</strong> then return standard VA FileMan format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>+y = 1</strong> then return standard VA FileMan format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>+y = 2</strong> then return <strong>MM/DD/YY@HH:MM:SS</strong> format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>+y = 3</strong> then return <strong>DD/MM/YY@HH:MM:SS</strong> format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>+y = 4</strong> then return <strong>YY/MM/DD@HH:MM:SS</strong> format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>+y = 5</strong> then return <strong>MM/DD/YYYY@HH:MM:SS</strong> format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>+y = 6</strong> then return <strong>DD/MM/YYYY@HH:MM:SS</strong> format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>+y = 7</strong> then return <strong>YYYY/MM/DD@HH:MM:SS</strong> format.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>y</strong> contains a <strong>D</strong> then date only.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>y</strong> contains an <strong>F</strong> then output with leading spaces.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>y</strong> contains an <strong>M</strong> then only output <strong>HH:MM</strong>.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>y</strong> contains a <strong>P</strong> then output <strong>HH:MM:SS am/pm</strong>.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>y</strong> contains an <strong>S</strong> then force seconds in the output.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  If <strong>y</strong> contains a <strong>Z</strong> then output with leading zeroes.
+			</LI> 
+		  </UL>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns the xternal formatted date.</P>
+		</TD> 
+	  </TR> 
+	</TABLE>
+	<h4>Examples</h4> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>Return the date in the following format: Standard VA FileMan date format.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.105744,1)</B>
+
+&gt;<B>W X</B>
+Jun 29, 1994@10:57:44</PRE>           
+        </td>
+      </tr>
+    </table>	 
+    <H4>Example 2</H4> 
+	<P>Return the date in the following format: Standard VA FileMan date format 
+    and include am/pm.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.1057,&quot;1P&quot;)</B>
+
+&gt;<B>W X</B>
+Jun 29, 1994 10:57 am</PRE>           
+        </td>
+      </tr>
+    </table>    
+	<H4>Example 3</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YY@HH:MM:SS</strong>.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.105744,2)</B>
+
+&gt;<B>W X</B>
+6/29/94@10:57:44</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 4</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YY@HH:MM</strong>.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.105744,&quot;2M&quot;)</B>
+
+&gt;<B>W X</B>
+6/29/94@10:57</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 5</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YY@HH:MM</strong> and include am/pm.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.105744,&quot;2P&quot;)</B>
+
+&gt;<B>W X</B>
+6/29/94@10:57:44 am</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 6</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YY@HH:MM:SS</strong>, forcing seconds
+	to display when no seconds were included in the input parameter.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.1057,"2S")</B>
+
+&gt;<B>W X</B>
+6/29/94@10:57:00</PRE>          
+        </td>
+      </tr>
+    </table> 
+	<H4>Example 7</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YY@HH:MM:SS</strong>, forcing 
+    seconds to display when no seconds were included in the input parameter, 
+    and include leading spaces.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.1057,"2SF")</B>
+ 
+&gt;<B>W X</B>
+ 6/29/94@10:57:00</PRE>           
+        </td>
+      </tr>
+    </table> 
+	<H4>Example 8</H4> 
+	<P>Return the date in the following format: <strong>DD/MM/YY@HH:MM:SS</strong> and include leading spaces.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.105744,"3F")</B>
+
+&gt;<B>W X</B>
+29/ 6/94@10:57:44</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 9</H4> 
+	<P>Return the date in the following format: <strong>YY/MM/DD</strong>, ignore the time 
+    values entered and only display the date.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(2940629.1057,"4D")</B>
+
+&gt;<B>W X</B>
+94/6/29</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 10</H4> 
+	<P>To output a really short date/time try the following, convert <strong>space</strong> to 
+    <strong>zero</strong> and remove slash, as shown below:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$TR($$FMTE^XLFDT(2940629.1057,&quot;4F&quot;),&quot; /&quot;,&quot;0&quot;)</B>
+
+&gt;<B>W X</B>
+940629@10:57</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 11</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YYYY@HH:MM:SS</strong>.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000229.110520,5)</B>
+
+&gt;<B>W X</B>
+2/29/2000@11:05:20</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 12</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YYYY@HH:MM:SS</strong> and include 
+    leading spaces.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+           <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000229.110520,&quot;5F&quot;)</B>
+
+&gt;<B>W X</B>
+ 2/29/2000@11:05:20</PRE>          
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 13</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YYYY@HH:MM:SS</strong>, forcing
+	seconds.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000229.1105,"5S")</B>
+
+&gt;<B>W X</B>
+2/29/2000@11:05:00</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 14</H4> 
+	<P>Return the date in the following format: <strong>MM/DD/YYYY@HH:MM:SS</strong>, include 
+    leading zeroes, and include am/pm.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000229.110520,"5ZP")</B>
+
+&gt;<B>W X</B>
+02/29/2000 11:05:20 am</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 15</H4> 
+	<P>Return the date in the following format: <strong>DD/MM/YYYY@HH:MM:SS</strong>, with 
+    leading spaces.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000229.110520,&quot;6F&quot;)</B>
+ 
+&gt;<B>W X</B>
+29/ 2/2000@11:05:20</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 16</H4> 
+	<P>Return the date in the following format: <strong>DD/MM/YYYY@HH:MM:SS</strong>, with leading zeroes.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000229.1105,&quot;6Z&quot;)</B>
+
+&gt;<B>W X</B>
+29/02/2000@11:05</PRE>           
+        </td>
+      </tr>
+    </table> 
+	<H4>Example 17</H4> 
+	<P>Return the date in the following format: <strong>YYYY/MM/DD@HH:MM:SS</strong>.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000301.1105,7)</B>
+
+&gt;<B>W X</B>
+2000/3/1@11:05</PRE>           
+        </td>
+      </tr>
+    </table> 
+	<H4>Example 18</H4> 
+	<P>Return the date in the following format: <strong>YYYY/MM/DD</strong>, ignore the time 
+    values entered and only display the date.</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+           <PRE>&gt;<B>S X=$$FMTE^XLFDT(3000301.1105,&quot;7D&quot;)</B>
+
+&gt;<B>W X</B>
+2000/3/1</PRE>          
+        </td>
+      </tr>
+    </table>	 
+    <P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-fmte-xlfdt.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

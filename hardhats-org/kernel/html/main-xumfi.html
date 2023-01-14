@@ -1,0 +1,240 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: MAIN^XUMFI">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,main^xumfi,main,xumfi,hl7,controlled subscription">
+    <meta name="description"
+	      content="Kernel APIs: MAIN^XUMFI">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: MAIN^XUMFI</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">MAIN^XUMFI</A>(): HL7 Master File Message Builder</H3> 
+	<P><B>Reference Type:</B> Controlled Subscription, <B>Category:</B>
+	Institution File, <B>ICR#:</B> 2171</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The MAIN^XUMFI API implements an HL7 Master File Message Builder Interface that
+	dynamically maps a VA FileMan field to an HL7 Master File sequence within a
+	segment. The interface implements functionality to build the following 
+	segments:</P>
+	<ul>
+	  <li>
+	    Master File Notification (MFN)
+	    <br>
+		<br>
+	  </li>
+	  <li>
+	    Master File Query (MFQ)
+	    <br>
+		<br>
+	  </li>
+	  <li>
+	    Master File Response (MFR)
+	  </li>
+    </ul>
+	<P>The interface calls applicable VISTA HL7 GENERATE and GENACK
+	interfaces to send/reply/broadcast an appropriate HL7 Master File message.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>     MAIN^XUMFI(ifn,ien,type,param,error)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="85%"><b>NOTE:</b> For a description of the
+		  <A HREF="main-xumfp.html#input_parameters"
+		     TITLE="Input Parameters"
+			 CLASS="bodylink">Input</A> parameters for this API, see the 
+		  "<A HREF="main-xumfp.html"
+		      TITLE="MAIN^XUMFP: Master File Parameters API"
+			  CLASS="bodylink">MAIN^XUMFP: Master File Parameters</A>" API.
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Parameters and Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="85%"><b>NOTE:</b> For a description of the
+		  <A HREF="main-xumfp.html#output_parameters"
+		     TITLE="Output Parameters"
+			 CLASS="bodylink">Output Parameters</A> and
+		  <A HREF="main-xumfp.html#output"
+		     TITLE="Output"
+		     CLASS="bodylink">Output</A> for this API, see the 
+		  "<A HREF="main-xumfp.html"
+			  TITLE="MAIN^XUMFP: Master File Parameters API"
+			  CLASS="bodylink">MAIN^XUMFP: Master File Parameters</A>" API.
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="details">Details</A></H4> 
+	<P>This interface should be called after the Master File Parameter API. The
+	Master File Parameter API sets up the required parameters in the <strong>PARAM</strong> array.
+	<BR>
+	<BR>
+	The Institution File Redesign (IFR) patch (i.e., XU*8.0*206) implemented 
+	several Application Programming Interfaces (APIs). After the IFR patch was
+	installed and the cleanup performed, the STATION NUMBER (#99) field was a unique key to the INSTITUTION (#4) file.</P> 
+	<H4><A NAME="example">Example</A></H4>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>D MAIN^XUMFI(4,18723,1,.PARAM,.ERROR)</B></PRE>         
+        </td>
+      </tr>
+    </table> 
+	<P>From the HL7 MESSAGE TEXT (#772) file, you would see the following:</P>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>DATE/TIME ENTERED: JAN 12, 2001@09:17:29
+ SERVER APPLICATION: XUMF MFN          TRANSMISSION TYPE: OUTGOING
+ MESSAGE ID: 0259                      PARENT MESSAGE: JAN 12, 2001@09:17:29
+ PRIORITY: DEFERRED                    RELATED EVENT PROTOCOL: XUMF MFN
+ MESSAGE TYPE: SINGLE MESSAGE
+MESSAGE TEXT:  
+MFI^Z04^MFS^REP^20010112091729^20010112091729^NE
+MFE^MUP^^19001011^631GD~STATION NUMBER~D
+ZIN^GREENFIELD^631GD^National^CBOC~FACILITY TYPE~VA^^^MASSACHUSETTS^^^^^^
+ STATUS: SUCCESSFULLY COMPLETED
+ DATE/TIME PROCESSED: JAN 12, 2001@09:17:29
+ NO. OF CHARACTERS IN MESSAGE: 161     NO. OF EVENTS IN MESSAGE: 1</PRE>         
+        </td>
+      </tr>
+    </table>	 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/main-xumfi.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

@@ -1,0 +1,905 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: MAIN^XUMFP">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,MAIN^XUMFP,MAIN,XUMFP,institution file,controlled subscription">
+    <meta name="description"
+	      content="Kernel APIs: MAIN^XUMFP">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: MAIN^XUMFP</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">MAIN^XUMFP</A>(): Master File Parameters</H3> 
+	<P><B>Reference Type:</B> Controlled Subscription, <B>Category:</B>
+	Institution File, <B>ICR#:</B> 3354</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The MAIN^XUMFP API sets up required parameters used by the HL7 Master File Message
+	Builder Interface and the HL7 Master File message handler. The interface
+	defines required parameters and serves as a common interface for parameter
+	initialization. This interface is the enabling component of the Master File
+	Server (MFS) mechanism allowing VA FileMan Master Files to be maintained by
+	server including files with multiple fields and extended references.
+	<BR>
+	<BR>
+	The developer can set any <strong>param</strong> parameter before or after the interface call and
+	override the default value.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  MAIN^XUMFP(ifn,ien,type,param,error)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="10%">
+		  <B>ifn:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="90%">
+		  <P>(required) Internal File Number (IFN).</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>ien:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) Internal Entry Number (IEN).
+		  <BR>
+		  <BR>
+		  Single entry (pass by value).
+		  <BR>
+		  <BR>
+		  Example:</P> 
+		  <UL> 
+			<LI>
+			  <strong>IEN=1</strong>
+			</LI> 
+		  </UL>
+		  <P>Multiple entries (pass by reference).
+		  <BR>
+		  <BR>
+		  Example:</P>
+		  <UL> 
+			<LI>
+			  <strong>IEN(1)=""</strong>
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  <strong>IEN(2)=""</strong>
+			</LI> 
+		  </UL> 
+		  <P>ALL national entries (pass by value).
+		  <BR>
+		  <BR>
+		  Example:</P> 
+		  <UL> 
+			<LI>
+			  <strong>IEN="ALL"</strong>
+			</LI> 
+		  </UL>
+		  <P>NEW entry (pass by value).
+		  <BR>
+		  <BR>
+		  Example:</P> 
+		  <UL> 
+			<LI>
+			  <strong>IEN="NEW"</strong>
+			</LI> 
+		  </UL>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>type:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) Message TYPE. Possible values are:</P>
+		  <UL>
+			<LI>
+			  <strong>0&#151;MFN:</strong> Unsolicited update.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>1&#151;MFQ:</strong> Query particular record and file.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>3&#151;MFQ:</strong> Query particular record in array.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>5&#151;MFQ:</strong> Query group records file.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>7&#151;MFQ:</strong> Query group records array.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>11&#151;MFR:</strong> Query response particular record file.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>13&#151;MFR:</strong> Query response particular record array.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>15&#151;MFR:</strong> Query response group records file.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>17&#151;MFR:</strong> Query response group records array.
+			</LI>
+		  </UL>
+	    </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4><A NAME="input_output_parameters">Input / Output Parameters</A></H4> 
+    <TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="10%">
+	      <strong>param:</strong>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="90%">
+		  <P>Parameter array:</P>
+		  <ul>
+			<li>
+			  PARAM("PROTOCOL")IEN PROTOCOL (#101) file.
+			  <br>
+			  <br>
+		    </li>
+			<li>
+			  PARAM("BROADCAST")Broadcast message to all VistA sites.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  PARAM("LLNK")Logical link in <strong>HLL("LINKS",n)</strong> format.
+			</li>
+		  </ul>
+		  <p><U><strong>QRD: Query Definition</strong></U></p> 
+		  <TABLE WIDTH="80%"
+	             border="1"> 
+	        <TR> 
+		      <TH WIDTH="40%"
+		          ALIGN="LEFT">
+		        Parameter
+		      </TH> 
+		      <TH WIDTH="40%"
+		          ALIGN="LEFT">
+		        HL7 Sequence
+		      </TH> 
+		      <TH WIDTH="20%"
+		          ALIGN="LEFT">
+		        HL7 Data Type
+		      </TH> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("QDT")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Query Date/Time
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        TS
+		      </TD> 
+      	    </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("QFC")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Query Format Code
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        ID
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("QP")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Query Priority
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        ID
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("QID")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Query ID
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        ST
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("DRT")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Deferred Response Type
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        ID
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("DRDT")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Deferred Response Date/Time
+		      </TD> 
+		      <TD ALIGN="LEFT">
+	  	        TS
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("QLR")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Quantity Limited Request
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        CQ
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("WHO")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Who Subject Filter
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        XCN
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("WHAT")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        What Subject Filter
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        CE
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("WDDC")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        What Department Data Code
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        CE
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("WDCVQ")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        What Data Code Value Qual.
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        CM
+		      </TD> 
+	        </TR> 
+            <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("QRL")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Query Results Level
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        ID
+		      </TD> 
+	        </TR> 
+	      </TABLE> 
+	      <P>&nbsp;</P>
+		  <P><U><strong>XCN Data Type of QRD WHO Parameter</strong></U></P> 
+		  <TABLE WIDTH="80%"
+	             border="1"> 
+	        <TR> 
+		      <Th align="left"
+		          width="40%">
+		        Component
+		      </Th> 
+		      <Th ALIGN="LEFT"
+		          width="10%">		    
+		        Value
+		      </Th> 
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Description
+		      </Th> 
+	        </TR> 
+	        <TR> 
+		      <TD align="left">
+		        1<SUP>ST</SUP> component is one of the following:
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        &nbsp;
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        One of the following:
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="RIGHT">
+		        NAME
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        &nbsp;
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        &nbsp;&nbsp;&nbsp; Value of NAME (#.01) field for Internal Entry Number (IEN).
+              </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="RIGHT">
+		        ALL
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        &nbsp;
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        &nbsp;&nbsp;&nbsp; String represents all national entries.
+              </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="RIGHT">
+		        IEN ARRAY
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        &nbsp;
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        &nbsp;&nbsp;&nbsp; String represents entries passed in IEN array.
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        9<SUP>th</SUP> component
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        D
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Source table (VA FileMan cross-reference).
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        10<SUP>th</SUP> component
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        045A4
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Assigning authority.
+		      </TD> 
+	        </TR> 
+		  </TABLE> 
+	      <P>&nbsp;</P>
+		  <P><U><strong>CE Data Type of QRD WHAT Parameter</strong></U></P> 
+	      <TABLE WIDTH="80%"
+	             border="1"> 
+	        <tr>
+		      <Th align="left"
+		          width="40%">
+		        Component
+		      </Th> 
+		      <Th ALIGN="LEFT"
+		          width="10%">
+		        Value
+		      </Th> 
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Description
+		      </Th> 
+	        </tr>
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        1<SUP>ST</SUP> component
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        4
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Identifier
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        2<SUP>nd</SUP> component
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        IFN
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Text
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        3<SUP>rd</SUP> component
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        VA FM
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Name of coding system
+		      </TD> 
+	        </TR> 
+	      </TABLE> 
+		  <P>&nbsp;</P>
+          <P><U><strong>MFI: Master File Identification</strong></U></P> 
+		  <TABLE WIDTH="80%"
+	             border="1"> 
+	        <TR> 
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Parameter
+		      </Th> 
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Description
+		      </Th> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("MFI")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Master File Identifier
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("MFAI")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Master File Application Identifier
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("FLEC")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        File-Level Event Code
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("ENDT")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Entered Data/Time
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("MFIEDT")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Effective Date/Time
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("RLC")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Response Level Code
+		      </TD> 
+	        </TR> 
+		  </TABLE> 
+	      <P>&nbsp;</P>
+          <P><U><strong>MFE: Master File Entry</strong></U></P> 
+		  <TABLE WIDTH="80%"
+	             border="1"> 
+	        <tr>
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Parameter
+		      </Th> 
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Description
+		      </Th> 
+	        </tr>
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("RLEC")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        Record-Level Event Code
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("MFNCID")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        <strong>MFN</strong> Control ID
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		        <TD ALIGN="LEFT">
+		          PARAM("MFEEDT")
+		        </TD> 
+		        <TD ALIGN="LEFT">
+		          Effective Date/Time
+		        </TD> 
+		      </TR> 
+		      <TR> 
+		        <TD ALIGN="LEFT">
+		          PARAM("PKV")
+		        </TD> 
+		        <TD ALIGN="LEFT">
+		          Primary Key Value
+		        </TD> 
+		      </TR> 
+		  </TABLE> 
+	      <P>&nbsp;</P>
+          <P><U><strong>[Z...] Segments Parameters</strong></U></P> 
+	      <TABLE WIDTH="80%"
+	             border="1"> 
+	        <tr>
+	          <Th ALIGN="LEFT"
+	              width="50%">
+	            Parameter
+	          </Th> 
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Description
+	          </Th> 
+	        </tr>
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("SEG",SEG)=""
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        HL7 segment name
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("SEG",SEG,"SEQ",SEQ,FLD#)
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        segment sequence <strong>#</strong> and field
+		      </TD> 
+	        </TR> 
+		  </TABLE> 
+	      <P><strong>NOTE:</strong> If any special processing is required, in addition to the external value passed by VA FileMan, set the
+	      <strong>FLD#</strong> node equal to a formatting function:</P>
+          <P>&nbsp;&nbsp;&nbsp; <i><strong>n</strong></i><strong>^$$TAG^RTN(</strong><i><strong>X</strong></i>)</P>
+          <P>Where:</P>
+	      <UL> 
+	        <LI>
+	          <i><B>n</B></i> is the component sequence number.
+	          <BR>
+	          <BR>
+	        </LI> 
+	        <LI>
+	          <i><B>X</B></i> is the external value from VA FileMan.
+	        </LI> 
+	      </UL>
+	      <P>&nbsp;&nbsp;&nbsp; $P(segment_sequence,HLCS,<i>n</i>)=FM_external_value</P>
+          <P>&nbsp;</P>
+          <P><U><strong>Files Involving Sub-Records and Extended Reference</strong></U><BR></P> 
+		  <TABLE WIDTH="80%"
+	             border="1"> 
+	        <tr>
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Parameter
+		      </Th> 
+		      <Th ALIGN="LEFT"
+		          width="50%">
+		        Description
+		      </Th> 
+	  	    </tr>
+		    <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("SEG",SEG,"SEQ",SEQ,"FILE")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        See VA FileMan documentation.
+		      </TD> 
+		    </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+	  	        PARAM("SEG",SEG,"SEQ",SEQ,"IENS")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        $$GET1^DIQ() for value.
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("SEG",SEG,"SEQ",SEQ,"FIELD")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        of FILE, IENS, &amp; FIELD.
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("SEG",SEG,"SEQ",SEQ,"KEY")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        <strong>.01</strong> value.
+		      </TD> 
+	        </TR> 
+	        <TR> 
+		      <TD ALIGN="LEFT">
+		        PARAM("SEG",SEG,"SEQ",SEQ,"FORMAT")
+		      </TD> 
+		      <TD ALIGN="LEFT">
+		        format non <strong>ST</strong> data types.
+		      </TD> 
+	        </TR> 
+	      </TABLE> 
+          <p><strong>NOTE:</strong> Query group records store <strong>PARAM</strong> in the 
+	      <strong>^TMP</strong> global with the following root:</p>
+          <p>&nbsp;&nbsp;&nbsp; <strong>^TMP("XUMF MFS",$J,"PARAM",IEN)</strong>
+          <BR>
+          <BR>
+          For example: <strong>MFE PKV</strong> node is:</p>
+          <p>&nbsp;&nbsp;&nbsp; <strong>^TMP("XUMF MFS",$J,"PARAM",IEN,"PKV")</strong></p>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="10%">
+		  <B>error:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="90%">
+	      <P>Returns:</P>
+		  <PRE>    1^Error message text</PRE>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>The following example is a query (<strong>MFQ</strong>) for a group records array:</P>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>D MAIN^XUMFP(4,"ALL",7,.PARAM,.ERROR)</B></PRE>    
+        </td>
+      </tr>
+    </table>	 
+	<P>Since query group records store <strong>PARAM </strong>in the <strong>^TMP</strong> global, display the
+	<strong>^TMP</strong> global to see the <strong>PARAM</strong> values:</P>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>D ^%G</B>
+
+Global ^TMP("XUMF MFS",$J
+        TMP("XUMF MFS",$J
+^TMP("XUMF MFS",539017563,"PARAM","DRDT") = 
+^TMP("XUMF MFS",539017563,"PARAM","DRT") = 
+^TMP("XUMF MFS",539017563,"PARAM","ENDT") = 
+^TMP("XUMF MFS",539017563,"PARAM","FLEC") = UPD
+^TMP("XUMF MFS",539017563,"PARAM","MFAI") = 
+^TMP("XUMF MFS",539017563,"PARAM","MFEEDT") = 20010212110654
+^TMP("XUMF MFS",539017563,"PARAM","MFI") = Z04
+^TMP("XUMF MFS",539017563,"PARAM","MFIEDT") = 
+^TMP("XUMF MFS",539017563,"PARAM","MFNCID") = 
+^TMP("XUMF MFS",539017563,"PARAM","POST") = POST^XUMFP4C
+^TMP("XUMF MFS",539017563,"PARAM","PRE") = PRE^XUMFP4C
+^TMP("XUMF MFS",539017563,"PARAM","PROTOCOL") = 2233
+^TMP("XUMF MFS",539017563,"PARAM","QDT") = 20010212110654
+^TMP("XUMF MFS",539017563,"PARAM","QFC") = R
+^TMP("XUMF MFS",539017563,"PARAM","QID") = Z04 ARRAY
+^TMP("XUMF MFS",539017563,"PARAM","QLR") = RD~999
+^TMP("XUMF MFS",539017563,"PARAM","QP") = I
+^TMP("XUMF MFS",539017563,"PARAM","QRL") = 
+^TMP("XUMF MFS",539017563,"PARAM","RLC") = NE
+^TMP("XUMF MFS",539017563,"PARAM","RLEC") = MUP
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",1,.01) = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",2,99) = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",3,11) = ID
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",4,13) = CE^~FACILITY TYPE~VA
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",5,100) = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",6,101) = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",7,.02) = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",8,"DTYP") = CE^~VISN~VA
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",8,"FIELD") = 1
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",8,"FILE") = 4.014
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",8,"IENS") = 1,?+1,
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",9,"DTYP") = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",9,"FIELD") = 1:99
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",9,"FILE") = 4.014
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",9,"IENS") = 2,?+1,
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",10,"DTYP") = DT
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",10,"FIELD") = .01
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",10,"FILE") = 4.999
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",11,"DTYP") = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",11,"FIELD") = .06:99
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",11,"FILE") = 4.999
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",12,"DTYP") = DT
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",12,"FIELD") = .01
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",12,"FILE") = 4.999
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",13,"DTYP") = ST
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",13,"FIELD") = .05:99
+^TMP("XUMF MFS",539017563,"PARAM","SEG","ZIN","SEQ",13,"FILE") = 4.999
+^TMP("XUMF MFS",539017563,"PARAM","SEGMENT") = ZIN
+^TMP("XUMF MFS",539017563,"PARAM","WDCVQ") = 
+^TMP("XUMF MFS",539017563,"PARAM","WDDC") = INFRASTRUCTURE~INFORMATION INFRASTRUCTURE ~VA TS
+^TMP("XUMF MFS",539017563,"PARAM","WHAT") = 4~IFN~VA FM
+^TMP("XUMF MFS",539017563,"PARAM","WHO") = ALL~~~~~~~~D~045A4</PRE>   
+        </td>
+      </tr>
+    </table> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/main-xumfp.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

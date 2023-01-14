@@ -1,0 +1,457 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$NAMEFMT^XLFNAME">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$NAMEFMT^XLFNAME,$$namefmt,xlfname,name standardization,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$NAMEFMT^XLFNAME">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180814">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$NAMEFMT^XLFNAME</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$NAMEFMT^XLFNAME</A>(): Formatted Name from Name Components</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Name Standardization,
+	<B>ICR#:</B> 3065</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$NAMEFMT^XLFNAME extrinsic function returns a name converted to a form useful for display.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$NAMEFMT^XLFNAME(.name[,format][,flags])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>.name:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) An array that contains the component parts of the name:</P> 
+		  <BLOCKQUOTE>NAME("FAMILY) = Family (Last) Name
+		  (required)
+		  <BR>
+		  NAME("GIVEN") = Given (First) Name(s)
+		  (optional)
+		  <BR>
+		  NAME("MIDDLE") = Middle Name(s) (optional)
+		  <BR>
+		  NAME("SUFFIX") =
+		  Suffix(es) (optional)
+		  <BR>
+		  NAME("PREFIX") = Prefix (optional)
+		  <BR>
+		  NAME("DEGREE") =
+		  Degree (optional)</BLOCKQUOTE> 
+		  <P>Alternatively, this array can contain the file number, IENS, and
+		  field number of the field that contains the name. If the name has a
+		  corresponding entry in the NAME COMPONENTS file, then the name components
+		  are obtained from that entry. Otherwise, the name is obtained directly from the
+		  file, record, and field specified, and (#20)the name components are obtained by
+		  making a call to the
+		  <A HREF="stdname-xlfname.html"
+		     CLASS="bodylink"
+			 TITLE="STDNAME^XLFNAME API">STDNAME^XLFNAME(): Name Standardization Routine API</A>.</P> 
+		  <BLOCKQUOTE>NAME("FILE") = Source file number
+		  (required)
+		  <BR>
+		  NAME("IENS") = IENS of entry in the source file
+		  (required)
+		  <BR>
+		  NAME("FIELD") = Source field number (required)</BLOCKQUOTE>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>format:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(optional) Controls the general formatting of the output (Default = 
+		  <b>G</b>). Possible values are:</P> 
+		  <UL> 
+		    <LI>
+		      <b>F&#151;</b>Return <B>F</B>amily (Last) Name first.
+		      <BR>
+		      <BR>
+		    </LI> 
+			<LI>
+			  <b>G&#151;</b>Return <B>G</B>iven (First) Name first.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  <b>O&#151;</b>Return <B>O</B>nly the Family (Last) Name.
+			</LI> 
+		  </UL>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>flags:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(optional) Flags to controls processing. Possible values are:</P> 
+		  <UL> 
+		    <LI>
+		      <b>C&#151;</b>If the <b>F</b> format is used, return a <B>C</B>omma 
+			  between the Family (Last) and Given (First) Names. Otherwise, 
+			  the Family (Last) Name and the Given (First) Name are separated 
+			  by a space. (Ignored if the <b>F</b>
+			  format is <i>not</i> used.)
+			  <BR>
+			  <BR>
+	        </LI> 
+		    <LI>
+		      <b>D&#151;</b>Return the <B>D</B>egree.
+		      <BR>
+		      <BR>
+		    </LI> 
+		    <LI>
+		      <b>Dc&#151;</b>Return the <B>D</B>egree preceded by a <B>c</B>omma and space.
+			  <BR>
+			  <BR>
+		     </LI> 
+		    <LI>
+		      <b>L#&#151;</b>Truncate the returned name to a maximum Length of
+			  <B>#</B> characters, where <B>#</B> is an integer between <strong>1</strong> and <strong>256</strong>. See
+			  "<A HREF="#details"
+			      CLASS="bodylink"
+			      TITLE="Details">Details</A>" as follows for a description of the pruning algorithm.
+			  <BR>
+			  <BR>
+			</LI> 
+		    <LI>
+		      <b>M&#151;</b>Return the name in <B>M</B>ixed case, with the first
+		      letter of each name component capitalized.
+		      <BR>
+		      <BR>
+		    </LI> 
+		    <LI>
+		      <b>P&#151;</b>Return the <B>P</B>refix.
+		      <BR>
+		      <BR>
+		    </LI> 
+		    <LI>
+		      <b>S&#151;S</b>tandardize the name components before building
+			  formatted name.
+			  <BR>
+			  <BR>
+	        </LI> 
+		    <LI>
+		      <b>Xc&#151;</b>Precede the Suffi<B>X</B> with a <B>c</B>omma and space.
+		    </LI> 
+		  </UL>
+        </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns the formatted name.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="details">Details</A></H4> 
+	<P>If the <b>L#</b> flag is used, and the resulting name is longer than <B>#</B>,
+	the following pruning algorithm is performed to shorten the name:</P> 
+	<OL> 
+      <LI>
+        Drop Degree.
+        <BR>
+        <BR>
+      </LI> 
+	  <LI>
+	    Drop Prefix.
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    Truncate Middle Name from the right-most position until only the initial 
+		character is left.
+		<BR>
+		<BR>
+	  </LI> 
+	  <LI>
+	    Drop suffix.
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    Truncate Given Name from the right-most position until only the initial 
+		character is left.
+		<BR>
+		<BR>
+      </LI> 
+	  <LI>
+	    Truncate Family Name from the right-most position.
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    Truncate the name from the right.
+	    <BR>
+	    <BR>
+	  </LI> 
+	</OL> 
+	<H4>Examples</H4>
+    <H4><A NAME="example_1">Example 1</A></H4> 
+	<P>Suppose the MYNAME array contains the following elements:</P> 
+	<PRE>MYNAME("PREFIX") = "MR."
+MYNAME("GIVEN") = &quot;SIXTY" 
+MYNAME("MIDDLE") = "K." 
+MYNAME("FAMILY") = &quot;XUUSER" 
+MYNAME("SUFFIX") = "JR"
+MYNAME("DEGREE") = "PHD"</PRE> 
+	 <P>Then calls to the $$NAMEFMT^XLFNAME API returns the name as follows:</P>
+	 <table width="100%"
+       border="1"
+       cellspacing="3"
+       cellpadding="3">
+      <tr>
+        <td>
+          	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"F")</B>
+
+&gt;<B>W X</B>
+XUUSER SIXTY K. JR</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"F","C")</B>
+
+&gt;<B>W X</B>
+XUUSER,SIXTY K. JR</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"F","CS")</B>
+
+&gt;<B>W X</B>
+XUUSER,SIXTY K JR</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"F","CSD")</B>
+
+&gt;<B>W X</B>
+XUUSER,SIXTY K JR PHD</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"F","CDcXc")</B>
+
+&gt;<B>W X</B>
+XUUSER,SIXTY K., JR, PHD</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"F","CSL12")</B>
+
+&gt;<B>W X</B>
+XUUSER,SI K</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"F","CMD")</B>
+
+&gt;<B>W X</B>
+Krnuser,Sixty K. Jr PhD</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G")</B>
+
+&gt;<B>W X</B>
+SIXTY K. XUUSER JR</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","D")</B>
+
+&gt;<B>W X</B>
+SIXTY K. XUUSER JR PHD</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","Dc")</B>
+
+&gt;<B>W X</B>
+SIXTY K. XUUSER JR, PHD</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","P")</B>
+
+&gt;<B>W X</B>
+MR. SIXTY K. XUUSER JR</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","Xc")</B>
+
+&gt;<B>W X</B>
+SIXTY K. XUUSER, JR</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","PDcXc")</B>
+
+&gt;<B>W X</B>
+MR. SIXTY K. XUUSER, JR, PHD</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","PDcXcM")</B>
+
+&gt;<B>W X</B>
+Mr. Sixty K. Krnuser, Jr, PhD</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","S")</B>
+
+&gt;<B>W X</B>
+SIXTY K XUUSER JR</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"G","SL12")</B>
+
+&gt;<B>W X</B>
+SI K XUUSER</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"O")</B>
+
+&gt;<B>W X</B>
+XUUSER</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"O","S")</B>
+
+&gt;<B>W X</B>
+XUUSER</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"O","M")</B>
+
+&gt;<B>W X</B>
+Xuuser</PRE> 
+	 <PRE>&gt;<B>S X=$$NAMEFMT^XLFNAME(.MYNAME,"O","L3")</B>
+
+&gt;<B>W X</B>
+XU</PRE>         
+        </td>
+      </tr>
+    </table>  
+	<H4><a name="Example_2">Example 2</a></H4> 
+    <P>If an entry in the NAME COMPONENTS (#20) file stores the components of a name
+	stored in the NAME (#.01) field of record number 32 in the NEW PERSON 
+	(#200) file, and the data in the corresponding record in the NAME COMPONENTS 
+	(#20) file is:</P> 
+	<PRE>FILE = 200
+FIELD = .01
+IENS = "32,"
+PREFIX = "MR."
+GIVEN NAME = &quot;SIXTY"
+MIDDLE NAME = "K."
+FAMILY NAME = &quot;XUUSER"
+SUFFIX = "JR"
+DEGREE = "PHD"</PRE> 
+    <P>You can set:</P> 
+	<PRE>MYNAME("FILE")=200
+MYNAME("FIELD")=.01
+MYNAME("IENS")="32,"</PRE> 
+    <P>Then call the $$NAMEFMT^XLFNAME API, as in 
+    <a href="#example_1"
+       title="Example 1"
+       class="bodylink">Example 1</a>, to return the name
+	in various formats.</P> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/14/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-namefmt-xlfname.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

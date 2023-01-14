@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 + all extensions//EN" "hmpro3.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Procedures for Modifying VISTA Applications</title>
+</head>
+
+<body>
+
+<table border="0" width="100%" bgcolor="#F8AFB5">
+  <tr>
+    <td width="100%"><h2 align="center">PROCEDURES FOR MODIFYING<br>
+    VISTA APPLICATIONS</h2>
+    </td>
+  </tr>
+</table>
+
+<p>a. Modifications to national package data dictionaries should be restricted to the
+addition of new data elements and to the creation of input and output templates to meet
+specific needs of local sites. To ensure the capability of installing new releases of the
+application packages, it is important that any local additions to the data base be made in
+areas that will not conflict with elements contained in the nationally distributed data
+base.</p>
+
+<p>b. When adding new data elements to the VA FileMan data dictionary, the numbering
+conventions used for creating new files should also be used for data elements.</p>
+
+<p>(1) A data element number should be entered that is in the numbering range of the
+assigned numbering prefix multiplied by 1000.</p>
+
+<p>(2) The same convention should be applied to global subscripts for local data add-ons
+to previously defined globals.</p>
+
+<p>c. The VA FileMan subdictionary numbers should be assigned at the high end of the
+numbering sequence, following the numbering convention outlined. For example, a VA FileMan
+subdictionary number added to the Patient file (File 2) by station 368 should be 2.368001,
+a second subdictionary should be assigned 2.368002, and so forth.</p>
+
+<p>d. The VA FileMan data dictionary may be modified only through tools provided by the VA
+FileMan or by tools specifically referenced in the VA FileMan Programmer's Manual.</p>
+
+<p>e. To keep conflicts with cross-references to a minimum, field facilities creating
+custom cross-references must use the number range assigned to the site and prefix with <tt>&quot;AZ&quot;</tt>
+or <tt>&quot;Z&quot;</tt>.</p>
+
+<p>(1) National packages are not permitted to use these cross-references.</p>
+
+<p>(2) Cross-reference numbers should be assigned based on the station number multiplied
+by 1000.</p>
+
+<p>f. All other types of local data modifications to national packages are strongly
+discouraged. If local modifications are made to existing data elements in a national
+package data dictionary, it will then be the responsibility of the site to maintain those
+modifications as new versions of the package are installed.</p>
+
+<p>g. When software components are incorporated into the package, the names associated
+with the new components (e.g., routines, options, templates) should be prefixed by the
+package namespace followed by the letter <tt>&quot;Z&quot;</tt>.</p>
+
+<p>(1) For example, a local option called <tt>&quot;LOG&quot;</tt> for the <tt>PSIV</tt>
+package would have the option name <tt>&quot;PSIVZLOG&quot;</tt>.</p>
+
+<p>(2) Prefixing allows the site to readily differentiate between components developed
+locally and those associated with the DHCP national packages.</p>
+
+<p>(3) Namespaces of one, two, three, or four characters followed by <tt>&quot;Z*&quot;</tt>
+shall not be exported in nationally developed software, but shall be reserved for local
+use.</p>
+</body>
+</html>

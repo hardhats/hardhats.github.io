@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>DHCP to VISTA</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<div align="center"><center>
+
+<table border="0" cellpadding="6" cellspacing="6" width="100%">
+  <tr>
+    <td align="center"><img src="images/logo.gif" WIDTH="120" HEIGHT="79"><font size="5" face="Arial"><strong><br>
+      VistA Overview</strong></font></td>
+    <td width="80%"><!--webbot bot="Include" u-include="navicon_plain.html" tag="BODY" startspan -->
+
+<p align="center"><a href="index.html"><img
+src="images/shopSHomeOff.gif" alt="Home Page" align="top"
+border="0" width="54" height="76"></a><a href="m/Mmain.html"><img
+src="images/shopSMOff.gif" alt="M |" align="top" border="0"
+width="54" height="76"></a> <a href="fileman/FMmain.html"><img
+src="images/shopSFmOff.gif" alt=" FileMan |" align="top"
+border="0" width="54" height="76"></a><a
+href="kernel/KRNmain.html"><img src="images/shopSKrnOff.gif"
+alt=" Kernel |" align="top" border="0" width="54" height="76"></a><a
+href="cs/CSmain.html"><img src="images/shopSCsOff.gif"
+alt=" CS/MM/Web |" align="top" border="0" width="62" height="86"></a><a
+href="tools/TOOLSmain.html"><img src="images/shopSPgmOff.gif"
+alt=" Programmer Tools |" align="top" border="0" width="54"
+height="86"></a> <a href="apps/APPSmain.html"><img
+src="images/shopSAppOff.gif" alt="Applications" align="top"
+border="0" width="54" height="76"></a></p>
+<!--webbot bot="Include" endspan i-checksum="47671" -->
+
+</td>
+  </tr>
+</table>
+</center></div>
+
+<table border="0" cellpadding="6" width="100%">
+  <tr>
+    <td valign="top" width="25%" bgcolor="#dde0e1
+    "> <p><a href="#Infrastructure"><font size="3">Applications</font></a></p>
+      <p><a href="#Foundation_Framework"><font size="3">Infrastructure Features</font></a></p>
+    </td>
+    <td valign="top" width="65%"><a name="Application"></a><font face="Arial"><strong>Applications
+      Overview</strong></font>
+      <p>A giant <a href="http://www.va.gov/about_va/orgs/vha/vista.htm">VistA
+      Overview</a> provides a 50,000 ft view of the breadth of the VistA clinical apps.
+      It quickly reveals the depth and coverage of the VistA clinical system.</p>
+      <p>For those with an eye for data details, <a href="http://www.va.gov/vista/Software/ERdiagrams/">Entity
+      Relationship (ER) diagrams</a> of the application databases are in PDF
+      files at the VA's Internet site. The diagrams are grouped by application,
+      so you need to know the namespace of an application to find the right PDF
+      file. Use the <a href="http://www.va.gov/vista/Software/Formal%20Packages%20&amp;%20parents.txt">listing
+      of namespaces and applications</a> to map to the appropriate folder.</p>
+      <a name="Infrastructure"></a><font face="Arial"><strong>Infrastructure
+      Features</strong></font>
+      <p>Here is a summarize of the technical foundation of VistA, so all can
+      learn some of the neat and not-so-neat things about its
+      infrastructure.&nbsp; Keep in mind much of this infrastructure was laid in
+      the late 70s and early 80s. There is much to learn and appreciate.</p>
+      <ol>
+        <li>VistA provides a common services framework, like background tasking
+          of jobs, device selection, menus, Hl7 interfacing, database, etc. are
+          defined in a library called the Kernel. It is very well documented and
+          all apps are required to use them and not invent their own. So if you
+          know how to select a device, pick a menu option or queue a task in one
+          app, you know how to do it in any app. User training is greatly
+          simplified and dependencies on underlying platforms is eliminated. The
+          motto is to keep the user from seeing ANYTHING system specific in the
+          underlying implementation. This makes migration issues invisible to
+          them - they don't need to be trained. All they know is that on Monday,
+          after the weekend conversion, it is suddenly a lot faster!<br>
+          <br>
+        </li>
+        <li>Any non-standard MUMPS code that must be performed (such as not
+          echoing characters to avoid seeing a password) is done by calling an
+          API in the Kernel that has been adapted to the current platform. A
+          part of the Kernel therefore serves as an adapter to encapsulate the
+          non-standard extensions that would corrupt portability if permitted to
+          leak into the application code. This has been essential to permit
+          VistA to migrate to several different platforms painlessly, typically
+          over a weekend.<br>
+          <br>
+        </li>
+        <li>The File Manager (database manager) uses an active Data Dictionary
+          to define files. It contains the validation code, cross-reference
+          logic, etc. Most unfortunately, MUMPS programmers have bypassed this
+          part of VistA all too often in the past and so it is not as tightly
+          sealed at the database manager, as someone in charge of maintenance
+          would like.<br>
+          <br>
+        </li>
+        <li>The Kernel contains an integrated SMTP-based Email module (Mailman)
+          that can be used for human or computer-to-computer communication. Some
+          apps use this to communicate information to a designated server that
+          gathers information into a database. One use could be to automatically
+          track rates of disk usage at all sites so that accurate budget
+          projects can be made for equipment expenditures.<br>
+          <br>
+        </li>
+        <li>A powerful distribution mechanism (KIDS) permits picking up parts of
+          an application, or all of it, and releasing it as an Email attachment
+          or a file. A KIDS distribution can use Mailman to automatically report
+          to a central server when an application or patch (see below) is
+          installed at a site. This permits the VA to quickly see the version
+          and patch level of applications at any facility across the country.<br>
+          <br>
+        </li>
+        <li>VistA has an effective system of patching, based on KIDS, that
+          permits simple releases to fix problems or elaborate releases of new
+          functionality. These patches can be distributed as Email messages or
+          files.&nbsp; Unfortunately, there is no 'undo' for patches, so backups
+          are essential and patches should be thoroughly tested.<br>
+          <br>
+        </li>
+        <li>MUMPS code is not 'compiled and linked', so any code is open to
+          anyone to call. The same is true for the data. This permits an
+          incredible level of integration between applications, but it is 'too
+          open' for some software architects' liking.&nbsp; The VA has
+          instituted Database Integration Agreements (DBIA) to enforce external
+          policies and procedures to avoid unwanted dependencies. MUMPS should
+          have a way to declare code and data public, private, protected, etc.<br>
+          <br>
+        </li>
+        <li>VistA applications provide tons of source code (15,000+ routines)
+          and thousands of files to illustrate just about anything you might
+          want to do. The hard part is separating good techniques from dangerous
+          ones.</li>
+      </ol>
+      <p>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><script language="JavaScript">
+<!--
+document.write("<font face=\"arial,helv\" size=1> This page updated on " + document.lastModified+".")
+//-->
+
+</script></td>
+    <td></td>
+  </tr>
+</table>
+<!--webbot bot="Include" u-include="navtext.html" tag="BODY" startspan -->
+
+<p align="center"><font size="2">Search | </font><a
+href="index.html"><font size="2">Home</font></a><font size="2">
+| </font><a href="m/Mmain.html"><font size="2">MUMPS</font></a><font
+size="2"> | </font><a href="fileman/FMmain.html"><font size="2">Fileman</font></a><font
+size="2"> | </font><a href="kernel/KRNmain.html"><font size="2">Kernel</font></a><font
+size="2"> | </font><a href="cs/CSmain.html"><font size="2">C/S,
+Mailman, Web</font></a><font size="2"> | </font><a
+href="tools/TOOLSmain.html"><font size="2">Programmer Tools</font></a><font
+size="2"> | </font><a href="apps/APPSmain.html"><font size="2">Applications</font></a></p>
+<!--webbot bot="Include" endspan i-checksum="20500" -->
+
+</body>
+</html>

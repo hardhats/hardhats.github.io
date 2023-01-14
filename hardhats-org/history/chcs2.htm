@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS2</TITLE></HEAD>
+<BODY>
+<H1>II.  DISCREPANCIES BETWEEN GLOBAL STRUCTURES IN THE TWO SYSTEMS </H1>
+<H2>A.  FILE-LEVEL DISCREPANCIES </H2>
+<H3>&quot;Group Cross-References&quot; on a File</H3>
+<P>The CHCS FileMan input routines (^DIE and ScreenMan) recognize a kind of
+Data Dictionary structure not found in DHCP FileMan.  This is the &quot;Group
+Cross-reference&quot;.  The novel Global structure characteristic of a Group
+Cross-Reference looks like:</P>
+<BLOCKQUOTE>
+<P>^DD(Filenumber,0,&quot;GRIX&quot;,Groupname) = Routineref</P></BLOCKQUOTE>
+<P>where &quot;Groupname&quot; is the name of a Field Group, found in the same
+File under</P>
+<BLOCKQUOTE>
+<P>^DD(Filenumber,&quot;GR&quot;,Groupname)</P></BLOCKQUOTE>
+<P>The presence of a Group Cross-reference tells FileMan/ScreenMan to invoke
+the &quot;Routineref&quot; whenever any Fields in the &quot;Groupname&quot; have
+been edited, with the old and new values stored in a temporary MUMPS local
+array.  The code specified by &quot;Routineref&quot; is invoked before the data
+is actually filed, while the user is still editing.</P>
+<P>Portability Effect: SERIOUS  Since DHCP FileMan (Version 20) has no
+equivalent feature, it would be difficult to port a CHCS File containing Group
+Cross-references to a DHCP environment with assurance that data entry to such a
+File would be consistent in both systems.  Certainly, some re-programming would
+be necessary.  Probably, the programmer would have to add individual
+Cross-references that tried to perform the work of the Group Cross-references,
+but because of synchronization problems, this could be a tricky job. 
+Fortunately, later versions of DHCP FileMan may well include an equivalent
+functionality.  Fortunately, too, a search of the current CHCS system shows only
+two Files (the PATIENT File, number 2, and the PROVIDER File, number 6) that
+contain Group Cross-references. Since Group Cross-references must be created &quot;by
+hand&quot;, rather than through use of a Utility Function, it is thus unlikely
+that they will be in wide use in CHCS any time soon.</P>
+<H3>Special lookup code for a particular File </H3>
+<P>In both CHCS and DHCP FileMan, there is a Global node which, if set, names a
+MUMPS routine to be associated with the lookup into a particular File. 
+Generally, the ^DIC routine will transfer control to that routine, if it exists.
+ CHCS FileMan stores the name of this routine, if it exists, preceded by the '^'
+character, in</P>
+<BLOCKQUOTE>
+<P>^DIC(filenumber,0,&quot;ROU&quot;)</P></BLOCKQUOTE>
+<P>whereas DHCP FileMan stores the equivalent routine name, without the '^'
+character, in</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,0,&quot;DIC&quot;)</P></BLOCKQUOTE>
+<P>Portability Effect: SERIOUS.  If a DHCP File with a &quot;DIC&quot; node
+were transported to CHCS, the &quot;DIC&quot; node would be ignored, and the
+results would be, in general, unpredictable.  The workaround is apparently
+simple: a programmer should just take any routine name found in</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,0,&quot;DIC&quot;)</P></BLOCKQUOTE>
+<P>and put it, with a prefixed '^', into</P>
+<BLOCKQUOTE>
+<P>^DIC(filenumber,0,&quot;ROU&quot;)</P></BLOCKQUOTE>
+<P>Unfortunately, VA FileMan allows calls to the ^DIC lookup routine to ignore 
+such a special routine name, if the call is made in a certain way (the DIC(0)
+variable containing &quot;I&quot;).  This means that any application code ported
+along with such a &quot;special lookup file&quot; would need to be vetted by a
+programmer for every call to ^DIC.  If a call to ^DIC is found where the input
+parameter string contains an &quot;I&quot;, then that call would need to be
+re-considered.</P>
+<H3>&quot;Pre-lookup&quot; code in CHCS </H3>
+<P>CHCS FileMan offers the developer a way to insure that every lookup value
+used by ^DIC to select an Entry from a particular File be first pre-processed. 
+For example, such processing logic can convert all lower-case input characters
+to upper-case.  The developer stores such &quot;pre-lookup&quot; code in the
+Global node</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,0,&quot;PRELK&quot;)</P></BLOCKQUOTE>
+<P>The MUMPS code stored here takes the input variable 'X', and (possibly)
+transforms it to a different value.</P>
+<P>Portability Effect: Requires conversion.  Fortunately, there is in DHCP
+FileMan a documented (but almost never used) Global node,</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,.01,7.5)</P></BLOCKQUOTE>
+<P>to which CHCS &quot;pre-lookup&quot; code can be moved.  A bit of
+re-programming is required in making this conversion, but it is straightforward.</P>
+<H3>&quot;Post-Lookup&quot; code in DHCP </H3>
+<P>Whereas CHCS needed a good way of pre-processing input to ^DIC, DHCP decided
+it need a post-processing capability for lookup.  Accordingly, DHCP FileMan
+stores an optional string of MUMPS code in</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,0,&quot;ACT&quot;)</P></BLOCKQUOTE>
+<P>which, when present, acts as a kind of &quot;post-screening&quot; logic
+every time an Entry in the File is selected by the ^DIC process.  CHCS has no
+equivalent.</P>
+<P>Portability Effect: Reqires conversion.  If a DHCP File with an &quot;ACT&quot;
+node were transported to CHCS, the &quot;ACT&quot; would be ignored, and the
+results would be, in general, unpredictable.  To work around this
+incompatibility, a programmer could create a 'special lookup program' for the
+File that looks like:</P>
+<BLOCKQUOTE>
+<P>DO ^DIC IF Y&lt;0 QUIT</P>
+<P>DO</P>
+<P>.(Here insert the &quot;ACT&quot; string of code)</P>
+<P>QUIT</P></BLOCKQUOTE>
+<H3>LAYGO Code in DHCP</H3>
+<P>DHCP FileMan allows executable MUMPS code to be inserted into the nodes</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,.01,&quot;LAYGO&quot;,ix,0)</P></BLOCKQUOTE>
+<P>where ix is an index.  Each such node is executed to set the MUMPS $T switch
+before an entry in the file to be added.  CHCS has no equivalent.</P>
+<P>Portability Effect: Requires conversion.  If a DHCP File with &quot;LAYGO&quot;
+nodes were transported to CHCS, these nodes would be ignored as new Entries in
+the File were &quot;LAYGO&quot;ed, and the result would be, in general,
+unpredictable.  A possible workaround might be to create a &quot;Special lookup&quot;
+routine for such a File.</P>
+<H3>&quot;Copy Access&quot; in CHCS</H3>
+<P>CHCS FileMan uses the existence of the node</P>
+<BLOCKQUOTE>
+<P>^DD(Filenumber,0 &quot;COPY&quot;)</P></BLOCKQUOTE>
+<P>to decide whether the &quot;Transfer&quot; option is allowed to move data
+from the file specified by 'Filenumber' to some other File.  DHCP FileMan has no
+similar check.</P>
+<P>Portability Effect: Uncertain.  A straightforward, automatic addition of the
+&quot;COPY&quot; node to any File ported to CHCS is recommended.  (The value of
+the &quot;COPY&quot; node could simply be set equal to the value of the File's &quot;DD&quot;
+node.)  Without the security protection of this node, a File could easily be
+inappropriately &quot;cloned&quot; by a naive CHCS FileMan user.</P>
+<H2>B.  FIELD-LEVEL DISCREPANCIES </H2>
+<H3><A NAME="UNEDWP">Uneditable Word-Processing Fields</A></H3>
+<P>Both CHCS FileMan and DHCP FileMan allow DATE, SET, POINTER, FREE-TEXT,
+VARIABLE-POINTER, NUMERIC, and MUMPS Fields to be marked as &quot;UNEDITABLE&quot;
+by the Utility Option called &quot;UNEDITABLE DATA&quot;.  For consistency, CHCS
+FileMan also allows Word-Processing Fields to be so marked.  In the Data
+Dictionary structure, an 'Uneditable' Word-Processing Field will
+characteristically  have a Specifier of &quot;WI&quot; or &quot;WLI&quot;, as in</P>
+<BLOCKQUOTE>
+<P>^DD(1003.01,0)     = TEXT SUB-FIELD^^.01^1</P>
+<P>.</P>
+<P>.</P>
+<P>^DD(1003.01,.01,0) = TEXT^WI^^0;1</P></BLOCKQUOTE>
+<P>Portability Effect: SERIOUS  A CHCS developer may designate a
+Word-Processing Field as 'UNEDITABLE'.  This designation would be ignored if the
+Field were ported to a DHCP environment, and hence the anticipated FileMan
+security feature of uneditability would be lost.  To rectify this might require
+a great deal of reprogramming, such that every Input Template or ^DIE call
+involving the uneditable Field might need to be re-worked.  Fortunately, an
+automatic program could easily search for Global node</P>
+<BLOCKQUOTE>
+<P>^DD(n,.01,0)</P></BLOCKQUOTE>
+<P>that contained both &quot;W&quot; and &quot;I&quot; in it second &quot;^&quot;-piece.
+ Also fortunately, there are unlikely to be many such uneditable Word-Processing
+Fields in a typical application.</P>
+<H3>Consistency Checks in CHCS</H3>
+<P>CHCS FileMan supports a Data Dictionary structure, used as part of the data
+input verification process, called Consistency Checks.  Any CHCS FileMan Field
+can have associated with it one or more such &quot;checks&quot;, stored
+dependent from</P>
+<BLOCKQUOTE>
+<P>^DD(Filenumber,fieldnumber,6)</P></BLOCKQUOTE>
+<P>Whenever data for such a Field is entered or changed, this checking logic is
+invoked.  The logic is thus an extension, one could say, of the Field's Input
+Transform.  Unlike the Input Transform, though, it can be written by a user in
+'Computed Field' notation, rather than in MUMPS.</P>
+<P>By way of example, here is one such Consistency Check, as it appears in the
+CHCS database for the ADMISSION DATE multiple date:</P>
+<BLOCKQUOTE>
+<P>^DD(2.95,.01,6,1,0) = Not after discharge</P>
+<P>^DD(2.95,.01,6,1,1) = ADMISSION DATE'&gt;DISCHARGE DATE</P>
+<P>^DD(2.95,.01,6,1,5,1,0) = 2.95^1.01</P>
+<P>^DD(2.95,.01,6,1,9) = S X=1 I DIJF(1.01)]&quot;&quot; S X=DIJF'&gt;DIJF(1.01)</P></BLOCKQUOTE>
+<P>The first of these four nodes contains the developer's English-language
+explanation of what the Check is requiring for valid data entry into Field .01
+of (sub-)File 2.95.  The second node shows how the developer wrote this Check as
+a Boolean-valued Computed-Field expression, using the name of the Field itself (&quot;ADMISSION
+DATE&quot;) and also the name of some other field (&quot;DISCHARGE DATE&quot;). 
+The third node indicates the Data Dictionary location of the other field, and
+the fourth and last node is the MUMPS code that FileMan generated from the
+developer's &quot;ADMISSION DATE'&gt;DISCHARGE DATE&quot;; this MUMPS code is
+run at data entry time to set the MUMPS variable 'X' to either '1' or '0'.  Any
+Consistency Check setting 'X' to '0' has the effect of prohibiting the data
+entry.</P>
+<P>Remembering that a FileMan Field's general characteristics are described by
+a coded &quot;Specifier&quot;, the 2nd &quot;^&quot;-piece of the Field's zero
+node, it should also be mentioned that the Specifier of a CHCS Field that has
+Consistency Checks includes a special &quot;K&quot; parameter that is not found
+in DHCP Field Specifiers.</P>
+<P>Portability Effect: Requires Conversion.  DHCP FileMan would ignore CHCS
+Consistency Checks on a Field, and therefore would allow erroneous input in a
+ported application.  It would be a straightforward matter, however, to add code
+to the Input Transform of any such Field.  The code would invoke some program
+into which the CHCS Consistency-check code (from 'node 9') had been inserted.</P>
+<H3>Auditing flags</H3>
+<P>DHCP FileMan allows auditing on a field-by-field basis, and correspondingly
+includes in any audited Field:</P>
+<OL>
+<LI> In the Specifier, the lower-case characters &quot;a&quot; and &quot;e&quot;
+to designate two different types of auditing.
+</LI>
+<LI> The nodes
+</LI></OL>
+<BLOCKQUOTE>
+<P>^DD(filenumber,fieldnumber,&quot;AUDIT&quot;)</P></BLOCKQUOTE>
+<P>and</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,fieldnumber,&quot;AX&quot;)</P></BLOCKQUOTE>
+<P>to designate the types of auditing, and executable code to determine if
+auditing is on or off.</P>
+<P>CHCS FileMan allows auditing on a File-by-File basis, and correspondingly
+flags an audited File with</P>
+<BLOCKQUOTE>
+<P>^DIC(Filenumber,0,&quot;DIET&quot;)=12</P></BLOCKQUOTE>
+<P>DCHP uses the Globals ^DIA and ^DIAR(1.11) for its auditing process, whereas
+CHCS uses ^DIAU and ^DIET.</P>
+<P>Portability Effect: Uncertain.  The two systems are incompatible in respect
+to auditing, but this is not a great portability concern, since the question of
+what is audited is usually a site-specific system management issue, rather than
+something addressed by application design.  However, to insure that applications
+do not &quot;count on&quot; auditing, DHCP application code ported to CHCS would
+have to be searched for the occurrence of references to &quot;^DIA&quot; or &quot;^DIAR(1.1&quot;,
+while CHCS application code ported to DHCP would have to be searched for the
+occurrence of references to &quot;^DIET&quot; or &quot;^DIAU&quot;.</P>
+<H3>'KWIC' index can parse on other delimiters in DHCP </H3>
+<P>DHCP FileMan allows defining a &quot;KWIC&quot; (Key Word In Context)
+cross-reference so that values cross-referenced will be 'split' by some
+character other than the 'space' character.  Thus a value like &quot;FRACTURE,TIBIA&quot;
+could generate cross-reference values of &quot;FRACTURE&quot; and &quot;TIBIA&quot;
+if &quot;parsed by comma&quot;.</P>
+<P>Portability Effect: Nil.  This small enhancement to DHCP FileMan is actually
+portable back to CHCS systems, since once the KWIC cross-reference code exists,
+it is executed at the same points in both systems.  One small step might be
+taken to insure that CHCS FileMan properly treats a DHCP KWIC cross-reference: a
+programmer could replace the letters &quot;KWIC&quot; with the letters &quot;MUMPS&quot;
+in the node</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,fieldnumber,1,ix,0)</P></BLOCKQUOTE>
+<P>corresponding to the 'ix'th KWIC cross-reference of a field, if that
+cross-reference can be seen to be parsing on a character other than the 'space'
+character.</P>
+<H3>'SET' Fields can contain MUMPS 'Screens' in DHCP </H3>
+<P>DHCP FileMan allows defining a &quot;Screen&quot; for a SET field, as well
+as for a POINTER field.  The Global structure of a &quot;screened SET&quot;
+Field is isomorphic to that of a &quot;screened POINTER&quot;, and its Specifier
+(second &quot;^&quot;-piece of the zero node of the Field) similarly contains an
+asterisk (*).</P>
+<P>Portability Effect: Requires conversion.  A 'screened' SET field transported
+to a CHCS system would be seen by that system's FileMan as a regular,
+un-screened SET field.  Users on CHCS would therefore be allowed to make illegal
+input to such a Field.  If the 'screening logic' is really essential to the
+application, the only apparent fix to this incompatibility would be to change
+the &quot;SET&quot; to a &quot;FREE-TEXT&quot; field, with appropriate stringent
+Input and Output Transforms.</P>
+<H3>'Technical Description' of a Field in DHCP </H3>
+<P>DHCP FileMan stores an optional 'Technical Description' of any Field
+dependent from node</P>
+<BLOCKQUOTE>
+<P>^DD(Filenumber,fieldnumber,23)</P></BLOCKQUOTE>
+<P>CHCS FileMan has no equivalent word-processing field.</P>
+<P>Portability Effect: Nil.  Does not impact portability of functionality,
+since DHCP FileMan only uses this field for documentation (in Data Dictionary
+listings).</P>
+<H3>'Sort Value' and 'Transfer Tag' of a Field in CHCS</H3>
+<P>CHCS FileMan stores two optional free-text fields in nodes</P>
+<BLOCKQUOTE>
+<P>^DD(Filenumber,fieldnumber,27)</P>
+<P>and</P>
+<P>^DD(Filenumber,fieldnumber,28)</P></BLOCKQUOTE>
+<P>as external documentation of the Field.  DHCP FileMan has no corresponding
+fields.</P>
+<P>Portability Effect: Nil.  Does not impact portability of functionality,
+since CHCS FileMan only uses these fields for documentation.</P>
+<H3>'Archive' flag in CHCS</H3>
+<P>CHCS FileMan also stores an optional SET-type field in</P>
+<BLOCKQUOTE>
+<P>^DD(Filenumber,fieldnumber,29)</P></BLOCKQUOTE>
+<P>which flags the &quot;archive status&quot; of the field to the CHCS
+archiving system. DHCP handles archiving differently.</P>
+<P>Portability Effect: Nil.  Should not impact portability.  A CHCS File ported
+to DHCP might include such 'archive flags', but DHCP FileMan would ignore them. 
+This would be appropriate, since it would be expected that different archive
+arrangements would be made for such Files in a 'DHCP world'.</P>
+<H2>C.  OTHER GLOBAL-STRUCTURE INCOMPATIBILITIES </H2>
+<H3>'Previous' values stored in a different MUMPS Global </H3>
+<P>Contrary to current CHCS documentation (in the Manual designated &quot;TC-4-0130C&quot;),
+CHCS FileMan stores previous lookup values for a given user in the Global
+^DIJUSV, whereas DHCP FileMan stores such values in ^DISV.</P>
+<P>Portability Effect: Uncertain.  This difference should not imply any
+portability problem, since the ^DISV/^DIJUSV Global is handled at run time, and
+its contents would not be transported.  In both systems the subscripting is
+identical, i.e. by 'DUZ' user number, so that there is no user-interaction
+discrepancy between the two systems.  As usual, however, a programmer may have
+made explicit reference, for some special purpose, to the Global.  Therefore,
+CHCS packages ported to DHCP should have all occurrences of &quot;^DIJUSV&quot;
+replaced by &quot;^DISV&quot;, and DHCP packages should have all occurrences of &quot;^DISV&quot;
+replaced by &quot;^DIJUSV&quot;.</P>
+<H3><A NAME="CHECK">'Check'</A> nodes in Input Templates</H3>
+<P>As will be explained in Section VII, below, CHCS screen-entry is based on
+Input Templates.  There is one node in the Input Template global, ^DIE, which is
+used by CHCS ScreenMan.  This is the so-called &quot;check&quot; node -- the
+second-level subscript &quot;CHK&quot;.</P>
+<P>CHCS screens are able to invoke &quot;Check&quot; logic at the moment
+between the last user input (a &quot;YES&quot; answer to the &quot;OK TO FILE?&quot;
+question) and the actual filing of the Template data.  This &quot;Pre-filing
+logic&quot; can examine data values in the temporary local &quot;DG&quot; array,
+and can abort the filing of data by setting the local variable &quot;Y&quot;. 
+The programmer stores the Entryref to this MUMPS code within the Template &quot;by
+hand&quot;:</P>
+<BLOCKQUOTE>
+<P>^DIE(Templatenumber,&quot;CHK&quot;,1,Filenumber) = Entryref</P></BLOCKQUOTE>
+<P>Thus, for example, we find in the CHCS application suite</P>
+<BLOCKQUOTE>
+<P>^DIE(215,&quot;CHK&quot;,1,101) = AYCHK^ORLAB4</P></BLOCKQUOTE>
+<P>This means that when a user is done entering data for Template number 215
+(which edits File 101), the subroutine AYCHK^ORLAB will be invoked to &quot;Check&quot;
+that data.</P>
+<P>Portability effect: Requires conversion.  &quot;CHK&quot; logic is
+equivalent to the &quot;Data Validation&quot; property of a DHCP ScreenMan form,
+but the CHCS MUMPS code would need to be re-written if ported to DHCP.  For
+example, instead of setting &quot;Y&quot;, DHCP code would want to set the &quot;DDSERROR&quot;
+variable, and so on.  The general problem of porting ScreenMan design from one
+system to the other will be treated (pessimisticly) in Section VII. below. 
+Conversion of &quot;CHK&quot; code is only a tiny part of that larger problem.</P>
+<H2>D.  SUMMARY OF CHANGES NEEDED WHEN PORTING DHCP FILES TO CHCS </H2>
+<P>1. Special lookup nodes need to be moved from</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,0,&quot;DIC&quot;)</P>
+<P>to</P>
+<P>^DIC(filenumber,0,&quot;ROU&quot;)</P></BLOCKQUOTE>
+<P>and all application code associated with that filenumber needs to be
+examined for calls to ^DIC with the DIC(0) parameter containing an &quot;I&quot;.</P>
+<P>2. Any File containing nodes dependent from</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,.01,&quot;LAYGO&quot;)</P></BLOCKQUOTE>
+<P>need to be carefully examined by a programmer to devise a workaround.</P>
+<P>3. Files should be transported 'unaudited', and application code referring
+to ^DIA or ^DIAR(1.11) needs to be reworked.</P>
+<P>4. Post-Action &quot;ACT&quot; nodes need to be handled, possibly by
+building a special lookup routine.</P>
+<P>5. &quot;COPY&quot; nodes need to be inserted into every ported DHCP File.</P>
+<P>6. Screened SET fields need to be handled.</P>
+<P>7. In application code associated with the ported Files, any occurrences of &quot;^DISV&quot;
+need to be replaced by &quot;^DIJUSV&quot;.</P>
+<H2>E.  SUMMARY OF CHANGES NEEDED WHEN PORTING CHCS FILES TO DHCP </H2>
+<P>1. Special lookup nodes need to be moved from</P>
+<BLOCKQUOTE>
+<P>^DIC(filenumber,0,&quot;DIC&quot;)</P>
+<P>to</P>
+<P>^DD(filenumber,0,&quot;ROU&quot;)</P></BLOCKQUOTE>
+<P>2. &quot;Pre-lookup&quot; nodes need to be modified and moved from</P>
+<BLOCKQUOTE>
+<P>^DD(filenumber,0,&quot;PRELK&quot;) to</P>
+<P>^DD(filenumber,.01,7.5)</P></BLOCKQUOTE>
+<P>3. For any Word-Processing Fields flagged as 'UNEDITABLE', re-programming
+needs to be considered.</P>
+<P>4. For any Fields containing Consistency Checks, code needs to be inserted
+into the Field's Input Transform to effect the same checks.</P>
+<P>5. Files should be transported 'unaudited', and application code referring
+to ^DIET or ^DIAU needs to be reworked.</P>
+<P>6. In application code associated with the ported Files, any occurrences of &quot;^DIJUSV&quot;
+need to be replaced by &quot;^DISV&quot;.</P>
+<P ALIGN="RIGHT"><A HREF="chcs3.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

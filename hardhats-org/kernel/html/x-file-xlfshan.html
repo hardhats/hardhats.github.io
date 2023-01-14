@@ -1,0 +1,336 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$FILE^XLFSHAN">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$FILE^XLFSHAN,$$FILE,XLFSHAN,data security,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$FILE^XLFSHAN">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$FILE^XLFSHAN</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+	<H3><A NAME="navskip">$$FILE^XLFSHAN</A>(): Returns SHA Hash for Specified FileMan File or Subfile Entry</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Data Security,
+	<B>ICR#:</B> 6157</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$FILE^XLFSHAN extrinsic function returns the <strong>SHA</strong> hash for a specified file entry. It uses the VA FileMan  
+	<a href="http://vaww.vista.med.va.gov/fileman/docs/dg/db_diqgs.shtml"
+	   title="GETS^DIQ API"
+	   class="bodylink">GETS^DIQ</a> API to extract the data from the file. The input parameters match the input parameters for 
+	<a href="http://vaww.vista.med.va.gov/fileman/docs/dg/db_diqgs.shtml"
+	   title="GETS^DIQ API"
+	   class="bodylink">GETS^DIQ</a>.</P>
+    <P><strong>NOTE:</strong> The <em>VA FileMan Developer&#8217;s Guide</em> is located on the VDL at: 
+	<a href="https://www.va.gov/vdl/application.asp?appid=5"
+	   title="VDL: VA FileMan Documentation Website"
+	   class="bodylink">https://www.va.gov/vdl/application.asp?appid=5</a></P> 
+    <p><b>NOTE:</b> This API was released with Kernel Patch XU*8.0*657.</p>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$FILE^XLFSHAN(hashlen,filenum,iens[,field][,flags])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <b>hashlen:</b>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) The hash length in bits:</P>
+		  <ul>
+		    <li>
+		      160 (SHA-1)
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      224 (SHA-224)
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      256 (SHA-256)
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      384 (SHA-384)
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      512 (SHA-512) 
+		    </li>
+		  </ul>
+		</TD> 
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <b>filenum:</b>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  (required) VA FileMan file or subfile number.
+		</TD> 
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <b>iens:</b>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  (required) Standard VA FileMan IENS indicating internal entry numbers, as documented in the 
+		  <em>VA FileMan Developer&#8217;s Guide</em>.
+		</TD> 
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <b>field:</b>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  (optional) Can be one of the following:
+		  <ul>
+		    <li>
+		      A single field number.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      A list of field numbers, separated by semicolons.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      A range of field numbers, in the form <em><strong>M:N</strong></em>; where <em><strong>M</strong></em> and <em><strong>N</strong></em> are the end points of the inclusive range. All field numbers within this range are retrieved.
+              <br>
+              <br>
+		    </li>
+		    <li>
+		      Asterisk (<strong>*</strong>) for all fields at the top-level (no sub-Multiple record).
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      Double asterisk (<strong>**</strong>) for all fields including all fields and data in sub-Multiple fields.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      Field number of a multiple followed by an <strong>*</strong> to indicate all fields and records in the sub-Multiple for that field.
+		      <br>
+		      <br>
+		    </li>
+		  </ul>
+		  If this parameter is <em>not</em> passed, it defaults to <strong>**</strong>, which extracts all fields.
+		</TD> 
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <b>flags:</b>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  (optional) Flags to control processing. The possible values are:
+		  <ul>
+		    <li>
+		      <strong>E&#8212;</strong>Returns <strong>E</strong>xternal values in nodes ending with <strong>E</strong>.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      <strong>I&#8212;</strong>Returns <strong>I</strong>nternal values in nodes ending with <strong>I</strong>; otherwise, external is returned.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      <strong>N&#8212;</strong>Does <em>not</em> return <strong>NULL</strong> values.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      <strong>R&#8212;R</strong>esolves field numbers to field names in target array subscripts.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      <strong>Z&#8212;</strong>WORD-PROCESSING fields include <strong>Z</strong>ero nodes.
+		      <br>
+		      <br>
+		    </li>
+		    <li>
+		      <strong>A#&#8212;A</strong>udit Trail is used to retrieve the value of "<strong>FIELD</strong>" at a particular point in time.
+		      <br>
+		      <br>
+		      <strong>#</strong> is a date/time in VA FileMan internal format (e.g., 3021015.08). The values retrieved are the (audited) values of the fields as of that date/time.
+		    </li>
+		  </ul>
+		</TD> 
+	  </TR>
+    </TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+	      <P>Returns:</P>
+	      <ul>
+	        <li>
+	          <strong>SHA hash&#8212;</strong>If successful.
+	          <br>
+	          <br>
+	        </li>
+	        <li>
+	          <strong>Zero (0)&#8212;</strong>If the file could <em>not</em> be opened or found.
+	          <br>
+	          <br>
+	        </li>
+	        <li>
+	          <strong>-1&#8212;</strong>If an error occurs.
+	        </li>
+	      </ul>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+	  <tr>
+	    <td>
+	      <PRE>&gt;<b>W $$FILE^XLFSHAN(512,200,"10000000407,")</b>
+8FE96A435D69989EFC30FC852260990BECB030247657B9CA1CDB9D103097B51792648254770D88E292592CC06C36D22C3E502F790050B8ADBB035C89F59FB8A7</PRE>
+	    </td>
+	  </tr>
+	</table> 
+    <P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-file-xlfshan.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

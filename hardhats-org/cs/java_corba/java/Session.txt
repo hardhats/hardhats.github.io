@@ -1,0 +1,47 @@
+package/class: gov.va.vista.kernel.Session;
+
+  public void addSessionListener(SessionListener st) {
+    ..allows application to register for session events:
+      - Valid signon, session starting
+      - Signon failed, session failed
+      - Logout, session ending
+  }
+
+  public static Session getSession() {
+    ..creates a new session object (if one does not exist).
+  }
+
+  public WorkBench getWorkBench() {
+    ..returns the workbench assigned to this session.
+  }
+
+  public void setSilent(boolean silent) {
+    ..determines if the session is to be silent (display or not display
+      the signon screen).
+  }
+
+  public void userLogout() {
+    ..called by an application to end a session.
+  }
+
+  public synchronized void signon() {
+    ..begins a signon session.  Shows the signon screen so the user can enter
+      access and verify codes.  Based on the user's input, an event is
+      triggered (session starting or session failed).
+  }
+
+  public void setAccessCode(String access) {
+    ..sets access code to support silent logons.
+  }
+
+  public void setVerifyCode(String verify) {
+    ..sets verify code to support silent logons.
+  }
+
+  public Logon getLogon( ) {
+    ..after successful logon, this object represents the information about
+      the logon (User).
+  }
+
+}
+

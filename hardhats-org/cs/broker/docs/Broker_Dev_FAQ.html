@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>Subj: RPC Broker Developer FAQ</TITLE>
+<META NAME="GENERATOR" CONTENT="Internet Assistant for Microsoft Word 2.0z"></HEAD>
+<BODY BGCOLOR="#ffffff">
+<P><FONT SIZE="+2" COLOR="#005588" FACE="ARIAL"><B><A NAME="Return">Ask Dr.
+Broker: Developer FAQ</A></B></FONT></P>
+<HR SIZE="5" WIDTH="100%">
+<UL>
+<LI><A HREF="#cwissue2">Can I distribute my applications royalty-free?</A></LI>
+<LI><A HREF="#cwissue3">Is source code provided for the RPC Broker client
+software?</A></LI>
+<LI><A HREF="#cwissue1">What software needs to be running on my workstation
+for development?</A></LI>
+<LI><A HREF="#codeissue2">Once I set the TRPCBroker property &quot;Connected&quot;
+to True, is there any way to verify that a true connection has been established,
+since setting properties do not have a return value?</A></LI>
+<LI><A HREF="#codeissue3">Is there a mechanism to view TRPCBroker  property
+settings at runtime?</A></LI>
+<LI><A HREF="#codeissue4">Can multiple connections be established by a single
+program (e.g., multiple RpcCreate ())?</A></LI>
+<LI><A HREF="#codeissue5">Is it possible to call an RPC without passing
+parameters?</A></LI>
+<LI><A HREF="#codeissue8">What if I want to pass more than one array through
+the Broker? (It looks as if the Mult field of the Param property only supports
+one array.)</A></LI>
+<LI><A HREF="#codeissue9">When should I set the TRPCBroker Connected property
+to True or False? Does the Call method automatically make a connection if none
+exists?</A></LI>
+<LI><A HREF="#codeissue10">What is the difference between the Call, lstCall,
+and strCall methods?</A></LI>
+<LI><A HREF="#codeissue12">If an M error occurs during processing of an RPC on
+the server side, is the error trapped? Is my client application notified?</A></LI>
+<LI><A HREF="#codeissue14">How do I make an existing M API available for use
+by a Broker client application?</A></LI>
+<LI><A HREF="#codeissue15">What strategies do you recommend for returning
+disparate data (i.e., data that probably was stored in different arrays on the M
+side)?</A></LI>
+<LI><A HREF="#codeissue16">What does the Tag property do? Does it override Tag
+in the Remote Procedure file's entry?</A></LI>
+<LI><A HREF="#codeissue17"> I'm creating a GUI version of an existing
+application that uses the Broker. If I turn my existing roll-and-scroll options
+into Broker-type &quot;B&quot;-type options, can my existing roll-and-scroll
+users and my new Broker users both run the same options? </A></LI></UL>
+<HR SIZE="5" WIDTH="100%">
+<UL>
+<LI><A NAME="cwissue2"><B> Q: Can I distribute my applications royalty-free?</B></A>
+<P> <B>Dr. Broker: </B>The executables (i.e., EXEs) you develop using Delphi
+and the RPC Broker are royalty and license free. </P>
+<BR></LI>
+<LI><A NAME="cwissue3"><B>Q: Is source code provided for the RPC Broker
+client software?</B></A>
+<P> <B>Dr. Broker: </B>Source code for the the RPC Broker client is not
+distributed for security reasons. </P>
+<BR></LI>
+<LI><A NAME="cwissue1"><B>Q: What software needs to be running on my
+workstation for development?</B></A>
+<P><B> Dr. Broker: </B>Your workstation must have:</P>
+<OL>
+<LI>One of the following 32 bit operating systems:
+<UL>
+<LI>Microsoft Windows 95</LI>
+<LI>Microsoft Windows NT Workstation V. 3.51 or later</LI></UL></LI>
+<LI>TCP/IP networking. It is recommended that you connect to your development
+server through a local area network (LAN) using a network interface card and
+TCP/IP protocol.Currently only Winsock compliant TCP/IP protocol is supported on
+the LAN or remotely as Point-to-Point Protocol (PPP) or Serial Line Internet
+Protocol (SLIP).</LI>
+<LI>Borland Delphi V. 2.0 or higher.</LI>
+<LI>The Broker Development Kit (BDK), installed in Delphi.</LI></OL> 
+<BR></LI>
+<LI><A NAME="codeissue2"><B>Q: Once I set the TRPCBroker property &quot;Connected&quot;
+to True, is there any way to verify that a true connection has been established,
+since setting properties do not have a return value?
+</B></A>
+<P> <B>Dr. Broker: </B>Use RpcbPropGet to querry the Connected property.  Even
+though the application may try to set it to True, it remains False until an
+actual connection has been established and the user is authenticated.</P>
+<BR></LI>
+<LI><A NAME="codeissue3"><B>Q: Is there a mechanism to view TRPCBroker
+property settings at runtime?</B></A>
+<P><B> Dr. Broker: </B>Use RpcbPropGet to obtain property values at run time.</P>
+<BR></LI>
+<LI><A NAME="codeissue4"><B>Q: Can multiple connections be established by a
+single program (e.g., multiple RpcCreate ())?</B></A>
+<P> <B>Dr. Broker: </B>A single program may create as many Broker components
+as it needs.  These Broker components may be used to establish multiple
+connections to different IP-ports at the same time.  However, only one circuit
+is created for each unique IP-port and will be shared by all Broker components
+that &quot;point&quot; to it.</P>
+<BR></LI>
+<LI><A NAME="codeissue5"><B> Q:  Is it possible to call an RPC without
+passing parameters?</B></A>
+<P> <B>Dr. Broker: </B>  Yes.This version of the Broker (i.e., Broker V. 1.1)
+no longer requires you to pass one &quot;dummy&quot; parameter with the PType
+field of the Mult subproperty set to null.</P> 
+<BR></LI>
+<LI> <A NAME="codeissue8"><B>Q: How can I pass more than one array through
+the Broker? (It looks as if the Mult field of the Param property only supports
+one array.)</B></A> 
+<P><B> Dr. Broker: </B>  The Broker uses a function call approach, only one
+value or array is returned. The Param property is an array of parameters. Use
+one Param element per parameter. If your aim is to pass two arrays to an RPC,
+use Param[0] and Param[1], and set their PType fields to list. 
+<BR><BR>Examples using the Param property: 
+</P>
+<TABLE BORDER="1">
+<TR>
+<TD>
+<PRE>RPCBroker1.Param[0].Value := '10/31/95';
+RPCBroker1.Param[0].PType := literal;
+RPCBroker1.Param[1].Mult['&quot;NAME&quot;'] := 'SMITH, JOHN';
+RPCBroker1.Param[1].Mult['&quot;SSN&quot;'] := '123-45-6789';
+RPCBroker1.Param[1].PType := list;
+</PRE></TD></TR></TABLE><BR></LI>
+<LI> <A NAME="codeissue9"><B>Q: When should I set the TRPCBroker Connected
+property to True or False? Does the Call method automatically make a connection
+if none exists?</B></A> 
+<P><B> Dr. Broker: </B> The Connected property gives you full control in
+connecting and disconnecting from the server. It can also be used to tell if the
+TRPCBroker component is currently connected or not. The Broker also
+automatically connects when any call method (Call, lstCall, strCall) is
+executed. The connection is maintained until the Connected property is set to
+False or until the TRPCBroker component is destroyed.
+</P>
+<P>You should call the Broker's GetServerInfo function before any part of your
+code that establishes a connection can execute. GetServerInfo reads this
+information from the workstation, providing the appropriate Server and
+ListenerPort the TRPCBroker component should connect to. A good place to call
+GetServerInfo is your form's OnCreate event. Then, whether connection is
+established by setting Connected to True, or by executing a Call method, the
+TRPCBroker component knows the appropriate server to connect to.</P>
+<BR></LI>
+<LI> <A NAME="codeissue10"><B>Q: What is the difference between the Call,
+lstCall, and strCall methods?</B></A> 
+<P><B> Dr. Broker: </B>  The Broker uses three methods to invoke RPCs on a
+server: 
+</P>
+<OL>
+<LI>Call</LI>
+<LI>lstCall</LI>
+<LI>strCall</LI></OL>
+<P>All three methods rely on the Param property for the parameters. There are
+two main differences between these methods. The first difference is that the
+Call method is more versatile then strCall or lstCall. strCall can only be used
+to return one string. lstCall can only return a list of strings. The Call method
+can return either. The other difference is where the results of the calls are
+placed. 
+<BR><BR>The Call method uses the Results property for the return values. The
+strCall method works like a function which can be assigned to some string-typed
+variable. For example:
+<BR><BR></P>
+<PRE>     Patient.Name := strCall</PRE>
+<P>lstCall puts the results of the call into the passed TStrings-typed
+variable:</P><BR><BR>
+<PRE>     lstCall(MyListBox.Items)</PRE>
+<P>strCall and lstCall do not affect the Results property.
+</P>
+<BR></LI>
+<LI> <A NAME="codeissue12"><B>Q: If an M error occurs during processing of an
+RPC on the server side, is the error trapped? Is my client application notified?</B></A>
+<P><B> Dr. Broker: </B> It is trapped using Kernel. The client is notified of
+the error via a popup window.</P>
+<BR></LI>
+<LI> <A NAME="codeissue14"><B>Q: How do I make an existing M API available
+for use by a Broker client application?</B></A> 
+<P><B> Dr. Broker: </B> An M API has defined input and output
+values/parameters that are passed via the standard M invoking methods. An RPC,
+however, needs to do the following:</P>
+<UL>
+<LI>Pass data to an API</LI>
+<LI>Receive values back</LI>
+<LI>Accept input from the Broker (i.e., passing data/parameters from the client
+application)</LI>
+<LI>Pass API output back through the Broker</LI></UL>
+<P>Thus, the RPC can be thought of as a wrapper placed around an API for use
+with client applications.</P><BR></LI>
+<LI> <A NAME="codeissue15"><B>Q: What strategies do you recommend for
+returning disparate data (i.e., data that probably was stored in different
+arrays on the M side)?</B></A>
+<P><B> Dr. Broker: </B> One strategy may be to label sections of the returning
+array as illustrated below:
+</P>
+<TABLE BORDER="1">
+<TR>
+<TD>
+<PRE>Results[0] := '[[DATA]]'
+Results[1] := 'Some data'
+Results[2] := 'Some more data'
+Results[3] := '[[Errors]]'
+Results[4] := 'Error message'</PRE></TD></TR></TABLE>
+<P>You loop through the array looking for your labels to indicate what data
+follows the label.</P>
+<BR></LI>
+<LI> <A NAME="codeissue16"><B>Q: What does the Tag property do? Does it
+override Tag in the Remote Procedure file's entry?</B></A> 
+<P><B> Dr. Broker: </B> The Tag property is inherited from Delphi's
+TComponent. The Tag property stores an integer value as a scratch value for use
+by a component. While the Tag property has no meaning to Delphi, your
+application can use this property to store a value for its special needs. 
+<BR><BR>It is not related to the Tag field in the REMOTE PROCEDURE file
+(#8994).</P>
+<BR></LI>
+<LI> <A NAME="codeissue17"><B>Q: I'm creating a GUI version of an existing
+application that uses the Broker. If I turn my existing roll-and-scroll options
+into Broker-type &quot;B&quot;-type options, can my existing roll-and-scroll
+users and my new Broker users both run the same options? </B></A> 
+<P><B> Dr. Broker: </B> A Broker &quot;B&quot; type option can <I>not</I> be
+run from the menu system. You should instead build a new option for the Broker
+version of the application.</P>
+<BR></LI></UL></BODY></HTML>

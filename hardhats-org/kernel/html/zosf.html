@@ -1,0 +1,668 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: ^%ZOSF">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,^%ZOSF,%ZOSF,operating system interface,supported">
+    <meta name="description"
+	      content="Kernel APIs: ^%ZOSF">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: ^%ZOSF</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">^%ZOSF</A>(): Operating System-dependent Logic Global</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Operating System
+	Interface, <B>ICR#:</B></P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The <strong>^%ZOSF</strong> global holds operating system-dependent logic so that
+	application programs can be written independently of any specific operating
+	system.</P>
+    <P>Most of the nodes contain logic that <i>must</i> be executed to return
+	a value, for example:</P> 
+	<PRE><B>    X ^%ZOSF("SS")</B></PRE> 
+	<P>Those prefaced with one asterisk in the table below, however, are reference
+	values. For example, to <strong>WRITE</strong> the operating system, use:</P> 
+	<PRE><B>    W ^%ZOSF("OS")</B></PRE> 
+	<P>The nodes prefaced with two asterisks in the table below should be used with
+	the <strong>DO</strong> command, as in the following:</P> 
+	<PRE>    &gt;<B>D @^%ZOSF("ERRTN")</B></PRE> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  ^%ZOSF()</PRE> 
+	<P><strong>Table Key:</strong>
+	<BR>
+	<BR>
+	<b>*</b> indicates those nodes that hold reference
+	values.
+	<BR>
+	<BR>
+	<b>**</b> indicates those nodes that are invoked with a <strong>DO</strong> statement (<strong>D</strong>).</P>
+	<TABLE WIDTH="100%"
+	       BORDER="1"> 
+	  <TR> 
+	    <Th WIDTH="10%"
+	        align="left"
+	        valign="top">
+		  Node
+		</Th> 
+		<Th WIDTH="90%"
+		    align="left"
+		    valign="top">
+		  Description
+		</Th> 
+	  </TR> 
+	  <TR> 
+	    <TD valign="top">
+		  <P><strong>ACTJ</strong></P>
+		</TD> 
+		<TD valign="top">
+		  <P>Return in <strong>Y</strong> the number of active jobs on the system.</P>
+		</TD> 
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+		  <P><strong>AVJ</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Return in <strong>Y</strong> the number of jobs that can be started. The number of
+		  available jobs is the maximum number less the number of active jobs.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+		  <P><strong>BRK</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Allow the user to break the running of a routine.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+		  <P><strong>DEL</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Delete the routine named in <strong>X</strong> from the UCI.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD valign="top">
+		  <P><strong>EOFF</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Turn off echo to the <strong>$I</strong> device.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+		  <P><strong>EON</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Turn on echo to the <strong>$I</strong> device.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+		  <P><strong>EOT</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Returns <strong>Y = 1</strong> if Magtape end-of-tape mark is detected.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD valign ="top">
+		  <P><b><SUP>**</SUP>ERRTN</b></P>
+		</TD>
+		<TD valign="top">
+		  <P>This node is set to the name of the routine that should be used to
+		  record errors. For most systems this is the KERNEL error recording routine
+		  (<strong>%ZTER</strong>):</P>
+		  <PRE>  &gt;<B>D @^%ZOSF("ERRTN")</B></PRE>
+		  <P>To initially set the trap:</P>
+		  <PRE>  &gt;<B>S X=^%ZOSF("ERRTN"),@^%ZOSF("TRAP")</B></PRE>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD valign="top">
+		  <P><strong>ETRP</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Obsolete.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>GD</strong></P>
+	    </TD>
+		<TD valign="top">
+		  <P>Display the global directory.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD valign="top">
+		  <p><strong>GSEL</strong></p>
+		</TD>
+		<TD valign="top">
+		  <p>Returns the user's selection of globals as follows:</p>
+		  <pre>  ^UTILITY($J,"global name")</pre>
+		  <p><b>NOTE:</b> This is only supported for Caché at this time.</p>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD valign="top">
+		  <P><strong>JOBPARAM</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>When passed the job in <strong>X</strong>, returns the UCI for that job in 
+		  <strong>Y</strong>. It is used to determine whether the job is valid on the system.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD valign="top">
+	      <P><strong>LABOFF</strong></P>
+	    </TD>
+		<TD valign="top">
+		  <P>Turn off echo to the <strong>IO</strong> device.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+		  <P><strong>LOAD</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Load routine <strong>X</strong> into <strong>@(DIF_"XCNP,0)"</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>LPC</strong></P>
+	    </TD>
+		<TD valign="top">
+		  <P>Returns in <strong>Y</strong> the longitudinal parity check of the string in 
+			<strong>X</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP">
+		  <P><strong>MAGTAPE</strong></P>
+		</TD>
+		<TD valign="top">
+		  <P>Sets the <strong>%MT</strong> local variable to hold magtape functions. Issue the
+		  backspace command as follows:</P>
+		  <PRE>  &gt;<B>W @%MT("BS")</B></PRE>
+		  <P>The full list of functions are:</P>
+		  <UL>
+		    <LI>
+		      <strong>BS&#8212;</strong>Back Space
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>FS&#8212;</strong>Forward Space
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>WTM-WRITE</strong> Tape Mark
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>WB-WRITE</strong> Block
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>REW-</strong>Rewind
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>RB-READ</strong> Block
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>REL-READ</strong> Label
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>WHL-WRITE HDR</strong> Label
+		      <BR>
+		      <BR>
+		    </LI>
+		    <LI>
+		      <strong>WEL-WRITE EOF</strong> Label
+		    </LI>
+		  </UL>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>MAXSIZ</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>For M/SQL-VAX only. Sets the partition size to <strong>X</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><b><SUP>*</SUP>MGR</b></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Holds the name of the <strong>MGR</strong> account (UCI, Volume Set).</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>MTBOT</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y = 1</strong> if the magtape is at <strong>BOT</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>MTERR</strong></P>
+	    </TD>
+	    <TD>
+	      <P valign="top">Returns <strong>Y = 1</strong> if a magtape error is detected.</P>
+	    </TD>
+	  </TR>
+      <TR>
+        <TD valign="top">
+	      <P><strong>MTONLINE</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y = 1</strong> if the magtape is online.</P>
+	    </TD>
+	  </TR>
+      <TR>
+	    <TD valign="top">
+	      <P><strong>MTWPROT</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y = 1</strong> if the magtape is <strong>WRITE</strong> Protected.</P>
+	    </TD>
+	  </TR>
+      <TR>
+	    <TD valign="top">
+	      <P><strong>NBRK</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Do <i>not</i> allow the user to break a routine.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+        <TD valign="top">
+	      <P><strong>NO-PASSALL</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Sets device <strong>$I</strong> to interpret tabs, carriage returns, line feeds, or
+	  	  control characters (normal text mode).</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>NO-TYPE-AHEAD</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Turn off the TYPE-AHEAD for the device <strong>$I</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><b><SUP>*</SUP>OS</b></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>In the first <B>^</B> piece, holds the type of MUMPS (e.g., Caché, VAX DSM, GT.M).</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>PASSALL</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Sets device <strong>$I</strong> to pass all codes, allow tabs, carriage returns,
+	  	  and other control characters to be passed (binary transfer).</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>PRIINQ</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y</strong> with the current priority of the job.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>PRIORITY</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Sets the priority of the job to <strong>X</strong> (<strong>1</strong> is low, 
+			<strong>10</strong> is high).</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><b><SUP>*</SUP>PROD</b></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Holds the name of the Production account (UCI, Volume Set).</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>PROGMODE</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y = 1</strong> if the user is in Programmer Mode.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>RD</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Displays the routine directory.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>RESJOB</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>References the operating system routine for restoring a job.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>RM</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Sets the <strong>$I</strong> width to <strong>X</strong> characters. If 
+			<strong>X=0</strong>, then the line in set to no wrap.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>RSEL</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns the user's selection of routines as follows:</P>
+	   	  <PRE>  ^UTILITY($J,"routine name")</PRE>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>RSUM</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Passes a routine name in <strong>X</strong>, and it returns the checksum in 
+		  <strong>Y</strong>. Used by CHECK^XTSUMBLD. The second line and comments are <I>not</I> 
+		  included in the total.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>RSUM1</strong></P>
+	      </TD>
+	    <TD valign="top">
+	      <P>Passes a routine name in <strong>X</strong>, and it returns the checksum in <strong>Y</strong>. 
+	      Used by CHECK1^XTSUMBLD. The second line and comments are <I>not</I> included in the total.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>SAVE</strong></P>
+	    </TD>
+	    <TD valign="top" >
+	      <P>Saves the code in <strong>@(DIE_"XCN,0)")</strong> as routine 
+			<strong>X</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>SIZE</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y=size</strong> (in bytes) of the current routine.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>SS</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Displays the system status.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>TEST</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>$T = 1</strong> if routine <strong>X</strong> exists.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>TMK</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y = 1</strong> if a tape mark was detected on the last 
+			<strong>READ</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>TRAP</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>To set the error trap:</P>
+	  	  <PRE>  &gt;<B>S X="error routine",@^%ZOSF("TRAP")</B></PRE>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>TRMOFF</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Resets terminators to normal.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>TRMON</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Turns on all controls as terminators.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>TRMRD</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns in <strong>Y</strong> what terminated the last <strong>READ</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>TYPE-AHEAD</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Allow <strong>TYPE-AHEAD</strong> for the device <strong>$I</strong>.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>UCI</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y</strong> with the current account (UCI, Volume Set).</P>
+	    </TD>
+	  </TR>
+	  <TR>
+        <TD valign="top">
+	      <P><strong>UCICHECK</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Returns <strong>Y'=""</strong> if <strong>X</strong> is a valid UCI name.</P>
+	    </TD>
+      </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>UPPERCASE</strong></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Converts lowercase to uppercase. Setting <strong>X="User Name"</strong> returns
+		  <strong>Y="USER NAME"</strong>. Applications can gain efficiency by executing this node rather
+		  than performing checks within the application program.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><b><SUP>*</SUP>VOL</b></P>
+	    </TD>
+	    <TD valign="top">
+	      <P>Contains the current Volume Set (CPU) name.</P>
+	    </TD>
+	  </TR>
+	  <TR>
+        <TD valign="top">
+	      <P><strong>XY</strong></P>
+        </TD>
+	    <TD valign="top">
+	      <P>Sets <strong>$X=DX</strong> and <strong>$Y=DY</strong> (may <em>not</em> work on all systems).</P>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD valign="top">
+	      <P><strong>ZD</strong></P>
+		</TD>
+		<TD valign="top">
+	      <P>Given <strong>X</strong> in <strong>$H</strong> format, returns the printable form of 
+		  <strong>X</strong> in <strong>Y</strong>.</P>
+	    </TD>
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/zosf.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

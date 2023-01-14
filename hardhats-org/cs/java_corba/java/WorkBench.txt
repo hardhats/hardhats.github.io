@@ -1,0 +1,28 @@
+
+//Title:        Kernel
+//Version:      
+//Copyright:    Copyright (c) 1997
+//Author:       Bob Yacobucci
+//Company:      Department Of Veteran Affairs
+//Description:  
+
+package gov.va.vista.kernel;
+
+import java.awt.*;
+import java.awt.event.*;
+import borland.jbcl.layout.*;
+
+public class WorkBench extends Frame {
+
+  public void logout() {
+    ..method to call if the user needs to logout.
+  }
+
+  public synchronized void setWorkBenchItem(WorkBenchItem nform) {
+    ..used to display another workbench item (application form).
+  }
+
+  public WorkBenchItem getWorkBenchItem() {
+    ..returns the current application form being display on the workbench.
+  }
+}

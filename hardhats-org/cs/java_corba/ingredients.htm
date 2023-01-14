@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Java/M Technical Ingredients</title>
+</head>
+
+<body>
+
+<p align="center"><strong><font color="#0000A0" face="Arial" size="3"><u>Java/M Technical
+Ingredients</u></font></strong></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">This page describes some of
+the Java classes used to support user sign-on and form displays.&nbsp; It is to
+give&nbsp;more detail on how I setup some objects and *NOT* meant to be a tutorial.</font></p>
+
+<p align="left"><font color="#FF0000" face="Arial" size="2"><u>Warning</u></font><font color="#000000" face="Arial" size="2">: </font><font color="#000000"><font size="2"><font face="Arial">Only</font></font><font face="Arial" size="2"> view this material if you are
+a Java programmer...</font></font></p>
+
+<p align="left"><u><font color="#000000" face="Arial" size="2">These are the main objects
+for using Java and M (client side):</font></u></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">1) <a href="java/SignOn.txt">SignOn.java</a>
+object uses the Session object to begin a user session.&nbsp; Sign-on basically initiates
+the session and closes the Java application when a session ends.&nbsp; This is the source
+code for the Sign-on screen used in the demo.&nbsp; It can be used as an application or
+applet and it also demonstrates how the Session can be used to begin a session.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">2) <a href="java/Session.txt">Session.java</a>
+object displays the sign-on screen, triggers session events, and communicates to the ORB
+server to validate codes.&nbsp; It sets up the &quot;user&quot; environment very similar
+to the kernel sign-on process with VISTA.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">3) <a href="java/WorkBench.txt">WorkBench.java</a> object provides tools necessary to display
+application forms in a consistent manner.&nbsp; This is analogous to the menu management
+part of VISTA.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">4) <a href="java/WorkBenchItem.txt">WorkBenchItem.java</a> object is an application form
+designed by the application programmer.&nbsp; It must support specific functions to
+displayed on the workbench.&nbsp; When an item is displayed on the workbench, it is
+functions are &quot;merged&quot; with the workbench to provide a consistent
+user-interface.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">5) <a href="java/Play.txt">Play.java</a>
+object is the Play form used in our demo section.&nbsp; It demonstrates an application
+form interacting with the Kernel Workbench.&nbsp; It also demonstrates the ability to
+display the <a href="java/Play2.txt">Play2.java</a> form when the &quot;Show Form 2&quot;
+menu item is selected.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2"><u>These are the main objects
+(IDLs) for using Java and M (server side)</u>:</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">1) <a href="idl/Logon.txt">Logon.idl</a>
+represents the logon of the user to the VISTA system.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">2) <a href="idl/LogonManager.txt">LogonManager.idl</a> handles requests for logon and logouts to
+the server.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">3) <a href="idl/ServerToolkit.txt">ServerToolKit.idl</a> provides functions from the client to
+the server that may or may not be associated to a user logon.</font></p>
+
+<p align="left"><font color="#000000" face="Arial" size="2">4) <a href="idl/User.txt">User.idl</a>
+represents the user that is logged onto.</font></p>
+
+<hr>
+<!--webbot bot="Include" U-Include="nav.htm" TAG="BODY" startspan -->
+
+<p align="center"><font face="Arial"><small><a href="index.htm">[Home Page]</a> <a href="demo.htm">[VISTA Demonstration]</a> <a href="links.htm">[Java Links]</a></small><br>
+<small><a href="diagrams.htm">[Technical Diagrams]</a> <a href="ingredients.htm">[Technical
+Ingredients]</a></small></font></p>
+<!--webbot bot="Include" endspan i-checksum="38908" -->
+
+</body>
+</html>

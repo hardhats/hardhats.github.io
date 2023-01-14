@@ -1,0 +1,36 @@
+
+//Title:        Clinical Information Resource Network
+//Version:      
+//Copyright:    Copyright (c) 1997
+//Author:       Bob Yacobucci
+//Company:      Department Of Veteran Affairs
+//Description:  
+
+package gov.va.vista.cirn;
+
+import java.awt.*;
+import gov.va.vista.kernel.*;
+
+public class Play2 extends WorkBenchItem {
+  Label label1 = new Label();
+  CardLayout cardLayout1 = new CardLayout();
+
+  
+  public Play2() {
+    try  {
+      jbInit();
+    }
+    catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  void jbInit() throws Exception {
+    label1.setBackground(Color.cyan);
+    label1.setFont(new Font("Dialog", 1, 14));
+    label1.setAlignment(1);
+    label1.setText("My Second Form!");
+    this.setLayout(cardLayout1);
+    this.add(label1, "label1");
+  }
+}

@@ -1,0 +1,1156 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>RPC Broker V. 1.1 Release Notes</title>
+</head>
+
+<body LINK="#0000ff" VLINK="#800080">
+<div align="center"><center>
+
+<table BORDER="1" WIDTH="100%">
+  <tr>
+    <td ROWSPAN="4"><p ALIGN="CENTER"><img SRC="vista.gif" WIDTH="268" HEIGHT="145"></p>
+    <p ALIGN="CENTER"><font SIZE="6" FACE="arial helv"><b>RPC BROKER RELEASE NOTES</b></font></p>
+    <p ALIGN="CENTER"><font SIZE="2" FACE="arial,helv">Version 1.1<br>
+    September 1997<br>
+    <br>
+    Department of Veterans Affairs<br>
+    <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> Software Development<br>
+    Open<b>V</b><i><font SIZE="1">IST</font></i><b>A</b> Product Line</font></td>
+    <td COLSPAN="2" BGCOLOR="#eeeeee"><p align="center"><font SIZE="4" FACE="arial,helv"><b>Table
+    of Contents</b></font></td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP" ALIGN="CENTER" BGCOLOR="#eeeeee"><a HREF="#overview"><img SRC="broker_icon.gif" ALT="Broker icon" WIDTH="41" HEIGHT="41"></a></td>
+    <td VALIGN="MIDDLE" ALIGN="LEFT" BGCOLOR="#eeeeee"><font SIZE="2" FACE="arial,helv"><a HREF="#overview">RPC Broker Overview</a></font><br>
+    <br>
+    <br>
+    </td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP" ALIGN="CENTER" BGCOLOR="#eeeeee"><a HREF="#features"><img SRC="extra.gif" ALT="extra, extra" WIDTH="64" HEIGHT="76"></a></td>
+    <td VALIGN="TOP" ALIGN="LEFT" BGCOLOR="#eeeeee"><font SIZE="2" FACE="arial,helv"><a HREF="#features">New Features and Enhancements of the RPC Broker </a></font><ul>
+      <li><font SIZE="2" FACE="arial,helv"><a HREF="#end-users">End User Features &amp;
+        Enhancements</a></font></li>
+      <li><font SIZE="2" FACE="arial,helv"><a HREF="#system_managers">System Managers Feature
+        &amp; Enhancements</a></font></li>
+      <li><font SIZE="2" FACE="arial,helv"><a HREF="#developers">Developer Features &amp;
+        Enhancements</a></font><br>
+        <br>
+      </li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP" ALIGN="CENTER" BGCOLOR="#eeeeee"><a HREF="#documentation"><img SRC="books.gif" ALT="Books icon" WIDTH="69" HEIGHT="66"></a></td>
+    <td VALIGN="MIDDLE" ALIGN="LEFT" BGCOLOR="#eeeeee"><font SIZE="2" FACE="arial,helv"><a HREF="#documentation">RPC Broker Documentation Resources</a></font></td>
+  </tr>
+</table>
+</center></div>
+
+<p><br>
+</p>
+
+<p align="center"><img SRC="marble.gif" ALIGN="MIDDLE" WIDTH="634" HEIGHT="10"> </p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="8%"><img SRC="broker_icon.gif" ALT="Broker icon" WIDTH="41" HEIGHT="41"></td>
+    <td VALIGN="BOTTOM" ALIGN="LEFT" WIDTH="92%"><font SIZE="5" FACE="arial,helv"><a NAME="overview"><b>RPC Broker Overview</b></a></font></td>
+  </tr>
+</table>
+
+<p><font SIZE="2" FACE="arial,helv">The Veterans Health Information Systems and Technology
+Architecture (<b>V</b><i><font SIZE="1">IST</font></i><b>A</b>) Remote Procedure Call
+(RPC) Broker (also referred to as &quot;Broker&quot;) Version 1.1 is now available. This
+enhanced Broker software has the following features:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv">Operates in a 32-bit environment</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv">Supports single signon capabilities</font></li>
+</ul>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker also includes the Broker
+Development Kit (BDK). The BDK provides <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>
+application developers with the following features:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv">The capability to create and implement client/server
+    technology in the 32-bit environment using the Broker component (e.g., create Delphi-based
+    client/server <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> applications with Graphical
+    User Interfaces [GUI])</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv">Support for Commercial Off-the-Shelf (COTS) and Hybrid
+    Open System Technology (HOST) client/server software using the Broker Dynamic Link Library
+    (DLL)</font></li>
+</ul>
+
+<p><font SIZE="2" FACE="arial,helv">The RPC Broker component (i.e., TRPCBroker) wraps the
+functionality of the Broker into a Delphi component resulting in a more modularized and
+orderly interface. All properties and methods of the Broker are in one component.</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><img SRC="extra.gif" ALT="extra, extra" WIDTH="64" HEIGHT="76"><font SIZE="5" FACE="arial,helv"><a NAME="features"><b>New Features and Enhancements of the RPC Broker</b></a></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the RPC Broker client/server interface
+provides the following <i>new</i> features and enhancements categorized by user type:</font>
+
+<ul>
+  <li><font SIZE="3" FACE="arial, helv"><a HREF="#end-users">End Users</a> </font><font SIZE="2" FACE="arial,helv">(e.g., clinicians)</font></li>
+  <li><font SIZE="3" FACE="arial,helv"><a HREF="#system_managers">System Managers</a> </font><font SIZE="2" FACE="arial,helv">(e.g., IRM personnel)</font></li>
+  <li><font SIZE="3" FACE="arial,helv"><a HREF="#developers">Developers/IRM</a></font> <font SIZE="2" FACE="arial,helv">(e.g., Programmers developing new <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>
+    client/server programs in the 32-bit environment)</font></li>
+</ul>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>Please note that several of the new
+    features and enhancements of the RPC Broker are supported by changes made to Kernel in
+    Kernel patch #59 (i.e., XU*8*59).</i></font></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p ALIGN="CENTER"><font SIZE="4" FACE="arial,helv"><u><a NAME="end-users">End User
+Features &amp; Enhancements</a></u></font></p>
+
+<p><font SIZE="3" FACE="arial,helv"><b>Topics</b></font>
+
+<ul>
+  <li><font SIZE="3" FACE="arial,helv"><a HREF="#single_signon">Support for Single signon for
+    Multiple User Sessions</a></font></li>
+  <li><font SIZE="3" FACE="arial,helv"><a HREF="#client_agent">RPC Broker Client Agent</a></font></li>
+  <li><font SIZE="3" FACE="arial,helv"><a HREF="#verify_component">New Change VISTA Verify
+    Code Component</a></font></li>
+  <li><font SIZE="3" FACE="arial,helv"><a HREF="#customize">Signon Window can be Customized by
+    Users</a></font></li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="single_signon">Support for Single signon
+for Multiple User Sessions</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the RPC Broker supports a <i>single</i>
+signon point from a client workstation to the server. Users need only sign on once when
+accessing both a <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> roll-and-scroll (e.g.,
+Lab, Pharmacy) and a <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> client/server
+GUI-based application (e.g., PCMM, CPRS) on the same workstation, regardless of which
+application is started first. Once logged into the server, the user will <i>not</i> be
+asked to enter their Access and Verify codes for any subsequent <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>
+applications they may start.</font></p>
+
+<p><font SIZE="2" FACE="arial,helv">Also, if a user has opened both a <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> roll-and-scroll session and a client/server application on
+the same workstation and the roll-and-scroll session times out, the user will still be
+logged on via the client/server application.</font></p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><i><font SIZE="2" FACE="arial,helv">Single signon is facilitated on the
+    client side by the Broker Client Agent application (clagent.exe) and is only available for
+    Telnet-based sessions in the roll-and-scroll environment.</font></i></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="client_agent">RPC Broker Client Agent</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">The RPC Broker Client Agent program (i.e.,
+CLAGENT.EXE) runs in support of the single signon process (a.k.a. auto signon). This
+program automatically and continuously runs in the background on the client workstation
+and normally should <i>not</i> be closed or shut down by the user. An icon (i.e.,
+satellite dish) will be displayed in the System Tray indicating the Broker Client Agent is
+running. By double clicking on the Client Agent icon, you can see how many active
+connections are currently open. The dialogue box is displayed below:</font></p>
+
+<p><br>
+</p>
+
+<p ALIGN="center"><img SRC="clagent.gif" ALT="Client Agent Dialog Box" WIDTH="374" HEIGHT="140"></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="verify_component">New Change VISTA Verify
+Code Component</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker includes a new Change <b>V</b><i><font FACE="Century Schoolbook" SIZE="2">IST</font></i><b><font FACE="Century Schoolbook">A</font></b>
+Verify Code dialog for the client workstation. After a user signs on to the server, if
+their Verify code has expired, the user is automatically presented with the Change <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> Verify Code dialog as displayed below. Users will then be
+able to input and confirm their new Verify code.</font></p>
+
+<p><br>
+</p>
+
+<p ALIGN="center"><img SRC="change_verify.gif" ALT="Change Verify Code Dialog Box" WIDTH="402" HEIGHT="159"></p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>In the future, users will be able to
+    invoke this dialog whenever they choose to modify their Verify code. For now, users who
+    wish to change their Verify code prior to expiration may do so via the Edit User
+    Characteristics option in the roll-and-scroll environment.</i></font></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="customize">Signon Window can be Customized
+by Users</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">Users can now customize the <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>
+signon window. When a <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> program on the
+client connects to the server, the <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> signon
+window is displayed for the user to identify and authenticate himself on the server. This
+window's System menu has a &quot;Properties...&quot; item. When this item is selected, the
+user is presented with the following configuration dialogue box:</font></p>
+
+<p><br>
+</p>
+
+<p ALIGN="center"><img SRC="signon_customize.gif" ALT="Customize Signon Window Dialog Box" WIDTH="409" HEIGHT="294"></p>
+
+<p><br>
+</p>
+
+<p><font SIZE="2" FACE="arial,helv">Users can control the appearance of the signon window
+by modifying the following characteristics:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv">Position of the signon Window</font></li>
+  <li><font SIZE="2" FACE="arial,helv">Size of the signon Window</font></li>
+  <li><font SIZE="2" FACE="arial,helv">Appearance of the Introductory Text</font></li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p ALIGN="CENTER"><font SIZE="4" FACE="arial,helv"><u><a NAME="system_managers">System
+Managers Feature &amp; Enhancements</a></u></font></p>
+
+<p><font SIZE="3" FACE="arial,helv"><b>Topics</b></font>
+
+<ul>
+  <li><font SIZE="3" FACE="arial,helv"><b>On the Server</b></font> <ul>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#management_single_signon">Management of
+        Single Signon</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#site_parameters_file">New RPC BROKER SITE
+        PARAMETERS File (#8994.1)</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#load_balancing">Load Balancing on Alpha
+        Systems</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#openm_support">Support for InterSystems OpenM
+        for NT V. 7</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#listenr_process">Enhancements and
+        Improvements to the Listener Process</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#backward_compatible">Full Backward
+        Compatibility with Broker V. 1.0</a></font></li>
+    </ul>
+    <p><br>
+    <br>
+    </p>
+  </li>
+  <li><font SIZE="3" FACE="arial,helv"><b>On the Client</b></font> <ul>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#32-Bit">32-Bit Processing</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#edit_servers">Edit Broker Servers Program</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#rpctest_program">New Broker Diagnostic Tool</a></font></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="management_single_signon">Management of
+Single Signon</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">Control of the single signon functionality is
+maintained and administered on the server for both <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>
+client/server applications (i.e., GUI) and the roll-and-scroll environment (i.e., terminal
+sessions). In support of that functionality a new field, AUTO SIGN-ON, was added to both
+the Kernel System Parameters file (#8989.3) and the New Person file (#200).</font></p>
+
+<p><br>
+</p>
+
+<table BORDER="1" WIDTH="100%">
+  <tr>
+    <td WIDTH="5%"><img SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></td>
+    <td WIDTH="95%"><b><font SIZE="2" FACE="arial,helv">Single signon is <i>not</i> supported
+    on MSM systems. <i>All</i> MSM sites must disable single signon (a.k.a. auto signon).</font></b></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="site_parameters_file">New RPC BROKER SITE
+PARAMETERS File (#8994.1)</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This file is used to configure and adjust many
+characteristics of an RPC Broker installation at a site. This version of the Broker
+includes a LISTENER field and various subfields. The LISTENER field is a multiple and
+should contain all Listeners that you plan to run. A simple change of the STATUS subfield
+from STOPPED to START will start that particular Listener. Conversely, you can STOP a
+RUNNING Listener.</font></p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>DSM sites must have TaskMan started
+    via DCL, if they want to use the RPC BROKER SITE PARAMETERS file (#8994.1) settings to
+    start Listeners on other nodes.</i></font></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="load_balancing">Load Balancing on Alpha
+Systems</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">The Broker, like any telnet or IP process, can be load
+balanced on DSM Alpha systems if UCX 4.1 is running. The actual steps on configuring UCX
+for load balancing can be acquired from the ALPHA/AXP technical support group and will not
+be discussed here.</font></p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>For more information on load
+    balancing, please refer to the &quot;Load Balancing on Alpha Systems&quot; topic in
+    Chapter 1 in the RPC Broker V. 1.1 Systems Manual.</i></font></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="openm_support">Support for InterSystems
+OpenM for NT V. 7</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker runs on InterSystems OpenM
+for Windows NT version 7 as well as on Digital Standard M (DSM) and Micronetics Standard M
+(MSM) for Windows NT. Starting and stopping the Listener under OpenM is the same as it is
+for DSM. The RPC Broker installation and configuration procedures for OpenM are similar to
+DSM except where noted.</font></p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>For more information on installing the
+    Broker in the OpenM environment, please refer to the RPC Broker V. 1.1 Installation Guide.</i></font></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="listenr_process">Enhancements and
+Improvements to the Listener Process</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">The following enhancements to the Listener process
+were added to this version of the Broker:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv"><b>Support for <i>Multiple</i> Listeners</b><br>
+    <br>
+    This version of the Broker allows sites to start <i>multiple</i> Broker Listener processes
+    in <i>one</i> account. Sites can now also run <i>multiple</i> Listeners in the <i>same</i>
+    UCI-volume, on <i>different</i> IP addresses/CPUs, listening to the <i>same</i> port. If
+    you need to run several Broker Listeners on the same IP address/CPU (e.g., one for a
+    Production account and another for a Test account), they must all be using different
+    ports. For example, if the Listener in the Production account is on 9200, start another
+    Listener in the Test account on 9201. Alternatively, you may want to allocate entire
+    ranges of ports for various accounts. If the IP addresses/CPUs are different, then the
+    port can be the same. This means that you can run a Listener on every machine listening on
+    9200.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>New XWB LISTENER STARTER Option</b><br>
+    <br>
+    The XWB LISTENER STARTER option can be used to start one or more Broker Listeners at one
+    time. Additionally, this option can be used to automatically start all of the Listener
+    processes you need when TaskMan starts up (e.g., after the system is rebooted or
+    configuration is restarted).</font> <p><br>
+    </p>
+    <table WIDTH="100%">
+      <tr>
+        <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+        <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>DSM sites must have TaskMan started
+        via DCL, if they want to use the XWB LISTENER STARTER option to automatically start
+        Listener processes.</i></font></td>
+      </tr>
+    </table>
+    <table WIDTH="100%">
+      <tr>
+        <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+        <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>MSM for NT in version 4.3 introduced a
+        new generic TCP/IP Listener MSERVER. MSERVER is an actual routine in the Manager's UCI
+        that runs and listens to all of the ports that you specify in SYSGEN. When a connection is
+        established to one of these ports, MSERVER launches your code at some TAG^ROUTINE that you
+        specify. This is similar to VMS' UCX utility. If you are running a Beta version of MSM 4.3
+        for NT, we encourage you to upgrade to the released version of 4.3. Once you upgrade, you
+        should stop using the RPC Broker Listener and switch to the MSERVER.<br>
+        <br>
+        If you're successfully using MSERVER, discontinue using the Broker Listener. That means
+        you shouldn't use the STRT^XWBTCP and STOP^XWBTCP entry points or the XWB LISTENER STARTER
+        option.</i></font></td>
+      </tr>
+    </table>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>Improved Listener Startup Problem Detection</b><br>
+    <br>
+    This version of the Broker includes an enhancement that improves the detection of problems
+    during the startup of the Listener. If a Listener cannot start listening on a given port
+    (e.g., port may be busy), it will generate an error on the server and retry up to <i>five</i>
+    times while continuously informing the user of its status.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>Listener/Handler Process Names More Descriptive and
+    Informative</b><br>
+    <br>
+    The Listener and Handler process names were changed to be more descriptive and
+    informative. If you request a system status on a DSM system where the Broker
+    Listener/Handler is running, the names will now appear as follows:<br>
+    <br>
+    Listener Process: RPCB_Port:NNNN<br>
+    (where NNNN is the port number being listened to)<br>
+    <br>
+    Handler Process: ipXXX.XXX:NNNN<br>
+    (where XXX.XXX are the last two octets of the client IP address and NNNN is the port
+    number)<br>
+    <br>
+    This should prove quite useful in finding the Listener and Handler for troubleshooting any
+    connection problems.<br>
+    <br>
+    </font></li>
+  <li><font SIZE="2" FACE="arial,helv"><b>Early Detection of Impostors and Intruders</b><br>
+    <br>
+    Before the Listener jobs off a Handler for a client, it checks the format of the incoming
+    connection request. If the incoming message does not conform to the Broker standard, the
+    connection is closed. This is an enhancement to the security feature of the Broker.</font></li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="backward_compatible">Full Backward
+Compatibility with Broker V. 1.0</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">Broker-based applications compiled with Broker V. 1.0
+(e.g., PCMM) will continue to work with this version of the Broker server routines.</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="32-Bit">32-Bit Processing</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker operates in a 32-bit
+Windows environment (i.e., client workstations running Microsoft Windows 95 or Windows NT
+operating systems). However, this version of the Broker will continue to support <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> applications previously developed for the 16-bit
+environment (e.g., PCMM).</font></p>
+
+<table BORDER="1" WIDTH="100%">
+  <tr>
+    <td WIDTH="5%"><img SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></td>
+    <td WIDTH="95%"><b><font SIZE="2" FACE="arial,helv">Both the RPCBI.DLL and Client Manager
+    (i.e., CLMAN.EXE) distributed with version 1.0 of the Broker are no longer required with
+    this version of the Broker.<br>
+    <br>
+    However, the RPCBI.DLL and Client Manager should <i>not</i> be removed. Previous 16-bit
+    Broker-based applications (e.g., PCMM) still require the RPCBI.DLL and Client Manager.</font></b></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="edit_servers">Edit Broker Servers Program</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">If IRM wishes to add, modify, or delete servers and
+ports to be used by the Broker, run the Edit Broker Servers program (i.e., ServerList.EXE)
+to modify or add Listeners/Ports to the Windows Registry. ServerList.EXE can be copied to
+any workstation for this purpose.</font></p>
+
+<p><br>
+</p>
+
+<p align="center"><img SRC="serverlist.gif" ALT="Edit Broker Servers Dialog Box" WIDTH="572" HEIGHT="311"></p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>The ServerList.EXE program only
+    displays HOSTS file entries; it does not edit the HOSTS file.</i></font></td>
+  </tr>
+</table>
+
+<p><font SIZE="2" FACE="arial,helv"><b>Adding Entries:</b><br>
+<br>
+You are given two methods of adding new server/port entries to the Registry:</font>
+
+<ol>
+  <li><font SIZE="2" FACE="arial,helv">Add a server listed in your HOSTS file</font></li>
+  <li><font SIZE="2" FACE="arial,helv">Add a new server that is automatically validated via
+    the Domain Name Service (DNS) or the HOSTS file</font></li>
+</ol>
+
+<p><font SIZE="2" FACE="arial,helv"><b>Modifying Entries:</b><br>
+<br>
+In order to modify or change a server or port, simply place the cursor in the appropriate
+Server or Port field and make the change.</font></p>
+
+<p><font SIZE="2" FACE="arial,helv"><b>Deleting Entries:</b><br>
+<br>
+In order to delete a pre-existing entry, just click in the Del column. An asterisk appears
+in the Del column signifying a deletion. Another click toggles the deletion off.</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="rpctest_program">New Broker Diagnostic
+Tool</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker includes a new
+diagnostic/troubleshooting tool for the client workstation. This tool can be used to
+verify and test the Broker client/server connection and signon process. The dialogue box
+is displayed below:</font></p>
+
+<p><br>
+</p>
+
+<p ALIGN="center"><img SRC="rpctest.gif" ALT="RPCTEST.EXE Dialog Box" WIDTH="520" HEIGHT="303"></p>
+
+<p><br>
+</p>
+
+<p><font SIZE="2" FACE="arial,helv">This program (i.e., RPCTEST.EXE) also displays
+specific information about the client workstation that can be useful when trying to
+diagnose a problem with or to test the Broker.</font></p>
+
+<p><font SIZE="2" FACE="arial,helv">It displays the following information:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv">Default Workstation Information that includes the Name
+    and IP Address</font></li>
+  <li><font SIZE="2" FACE="arial,helv">Local Connection Information that includes the Name,
+    Client IP, and Current Socket</font></li>
+  <li><font SIZE="2" FACE="arial,helv"><b>V</b><i><font SIZE="1">IST</font></i><b>A</b> User
+    Information that includes the Name and Last SignOn Date/Time</font></li>
+  <li><font SIZE="2" FACE="arial,helv">Remote Connection Information that includes the Server,
+    Port, IP Address, and Operating System (OS) Version information</font></li>
+  <li><font SIZE="2" FACE="arial,helv">A color coded Link State indicating the status of your
+    connection:</font></li>
+</ul>
+
+<p><br>
+</p>
+<div align="center"><center>
+
+<table BORDER="1" WIDTH="50%" CELLPADDING="7" CELLSPACING="2">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="46%" BGCOLOR="#eeeeee"><font SIZE="2" FACE="arial,helv"><b>Link State Indicator Color</b></font></td>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="54%" BGCOLOR="#eeeeee"><font SIZE="2" FACE="arial,helv"><b>Status of Connection</b></font></td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="46%"><p ALIGN="CENTER"><font SIZE="2" FACE="arial,helv">RED</font></td>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="54%"><font SIZE="2" FACE="arial,helv">No
+    link/connection</font></td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="46%"><p ALIGN="CENTER"><font SIZE="2" FACE="arial,helv">YELLOW</font></td>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="54%"><font SIZE="2" FACE="arial,helv">Attempting
+    link/connection</font></td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="46%"><p ALIGN="CENTER"><font SIZE="2" FACE="arial,helv">GREEN</font></td>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="54%"><font SIZE="2" FACE="arial,helv">Successful
+    link/connection</font></td>
+  </tr>
+</table>
+</center></div>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>Context-sensitive help is available
+    with the RPCTest.EXE program by pressing the F1 key.</i></font></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p ALIGN="CENTER"><font SIZE="4" FACE="arial,helv"><u><a NAME="developers">Developer
+Features &amp; Enhancements</a></u></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">The 32-bit version of the Broker Development Kit (BDK)
+is now available and included with the release of version 1.1 of the RPC Broker.</font></p>
+
+<p><font SIZE="2" FACE="arial,helv">For those developers who received the preview BDK
+released in October of 1995, many of the following features are either new or enhancements
+to the preview BDK:</font></p>
+
+<p><font SIZE="3" FACE="arial,helv"><b>Topics</b></font>
+
+<ul>
+  <li><font SIZE="3" FACE="arial,helv"><b>On the Server</b></font> <ul>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#buffer">Enhanced Buffer Clearing and Timeouts
+        on the Client</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#xwb_get_variable">XWB GET VARIABLE VALUE RPC</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#m_standard_errors">Support for New M Standard
+        Error Trapping</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#msm_null_device">Creation of an MSM Null
+        Device</a></font></li>
+    </ul>
+    <p><br>
+    <br>
+    </p>
+  </li>
+  <li><font SIZE="3" FACE="arial,helv"><b>On the Client</b></font> <ul>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#32-Bit_delphi">32-Bit Processing/Delphi</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#trpcbroker_component">Delphi TRPCBroker
+        Component</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#prog_pref_program">RPC Broker Programmer
+        Preferences Program</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#context_sensitive_help">RPC Broker
+        Context-Sensitive Online Help</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#encryption_decryption">Encryption and
+        Decryption Functions</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#GetServerInfo">GetServerInfo Function</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#M_emulation_functions">M Emulation Functions</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#robust">Improved Robustness and Efficiency of
+        the Broker</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#Debugging_Troubleshooting">Debugging/Troubleshooting
+        Your Application</a></font></li>
+      <li><font SIZE="3" FACE="arial,helv"><a HREF="#dll_interface">Dynamic Link Library (DLL)
+        Interface</a></font></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="buffer">Enhanced Buffer Clearing and
+Timeouts on the Client</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">Previously, if a remote procedure call failed to
+successfully complete due to a timeout on the client, the buffer on the server would
+contain data from the uncompleted call. A timeout on the client <i>doesn't</i> generate a
+network error that will automatically clear the buffer. Since there is no mechanism to
+&quot;flush&quot; or empty the buffer, the data from the <i>next</i> RPC call would be
+corrupted.</font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker solved the timeout/buffer
+problem in two steps:</font>
+
+<ol>
+  <li><font SIZE="2" FACE="arial,helv">This version of the Broker provides developers with a
+    new RPCTimeLimit property on the Broker component on the client. This new property can be
+    set by developers to help avoid the timeout issue in the first place.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv">Secondly, in the event of a cancellation of a Network
+    I/O operation, the Broker will automatically &quot;flush&quot; the incoming buffer so that
+    the next RPC will execute normally. Users may experience a delay while the corrupted RPC
+    data is discarded. Any delay will be proportional to the amount of data in the buffer.</font></li>
+</ol>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="xwb_get_variable">XWB GET VARIABLE VALUE
+RPC</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">Distributed with this version of the RPC Broker is the
+XWB GET VARIABLE VALUE RPC. Developers can call this RPC to retrieve the value of any M
+variable in the server environment.</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="m_standard_errors">Support for New M
+Standard Error Trapping</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker uses the new Kernel error
+trap, which now records stack information and NEWed variables.</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="msm_null_device">Creation of an MSM Null
+Device</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">An MSM null device will be used to catch all
+inadvertent WRITEs in RPCs, specifically, those in &quot;ID&quot; nodes of files</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="32-Bit_delphi">32-Bit Processing/Delphi</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker operates in a 32-bit
+Windows environment only (i.e., client workstations running Microsoft Windows 95 or
+Windows NT operating systems). It provides programmers with the capability to develop new <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> client/server software using the Broker Delphi component
+(i.e., TRPCBroker) in the 32-bit environment. To develop <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>
+applications in a 32-bit environment you must have Delphi V. 2.0 or greater. This version
+of the RPC Broker component will <i>not</i> allow you to develop applications in Delphi V.
+1.0. However, the Broker routines on the M server will continue to support <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> applications previously developed and compiled for the
+16-bit environment (e.g., PCMM).</font></p>
+
+<p><br>
+</p>
+
+<table BORDER="1" WIDTH="100%">
+  <tr>
+    <td WIDTH="5%"><img SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></td>
+    <td WIDTH="95%"><b><font SIZE="2" FACE="arial,helv">Please note that version 1.1 of the
+    Broker supports Delphi V. 3.0 as well as Delphi V. 2.0. However, the next version of the
+    Broker will <i>no longer</i> provide support for Delphi V. 2.0.</font></b></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="trpcbroker_component">Delphi TRPCBroker
+Component</a></b></font></p>
+
+<p><img SRC="broker_icon.gif" ALT="Broker icon" WIDTH="43" HEIGHT="43"></p>
+
+<p><font SIZE="2" FACE="arial,helv">The TRPCBroker Delphi component provides Delphi
+developers with an easy, object-based access to the Broker. It is compatible with the
+Delphi object oriented (OO) environment. This component, when placed on a Delphi form,
+allows you to connect to the server and reference M data within Delphi's Integrated
+Development Environment (IDE). It makes a Delphi form and everything on it &quot;data
+aware&quot;.</font>
+
+<ul>
+  <li><p align="center"><font SIZE="2" FACE="arial,helv"><b>TRPCBroker Properties</b><br>
+    <br>
+    Version 1.1 of the TRPCBroker component provides the following set of design-time and
+    run-time properties:</font> <br>
+    <br>
+    </p>
+    <div align="center"><center><table BORDER="1" WIDTH="535" CELLPADDING="7" CELLSPACING="0">
+      <tr>
+        <td WIDTH="27%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">ClearParameters</font></td>
+        <td WIDTH="33%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">ListenerPort</font></td>
+        <td WIDTH="39%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">RPCTimeLimit<br>
+        <i>(New, available at run-time only)</i></font></td>
+      </tr>
+      <tr>
+        <td WIDTH="27%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">ClearResults</font></td>
+        <td WIDTH="33%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">Param <br>
+        <i>(available at run-time only)</i></font></td>
+        <td WIDTH="39%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">RPCVersion <br>
+        <i>(New)</i></font></td>
+      </tr>
+      <tr>
+        <td WIDTH="27%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">Connected</font></td>
+        <td WIDTH="33%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">RemoteProcedure</font></td>
+        <td WIDTH="39%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">Server</font></td>
+      </tr>
+      <tr>
+        <td WIDTH="27%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">DebugMode</font></td>
+        <td WIDTH="33%" VALIGN="TOP"><font SIZE="2" FACE="arial,helv">Results</font></td>
+        <td WIDTH="39%" VALIGN="TOP">&nbsp;</td>
+      </tr>
+    </table>
+    </center></div><p><br>
+    </p>
+    <table WIDTH="100%">
+      <tr>
+        <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+        <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>For a complete description of the RPC
+        Broker properties, please refer to the Online RPC Broker Developer's Guide (i.e.,
+        BROKER.HLP).</i></font></td>
+      </tr>
+    </table>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>TRPCBroker Methods</b><br>
+    <br>
+    Version 1.1 of the TRPCBroker component provides the following methods:<br>
+    <br>
+    </font><ul>
+      <li><font SIZE="2" FACE="arial,helv">Call</font></li>
+      <li><font SIZE="2" FACE="arial,helv">CreateContext</font></li>
+      <li><font SIZE="2" FACE="arial,helv">lstCall</font></li>
+      <li><font SIZE="2" FACE="arial,helv">strCall</font></li>
+    </ul>
+    <p><br>
+    </p>
+    <table WIDTH="100%">
+      <tr>
+        <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+        <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>For a complete description of the RPC
+        Broker methods, please refer to the Online RPC Broker Developer's Guide (i.e.,
+        BROKER.HLP).</i></font></td>
+      </tr>
+    </table>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>Automatically Connects to and Disconnects From the
+    Server</b><br>
+    <br>
+    One of the features of the Broker component is that it is <i>not</i> necessary for your <b>V</b><i><font FACE="Century Schoolbook" SIZE="2">IST</font></i><b><font FACE="Century Schoolbook">A</font></b>
+    application to manually establish a connection to the server. This version of the Broker
+    automatically connects to and disconnects from the server. When you invoke an RPC, if a
+    connection is not already established, one will be established for you. However, you can
+    also manually connect and disconnect your application from the server if desired.</font> <p><br>
+    </p>
+    <table WIDTH="100%">
+      <tr>
+        <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+        <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>The connect and disconnect
+        functionality that was previously provided by the DLL has now been incorporated with the
+        Broker component itself. This allows <b>V</b><font SIZE="1">IST</font><b>A</b>
+        applications to be independent of the DLL and its restrictions.</i></font></td>
+      </tr>
+    </table>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>Management of Multiple TRPCBroker Components</b><br>
+    <br>
+    The first time one of the Broker components in your application connects, it will
+    establish an actual connection with the server. The connection record will be added to the
+    list of all active connections for your application. This list is internal to the
+    application and is completely under the control of the Broker component and is transparent
+    to you. If another Broker component tries to connect to the same server/port, the existing
+    connection record will be found in the list and its socket will be shared. The new
+    connection will also be added to this list. This process is repeated with each connection
+    request.<br>
+    <br>
+    When a Broker component disconnects, its connection record is removed from the internal
+    list of active connections. If it happens to be the last record for the particular
+    server/port combination, the connection is actually closed. This scheme provides the
+    illusion of multiple connections without &quot;clogging up&quot; the server.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>Automatically Manages Parameters</b><br>
+    <br>
+    The Broker component completely and automatically manages parameters that are passed in
+    the remote procedure call.</font></li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="prog_pref_program">RPC Broker Programmer
+Preferences Program</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker includes a new developer
+tool for the client workstation (i.e., BrokerProgPref.EXE). The dialog box is displayed
+below:</font></p>
+
+<p><br>
+</p>
+
+<p ALIGN="center"><img SRC="brokerprogpref.gif" ALT="Broker Programmer Preferences Dialog Box" WIDTH="424" HEIGHT="233"></p>
+
+<p><br>
+</p>
+
+<p><font SIZE="2" FACE="arial,helv">This tool allows developers to initialize the default
+settings for the following properties of the TRPCBroker component:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv">ClearParameters</font></li>
+  <li><font SIZE="2" FACE="arial,helv">ClearResults</font></li>
+  <li><font SIZE="2" FACE="arial,helv">ListenerPort</font></li>
+  <li><font SIZE="2" FACE="arial,helv">Server</font></li>
+</ul>
+
+<p><font SIZE="2" FACE="arial,helv">This program also gives developers the option of
+setting the &quot;Connect in Delphi IDE&quot; Most of the time, this setting should be
+checked. It will allow developers to connect to the server using the TRPCBroker component
+while designing the application in the Delphi Integrated Development Environment (IDE).</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="context_sensitive_help">RPC Broker
+Context-Sensitive Online Help</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker provides online
+context-sensitive help (i.e., BROKER.HLP) for the TRPCBroker component and its associated
+DLL exported procedures and functions. Select the component on a form, or highlight a
+particular procedure or function, and press the F1 key to get help on that item. <br>
+<br>
+The online help also includes other related topics for IRM and the Broker developer (e.g.,
+Tutorials, RPC information, Troubleshooting and Debugging tips, etc.).</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="encryption_decryption">Encryption and
+Decryption Functions</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker provides developers with
+the capability to encrypt and decrypt data as it is passed back and forth from the client
+to the server. Developers can use the encryption and decryption functions as implemented
+by Kernel and the RPC Broker. These encryption functions can be used for any communication
+between the client and the server where encryption is desired.</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="GetServerInfo">GetServerInfo Function</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">The GetServerInfo function obtains the end-user's
+target server and port. Use this function to set the TRPCBroker component's Server and
+ListenerPort properties before connecting to the server.<br>
+<br>
+If there is more than one server/port to choose from, GetServerInfo displays an
+application window that allows users to select a service to connect to:</font></p>
+
+<p><br>
+</p>
+
+<p ALIGN="center"><img SRC="getserverinfo.gif" ALT="Get Server Info Dialog Box" WIDTH="310" HEIGHT="186"></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="M_emulation_functions">M Emulation
+Functions</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker supplies the following M
+emulation functions:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv"><b>Piece Function</b><br>
+    <br>
+    The Piece function is a scaled down Pascal version of M's $PIECE function.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv"><b>Translate Function</b><br>
+    <br>
+    The Translate function is a scaled down Pascal version of M's $TRANSLATE function.</font></li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="robust">Improved Robustness and Efficiency
+of the Broker</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">We have made several improvements throughout the
+Broker to help reduce, if not eliminate, Broker-related errors and to improve the
+efficiency and error handling of the Broker:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv">Using the 32-bit Windows environment should avoid the
+    possibility of memory collisions. Each process runs in its own protected memory space.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv">All of the memory pointers are initialized to nil
+    before they are used and are reset after use.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv">Careful analysis of Broker code identified and
+    corrected potential memory leaks (i.e., memory not released after it was used).</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv">The <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>
+    signon form was reengineered. By simplifying its appearance and significantly reducing the
+    number of window panels, less memory and fewer handles are required.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="arial,helv">The blocks of code that work with resources are now
+    bracketed with protected blocks (i.e., Delphi Object Pascal <b>try&#133;finally</b>
+    constructs).</font></li>
+</ul>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="Debugging_Troubleshooting">Debugging/Troubleshooting
+Your Application</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">Beside the normal debugging facilities provided by
+Delphi, you can also invoke a debug mode (i.e., TRPCBroker components DebugMode property)
+so that you can step through your code on the client side and your RPC code on the M
+server side simultaneously. In order to help isolate a problem, merely set the DebugMode
+property to true on the client and add any break points in the routines being called on
+the server. Just step through the code on your client and, simultaneously, step through
+the code on the server side for any RPCs that your client calls.</font></p>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><font SIZE="3" FACE="arial,helv"><b><a NAME="dll_interface">Dynamic Link Library (DLL)
+Interface</a></b></font></p>
+
+<p><font SIZE="2" FACE="arial,helv">This version of the Broker provides a new set of
+Dynamic Link Library (DLL) functions that allow applications written in <i>any</i> MS
+Windows-based development environment (e.g., Borland's Delphi, Borland C++, Microsoft
+Visual Basic, and other COTS products), to take advantage of all the features offered by
+the Broker component. This reflects <b>V</b><i><font FACE="Century Schoolbook" SIZE="2">IST</font></i><b><font FACE="Century Schoolbook">A</font></b>'s continued movement toward open systems that
+support multiple GUI and client front-ends.<br>
+<br>
+The Dynamic Link Library (DLL) functions act like a &quot;shell&quot; around the Delphi
+TRPCBroker component and provide developers with an easy function-based access to the
+Broker component. These functions allow GUI and client front-end applications written in
+Borland's Delphi and other COTS products to take advantage of all the features that the
+Broker offers. All of the communication to the server is handled by the TRPCBroker
+component accessed via the DLL interface.</font></p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>The BAPI32.DLL contains all of the
+    32-bit Broker DLL functions. It provides an interface to the Broker component.</i></font></td>
+  </tr>
+</table>
+
+<p><br>
+</p>
+
+<hr>
+
+<p><img SRC="books.gif" ALT="Books icon" WIDTH="69" HEIGHT="66"><b><font FACE="Century Schoolbook" SIZE="4"><a NAME="documentation">RPC Broker Documentation
+Resources</a></font></b></p>
+
+<p><font SIZE="2" FACE="arial,helv">A full set of documentation will be provided with the
+RPC Broker software package. Readers who wish to learn more about the RPC Broker should
+consult the following:</font>
+
+<ul>
+  <li><font SIZE="2" FACE="arial,helv">RPC Broker V. 1.1 Installation Guide</font></li>
+  <li><font SIZE="2" FACE="arial,helv">RPC Broker V. 1.1 Systems Manual</font></li>
+  <li><font SIZE="2" FACE="arial,helv">RPC Broker V. 1.1 Technical Manual</font></li>
+  <li><font SIZE="2" FACE="arial,helv">RPC Broker V. 1.1 Getting Started with the Broker
+    Development Kit (written for programmers)</font></li>
+  <li><font SIZE="2" FACE="arial,helv">Online RPC Broker Developer's Guide (i.e., BROKER.HLP,
+    designed for programmers)</font></li>
+  <li><font SIZE="2" FACE="arial,helv">RPC Broker Home Page at the following web address:<br>
+    <br>
+    </font></li>
+</ul>
+
+<p><font SIZE="2" FACE="arial,helv">Broker documentation is made available online, on
+paper, and in Adobe Acrobat Portable Document Format (PDF). The .PDF documents must be
+read using the Adobe Acrobat Reader that is freely distributed by Adobe Systems
+Incorporated that is available at the following web site:<br>
+<br>
+<a HREF="http://www.adobe.com/">http://www.adobe.com/</a></font></p>
+
+<p><br>
+</p>
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><img SRC="info_dot.gif" ALT="info icon" WIDTH="32" HEIGHT="32"></td>
+    <td WIDTH="95%"><font SIZE="2" FACE="arial,helv"><i>For more information on the use of the
+    Adobe Acrobat Reader, please refer to the &quot;Adobe Acrobat Quick Guide&quot; at the
+    following URL:</i><br>
+    <br>
+    <a HREF="http://www.vista.med.va.gov/softserv/infrastr.uct/acrobat/index.html">http://www.vista.med.va.gov/softserv/infrastr.uct/acrobat/index.html</a></font></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,720 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+	<meta name="language"
+	      content="en">
+	<meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+	<meta name="subject"
+	      content="Kernel Toolkit XINDEX: Introduction">
+	<meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information and Technology,OI&T,OIT,VISTA,kernel,toolkit,programmer,developer,programmer manual,xindex,errors,messages,sacc,sac,introduction">
+	<meta name="description"
+	      content="Kernel Toolkit XINDEX: Introduction">
+	<meta name="datecreated"
+	      content="20120124">
+	<meta name="datereviewed"
+	      content="20180720">
+	<meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <TITLE>Kernel Toolkit XINDEX: Introduction</TITLE>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY>
+    <header> 
+<!-- Start Title Banner (image) -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="3"
+           CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel-toolkit_heading_xindex.jpg"
+			   ALT="Kernel & Toolkit APIs Banner"
+			   WIDTH="429"
+			   HEIGHT="29"
+			   BORDER="0">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   WIDTH="429"
+			   HEIGHT="30"
+			   BORDER="0">
+		</TD> 
+	  </TR> 
+    </TABLE> 
+<!-- End Title Banner (image) -->
+    </header> 
+<!-- Start Content -->
+    <H3><A NAME="navskip">XINDEX Introduction</A></H3> 
+    <H4>Overview</H4>
+    <P>Kernel Toolkit's XINDEX utility (formerly known as <strong>%INDEX</strong> utility) 
+    is a static analysis tool that plays the dual role of a VistA-aware 
+    cross-referencing tool and a code checker (or recognizer). As of 
+	Kernel Toolkit patches XT*7.3*132 and XT*7.3*133, XINDEX creates a cross-referenced 
+	list of global references and routines invoked by selecting any of 
+	the following:</P>
+	<ul>
+	  <li>
+	    <b>Routines&#8212;</b>XINDEX checks the specified routines (e.g., <strong>XU*</strong>).
+		<br>
+		<br>
+      </li>
+	  <li>
+	    <b>Builds&#8212;</b>XINDEX checks the contents of the specified build 
+		defined in the BUILD (#9.6) file. XINDEX checks all components of the build on the 
+	    current system, which includes, routines, options, templates, 
+	    data dictionaries, etc.
+		<br>
+		<br>
+      </li>
+	  <li>
+	    <b>Installs&#8212;</b>XINDEX checks the contents of the specified install 
+		defined in the INSTALL (#9.7) file. XINDEX checks all components of the 
+		install that have temporarily been loaded into <strong>^XTEMP</strong> global, which includes, routines, 
+		options, templates, data dictionaries, etc.
+		<br>
+		<br>
+      </li>
+	  <li>
+	    <b>Packages&#8212;</b>XINDEX checks the contents of the specified package 
+	    defined in the PACKAGE (#9.4) file. XINDEX checks all components of the 
+		package on the current system, which includes, routines, 
+		options, templates, data dictionaries, etc.
+	  </li>
+    </ul>
+	<p>Use XINDEX to verify parts of a software application in the VistA 
+	environment that contain M code, including the following:</p>
+	<ul>
+	  <li>
+	    Routines
+	    <br>
+		<br>
+      </li>
+	  <li>
+	    Options
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Compiled Templates
+		<br>
+		<br>
+	  </li>
+	  <li>
+	    Functions
+	  </li>
+    </ul>
+	<p>XINDEX provides greater analysis capability than other syntax analysis tools that operate at the routine level only. As a 
+	<em>static</em> analysis tool, however, XINDEX has a <em>fundamental</em> limitation of the types of errors that it is able to catch and report. XINDEX is only able to look at the written structure of M code. It
+	<em>cannot</em> look at dynamic aspects, such as the run-time symbol table or flow of control when it is modified by conditional branching (e.g., through post-conditionals or argument indirection). XINDEX is also generally conservative, at times preferring to report false positives rather than ignore potential problems. When analyzing XINDEX output, you 
+	<em>must</em> take all of this into consideration.</p>
+	<p>VistA applications are required to follow a set of Standards and 
+	Conventions (SAC) as set by the VA's Standards and Conventions 
+	Committee (SACC), which are defined as follows:</p>
+	<ul>
+	  <li>
+	    <b>Standard&#8212;</b>Requirement that <i>must</i> be adhered to.
+	    <br>
+		<br>
+      </li>
+	  <li>
+	    <b>Convention&#8212;</b>Rule that <i>should</i> be followed.
+	  </li>
+    </ul>
+	<p>VistA protects many of its abstractions via convention, even when 
+	those conventions are requirements. XINDEX checks that the MUMPS (M) 
+	routine code conforms to the 1995 ANSI M Standard and VA Programming 
+	Standards and Conventions (SAC). XINDEX considers all SAC 
+	prohibitions as an error. XINDEX checks SAC requirements, because 
+	conformance to the SAC is essential to the proper function of VistA.</p>
+	<p>VistA is comprised of a number of software packages (defined by 
+	namespace), which can be further divided into the following two 
+	basic groups:</p>
+	<ul>
+	  <li>
+	    <strong>Applications&#8212;</strong>VistA client applications or application 
+		modules (e.g., Pharmacy, Laboratory, Patient Care Encounter [PCE]).
+		<br>
+		<br>
+      </li>
+	  <li>
+	    <strong>Infrastructure Applications&#8212;</strong>Collection of Infrastructure 
+	    packages that implement the basic programming and runtime VistA 
+	    framework. For example:
+	    <br>
+	    <br>
+        <ul>
+		  <li>
+		    <strong>Kernel/Kernel Toolkit&#8212;</strong>Provides a portable system 
+			interface, a common execution environment, and essential 
+			services such as signon and security.
+		    <br>
+			<br>
+	      </li>
+		  <li>
+		    <strong>MailMan&#8212;</strong>Provides VistA email functionality.
+			<br>
+			<br>
+		  </li>
+		  <li>
+		    <strong>VA FileMan&#8212;</strong>Provides database functionality built on top 
+			of the M global subsystem integrated with the VistA security 
+			model.
+	      </li>
+		</ul>
+	  </li>
+    </ul>
+	<p>It is important to recognize that the rules for VistA 
+	infrastructure packages (particularly Kernel and VA FileMan) are 
+	different from other VistA applications. Code used in infrastructure 
+	packages to implement a system interface <em>must</em> be able to use 
+	implementation-specific code. Accordingly, Kernel (and sometimes VA 
+	FileMan) has standing exemptions from many of the requirements of 
+	the SAC. Thus, XINDEX sometimes reports errors and standards 
+	violations for allowed constructs.</p>
+	<p><b>REF:</b> For more information on the Standards and Conventions 
+	Committee (SACC) and Standards and Conventions (SAC) documentation, 
+	visit the following VA Intranet website:
+	<a href="http://vista.med.va.gov/sacc/"
+	   title="SACC Website"
+	   class="bodylink">http://vista.med.va.gov/sacc/</a></p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+	<h4><a name="types">Types of XINDEX Findings</a></h4>
+	<p>XINDEX reports its findings under the following general categories 
+	of codes (error flags):</p>
+	<table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+	  <tr>
+	    <th align="center"
+		    valign="top">
+		  Category Code/Other
+		</th>
+		<th align="left"
+		    valign="top">
+		  Description
+		</th>
+	  </tr>
+	  <tr>
+	    <td align="center"
+		    valign="top">
+		  <b>F</b>
+		</td>
+		<td align="left"
+		    valign="top">
+		  <p><b><a href="fatal_errors.html"
+			       title="XINDEX: Fatal M Errors (Hard MUMPS Error)"
+			       class="bodylink">Fatal M 
+		  Errors (Hard MUMPS Error)</a>&#8212;</b>These are unrecoverable 
+		  errors that cause a program to fail if the commands are 
+		  executed. It is possible, however, that these types of errors 
+		  might exist in routines that run correctly. The error occurs (or 
+		  may occur, depending on the underlying implementation) only when 
+		  the errant commands are executed.</p>
+		</td>
+	  </tr>
+	  <tr>
+		<td align="center"
+			valign="top">
+		  <b>W</b>
+		</td>
+		<td align="left"
+		    valign="top">
+		  <p><b><a href="warning_errors.html"
+			       title="XINDEX: Warning Violation Errors (According to VA Conventions)"
+			       class="bodylink">
+		  Warning Violation Errors (According to VA Conventions)</a>&#8212;</b>These are potential problems that are 
+		  <em>not</em> necessarily fatal errors but most likely indicate an error. They require careful implementation.</p>
+		</td>
+	  </tr>
+	  <tr>
+		<td align="center"
+			valign="top">
+		  <b>S</b>
+		</td>
+		<td align="left"
+			valign="top">
+		  <p><b><a href="standards_errors.html"
+			       title="XINDEX: Standards Violation Errors (According to VA Standards)"
+			       class="bodylink">
+		  Standards Violation Errors (According to VA Standards)</a>&#8212;</b>These are issues that do 
+		  <em>not</em> pertain to the M language per se, but rather the requirements of the VA Standards and Conventions (SAC). Issues flagged as Standards Violations can still be syntactically correct M code that follows the portability guidelines, but does 
+		  <em>not</em> follow the more stringent requirements set forth in the SAC.</p>
+		</td>
+	  </tr>
+	  <tr>
+		<td align="center"
+			valign="top">
+		  <b>I</b>
+		</td>
+		<td align="left"
+			valign="top">
+		  <p><b><a href="informational_msgs.html"
+			       title="XINDEX: Informational Messages"
+			       class="bodylink">Informational Messages</a>&#8212;</b>These issues are 
+		  <em>not</em> necessarily errors but still require attention, because they could indicate potential problems.</p>
+		</td>
+	  </tr>
+	  <tr>
+	    <td align="center"
+			valign="top">
+		  <b>Manual Check</b>
+		</td>
+		<td align="left"
+		    valign="top">
+		  <b><a href="marked_errors.html"
+			    title="XINDEX: Marked Items Errors (Manual Check)"
+			    class="bodylink">Marked Items 
+		  Errors (Manual Check)</a>&#8212;</b>These issues only apply if a line contains 
+		  <strong>$TEXT</strong> <strong>($T)</strong>. XINDEX records the location and prints it out under the "Marked Items" sub-header on the XINDEX report.
+		</td>
+	  </tr>
+    </table>
+    <p><b>NOTE:</b> XINDEX retrieves and displays the current error 
+	conditions (messages) from the <strong>XINDX1</strong> routine.
+	<br>
+	<br>
+	Any updates (e.g., add, modify, or delete messages) to the list of 
+	XINDEX messages are based on changes to the XINDEX utility via 
+	subsequent Kernel Toolkit patches.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+	<h4><a name="running">Running the XINDEX Utility</a></h4>
+	<p><strong>CAUTION: When running XINDEX to review an entire software 
+	application, it is best to queue the report for an off-peak time, 
+	since processing is intensive.</strong></p>
+	<p>Use either of the following methods to call the XINDEX utility:</p>
+	<ul>
+	  <li>
+	    <p><b>Direct Mode Utility:</b></p>
+		<pre>    &gt;<strong>D ^XINDEX</strong></pre>
+		<p><b>REF:</b> For examples using the Direct Mode Utility, see Examples 
+		<a href="#example_1"
+		   title="See Example 1"
+		   class="bodylink">1</a>, 
+		<a href="#example_2"
+		   title="See Example 2"
+		   class="bodylink">2</a>, and
+		<a href="#example_3"
+		   title="See Example 3"
+		   class="bodylink">3</a> below.</p>
+	  </li>
+	  <li>
+	    <p><b>Option&#8212;</b>Use the %Index of Routines option [XUINDEX] located on the on the Routine Tools menu [XUPR-ROUTINE-TOOLS] located on the Programmer Options menu [XUPROG], which is locked with the XUPROG security key.</p>
+		<p><b>REF:</b> For more information on the %Index of Routines option, see the "%Index of Routines Option&#8212;XINDEX" section in <i>Kernel Developer's Guide</i>.
+		<br>
+		<br>
+		For an example using the %Index of Routines option [XUINDEX], see 
+		<a href="#example_4"
+		   title="See Example 4"
+		   class="bodylink">Example 4</a> below.</p>
+      </li>
+	</ul>
+	<p>&nbsp;</p>
+	<h5>Examples</h5>
+	<h5><a name="example_1">Example 1</a>: Direct Mode Utility</h5>
+	<p>XINDEX&#8212;Direct mode utilities sample user entries: Specifying a 
+	routine name only (1 of 3):</p>
+	<table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+	  <tr>
+	    <td>
+		  <pre>KRN&gt;<b>D ^XINDEX</b>
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Jan 12, 2012@14:47:16
+
+All Routines? No =&gt; <b>&lt;Enter&gt;</b> No
+
+Routine: <b>XDRMAIN</b>
+Routine: <b>&lt;Enter&gt;</b>
+1 routine
+
+Select BUILD NAME: <b>&lt;Enter&gt;</b>
+Select INSTALL NAME: <b>&lt;Enter&gt;</b>
+Select PACKAGE NAME: <b>&lt;Enter&gt;</b>
+
+Print more than compiled errors and warnings? YES// <b>&lt;Enter&gt;</b>
+
+Print summary only? NO// <b>&lt;Enter&gt;</b>
+
+Print routines? YES// <b>&lt;Enter&gt;</b>
+
+Print (R)egular,(S)tructured or (B)oth?  R// <b>&lt;Enter&gt;</b>
+
+Print errors and warnings with each routine? YES// <b>&lt;Enter&gt;</b>
+
+
+Save parameters in ROUTINE file? NO// <b>&lt;Enter&gt;</b>
+
+Index all called routines? NO// 
+DEVICE: <b>;P-OTHER</b> <b>&lt;Enter&gt;</b>   Telnet Terminal    Right Margin: 255// <b>80</b>
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Jan 12, 2012@14:47:16
+Routines: 1  Faux Routines: 0
+
+XDRMAIN   
+
+--- CROSS REFERENCING ---
+
+
+Compiled list of Errors and Warnings              Jan 12, 2012@14:47:16 page 1
+No errors or warnings to report
+
+
+--- Routine Detail   --- with REGULAR ROUTINE LISTING ---
+
+
+XDRMAIN  * *  80 Lines,  3431 Bytes, Checksum: B16902409
+                                                  Jan 12, 2012@14:47:16 page 2
+              104 bytes in comments
+XDRMAIN  ;SF-IRMFO/IHS/OHPRD/JCM - MAIN DRIVER FOR DUPLICATE MERGE SOFTWARE;    
+          [ 08/13/92  09:50 AM ]
+         ;;7.3;TOOLKIT;**23**;Apr 25, 1995
+         ;;
+START    ;
+         S XDRMAINI="MERGE" D ^XDRMAINI G:XDRQFLG END
+         F XDRMI1=0:0 S XDRMPAIR=$O(@XDRM("GL")) Q:'XDRMPAIR!(XDRQFLG)  S XDRMPD
+          A="^VA(15,""APOT"","_""""_$P(XDRGL,U,2)_""""_",XDRMPAIR,0)" S XDRMPDA=
+          $O(@XDRMPDA) D MAIN D:'$D(XDRM("NOTALK")) ASK
+END      D EOJ
+         Q
+         ;
+MAIN     ;
+         S XDRMCD=$P(XDRMPAIR,U,1),XDRMCD2=$P(XDRMPAIR,U,2)
+         S XDRMRG("LCK")="+" D LOCK^XDRU1 K XDRMRG("LCK") I $D(XDRMLOCK) G MAINX
+         I '$D(XDRM("NOVERIFY")) S XDRMRG=0 D ^XDRMVFY G:'XDRMRG!(XDRQFLG) MAINX
+         S (XDRMRG("FR"),XDRMAIN("FR"))=$S($P(^VA(15,XDRMPDA,0),U,4)=2:XDRMCD2,1
+          :XDRMCD)
+
+.
+.
+.</pre>
+	    </td>
+	  </tr>
+    </table> 
+	<p>&nbsp;</p>
+	<h5><a name="example_2">Example 2</a>: Direct Mode Utility</h5>
+	<p>XINDEX&#8212;Direct mode utilities sample user entries: Specifying a 
+	build name (2 of 3)</p>
+	<table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+	  <tr>
+	    <td>
+		  <pre>&gt;<b>D ^XINDEX</b>
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Jan 12, 2012@14:47:16
+
+All Routines? No =&gt; <b>&lt;Enter&gt;</b> No
+
+Routine: <b>&lt;Enter&gt;</b>
+0 routines
+
+Select BUILD NAME: <b>XT*7.3*102 &lt;Enter&gt;</b>  TOOLKIT
+Include the compiled template routines: N// <b>&lt;Enter&gt;</b>
+ 
+Print more than compiled errors and warnings? YES// <b>&lt;Enter&gt;</b>
+ 
+Print summary only? NO// <b>&lt;Enter&gt;</b>
+ 
+Print routines? YES// <b>&lt;Enter&gt;</b>
+ 
+Print (R)egular,(S)tructured or (B)oth?  R// <b>&lt;Enter&gt;</b>
+Print the DDs, Functions, and Options? YES// <b>&lt;Enter&gt;</b>
+ 
+Print errors and warnings with each routine? YES// <b>&lt;Enter&gt;</b>
+ 
+Save parameters in ROUTINE file? NO// <b>&lt;Enter&gt;</b>
+Index all called routines? NO// <b>&lt;Enter&gt;</b>
+DEVICE: <b>;P-OTHER</b> <b>&lt;Enter&gt;</b>  Telnet Terminal    Right Margin: 255// <b>80</b>
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Jan 12, 2012@14:43:02
+
+The BUILD file Data Dictionaries are being processed.
+
+The option and function files are being processed.
+
+
+Routines are being processed.
+Routines: 1  Faux Routines: 0
+
+XTPOST    
+
+--- CROSS REFERENCING ---
+
+
+Compiled list of Errors and Warnings              Jan 12, 2012@14:59:51 page 1
+
+XTPOST   * *  106 Lines,  3234 Bytes, Checksum: B14328994
+         ;;8.0;KERNEL;**102**;Jul 10, 1995
+   XTPOST+1     S - 2nd line of routine violates the SAC.
+         .S $P(^%ZRTL(3.091,0),U)="RESPONSE TIME"
+   CHECK+34     S - Set to a '%' global.
+         .S $P(^%ZRTL(3.091,0),U,2)="3.091P"
+   CHECK+35     S - Set to a '%' global.
+         .S $P(^%ZRTL(3.092,0),U)="RT DATE_UCI,VOL"
+   CHECK+38     S - Set to a '%' global.
+         .S $P(^%ZRTL(3.092,0),U,2)="3.092"
+   CHECK+39     S - Set to a '%' global.
+         .S $P(^%ZRTL(3.094,0),U)="RT RAWDATA"
+   CHECK+42     S - Set to a '%' global.
+         .S $P(^%ZRTL(3.094,0),U,2)="3.094D"
+   CHECK+43     S - Set to a '%' global.
+
+--- Routine Detail   --- with REGULAR ROUTINE LISTING ---
+.
+.
+.</pre>
+	    </td>
+      </tr>
+    </table>
+	<p>&nbsp;</p>
+	<h5><a name="example_3">Example 3</a>: Direct Mode Utility</h5>
+	<p>XINDEX&#8212;Direct mode utilities sample user entries: Specifying a 
+	package name (3 of 3)</p>
+	<table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+	  <tr>
+	    <td>
+		  <pre>KRN&gt;<strong>D ^XINDEX</strong>
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Jan 12, 2012@15:01:53
+
+All Routines? No =&gt; <strong>&lt;Enter&gt;</strong> No
+
+Routine: <strong>XDRMAIN</strong>
+Routine: <strong>&lt;Enter&gt;</strong>
+1 routine
+
+Select BUILD NAME: <strong>&lt;Enter&gt;</strong>
+Select INSTALL NAME: <strong>&lt;Enter&gt;</strong>
+Select PACKAGE NAME: <strong>KERNEL &lt;Enter&gt; </strong>XU
+
+Include the compiled template routines: N// <strong>&lt;Enter&gt;</strong>
+
+Print more than compiled errors and warnings? YES// <strong>&lt;Enter&gt;</strong>
+
+Print summary only? NO// <strong>&lt;Enter&gt;</strong>
+
+Print routines? YES// <strong>&lt;Enter&gt;</strong>
+
+Print (R)egular,(S)tructured or (B)oth?  R// <strong>&lt;Enter&gt;</strong>
+
+Print the DDs, Functions, and Options? YES// <strong>&lt;Enter&gt;</strong>
+
+Print errors and warnings with each routine? YES// <strong>&lt;Enter&gt;</strong>
+
+Save parameters in ROUTINE file? NO// <strong>&lt;Enter&gt;</strong>
+
+Index all called routines? NO// <strong>&lt;Enter&gt;</strong>
+DEVICE: <strong>;P-OTHER &lt;Enter&gt;</strong>  Telnet Terminal    Right Margin: 255// <strong>80</strong>
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Jan 12, 2012@15:01:53
+
+The package file Data Dictionaries are being processed.
+
+The option and function files are being processed.
+
+
+Routines are being processed.
+Routines: 1  Faux Routines: 2
+
+XDRMAIN   
+
+          Data Dictionaries
+|func          |opt           
+
+--- CROSS REFERENCING ---
+
+
+Compiled list of Errors and Warnings              Jan 12, 2012@15:01:53 page 1
+
+|opt     * *  974 Lines,  35949 Bytes, Checksum: 
+         I '$P(^VA(200,D0,0),U,11),$P(^(0),U,4)="@"!($N(^("FOF",0))&gt;0)
+   161+4        F - Undefined Function.
+   589+2        F - Reference to routine '^XUCSPRG'. That isn't in this UCI.
+
+--- Routine Detail   --- with REGULAR ROUTINE LISTING ---
+.
+.
+.</pre>
+	    </td>
+      </tr>
+    </table>
+	<p>&nbsp;</p>
+	<h5><a name="example_4">Example 4</a>: %Index of Routines Option</h5>
+	<table border="1"
+	       width="100%"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <tr>
+	    <td>
+		  <pre>Select Routine Tools Option: <b>%Index &lt;Enter&gt;</b> of Routines
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Dec 13, 2011@07:40:44
+
+All Routines? No =&gt; <b>No</b>
+
+Routine: <b>HLUOPT</b>
+Routine: <b>&lt;Enter&gt;</b>
+1 routine
+
+Select BUILD NAME: <b>&lt;Enter&gt;</b>
+Select INSTALL NAME: <b>&lt;Enter&gt;</b>
+Select PACKAGE NAME: <b>&lt;Enter&gt;</b>
+
+Print more than compiled errors and warnings? YES// <b>&lt;Enter&gt;</b>
+
+Print summary only? NO// <b>&lt;Enter&gt;</b>
+
+Print routines? YES// <b>&lt;Enter&gt;</b>
+
+Print (R)egular,(S)tructured or (B)oth?  R// <b>&lt;Enter&gt;</b>
+
+Print errors and warnings with each routine? YES// <b>&lt;Enter&gt;</b>
+
+
+
+Save parameters in ROUTINE file? NO// <b>&lt;Enter&gt;</b>
+
+Index all called routines? NO// <b>&lt;Enter&gt;</b>
+DEVICE: <b>&lt;Enter&gt;</b>  Telnet Terminal    Right Margin: 80// <b>&lt;Enter&gt;</b>
+
+
+                   V. A.  C R O S S  R E F E R E N C E R  7.3
+                       [2008 VA Standards &amp; Conventions]
+                   UCI: KRN CPU: KRN    Dec 13, 2011@07:40:44
+Routines: 1  Faux Routines: 0
+
+HLUOPT    
+
+--- CROSS REFERENCING ---
+
+   Press return to continue: <b>&lt;Enter&gt;</b>
+
+
+Compiled list of Errors and Warnings              Dec 13, 2011@07:40:44 page 1
+
+HLUOPT   * *  69 Lines,  3758 Bytes, Checksum: B18177059
+         
+   HOLD+4       W - Null line (no commands or comment).
+
+--- Routine Detail   --- with REGULAR ROUTINE LISTING ---
+   Press return to continue:
+<b>&lt;Enter&gt;</b>
+
+HLUOPT   * *  69 Lines,  3758 Bytes, Checksum: B18177059
+                                                  Dec 13, 2011@07:40:44 page 2
+              548 bytes in comments
+HLUOPT   ;AISC/SAW-Main Menu for HL7 Module ;07/26/99  08:47
+         ;;1.6;HEALTH LEVEL SEVEN;**57**;Oct 13, 1995</pre>
+        </td>
+	  </tr>
+    </table>
+    <P>&nbsp;</P>
+<!-- End Content -->
+	<footer>
+	<HR COLOR="003399">
+<!-- Start Bottom Links -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/vhaoi/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+    <A HREF="https://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology Home Page">
+	   <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!-- End Bottom Links -->
+<!-- Date Content was Reviewed or Updated -->
+    <p align="center">Reviewed/Updated: 07/20/2018
+    <br>
+    <br>
+    For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+	<A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/xindex/xindex_intro.html"
+	   TITLE="Send mail to the Webmasters regarding this page"
+	   class="bodylink">Webmasters</A></p> 
+    <P>&nbsp;</P>
+    </footer>
+  </BODY>
+</HTML>

@@ -1,0 +1,376 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$SDEA^XUSER">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,Offic eof Information and Technology,OI&T,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$SDEA^XUSER,SDEA,XUSER,user,epcs,,e-prescribing of controlled substances utility,pki,public key infrastructure,dea,drug enforcement agency,electronic prescribing of controlled substance,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$SDEA^XUSER">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180817">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$SDEA^XUSER</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$SDEA^XUSER</A>(): Check for Prescribing Privileges</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> User: DEA ePCS Utility, <B>ICR#:</B> 2343</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$SDEA^XUSER extrinsic function uses the following "Privileges Algorithm" to check for prescribing privileges:</P>
+    <ul>
+      <li>
+        Blank = never answered (Allow all schedules but system to send the following electronic message: "DEA credentials have not been populated, call TBD responsible person.")
+        <br>
+        <br>
+      </li>
+      <li>
+        Any or all fields are answered = provide explicit set of permissions (that have been identified).
+        <br>
+        <br>
+      </li>
+      <li>
+        If it is answered that Prescriber has No privileges for all schedules = remove DEA number or VA number from the NEW PERSON 
+		(# 200) file.
+        <br>
+        <br>
+      </li>
+      <li>
+        If Prescriber has been issued a DEA number, you have privileges.
+        <br>
+        <br>
+      </li>
+      <li>
+        If the Prescriber has been issued a VA number, this is a presumption of privileges.
+        <br>
+        <br>
+      </li>
+    </ul>
+    <P><b>NOTE:</b> Not all of these checks apply to documentation of <em>non</em>-VA medication.</P>
+    <P><b>REF:</b> This API calls the  
+	<A HREF="x-dea-xuser.html"
+	   TITLE="$$DEA^XUSER API"
+	   CLASS="BODYLINK">$$DEA^XUSER()&#8212;Get User's DEA Number</A> API.</P>
+    <P><b>NOTE:</b> This API was released with Kernel Patch XU*8.0*580, which was created in support of the Drug Enforcement Agency (DEA) e-Prescribing of Controlled Substances (ePCS) Utility. This utility uses Public Key Infrastructure (PKI) and meets the requirements proposed by the DEA Interim Final Rule (IFR) for Electronic Prescriptions for Controlled Substances effective as of June 1, 2010.</P>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$SDEA^XUSER([fg,]ien,psdea)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>fg:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(optional) This flag is used for   
+	<A HREF="x-dea-xuser.html"
+	   TITLE="$$DEA^XUSER API"
+	   CLASS="BODYLINK">$$DEA^XUSER</A> call, see the flag input parameter in the   
+	<A HREF="x-dea-xuser.html"
+	   TITLE="$$DEA^XUSER API"
+	   CLASS="BODYLINK">$$DEA^XUSER()&#8212;Get User's DEA Number</A> API.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>ien:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) This is the NEW PERSON (#200) file IEN for the entry to be checked.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>psdea:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) This parameter is DEA schedule. DEA schedule is a 
+		  <strong>2-6</strong> position field. It comes from the DRUG 
+		  (#50) file in Pharmacy. This API uses this field to verify the provider is allowed to write orders for specific controlled substances. For example, if the schedule is 
+		  <strong>2A</strong>, this indicates a controlled substance, schedule 
+		  <strong>2</strong>.</P>
+          <p>Chart for all values:</p>
+          <ul>
+            <li>
+              MANUFACTURED IN PHARMACY
+              <br>
+              <br>
+            </li>
+			<li>
+              SCHEDULE 1 ITEM
+              <br>
+              <br>
+            </li>
+          	<li>
+			  SCHEDULE 2 ITEM
+              <br>
+              <br>
+			</li>
+			<li>
+			  SCHEDULE 3 ITEM
+              <br>
+              <br>
+			</li>
+			<li>
+			  SCHEDULE 4 ITEM
+              <br>
+              <br>
+			</li>
+			<li>
+			  SCHEDULE 5 ITEM
+              <br>
+              <br>
+			</li>
+			<li>
+			  LEGEND ITEM:
+			  <br>
+			  <br>
+			  <ul>
+			    <li>
+			      <strong>9&#8212;</strong>OVER-THE-COUNTER
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>L&#8212;</strong>DEPRESSANTS AND STIMULANTS
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>A&#8212;</strong>NARCOTICS AND ALCOHOLS
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>P&#8212;</strong>DATED DRUGS
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>I&#8212;</strong>INVESTIGATIONAL DRUGS
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>M&#8212;</strong>BULK COMPOUND ITEMS
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>C&#8212;</strong>CONTROLLED SUBSTANCES - NON NARCOTIC
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>R&#8212;</strong>RESTRICTED ITEMS
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>S&#8212;</strong>SUPPLY ITEMS
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>B&#8212;</strong>ALLOW REFILL (SCH. 3, 4, 5 ONLY)
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>W&#8212;</strong>NOT RENEWABLE
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>F&#8212;</strong>NON REFILLABLE
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>E&#8212;</strong>ELECTRONICALLY BILLABLE
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>N&#8212;</strong>NUTRITIONAL SUPPLEMENT
+                  <br>
+                  <br>
+			    </li>
+			    <li>
+			      <strong>U&#8212;</strong>SENSITIVE DRUG
+                  <br>
+                  <br>
+			    </li>
+			  </ul>
+			</li>
+          </ul>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+	      <P>Returns: DEA# or <strong>Facility DEA_"-"_user VA#</strong> similar to the   
+	<A HREF="x-dea-xuser.html"
+	   TITLE="$$DEA^XUSER API"
+	   CLASS="BODYLINK">$$DEA^XUSER</A> call.</P>
+	      <ul>
+	        <li>
+	          <strong>1&#8212;</strong>DEA# is <strong>NULL</strong> from the   
+	<A HREF="x-dea-xuser.html"
+	   TITLE="$$DEA^XUSER API"
+	   CLASS="BODYLINK">$$DEA^XUSER</A> call.
+	          <br>
+	          <br>
+	        </li>
+	        <li>
+	          <strong>2&#8212;</strong>When all schedules equals <strong>0</strong>.
+	          <br>
+	          <br>
+	        </li>
+	        <li>
+	          <strong>4^expiration date&#8212;</strong>DEA# expiration date has expired. It checks if the DEA# and expiration date are 
+				<em>not</em> <strong>NULL</strong>. The expiration date is returned in external format.
+	          <br>
+	          <br>
+	        </li>
+	      </ul>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/17/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-sdea-xuser.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

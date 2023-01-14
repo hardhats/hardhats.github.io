@@ -1,0 +1,96 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+import borland.jbcl.layout.*;
+import borland.jbcl.control.*;
+import gov.va.vista.kernel.*;
+
+public class SignOn extends Applet {
+  XYLayout xYLayout1 = new XYLayout();
+  boolean isStandalone = false;
+  Button LogonButt = new Button();
+
+  private Session session = null;
+
+  //Get a parameter value
+  public String getParameter(String key, String def) {
+    return isStandalone ? System.getProperty(key, def) :
+      (getParameter(key) != null ? getParameter(key) : def);
+  }
+
+  //Construct the applet
+  public SignOn() {
+  }
+
+  //Initialize the applet
+  public void init() {
+    try { jbInit(); } catch (Exception e) { e.printStackTrace(); }
+  }
+
+  //Component initialization
+  private void jbInit() throws Exception{
+    xYLayout1.setWidth(125);
+    xYLayout1.setHeight(30);
+    LogonButt.setLabel("Logon");
+    LogonButt.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        LogonButt_actionPerformed(e);
+      }
+    });
+    this.setLayout(xYLayout1);
+    this.add(LogonButt, new XYConstraints(0, 0, 125, 30));
+  }
+
+  //Get Applet information
+  public String getAppletInfo() {
+    return "Applet Information";
+  }
+
+  //Get parameter info
+  public String[][] getParameterInfo() {
+    return null;
+  }
+
+  //Main method
+  public static void main(String[] args) {
+    new SignOn().startLogon(null);
+  }
+
+  void LogonButt_actionPerformed(ActionEvent e) {
+    session = Session.getSession(this);
+		LogonButt.setEnabled(false);
+		startLogon(null);
+  }
+
+
+  public void startLogon(final WorkBenchItem item) {
+    session = Session.getSession();
+	  session.addSessionListener(new SessionAdapter() {
+      WorkBenchItem showItem = item;
+      public void sessionClosing(SessionEvent evt) {
+        super.sessionClosing(evt);
+        LogonButt.setEnabled(true);
+      }
+
+      public void sessionStarted(SessionEvent evt) {
+        super.sessionStarted(evt);
+        if (evt.getReason()==SessionEvent.SO_SUCCESSFUL_SIGNON) {
+          //this line needs to pull default window signon screen
+          if (showItem==null) showItem = new gov.va.vista.cirn.Play();
+          session.getWorkBench().setWorkBenchItem(showItem);
+          session.getWorkBench().show();
+        }
+      }
+
+      public void sessionFailed(SessionEvent evt) {
+        super.sessionFailed(evt);
+        LogonButt.setEnabled(true);
+      }
+    });
+
+    //session.setSilent(true);
+    //session.setAccessCode("[code]");
+    //session.setVerifyCode("[code]");
+	  session.signon();
+  }
+}

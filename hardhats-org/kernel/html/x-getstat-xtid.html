@@ -1,0 +1,304 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel Toolkit APIs: $$GETSTAT^XTID">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$GETSTAT^XTID,GETSTAT,XTID,data standardization,supported">
+    <meta name="description"
+	      content="Kernel Toolkit APIs: $$GETSTAT^XTID">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel Toolkit APIs: $$GETSTAT^XTID</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/toolkit_heading_APIs.gif"
+			   ALT="Kernel Toolkit 7.3 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$GETSTAT^XTID</A>(): Get Status Information (Term/Concept)</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit&#8212;VHA Unique ID (VUID),
+	<B>ICR#:</B> 4631</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$GETSTAT^XTID extrinsic function retrieves the status information for a given 
+    term/concept reference and a specified date/time.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$GETSTAT^XTID(file[,field],iref[,datetime])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>file:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) VistA file/subfile number where term/concept is defined.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>field:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Field number in the <strong>file</strong> input parameter where term/concept is defined:</P>
+          <UL>
+            <LI>
+              <strong>Not Defined&#8212;</strong>If <i>not</i> defined, this field defaults to the <strong>.01</strong> 
+              field number, and it represents the terms defined in the file 
+              entered in the <strong>file</strong> input parameter.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <strong>Defined:</strong>
+              <BR>
+              <BR>
+              <UL>
+                <LI>
+                  Entered as <strong>.01</strong>; it represents the terms defined in the file 
+                  entered in the <strong>file</strong> input parameter.
+                  <BR>
+                  <BR>
+                </LI>
+                <LI>
+                  Otherwise, the field number entered <i>must</i> be a SET OF CODES 
+                  data type field in the file entered in the <strong>file</strong> input 
+                  parameter.
+                </LI>
+              </UL>
+            </LI>
+          </UL>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>iref:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Internal reference for term/concept:</P>
+          <UL>
+            <LI>
+              <strong>File Entries&#8212;</strong>This is an IENS. For example:
+              <BR>
+              <BR>
+              iref = &quot;<strong>5,</strong>&quot;
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <strong>SET OF CODES&#8212;</strong>This is the internal value of the code. 
+              For example, any of the following:
+              <BR>
+              <BR>
+              iref = <strong>3</strong>
+              <BR>
+              iref = &quot;<strong>f</strong>&quot;
+              <BR>
+              iref = &quot;<strong>M</strong>&quot;
+            </LI>
+          </UL>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>datetime:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>(optional) VA FileMan date/time. It defaults to&nbsp; <strong>NOW</strong>.</P>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns results of operation as follows:</P>
+          <UL>
+            <LI>
+              <strong>Successful&#8212;</strong><i>&lt;internal value&gt;</i>^<i>&lt;FileMan effective 
+              date/time&gt;</i>^<i>&lt;external value&gt;</i>
+              <BR>
+              <BR>
+              For example:
+              <PRE>  0^3050220.115720^INACTIVE
+
+  1^3050225.115711^ACTIVE</PRE> 
+	        </LI>
+            <LI>
+              <strong>Unsuccessful&#8212;</strong>^<i>&lt;error message&gt;</i>
+              <BR>
+              <BR>
+              <b>NOTE:</b> The first piece is empty. This differentiates it from 
+				the successful case, where the first piece is either <strong>0</strong> 
+				or <strong>1</strong>.
+            </LI>
+          </UL>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4>Examples</H4>
+    <H4><A NAME="example">Example 1</A></H4> 
+	<P>For terms defined in fields that are SET OF CODES:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+           <PRE>&gt;<B>S file=2,field=.02,iref=&quot;M&quot;,datetime=$$NOW^XLFDT</B>
+
+&gt;<B>W $$GETSTAT^XTID(file,field,iref,datetime)</B>
+1^3050121.154752^ACTIVE</PRE>          
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 2</H4> 
+	<P>For terms defined in a single file:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S file=16000009,field=.01,iref=&quot;3,&quot;,datetime=&quot;&quot;</B>
+
+&gt;<B>W $$GETSTAT^XTID(file,field,iref,datetime)</B>
+0^3050122.154755^INACTIVE</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-getstat-xtid.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

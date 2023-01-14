@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>RPC Broker Monograph ('97)</title>
+</head>
+
+<body BGCOLOR="#ffffff">
+
+<h2><font SIZE="5" COLOR="#005588" FACE="ARIAL,HELV">Remote Procedure Call (RPC) Broker</font>
+</h2>
+
+<hr>
+
+<p><font SIZE="3" FACE="ARIAL,HELV"><b>Overview</b></font></p>
+
+<p><font SIZE="2" FACE="ARIAL,HELV">The RPC Broker establishes a common and consistent
+foundation for client/server applications being written under the <b>V</b><i><font SIZE="1">IST</font></i><b>A</b> umbrella. The RPC Broker acts as a bridge connecting the
+client application front-end on the workstation (e.g., Delphi GUI applications) to the
+M-based data and business rules on the server. It serves as the communications medium for
+messaging between <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>client/server
+applications. Upon receipt, the message is decoded, the requested remote procedure call is
+activated, and the results are returned to the calling application. Therefore, the RPC
+Broker can be used to help bridge the gap between the traditionally proprietary VA
+software and Commercial-Off-The-Shelf (COTS)/Hybrid Open System Technology (HOST)
+products. </font></p>
+
+<p><font SIZE="2" FACE="ARIAL,HELV">The RPC Broker includes:</font> 
+
+<ul>
+  <li><font SIZE="2" FACE="ARIAL,HELV">A common communications driver interface that handles
+    the device-specific characteristics of the supported communications protocol.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="ARIAL,HELV">An interface component separate from the communications
+    driver that interprets the message, executes the required code, and eventually returns
+    data to the communications driver.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="ARIAL,HELV">A common file which all applications use to store the
+    information on the queries to which they respond (i.e., REMOTE PROCEDURE file [#8994]).</font></li>
+</ul>
+
+<hr>
+
+<p><font SIZE="3" FACE="ARIAL,HELV"><b>Features</b></font>
+
+<ul>
+  <li><font SIZE="2" FACE="ARIAL,HELV">32-Bit Environment<br>
+    The Broker operates in a 32-bit Windows environment (i.e., client workstations running
+    Microsoft Windows 95 or Windows NT operating systems). It also continues to support 16-bit
+    Broker-based applications.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="ARIAL,HELV">Dynamic Link Library (DLL)<br>
+    The Broker provides a set of DLL functions that allow applications written in <i>any</i>
+    MS Windows-based development environment (e.g., Borland's Delphi, Microsoft Visual Basic,
+    and other COTS/HOST products), to take advantage of all the features offered by the Broker
+    component.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="ARIAL,HELV">Broker Developer Kit (BDK)<br>
+    The TRPCBroker Delphi component provides Delphi developers with an easy, object-based
+    access to the Broker. When placed on a Delphi form, it allows you to connect to the server
+    and reference M data.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="ARIAL,HELV">Integrated Single Signon<br>
+    The Broker supports a <i>single</i> signon point from a client workstation to the server.
+    Users need only sign on once when accessing multiple <b>V</b><i><font SIZE="1">IST</font></i><b>A</b>applications
+    on the same workstation.</font><br>
+    <br>
+  </li>
+  <li><font SIZE="2" FACE="ARIAL,HELV">Initial Client/Server Security<br>
+    Security with the RPC Broker is a three-part process:</font> <ul>
+      <li><font SIZE="2" FACE="ARIAL,HELV">Users must have a valid access and verify code,</font> <br>
+        <br>
+      </li>
+      <li><font SIZE="2" FACE="ARIAL,HELV">Users must be a valid users of a client/server
+        application, and</font><br>
+        <br>
+      </li>
+      <li><font SIZE="2" FACE="ARIAL,HELV">Remote procedure calls must be registered and valid for
+        the application being executed.</font></li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2 align="center"><font FACE="ARIAL,HELV">RPC Broker System Overview</font></h2>
+
+<p align="center"><img SRC="System01_1.1.gif" WIDTH="633" HEIGHT="890"> </p>
+<script LANGUAGE="JavaScript"> <!--
+document.write("<font face=\"arial,helv\" size=1>This page updated on " + document.lastModified+"")
+//--></script>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel Toolkit APIs: $$GET^XPAR">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,toolkit,programmer,developer,programmer manual,developer's guide,apis,application programming interface,application,programming,interface,entry point,$$GET^XPAR,GET,XPAR,Parameter Tools,supported">
+    <meta name="description"
+	      content="Kernel Toolkit APIs: $$GET^XPAR">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180814">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel Toolkit APIs: $$GET^XPAR</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/toolkit_heading_APIs.gif"
+			   ALT="Kernel Toolkit 7.3 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><a name="navskip">$$GET^XPAR</a>(): Return an Instance of a Parameter</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit&#8212;Parameter Tools,
+	<B>ICR#:</B> 2263</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$GET^XPAR extrinsic function retrieves the value of a parameter. The value is returned from this call in the format defined by the input parameter named &#8220;format.&#8221;</P>
+    <p><b>REF:</b> For descriptive information about the elements and how they are used in the callable entry points into 
+	<strong>XPAR</strong>, see the &#8220;Definitions&#8221; section in the "Toolkit&#8212;Parameter Tools" section in the <i>Kernel 
+	8.0 &amp; Kernel Toolkit 7.3 Developer's Guide</i>.</p> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$GET^XPAR(entity,parameter[,instance][,format])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>entity:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Entity is defined as the single entity or group of entities you want to look at in order to retrieve the value. Entities can be passed in internal or external format 
+		  [e.g., LOC.PULMONARY or LOC.&#8217;57 or 57;SC(]. The list of entities in this variable can be defined as follows:</P>
+          <ul>
+            <li>
+              A single entity to look at (e.g., LOC.PULMONARY).              
+              <br>
+              <br>
+            </li>
+            <li>              
+              The word <strong>ALL</strong> that tells the utility to look for values assigned to the parameter using the entity precedence defined in the PARAMETER DEFINITION 
+			  (#8989.51) file.
+              <br>
+              <br>
+            </li>
+            <li>              
+              A list of entities you want to search (e.g., &#8220;USR^LOC^SYS^PKG&#8221;). The list is searched from left to right with the first value found returned.
+              <br>
+              <br>
+            </li>
+            <li>              
+              Items <strong>2</strong> or <strong>3</strong> with specific entity values referenced such as:
+              <br>
+              <br>
+              <ul>
+                <li>
+                  <strong>ALL^LOC.PULMONARY&#8212;</strong>To look at the defined entity precedence, but when looking at location, only look at the PULMONARY location.
+                  <br>
+                  <br>
+                </li>
+                <li>
+                  <strong>USR^LOC.PULMONARY^SYS^PKG&#8212;</strong>To look for values for all current user, PULMONARY location, system, or package).
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>parameter:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Can be passed in external or internal format. Identifies the name or internal entry number (IEN) of the parameter as defined in the PARAMETER DEFINITION 
+		  (#8989.51) file.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>instance:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Defaults to <strong>1</strong> if <i>not</i> passed. Can be passed in external or internal format. Internal format requires that the value be preceded by the grave accent (<b>`</b>) character.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>format:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) The format input parameter determines how the value is returned. It can be set to the following:</P>
+          <ul>
+            <li>
+              <strong>I&#8212;</strong>Internal; returns list(#) = &#8220;internal value&#8221;.
+              <br>
+              <br>
+            </li>
+            <li>
+              <strong>Q&#8212;</strong>Quick; returns list(#) = &#8220;internal instance^internal value&#8221;. Returns the value in the quickest manner (default if not specified).
+              <br>
+              <br>
+            </li>
+            <li>
+              <strong>E&#8212;</strong>External; returns list(#) = &#8220;external instance^external value&#8221;.
+              <br>
+              <br>
+            </li>
+            <li>
+              <strong>B&#8212;</strong>Both; returns both list(#,&#8220;N&#8221;) = &#8220;internal instance^external instance&#8221; and list(#,&#8220;V&#8221;) = &#8220;internal value^external value&#8221;.
+              <br>
+              <br>
+            </li>
+			<li>
+              <strong>N&#8212;</strong>Returns list(#) = &#8220;internal value^external value&#8221;.
+            </li>
+          </ul>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <b>returns:</b>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns the parameter value in the format defined by the format 
+		  input parameter.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+    <p>&nbsp;</p>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/14/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-get-xpar.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

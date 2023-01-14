@@ -1,0 +1,416 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>RPC Broker V. 1.1 Systems Manual: Chapter 2 - Security</TITLE></HEAD>
+<BODY>
+<P><FONT SIZE="5" FACE="arial,helv"><B>Security</B></FONT></P>
+<P><FONT SIZE="3" FACE="arial,helv"><B>Topics</B></FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#security_features">Security
+Features</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#validate_connection">Validation
+of Connection Request</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#validate_user">Validation of
+Users</A></FONT>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#customize_signon_window">Users
+Can Customize Signon Window</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#change_verify_code">Change
+<B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> Verify Code Component</A></FONT></LI></UL></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#validate_rpcs">Validation of
+RPCs</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#sample_security_procedures">Sample
+Security Procedures</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#tasks_summary">Security
+Features Tasks Summary</A></FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="security_features">Security
+Features</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Security in distributed computing
+environments, such as in client/server systems, is much more complicated than in
+traditional configurations. Although it is probably impossible to protect any
+computer system against the most determined and sophisticated intruder, the RPC
+Broker implements robust security that is transparent to the end user and
+without additional impact on IRM.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Security with the RPC Broker is a
+four-part process:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">Client workstations must have a
+<A HREF="#validate_connection">valid connection request</A></FONT><BR><BR></LI>
+<LI VALUE="1"><FONT SIZE="2" FACE="arial,helv">Users must have valid Access
+and Verify codes</FONT><BR><BR></LI>
+<LI VALUE="1"><FONT SIZE="2" FACE="arial,helv">Users must be valid users of a
+<B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> client/server application</FONT><BR><BR></LI>
+<LI VALUE="1"><FONT SIZE="2" FACE="arial,helv">Any remote procedure call must
+be registered and valid for the application being executed</FONT></LI></OL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="validate_connection">Validation
+of Connection Request</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">An enhancement to security has been
+included with this version of the Broker. Before the Broker Listener jobs off a
+Handler for a client, it checks the format of the incoming connection request.
+If the incoming message does not conform to the Broker standard, the connection
+is closed. This serves as an early detection of impostors and intruders.</FONT></P>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="validate_user">Validation of
+Users</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The GUI signon application is integrated
+with the RPC Broker interface. This GUI signon is invoked when the client
+application connects to the server. The signon application automatically prompts
+users for their Access and <A HREF="#change_verify_code">Verify codes</A> if
+they are not already signed on to a
+<B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> application.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">A sample of the GUI signon window
+integrated with the RPC Broker is illustrated below:</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><A NAME="signon_window_box"><IMG
+SRC="signon.gif" ALT="Signon Security Dialog Box" WIDTH="510" HEIGHT="303"></A></P></CENTER>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>This version of the Broker supports
+<A HREF="chapter_1.html#single_signon">single signon</A>. For more information
+regarding single signon, please refer to the description in Kernel Patch #59
+(i.e., XU*8*59).</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">Client/server applications are a &quot;B&quot;
+(i.e., Broker) type of option in the <A NAME="option_file">OPTION file</A>
+(#19). Users must have the client/server application option assigned to them
+like any other assigned option in <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>.
+It can be put on their primary menu tree or as a secondary option/menu as part
+of their suite of permitted options. The client/server application will only run
+for those users who are allowed to activate it.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>The client/server application options
+will not be displayed in a user's menu tree.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">Kernel's <A NAME="menu_manager">Menu
+Manager</A> verifies that users are allowed access to a
+<B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> application or option with
+the following process:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">Users start a <B>V</B><I><FONT
+FACE="Century Schoolbook" SIZE="2">IST</FONT></I><B><FONT
+FACE="Century Schoolbook">A</FONT></B> program.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">The RPC Broker in the client application
+invokes the GUI signon when connecting to the server.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Users sign on to the server via the
+Kernel signon process (see the <A HREF="#signon_window_box">Signon window
+dialog box</A>).</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">If authorized, the user is granted access
+to the server, otherwise an error message is returned. This serves as an initial
+security check.</FONT></LI></OL>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>For more information on Access and
+Verify codes or the Kernel signon process in general, please refer to the
+<A HREF="https://www.hardhats.org/cs/kernel/docs/krn8_0sm.pdf">Kernel Systems Manual</A>.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="customize_signon_window">Users
+Can Customize Signon Window</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">When a <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+program on the client connects to the server, the <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+signon window is displayed for the user to identify and authenticate himself on
+the server. This window's System menu (i.e., see the upper left corner of the
+<A HREF="#signon_window_box">Signon window dialog box</A>) has a &quot;Properties...&quot;
+item:</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><IMG
+SRC="signon_properties.gif" ALT="Signon Windows Properties Dialog Box" WIDTH="189" HEIGHT="220"></P></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">When this item is selected, the user is
+presented with the following configuration dialogue box:</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><IMG SRC="signon_customize.gif" WIDTH="409" HEIGHT="294"></P></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">Using the Sign-on Properties dialog box,
+users can control the appearance of the signon window by modifying the following
+characteristics:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#window_position">Position of
+the signon window</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#window_size">Size of the
+signon window</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#intro_text">The appearance of
+the introductory text</A></FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="window_position">Window
+Position</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The window position can be one of the
+following:</FONT></P>
+<P><BR></P>
+<TABLE BORDER="1" WIDTH="638" CELLPADDING="7" CELLSPACING="0">
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Center (default)</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The window will always appear in the
+center of the screen.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Current</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The current position of the window will be
+saved and used in the future.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Remember</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Each time the window is used and closed,
+it will record its position and open in that same place the next time it is
+used.</FONT></P></TD></TR></TABLE>
+<P><B></B></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="window_size">Window Size</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The window size can be one of the
+following:</FONT></P>
+<P><BR></P>
+<TABLE BORDER="1" WIDTH="638" CELLPADDING="7" CELLSPACING="0">
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Normal (default)</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The size of the window as it was designed.
+Typically, this is 500 pixels wide by 300 pixels high.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Current</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The current size of the window will be
+saved and used in the future.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Remember</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Each time the window is used and closed,
+it will record its size and open with the same size the next time it is used.</FONT></P></TD></TR></TABLE>
+<P><B></B></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="intro_text">Introductory
+Text</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The introductory text has a couple of
+settings users can control:</FONT></P>
+<P><B></B></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Background Color:</B></FONT></P>
+<P><BR></P>
+<TABLE BORDER="1" WIDTH="638" CELLPADDING="7" CELLSPACING="0">
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Cream (default)</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">According to the VA GUI conventions, this
+is the background color that should be used with text that users <I>cannot</I>
+edit.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="25%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><B>White</B></FONT></P></TD>
+<TD WIDTH="75%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">For clarity and brightness.</FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv"><B>Font:</B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">When users press the &quot;Change Font&quot;
+button they are presented with a Font form that can be used to change the font
+face, style, size, and color of the introductory text of the signon window.</FONT></P>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="change_verify_code">Change
+<B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> Verify Code Component</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">This version of the Broker includes a new
+Change <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> Verify Code dialog
+for the client workstation. After a user signs onto the server, if their Verify
+code has expired, the user is automatically prompted with the following message:
+&quot;You must change your Verify code at this time.&quot; Once the user presses
+the OK button they are presented with the Change <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+Verify Code window as displayed below:</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><IMG
+SRC="change_verify.gif" ALT="Change Verify Code Dialog Box" WIDTH="402" HEIGHT="159"></P></CENTER>
+<P><B></B></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>The old Verify code will appears as
+asterisks (*) in a grayed-out box.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">Users must then do the following:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Enter their new Verify code</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Confirm their new Verify code</FONT></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">In the future, users will be able to
+invoke this dialog whenever they choose to modify their Verify code. For now,
+users who wish to change their Verify code prior to expiration may do so via the
+Edit User Characteristics option in the roll-and-scroll environment.</FONT></P>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="validate_rpcs">Validation of
+RPCs</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC Broker security allows any RPC to
+run when it is properly registered to the <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+client/server application. The Broker on the server along with the Kernel's Menu
+Manager determines which application a user is currently running.
+<A NAME="menu_manager2">Menu Manager</A> determines if a user is allowed to run
+this application or option by the following process:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">A remote procedure call is sent by a
+client application and is received by the RPC Broker on the server.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">The Broker verifies that the RPC is &quot;registered&quot;
+to the application that the user is currently running, <I>prior</I> to
+executing the remote procedure call (RPC).</FONT>
+<P><FONT SIZE="2" FACE="arial,helv">The application being run is designated by
+a &quot;B&quot;-type option in the OPTION file (#19). The application must
+specify the option and that option
+<I>must</I> be in a user's menu tree.</FONT></P><BR>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>For more information on registering
+an RPC to a package, see the topic entitled &quot;RPC Security: How to Register
+An RPC&quot; in the <A HREF="../xwb1_1dg.pdf">RPC Broker V. 1.1 Getting Started
+with the Broker Development Kit manual</A>.</I></FONT></P></TD></TR></TABLE><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Menu Manager checks if the RPC is
+registered for this package option. If not properly registered, Menu Manager
+will return a message explaining why the RPC is not allowed.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">The Broker on the server executes the RPC
+if it is registered, otherwise it is rejected.</FONT></LI></OL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="sample_security_procedures">Sample
+Security Procedures</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The security steps each client user will
+follow and the intermediate client/server security processes are described in
+the following example:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="1" WIDTH="637" CELLPADDING="7" CELLSPACING="0">
+<TR>
+<TD VALIGN="TOP" ALIGN="CENTER" WIDTH="11%" BGCOLOR="#eeeeee">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B>Step</B></FONT></P></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="89%" BGCOLOR="#eeeeee">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Description</B></FONT></P></TD></TR>
+<TR>
+<TD WIDTH="11%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B>1.</B></FONT></P></TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The user starts a <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> program on the client. For this example, the
+user clicks on the Patient Care Management Module (PCMM) application icon.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="11%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B>2.</B></FONT></P></TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The user must sign on to the server
+through the <A HREF="#signon_window_box">GUI signon window</A> on the client
+using their Access and Verify codes invoking the Kernel signon process.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="11%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B>3.</B></FONT></P></TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,hlev">The Menu Manager on the server verifies
+the user is allowed access to the &quot;B&quot;-type option requested by PCMM.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="11%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B>4.</B></FONT></P></TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The Menu Manager on the server verifies
+the option is a &quot;client/server&quot; type option and the requested RPC is
+in that option's RPC multiple.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="11%" VALIGN="TOP">
+<P ALIGN="CENTER"><FONT SIZE="2" FACE="arial,helv"><B>5.</B></FONT></P></TD>
+<TD WIDTH="89%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">If all of the previous steps complete
+successfully, the application RPC is launched.</FONT></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="tasks_summary">Security
+Features Tasks Summary</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The following table summarizes the
+security tasks that are required and which module completes them:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="BORDER" CELLSPACING="3" CELLPADDING="7" WIDTH="625">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="60%" BGCOLOR="#eeeeee">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Security Task</B></FONT></P></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="40%" BGCOLOR="#eeeeee">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Completed By</B></FONT></P></TD></TR>
+<TR>
+<TD WIDTH="60%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><A HREF="#validate_connection">Verify
+valid connection request</A></FONT></P></TD>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">RPC Broker</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="60%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><A HREF="#validate_user">Verify valid
+user</A></FONT></P></TD>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Kernel Signon</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="60%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Verify user is authorized to run this
+package</FONT></P></TD>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">RPC Broker &amp; Menu Manager</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="60%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><A HREF="#validate_rpcs">Verify an RPC is
+registered to an application</A></FONT></P></TD>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">RPC Broker &amp; Menu Manager</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="60%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Application - RPC Registration</FONT></P></TD>
+<TD WIDTH="40%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv"><A
+HREF="https://www.hardhats.org/cs/kernel/docs/kids/kids_index.html">KIDS</A></FONT></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>To reiterate, an RPC is only allowed
+to run within the context of an application with which it is registered. Users
+are only able to run the server side of the application that was installed on
+the server by IRM.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<TABLE BORDER="1">
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv"><B> For each release of the RPC Broker,
+the RPC Broker Development Team will continuously strive to implement the most
+complete, robust, and flexible security available at the time.</B></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR></BODY></HTML>

@@ -1,0 +1,163 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+	<meta name="language"
+	      content="en">
+	<meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+	<meta name="subject"
+	      content="Kernel Toolkit XINDEX: Informational Messages">
+	<meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information and Technology,OI&T,OIT,VISTA,kernel,toolkit,programmer,developer,programmer manual,xindex,errors,messages,sacc,sac,Informational Messages,informational,information">
+	<meta name="description"
+	      content="Kernel Toolkit XINDEX: Informational Messages">
+	<meta name="datecreated"
+	      content="20120124">
+	<meta name="datereviewed"
+	      content="20180720">
+	<meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <TITLE>Kernel Toolkit XINDEX: Informational Messages</TITLE>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY>
+    <header> 
+<!-- Start Title Banner (image) -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="3"
+           CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel-toolkit_heading_xindex.jpg"
+			   ALT="Kernel & Toolkit APIs Banner"
+			   WIDTH="429"
+			   HEIGHT="29"
+			   BORDER="0">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   WIDTH="429"
+			   HEIGHT="30"
+			   BORDER="0">
+		</TD> 
+	  </TR> 
+    </TABLE> 
+<!-- End Title Banner (image) -->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">XINDEX: Informational Messages</A></H3> 
+	<p>These issues are <em>not</em> necessarily errors but still require attention, because they could indicate potential problems.</p>
+    <H4><a name="i_quit_command_followed_by_only_one_space">I&#8212;QUIT Command followed by only one space</a></H4>
+    <P>This is another whitespace issue. In standard M, a routine is terminated by a single <strong>QUIT</strong> command and a function 
+    returns a value with a <strong>QUIT</strong> followed by a single space and then an expression that evaluates to the value to be returned. 
+    When you encounter a <strong>QUIT</strong> followed by a space, it is most likely extra whitespace at the end of a line.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="i_star_or_pound_read_used">I&#8212;Star or pound READ used</a></H4>
+    <P>In M, <strong>READ</strong> is normally a line-oriented command. However, there are 
+	two syntactic variations on the <strong>READ</strong> command where its use is inappropriate.</P>
+	<h5>Example 1</h5>
+	<p>The following example reads a single character into <strong>X</strong>.</p>
+    <table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+	  <tr>
+		<td>
+		  <pre>READ *X</pre>
+	    </td>
+	  </tr>
+	</table>
+	<h5>Example 2</h5>
+	<p>The following example reads <strong>100</strong> contiguous characters (bytes on most M systems) into <strong>X</strong>. 
+	Use of so-called star and pound <strong>READ</strong>s was once disallowed, but is 
+	now permitted so long as applications follow other relevant standards.</p>
+    <table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+	  <tr>
+		<td>
+		  <pre>READ X#100</pre>
+	    </td>
+	  </tr>
+	</table>
+    <p>&nbsp;</p>
+<!-- End Content -->
+	<footer>
+	<HR COLOR="003399">
+<!-- Start Bottom Links -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/vhaoi/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+    <A HREF="https://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology Home Page">
+	   <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!-- End Bottom Links -->
+<!-- Date Content was Reviewed or Updated -->
+    <p align="center">Reviewed/Updated: 07/20/2018
+    <br>
+    <br>
+    For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+	<A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/xindex/informational_msgs.html"
+	   TITLE="Send mail to the Webmasters regarding this page"
+	   class="bodylink">Webmasters</A></p> 
+    <P>&nbsp;</P>
+    </footer>
+  </BODY>
+</HTML>

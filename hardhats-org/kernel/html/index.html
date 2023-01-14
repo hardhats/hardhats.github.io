@@ -1,0 +1,4802 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="VistA Infrastructure (VI): Kernel, Toolkit, and RPC Broker APIs: Main Index">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information and Technology,OIT,OI&T,VISTA,kernel,toolkit,rpc broker,broker,programmer,developer,programmer manual,apis,application program interface,application,program,interface,entry point,index,main page,main">
+    <meta name="description"
+	      content="VistA Infrastructure (VI): Kernel, Toolkit, and RPC Broker APIs: Main Index">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>VistA Infrastructure (VI): Kernel, Toolkit, and RPC Broker APIs: Index, Frameset</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <FRAMESET COLS="24%,76%"
+            FRAMEBORDER="YES">
+  <FRAME NAME="toc"
+         SRC="category_frm1.html"
+	     TITLE="VistA Infrastructure (VI) APIs Table of Contents (TOC) Frame that displays all topic links">
+  <FRAME NAME="display"
+         SRC="api_intro.html"
+	     TITLE="VistA Infrastructure (VI) APIs Topic Display Frame"> 
+  <NOFRAMES>
+  <BODY TOPMARGIN="2"
+        CLASS="toc">
+<!--Left Frame Text, Images, and Content Links-->
+<!-- Start Left Navigation Links -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"
+	       CLASS="tdstyle">
+<!-- Image in upper left corner -->
+      <TR> 
+	    <TD>
+		  <A HREF="http://vista.med.va.gov/"
+		     TARGET="_top"
+			 TITLE="VistA Office of Information and Technology Logo: Return to Home">
+		  <IMG SRC="images/vista_logo1.jpg"
+			   ALT="VistA Office of Information and Technology Logo: Return to Home"
+			   WIDTH="122"
+			   HEIGHT="68"
+			   BORDER="0"></A>
+		  <BR>
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD>
+		  <UL>
+            <LI>
+              <A HREF="https://vaww.oed.portal.va.gov/development/infrastructure/Kernel/SitePages/Home.aspx"
+                 TARGET="_top"
+		         TITLE="Kernel: Return to Home"
+		         CLASS="navbarlink">Kernel Home</A>
+		    </LI>
+            <LI>
+		      <a href="https://vaww.oed.portal.va.gov/development/infrastructure/Kernel/SitePages/Home.aspx#toolkit"
+		         TARGET="_top"
+		         TITLE="Toolkit: Return to Home"
+		         CLASS="navbarlink" >Toolkit Home</a>
+		    </LI>
+            <LI>
+		      <a href="https://vaww.oed.portal.va.gov/development/infrastructure/Broker/_layouts/15/start.aspx#/SitePages/Home.aspx"
+		         TARGET="_top"
+		         TITLE="RPC Broker: Return to Home"
+		         CLASS="navbarlink" >RPC Broker Home</a>
+		    </LI>
+            <LI>
+			  <A HREF="api_intro.html"
+			     TARGET="display"
+			     CLASS="navbarlink"
+				 TITLE="VistA Infrastructure (VI) APIs Introduction">APIs Introduction</A>
+			</LI>
+            <LI>
+			  <A HREF="https://vaww.oed.portal.va.gov/development/infrastructure/Kernel/Shared%20Documents/xindex/index.html"
+			     TARGET="_top"
+			     CLASS="navbarlink"
+				 TITLE="XINDEX: Return to Home">XINDEX Home</A>
+			</LI>
+          </UL>
+        </TD> 
+	  </TR> 
+	  <TR ALIGN="CENTER"> 
+	    <TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD ALIGN="LEFT"> 
+		  <H5 ALIGN="LEFT">List APIs By:</H5> 
+		  <UL>
+            <LI>
+			  <A HREF="category_frm1.html"
+			     TARGET="toc"
+			     CLASS="navbarlink"
+				 TITLE="APIs Listed by Category">Category</A> (default)
+            </LI>
+            <LI>
+              <A HREF="alpha-rtn_frm1.html"
+                 TARGET="toc"
+                 CLASS="navbarlink"
+				 TITLE="APIs Listed by Entry Point Routines in Alphabetic Order">Routine Name</A>
+			</LI>
+            <LI>
+              <A HREF="alpha-tag_frm1.html"
+                 TARGET="toc"
+                 CLASS="navbarlink"
+				 TITLE="APIs Listed by Entry Point Tags in Alphabetic Order">Tag Name</A>
+			</LI>
+            <LI>
+			  <A HREF="reference_frm1.html"
+			     TARGET="toc"
+			     CLASS="navbarlink"
+				 TITLE="APIs Listed by Reference Type">Reference Type</A>
+			</LI>
+          </UL>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD>
+	      <HR>
+	    </TD> 
+	  </TR> 
+	</TABLE>  
+<!-- End Left Navigation Links -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"
+	       CLASS="tdstyle">
+<!-- Image in upper left corner -->
+<!-- Left hand navigation links -->
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+		  <H4 ALIGN="LEFT"><A NAME="navskip">Category List</A></H4>
+          <UL>
+            <LI>
+              <A HREF="#address_hygiene"
+                 TARGET="toc"
+			     TITLE="Address Hygiene APIs"
+				 CLASS="navbarlink">Address Hygiene</A>
+			</LI>
+		    <LI>
+			  <A HREF="#alerts"
+                 TARGET="toc"
+			     TITLE="Alerts APIs"
+				 CLASS="navbarlink">Alerts</A>
+			</LI>
+            <LI>
+              <a href="#bitwise_logic_functions"
+                 TARGET="toc"
+			     TITLE="Bitwise Logic Functions APIs"
+                 CLASS="navbarlink">Bitwise Logic Functions</a>
+            </LI>
+			<LI>
+              <A HREF="#common_services"
+                 TARGET="toc"
+				 TITLE="Common Services APIs"
+				 CLASS="navbarlink">Common Services</A>
+            </LI>
+            <LI>
+              <A HREF="#data_security"
+                 TARGET="toc"
+				 TITLE="Data Security APIs"
+				 CLASS="navbarlink">Data Security</A>
+            </LI>
+			<LI>
+              <A HREF="#device_handler"
+                 TARGET="toc"
+				 TITLE="Device Handler APIs"
+				 CLASS="navbarlink">Device Handler</A>
+			</LI>
+            <LI>
+              <A HREF="#dns"
+                 TARGET="toc"
+				 TITLE="DNS APIs"
+				 CLASS="navbarlink">DNS</A>
+			</LI>
+            <LI>
+              <A HREF="#electronic_signature"
+                 TARGET="toc"
+				 TITLE="Electronic Signature APIs"
+				 CLASS="navbarlink">Electronic Signature</A>
+			</LI>
+            <LI>
+              <A HREF="#error_processing"
+                 TARGET="toc"
+				 TITLE="Error Processing APIs"
+				 CLASS="navbarlink">Error Processing</A>
+			</LI>
+            <LI>
+              <A HREF="#field_monitoring"
+                 TARGET="toc"
+			     TITLE="Field Monitoring APIs"
+				 CLASS="navbarlink">Field Monitoring</A>
+			</LI>
+            <LI>
+              <A HREF="#help_processor"
+                 TARGET="toc"
+			     TITLE="Help Processor APIs"
+			     CLASS="navbarlink">Help Processor</A>
+			</LI>
+            <LI>
+              <A HREF="#host_files"
+                 TARGET="toc"
+				 TITLE="Host Files APIs"
+				 CLASS="navbarlink">Host Files</A>
+			</LI>
+            <LI>
+              <A HREF="#institution_file"
+                 TARGET="toc"
+				 TITLE="Institution File APIs"
+				 CLASS="navbarlink">Institution File</A>
+			</LI>
+            <LI>
+              <A HREF="#kids"
+                 TARGET="toc"
+				 TITLE="KIDS APIs"
+				 CLASS="navbarlink">KIDS</A></LI>
+            <LI>
+              <A HREF="#lock_manager"
+                 TARGET="toc"
+				 TITLE="Lock Manager APIs"
+				 CLASS="navbarlink">Lock Manager</A>
+			</LI>
+            <LI>
+              <A HREF="#menu_manager"
+                 TARGET="toc"
+				 TITLE="Menu Manager APIs"
+				 CLASS="navbarlink">Menu Manager</A>
+			</LI>
+            <LI>
+              <A HREF="#miscellaneous"
+                 TARGET="toc"
+				 TITLE="Miscellaneous APIs"
+				 CLASS="navbarlink">Miscellaneous</A>
+			</LI>
+            <LI>
+              <A HREF="#name_standardization"
+                 TARGET="toc"
+				 TITLE="Name Standardization APIs"
+				 CLASS="navbarlink">Name Standardization</A>
+			</LI>
+            <LI>
+              <A HREF="#npi"
+                 TARGET="toc"
+				 TITLE="National Provider Identifier (NPI) APIs"
+				 CLASS="navbarlink">National Provider Identifier</A>
+			</LI>
+            <LI>
+              <A HREF="#os_interface"
+                 TARGET="toc"
+				 TITLE="OS Interface APIs"
+			     CLASS="navbarlink">OS Interface</A>
+			</LI>
+             <LI>
+              <a HREF="#rpc_broker"
+                 TARGET="toc"
+                 TITLE="RPC Broker APIs"
+                 CLASS="navbarlink">RPC Broker</a> 
+            </li>
+            <LI>
+              <A HREF="#security_keys"
+                 TARGET="toc"
+			     TITLE="Security Keys APIs"
+			     CLASS="navbarlink">Security Keys</A>   
+			</LI>
+            <LI>
+              <A HREF="#signon_security"
+                 TARGET="toc"
+			     TITLE="Signon/Security APIs"
+			     CLASS="navbarlink">Signon/Security</A>
+			</LI>
+            <LI>
+              <A HREF="#spooling"
+                 TARGET="toc"
+			     TITLE="Spooling APIs"
+				 CLASS="navbarlink">Spooling</A> 
+			</LI>
+            <LI>
+              <A HREF="#taskman"
+                 TARGET="toc"
+				 TITLE="TaskMan APIs"
+				 CLASS="navbarlink">TaskMan</A>  
+			</LI>
+            <LI>
+              <a HREF="#toolkit_data_standardization"
+                 TARGET="toc"
+                 TITLE="Toolkit&#8212;Data Standardization APIs"
+                 CLASS="navbarlink">Toolkit&#8212;Data Standardization</a> 
+            </li>
+            <LI>
+              <a HREF="#toolkit_duplicate_record_merge"
+                 TARGET="toc"
+                 TITLE="Toolkit&#8212;Duplicate Record Merge APIs"
+                 CLASS="navbarlink">Toolkit&#8212;Duplicate Record Merge</a> 
+            </li>
+		    <LI>
+              <a HREF="#toolkit_http_client_helper"
+                 TARGET="toc"
+                 TITLE="Toolkit&#8212;HTTP Client Helper APIs"
+                 CLASS="navbarlink">Toolkit&#8212;HTTP Client Helper</a>
+            </li>
+		    <LI>
+              <a HREF="#toolkit_kermit"
+                 TARGET="toc"
+                 TITLE="Toolkit&#8212;Kermit APIs"
+                 CLASS="navbarlink">Toolkit&#8212;Kermit</a>
+            </li>
+		    <LI>
+              <a HREF="#toolkit_m_unit"
+                 TARGET="toc"
+                 TITLE="Toolkit&#8212;M Unit Utility APIs"
+                 CLASS="navbarlink">Toolkit&#8212;M Unit Utility</a></li>
+		    <LI>
+              <a HREF="#toolkit_multi_term_lookup"
+                 TARGET="toc"
+                 TITLE="Toolkit&#8212;Multi-Term Look-Up (MTLU) APIs"
+                 CLASS="navbarlink">Toolkit&#8212;Multi-Term Look-Up (MTLU)</a></li>
+			<LI>
+              <a HREF="#toolkit_parameter_tools"
+                 TARGET="toc"
+                 TITLE="Toolkit&#8212;Parameter Tools APIs"
+                 CLASS="navbarlink">Toolkit&#8212;Parameter Tools</a>
+            </li>
+			<LI>
+              <A HREF="#toolkit_vha_unique_id_vuid"
+                 TARGET="toc"
+				 TITLE="Toolkit&#8212;VHA Unique ID (VUID) APIs"
+				 CLASS="navbarlink">Toolkit&#8212;VHA Unique ID (VUID)</A>
+			</LI>
+            <LI>
+              <A HREF="#unwinder"
+                 TARGET="toc"
+				 TITLE="Unwinder APIs"
+				 CLASS="navbarlink">Unwinder</A>
+			</LI>
+            <LI>
+              <A HREF="#user"
+                 TARGET="toc"
+			     TITLE="User APIs"
+				 CLASS="navbarlink">User</A>  
+			</LI>
+            <LI>
+              <A HREF="#xgf_function_library"
+                 TARGET="toc"
+			     TITLE="XGF Function Library APIs"
+			     CLASS="navbarlink">XGF Function Library</A>
+			</LI>
+            <LI>
+              <A HREF="#xlf_function_library"
+                 TARGET="toc"
+				 TITLE="XLF Function Library APIs"
+				 CLASS="navbarlink">XLF Function Library</A>
+            <LI>
+              <A HREF="#crc_functions"
+                 TARGET="toc"
+				 TITLE="XLF CRC Function APIs"
+				 CLASS="navbarlink">CRC Functions</A>
+			</LI>
+            <LI>
+              <A HREF="#date_functions"
+                 TARGET="toc"
+			     TITLE="XLF Date Function APIs"
+			     CLASS="navbarlink">Date Functions</A>
+			</LI>
+            <LI>
+              <A HREF="#hyperbolic_functions"
+                 TARGET="toc"
+				 TITLE="XLF Hyperbolic Trigonometric Function APIs"
+				 CLASS="navbarlink">Hyperbolic Trig. Functions</A>
+			</LI>
+            <LI>
+              <A HREF="#math_functions"
+                 TARGET="toc"
+				 TITLE="XLF Math Function APIs"
+				 CLASS="navbarlink">Math Functions</A>
+			</LI>
+            <LI>
+              <A HREF="#measurement_functions"
+                 TARGET="toc"
+			     TITLE="XLF Measurement Function APIs"
+				 CLASS="navbarlink">Measurement Functions</A>
+			</LI>
+            <LI>
+              <A HREF="#string_functions"
+                 TARGET="toc"
+				 TITLE="XLF String Function APIs"
+				 CLASS="navbarlink">String Functions</A>
+			</LI>
+            <LI>
+              <A HREF="#utility_functions"
+                 TARGET="toc"
+			     TITLE="XLF Utility Function APIs"
+				 CLASS="navbarlink">Utility Functions</A>
+			</LI>
+			<LI>
+              <A HREF="#ip_address_functions"
+                 TARGET="toc"
+			     TITLE="XLF IP Address Function APIs"
+				 CLASS="navbarlink">IP Address Functions</A>
+			</LI>
+            <LI>
+		      <A HREF="#xml"
+                 TARGET="toc"
+				 TITLE="XML APIs"
+				 CLASS="navbarlink">XML Parser (VistA)</A>
+			</LI>
+          </UL>
+        </TD> 
+	  </TR> 
+	  <TR>
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR>
+	  <TR> 
+	    <TD> 
+		  <H5><A NAME="address_hygiene">Address Hygiene</A></H5>
+		  <ul>
+		    <li>
+		      <A HREF="ccode-xiputil.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CCODE^XIPUTIL, Usage: FIPS Code Data, Category: Address Hygiene" 
+				 CLASS="navbarlink">CCODE^XIPUTIL</A>
+			  <BR>
+              FIPS Code Data
+		    </li>
+			<li>
+			  <A HREF="x-fips-xiputil.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FIPS^XIPUTIL, Usage: FIPS Code for ZIP Code, Category: Address Hygiene" 
+				 CLASS="navbarlink">$$FIPS^XIPUTIL</A>
+			  <BR>
+              FIPS Code for ZIP Code
+            </li>
+			<li>
+		      <A HREF="x-fipschk-xiputil.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FIPSCHK^XIPUTIL, Usage: Check for FIPS Code, Category: Address Hygiene" 
+				 CLASS="navbarlink">$$FIPSCHK^XIPUTIL</A>
+			  <BR>
+              Check for FIPS Code
+            </li>
+			<li>
+			  <A HREF="postal-xiputil.html"
+				 TARGET="display"
+			     TITLE="Kernel API: POSTAL^XIPUTIL, Usage: ZIP Code Information, Category: Address Hygiene" 
+				 CLASS="navbarlink">POSTAL^XIPUTIL</A>
+			  <BR>
+              ZIP Code Information
+            </li>
+			<li>
+			  <A HREF="postalb-xiputil.html"
+				 TARGET="display"
+				 TITLE="Kernel API: POSTALB^XIPUTIL, Usage: Active ZIP Codes, Category: Address Hygiene" 
+				 CLASS="navbarlink">POSTALB^XIPUTIL</A>
+			  <BR>
+              Active ZIP Codes
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+	      <H5><A NAME="alerts">Alerts</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="ahistory-xqalbutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: AHISTORY^XQALBUTL, Usage: Get Alert Tracking File Information, Category: Alerts" 
+				 CLASS="navbarlink">AHISTORY^XQALBUTL</A>
+			  <BR>
+              Get Alert Tracking File Info.
+            </li>
+			<li>
+			  <A HREF="alertdat-xqalbutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ALERTDAT^XQALBUTL, Usage: Get Alert Tracking File Information, Category: Alerts" 
+				 CLASS="navbarlink">ALERTDAT^XQALBUTL</A>
+			  <BR>
+              Get Alert Tracking File Info.
+            </li>
+			<li>
+			  <A HREF="delstat-xqalbutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DELSTAT^XQALBUTL, Usage: Get Recipient Information and Alert Status, Category: Alerts" 
+				 CLASS="navbarlink">DELSTAT^XQALBUTL</A>
+			  <BR>
+              Get Recipient Information and Alert Status
+            </li>
+			<li>
+			  <A HREF="notipurg-xqalbutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: NOTIPURG^XQALBUTL, Usage: Purge Alerts Based on Code, Category: Alerts" 
+				 CLASS="navbarlink">NOTIPURG^XQALBUTL</A>
+			  <BR>
+              Purge Alerts Based on Code
+            </li>
+		    <li>
+		      <A HREF="x-pending-xqalbutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$PENDING^XQALBUTL, Usage: Pending Alerts for a User, Category: Alerts" 
+			     CLASS="navbarlink">$$PENDING^XQALBUTL</A>
+			  <BR>
+              Pending Alerts for a User
+            </li>
+		    <li>
+			  <A HREF="x-pkgpend-xqalbutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$PKGPEND^XQALBUTL, Usage: Pending Alerts for a User in Specified Software, Category: Alerts" 
+				 CLASS="navbarlink">$$PKGPEND^XQALBUTL</A>
+			  <BR>
+              Pending Alerts for a User (Spec. Software)
+            </li>
+			<li>
+			  <A HREF="ptpurg-xqalbutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: PTPURG^XQALBUTL, Usage: Purge Alerts Based on Patient, Category: Alerts" 
+				 CLASS="navbarlink">PTPURG^XQALBUTL</A>
+			  <BR>
+              Purge Alerts Based on Patient
+            </li>
+			<li>
+			  <A HREF="recipurg-xqalbutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: RECIPURG^XQALBUTL, Usage: Purge User Alerts, Category: Alerts" 
+			     CLASS="navbarlink">RECIPURG^XQALBUTL</A>
+			  <BR>
+              Purge User Alerts
+            </li>
+			<li>
+			  <A HREF="userdata-xqalbutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: USERDATA^XQALBUTL, Usage: Get User Information for an Alert, Category: Alerts" 
+				 CLASS="navbarlink">USERDATA^XQALBUTL</A>
+			  <BR>
+              Get User Info. for an Alert
+            </li>
+			<li>
+			  <A HREF="userlist-xqalbutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: USERLIST^XQALBUTL, Usage: Get Recipient Information for an Alert, Category: Alerts" 
+				 CLASS="navbarlink">USERLIST^XQALBUTL</A>
+			  <BR>
+              Get Recipient Info. for an Alert
+            </li>
+			<li>
+			  <A HREF="action-xqalert.html" 
+				 TARGET="display"
+			     TITLE="Kernel API: ACTION^XQALERT, Usage: Process an Alert, Category: Alerts" 
+			     CLASS="navbarlink">ACTION^XQALERT</A>
+			  <BR>
+              Process an Alert
+            </li>
+			<li>
+			  <A HREF="delete-xqalert.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DELETE^XQALERT, Usage: Clear Obsolete Alerts (Single), Category: Alerts" 
+				 CLASS="navbarlink">DELETE^XQALERT</A>
+			  <BR>
+              Clear Obsolete Alerts (Single)
+            </li>
+		    <li>
+			  <A HREF="deletea-xqalert.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DELETEA^XQALERT, Usage: Clear Obsolete Alerts (All), Category: Alerts" 
+			     CLASS="navbarlink">DELETEA^XQALERT</A>
+			  <BR>
+              Clear Obsolete Alerts (All)
+            </li>
+			<li>
+			  <A HREF="getact-xqalert.html"
+				 TARGET="display"
+			     TITLE="Kernel API: GETACT^XQALERT, Usage: Return Alert Variables, Category: Alerts" 
+				 CLASS="navbarlink">GETACT^XQALERT</A>
+			  <BR>
+              Return Alert Variables
+            </li>
+			<li>
+		      <A HREF="patient-xqalert.html"
+				 TARGET="display"
+				 TITLE="Kernel API: PATIENT^XQALERT, Usage: Get Alerts for a Patient, Category: Alerts" 
+			     CLASS="navbarlink">PATIENT^XQALERT</A>
+			  <BR>
+              Get Alerts for a Patient
+            </li>
+			<li>
+			  <A HREF="setup-xqalert.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SETUP^XQALERT, Usage: Send Alerts, Category: Alerts" 
+				 CLASS="navbarlink">SETUP^XQALERT</A>
+			  <BR>
+              Send Alerts
+            </li>
+			<li>
+			  <A HREF="x-setup1-xqalert.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SETUP1^XQALERT, Usage: Send Alerts, Category: Alerts" 
+				 CLASS="navbarlink">$$SETUP1^XQALERT</A>
+			  <BR>
+              Send Alerts
+            </li>
+			<li>
+			  <A HREF="user-xqalert.html"
+				 TARGET="display"
+				 TITLE="Kernel API: USER^XQALERT, Usage: Get Alerts for a User, Category: Alerts" 
+				 CLASS="navbarlink">USER^XQALERT</A>
+			  <BR>
+              Get Alerts for a User
+            </li>
+			<li>
+			  <A HREF="forward-xqalfwd.html"
+				 TARGET="display"
+			     TITLE="Kernel API: FORW  ARD^XQALFWD, Usage: Forward Alerts, Category: Alerts" 
+				 CLASS="navbarlink">FORWARD^XQALFWD</A>
+			  <BR>
+              Forward Alerts
+            </li>
+			<li>
+			  <A HREF="x-currsuro-xqalsuro.html"
+				 TARGET="display" 
+				 TITLE="Kernel API: $$CURRSURO^XQALSURO, Usage: Get Current Surrogate for Alerts, Category: Alerts" 
+				 CLASS="navbarlink">$$CURRSURO^XQALSURO</A>
+			  <BR>
+              Get Current Surrogate for Alerts
+            </li>
+		    <li>
+			  <A HREF="x-getsuro-xqalsuro.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$GETSURO^XQALSURO, Usage: Get Current Surrogate Information, Category: Alerts" 
+				 CLASS="navbarlink">$$GETSURO^XQALSURO</A>
+			  <BR>
+              Get Current Surrogate Info.
+            </li>
+			<li>
+			  <A HREF="remvsuro-xqalsuro.html" 
+				 TARGET="display"
+				 TITLE="Kernel API: REMVSURO^XQALSURO, Usage: Remove Surrogates for Alerts, Category: Alerts"
+			     CLASS="navbarlink">REMVSURO^XQALSURO</A>
+			  <BR>
+              Remove Surrogates for Alerts
+            </li>
+		    <li>
+		      <A HREF="setsuro1-xqalsuro.html"
+				 TARGET="display"
+			     TITLE="Kernel API: SETSURO1^XQALSURO, Usage: Establish a Surrogate for Alerts, Category: Alerts"
+				 CLASS="navbarlink">SETSURO1^XQALSURO</A>
+			  <BR>
+              Establish a Surrogate for Alerts
+            </li>
+			<li>
+			  <A HREF="surofor-xqalsuro.html"
+			     TARGET="display"
+				 TITLE="Kernel API: SUROFOR^XQALSUR1, Usage: Return a Surrogate's List of Users, Category: Alerts"
+				 CLASS="navbarlink">SUROFOR^XQALSURO</A>
+			  <BR>
+			  Return a Surrogate's List of Users
+			</li>
+			<li>
+			  <A HREF="surolist-xqalsuro.html"
+			     TARGET="display"
+				 TITLE="Kernel API: SUROLIST^XQALSUR1, Usage: List Surrogates for a User, Category: Alerts"
+				 CLASS="navbarlink">SUROLIST^XQALSURO</A>
+			  <BR>
+			  List Surrogates for a User
+			</li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <tr>
+		<TD>
+		  <HR>
+		</TD> 
+	  </tr>
+      <tr>
+	    <TD> 
+		  <H5><A NAME="bitwise_logic_functions">Bitwise Logic Functions</A></H5>
+		  <ul>
+		    <li>
+		      <A HREF="x-and-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$AND^XLFSHAN, Usage: Bitwise Logical AND, Category: Bitwise Logic Functions" 
+				 CLASS="navbarlink">$$AND^XLFSHAN</a>
+			  <BR>
+              Bitwise Logical AND
+		    </li>
+			<li>
+			  <A HREF="x-or-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$OR^XLFSHAN, Usage: Bitwise Logical OR, Category: Bitwise Logic Functions" 
+				 CLASS="navbarlink">$$OR^XLFSHAN</A>
+			  <BR>
+              Bitwise Logical OR
+            </li>
+			<li>
+		      <A HREF="x-xor-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$XOR^XLFSHAN, Usage: Bitwise Logical XOR, Category: Bitwise Logic Functions" 
+				 CLASS="navbarlink">$$XOR^XLFSHAN</A>
+			  <BR>
+              Bitwise Logical XOR
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </tr>
+	  <TR>
+		<TD>
+		  <HR>
+		</TD> 
+      </TR>
+      <TR>
+		<TD> 
+		  <H5><A NAME="common_services">Common Services</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-ien-xups.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$IEN^XUPS, Usage: Get IEN Using VPID in File #200, Category: Common Services" 
+				 CLASS="navbarlink">$$IEN^XUPS</A>
+			  <BR>
+              Get IEN Using VPID in File #200
+            </li>
+			<li>
+		      <A HREF="x-vpid-xups.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VPID^XUPS, Usage: Get VPID Using IEN in File #200, Category: Common Services" 
+				 CLASS="navbarlink">$$VPID^XUPS</A>
+			  <BR>
+              Get VPID Using IEN in File #200
+            </li>
+		    <li>
+			  <A HREF="en1-xupsqry.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN1^XUPSQRY, Usage: Query New Person File, Category: Common Services" 
+				 CLASS="navbarlink">EN1^XUPSQRY</A>
+			  <BR>
+              Query New Person File
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+	  <TR>
+		<TD>
+		  <HR>
+		</TD> 
+      </TR>
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+	      <H5><A NAME="data_security">Data Security</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-file-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FILE^XLFSHAN, Usage: Returns SHA Hash for Specified FileMan File or Subfile Entry, Category: Data Security" 
+				 CLASS="navbarlink">$$FILE^XLFSHAN</A>
+			  <br>
+			  Returns SHA Hash for Specified FileMan File or Subfile Entry
+            </li>
+		    <li>
+			  <A HREF="x-global-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$GLOBAL^XLFSHAN, Usage: Returns SHA Hash for a Global, Category: Data Security" 
+				 CLASS="navbarlink">$$GLOBAL^XLFSHAN</A>
+			  <br>
+			  Returns SHA Hash for a Global
+            </li>
+		    <li>
+			  <A HREF="x-hostfile-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$HOSTFILE^XLFSHAN, Usage: Returns SHA Hash for Specified Host File, Category: Data Security" 
+				 CLASS="navbarlink">$$HOSTFILE^XLFSHAN</A>
+			  <br>
+			  Returns SHA Hash for Specified Host File
+            </li>
+		    <li>
+			  <A HREF="x-lshan-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LSHAN^XLFSHAN, Usage: Returns SHA Hash for a Long Message, Category: Data Security" 
+				 CLASS="navbarlink">$$LSHAN^XLFSHAN</A>
+			  <br>
+			  Returns SHA Hash for a Long Message
+            </li>
+		    <li>
+			  <A HREF="x-routine-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ROUTINE^XLFSHAN, Usage: Returns SHA Hash for a VistA Routine, Category: Data Security" 
+				 CLASS="navbarlink">$$ROUTINE^XLFSHAN</A>
+			  <br>
+			  Returns SHA Hash for a VistA Routine
+            </li>
+		    <li>
+			  <A HREF="x-shan-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SHAN^XLFSHAN, Usage: Returns SHA Hash for a Message, Category: Data Security" 
+				 CLASS="navbarlink">$$SHAN^XLFSHAN</A>
+			  <br>
+			  Returns SHA Hash for a Message
+            </li>
+			<li>
+			  <A HREF="x-aesdecr-xushsh.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$AESDECR^XUSHSH, Usage: Returns Plaintext String Value for AES Encrypted Ciphertext Entry, Category: Data Security" 
+				 CLASS="navbarlink">$$AESDECR^XUSHSH</A>
+			  <BR>
+              Returns Plaintext String Value for AES Encrypted Ciphertext Entry
+            </li>
+			<li>
+			  <A HREF="x-aesencr-xushsh.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$AESENCR^XUSHSH, Usage: Returns AES Encrypted Ciphertext for String Entry, Category: Data Security" 
+				 CLASS="navbarlink">$$AESENCR^XUSHSH</A>
+			  <BR>
+              Returns AES Encrypted Ciphertext for String Entry
+            </li>
+			<li>
+			  <A HREF="x-b64decd-xushsh.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$B64DECD^XUSHSH, Usage: Returns Decoded Value for a Base64 String Entry, Category: Data Security" 
+				 CLASS="navbarlink">$$B64DECD^XUSHSH</A>
+			  <BR>
+              Returns Decoded Value for a Base64 String Entry
+            </li>
+		    <li>
+			  <A HREF="x-b64encd-xushsh.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$B64ENCD^XUSHSH, Usage: Returns Base64 Encoded Value for a String Entry, Category: Data Security" 
+				 CLASS="navbarlink">$$B64ENCD^XUSHSH</A>
+			  <BR>
+              Returns Base64 Encoded Value for a String Entry
+            </li>
+			<li>
+			  <A HREF="x-rsadecr-xushsh.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$RSADECR^XUSHSH, Usage: Returns Plaintext String Value for RSA Encrypted Ciphertext Entry, Category: Data Security" 
+				 CLASS="navbarlink">$$RSADECR^XUSHSH</A>
+			  <BR>
+              Returns Plaintext String Value for RSA Encrypted Ciphertext Entry
+            </li>
+			<li>
+			  <A HREF="x-rsaencr-xushsh.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$RSAENCR^XUSHSH, Usage: Returns RSA Encrypted Ciphertext for String Entry, Category: Data Security" 
+				 CLASS="navbarlink">$$RSAENCR^XUSHSH</A>
+			  <BR>
+              Returns RSA Encrypted Ciphertext for String Entry
+            </li>
+			<li>
+			  <A HREF="x-shahash-xushsh.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$SHAHASH^XUSHSH, Usage: Returns SHA Hash for a String Entry, Category: Data Security"
+			     CLASS="navbarlink">$$SHAHASH^XUSHSH</A>
+			  <BR>
+              Returns SHA Hash for a String Entry
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+	  <TR>
+		<TD>
+		  <HR>
+		</TD> 
+      </TR>
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+	      <H5><A NAME="device_handler">Device Handler</A></H5>
+		  <ul>
+            <li>
+			  <A HREF="device-xudhgui.html"
+				 TARGET="display"
+				 title="Kernel API: DEVICE^XUDHGUI, Usage: GUI Device Lookup, Category: Device Handler"
+				 class="navbarlink">DEVICE^XUDHGUI</A>
+			  <BR>
+              GUI Device Lookup
+            </li>
+			<li>
+			  <A HREF="x-res-xudhset.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$RES^XUDHSET, Usage: Set Up Resource Device, Category: Device Handler" 
+				 CLASS="navbarlink">$$RES^XUDHSET</A>
+			  <BR>
+              Set Up Resource Device
+            </li>
+			<li>
+			  <A HREF="zis.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^%ZIS, Usage: Standard Device Call, Category: Device Handler"
+			     CLASS="navbarlink">^%ZIS</A>
+			  <BR>
+              Standard Device Call
+            </li>
+			<li>
+			  <A HREF="hlp1-zis.html"
+				 TARGET="display"
+			     TITLE="Kernel API: HLP1^%ZIS, Usage: Display Brief Device Help, Category: Device Handler" 
+				 CLASS="navbarlink">HLP1^%ZIS</A>
+			  <BR>
+              Display Brief Device Help
+            </li>
+			<li>
+			  <A HREF="hlp2-zis.html"
+				 TARGET="display"
+			     TITLE="Kernel API: HLP2^%ZIS, Usage: Display Device Help Frames, Category: Device Handler" 
+				 CLASS="navbarlink">HLP2^%ZIS</A>
+			  <BR>
+              Display Device Help Frames
+            </li>
+			<li>
+			  <A HREF="home-zis.html"
+				 TARGET="display"
+				 TITLE="Kernel API: HOME^%ZIS, Usage: Reset Home Device IO Variables, Category: Device Handler" 
+				 CLASS="navbarlink">HOME^%ZIS</A>
+			  <BR>
+              Reset Home Device IO Variables
+            </li>
+			<li>
+			  <A HREF="x-rewind-zis.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$REWIND^%ZIS, Usage: Rewind Devices, Category: Device Handler" 
+				 CLASS="navbarlink">$$REWIND^%ZIS</A>
+			  <BR>
+              Rewind Devices
+            </li>
+			<li>
+			  <A HREF="zisc.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^%ZISC, Usage: Close Device, Category: Device Handler" 
+				 CLASS="navbarlink">^%ZISC</A>
+			  <BR>
+              Close Device
+            </li>
+			<li>
+			  <A HREF="pkill-zisp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: PKILL^%ZISP, Usage: Kill Special Printer Variables, Category: Device Handler" 
+				 CLASS="navbarlink">PKILL^%ZISP</A>
+			  <BR>
+              Kill Special Printer Variables
+            </li>
+			<li>
+			  <A HREF="pset-zisp.html"
+				 TARGET="display"
+			     TITLE="Kernel API: PSET^%ZISP, Usage: Set Up Special Printer Variables, Category: Device Handler" 
+				 CLASS="navbarlink">PSET^%ZISP</A>
+			  <BR>
+              Set Up Special Printer Variables
+            </li>
+			<li>
+			  <A HREF="endr-ziss.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ENDR^%ZISS, Usage: Set Up Specific Screen Handling Variables, Category: Device Handler" 
+				 CLASS="navbarlink">ENDR^%ZISS</A>
+			  <BR>
+              Set Up Specific Screen Handling Variables
+            </li>
+			<li>
+			  <A HREF="ens-ziss.html"
+				 TARGET="display"
+			     TITLE="Kernel API: ENS^%ZISS, Usage: Set Up Screen Handling Variables, Category: Device Handler" 
+				 CLASS="navbarlink">ENS^%ZISS</A>
+			  <BR>
+              Set Up Screen Handling Variables
+            </li>
+			<li>
+			  <A HREF="gkill-ziss.html"
+				 TARGET="display"
+			     TITLE="Kernel API: GKILL^%ZISS, Usage: KILL Graphic Variables, Category: Device Handler" 
+			     CLASS="navbarlink">GKILL^%ZISS</A>
+			  <BR>
+              KILL Graphic Variables
+            </li>
+			<li>
+			  <A HREF="gset-ziss.html"
+				 TARGET="display"
+				 TITLE="Kernel API: GSET^%ZISS, Usage: Set Up Graphics Variables, Category: Device Handler" 
+				 CLASS="navbarlink">GSET^%ZISS</A>
+			  <BR>
+              Set Up Graphic Variables
+            </li>
+			<li>
+			  <A HREF="kill-ziss.html"
+				 TARGET="display"
+			     TITLE="Kernel API: KILL^%ZISS, Usage: KILL Screen Handling Variables, Category: Device Handler" 
+				 CLASS="navbarlink">KILL^%ZISS</A>
+			  <BR>
+              KILL Screen Handling Variables
+            </li>
+			<li>
+			  <A HREF="call-zistcp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CALL^%ZISTCP, Usage: Make TCP/IP Connection (Remote System), Category: Device Handler" 
+				 CLASS="navbarlink">CALL^%ZISTCP</A>
+			  <BR>
+              Make TCP/IP Connection (Remote)
+            </li>
+			<li>
+			  <A HREF="close-zistcp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CLOSE^%ZISTCP, Usage: Close TCP/IP Connection (Remote System), Category: Device Handler" 
+				 CLASS="navbarlink">CLOSE^%ZISTCP</A>
+			  <BR>
+              Close TCP/IP Connection (Remote)
+            </li>
+			<li>
+			  <A HREF="close-zisutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: CLOSE^%ZISUTL, Usage: Close Device with Handle, Category: Device Handler" 
+			     CLASS="navbarlink">CLOSE^%ZISUTL</A>
+			  <BR>
+              Close Device with Handle
+            </li>
+			<li>
+			  <A HREF="open-zisutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OPEN^%ZISUTL, Usage: Open Device with Handle, Category: Device Handler" 
+				 CLASS="navbarlink">OPEN^%ZISUTL</A>
+			  <BR>
+              Open Device with Handle
+            </li>
+			<li>
+			  <A HREF="rmdev-zisutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: RMDEV^%ZISUTL, Usage: Delete Data Given a Handle, Category: Device Handler" 
+				 CLASS="navbarlink">RMDEV^%ZISUTL</A>
+			  <BR>
+              Delete Data Given a Handle
+            </li>
+			<li>
+			  <A HREF="savdev-zisutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SAVDEV^%ZISUTL, Usage: Save Data Given a Handle, Category: Device Handler" 
+				 CLASS="navbarlink">SAVDEV^%ZISUTL</A>
+			  <BR>
+              Save Data Given a Handle
+            </li>
+			<li>
+			  <A HREF="use-zisutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: USE^%ZISUTL, Usage: Use Device Given a Handle, Category: Device Handler" 
+				 CLASS="navbarlink">USE^%ZISUTL</A>
+			  <BR>
+              Use Device Given a Handle
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+	      <H5><A NAME="dns">DNS</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-address-xlfnslk.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$ADDRESS^XLFNSLK, Usage: Conversion (Domain Name to IP Addresses), Category: DNS"
+			     CLASS="navbarlink">$$ADDRESS^XLFNSLK</A>
+			  <BR>
+              Conversion (Domain Name to IP Addresses)
+            </li>
+			<li>
+			  <A HREF="mail-xlfnslk.html"
+				 TARGET="display"
+				 TITLE="Kernel API: MAIL^XLFNSLK, Usage: Get IP Addresses for a Domain Name, Category: DNS" 
+				 CLASS="navbarlink">MAIL^XLFNSLK</A>
+			  <BR>
+              Get IP Addresses for a Domain Name
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+	      <H5><A NAME="electronic_signature">Electronic Signature</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="xusesig.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^XUSESIG, Usage: Set Up Electronic Signature Code, Category: Electronic Signature" 
+				 CLASS="navbarlink">^XUSESIG</A>
+			  <BR>
+              Set Up E-Sig Code
+            </li>
+			<li>
+			  <A HREF="sig-xusesig.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SIG^XUSESIG, Usage: Verify Electronic Signature Code, Category: Electronic Signature" 
+				 CLASS="navbarlink">SIG^XUSESIG</A>
+			  <BR>
+              Verify E-Sig Code
+            </li>
+			<li>
+			  <A HREF="x-chksum-xusesig1.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$CHKSUM^XUSESIG1, Usage: Build Checksum for Global Root, Category: Electronic Signature"
+				 CLASS="navbarlink">$$CHKSUM^XUSESIG1</A>
+			  <BR>
+              Build Checksum for Global Root
+            </li>
+			<li>
+			  <A HREF="x-cmp-xusesig1.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CMP^XUSESIG1, Usage: Compare Checksum to $Name_Value, Category: Electronic Signature" 
+				 CLASS="navbarlink">$$CMP^XUSESIG1</A>
+			  <BR>
+              Compare Checksum to $Name_Value
+            </li>
+			<li>
+			  <A HREF="x-de-xusesig1.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$DE^XUSESIG1, Usage: Decode String, Category: Electronic Signature" 
+				 CLASS="navbarlink">$$DE^XUSESIG1</A>
+			  <BR>
+              Decode String
+            </li>
+			<li>
+			  <A HREF="x-en-xusesig1.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$EN^XUSESIG1, Usage: Encode ESBLOCK, Category: Electronic Signature" 
+				 CLASS="navbarlink">$$EN^XUSESIG1</A>
+			  <BR>
+              Encode ESBLOCK
+            </li>
+			<li>
+			  <A HREF="x-esblock-xusesig1.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$ESBLOCK^XUSESIG1, Usage: Electronic Signature Fields Required for Hash, Category: Electronic Signature"
+			     CLASS="navbarlink">$$ESBLOCK^XUSESIG1</A>
+			  <BR>
+              E-Sig Fields Required for Hash
+            </li>
+			<li>
+			  <A HREF="de-xushshp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DE^XUSHSHP, Usage: Decrypt Data String, Category: Electronic Signature" 
+				 CLASS="navbarlink">DE^XUSHSHP</A>
+			  <BR>
+              Decrypt Data String
+            </li>
+			<li>
+			  <A HREF="en-xushshp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN^XUSHSHP, Usage: Encrypt Data String, Category: Electronic Signature" 
+				 CLASS="navbarlink">EN^XUSHSHP</A>
+			  <BR>
+              Encrypt Data String
+            </li>
+			<li>
+			  <A HREF="hash-xushshp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: HASH^XUSHSHP, Usage: Hash Electronic Signature Code, Category: Electronic Signature" 
+				 CLASS="navbarlink">HASH^XUSHSHP</A>
+			  <BR>
+              Hash E-Sig Code
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD>
+	      <HR>
+	    </TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+	      <H5><A NAME="error_processing">Error Processing</A></H5>
+	      <ul>
+	        <li>
+		      <A HREF="x-ec-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$EC^%ZOSV, Usage: Get Error Code, Category: Error Processing" 
+				 CLASS="navbarlink">$$EC^%ZOSV</A>
+			  <BR>
+              Get Error Code
+            </li>
+			<li>
+			  <A HREF="zter.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^%ZTER, Usage: Kernel Standard Error Recording Routine, Category: Error Processing" 
+				 CLASS="navbarlink">^%ZTER</A>
+			  <BR>
+              Kernel Std. Error Recording Routine
+            </li>
+			<li>
+			  <A HREF="apperror-zter.html"
+				 TARGET="display"
+				 TITLE="Kernel API: APPERROR^%ZTER, Usage: Set Application Error Name in Kernel Error Trap Log, Category: Error Processing" 
+				 CLASS="navbarlink">APPERROR^%ZTER</A>
+			  <BR>
+              Set Application Error Name in Kernel Error Trap Log
+            </li>
+			<li>
+			  <A HREF="x-newerr-zter.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NEWERR^%ZTER (Obsolete), Usage: Verify Support of Standard Error Trapping (Obsolete), Category: Error Processing" 
+				 CLASS="navbarlink">$$NEWERR^%ZTER</A>
+			  <BR>
+              Verify Support of Standard Error Trapping (Obsolete)
+            </li>
+			<li>
+			  <A HREF="unwind-zter.html"
+				 TARGET="display"
+				 TITLE="Kernel API: UNWIND^%ZTER, Usage: Quit Back to Calling Routine, Category: Error Processing" 
+				 CLASS="navbarlink">UNWIND^%ZTER</A>
+			  <BR>
+              Quit Back to Calling Routine
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="field_monitoring">Field Monitoring</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="opkg-xuhui.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OPKG^XUHUI, Usage: Monitor New Style Cross-reference Fields, Category: Field Monitoring" 
+				 CLASS="navbarlink">OPKG^XUHUI</A>
+			  <BR>
+              Monitor New Style Cross-Reference Fields
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+		  <H5><A NAME="help_processor">Help Processor</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="en-xqh.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN^XQH, Usage: Display Help Frames (Clear Screen), Category: Help Processor" 
+				 CLASS="navbarlink">EN^XQH</A>
+			  <BR>
+              Display Help Frames (Clear Screen)
+            </li>
+			<li>
+			  <A HREF="en1-xqh.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN1^XQH, Usage: Display Help Frames, Category: Help Processor" 
+				 CLASS="navbarlink">EN1^XQH</A>
+			  <BR>
+              Display Help Frames
+            </li>
+			<li>
+			  <A HREF="action-xqh4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ACTION^XQH4, Usage: Print Help Frame Tree, Category: Help Processor" 
+				 CLASS="navbarlink">ACTION^XQH4</A>
+			  <BR>
+              Print Help Frame Tree
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="host_files">Host Files</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="close-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CLOSE^%ZISH, Usage: Close Host File, Category: Host Files" 
+				 CLASS="navbarlink">CLOSE^%ZISH</A>
+			  <BR>
+              Close Host File
+            </li>
+			<li>
+			  <A HREF="x-defdir-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DEFDIR^%ZISH, Usage: Get Default Host File Directory, Category: Host Files" 
+				 CLASS="navbarlink">$$DEFDIR^%ZISH</A>
+			  <BR>
+              Get Default Host File Directory
+            </li>
+			<li>
+			  <A HREF="x-del-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DEL^%ZISH, Usage: Delete Host File, Category: Host Files" 
+				 CLASS="navbarlink">$$DEL^%ZISH</A>
+			  <BR>
+              Delete Host File
+            </li>
+			<li>
+			  <A HREF="x-ftg-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FTG^%ZISH, Usage: Load Host File into Global, Category: Host Files" 
+			     CLASS="navbarlink">$$FTG^%ZISH</A>
+			  <BR>
+              Load Host File into Global
+            </li>
+			<li>
+			  <A HREF="x-gatf-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$GATF^%ZISH, Usage: Copy Global to Host File, Category: Host Files" 
+				 CLASS="navbarlink">$$GATF^%ZISH</A>
+			  <BR>
+              Copy Global to Host File
+            </li>
+			<li>
+			  <A HREF="x-gtf-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$GTF^%ZISH, Usage: Copy Global to Host File, Category: Host Files" 
+				 CLASS="navbarlink">$$GTF^%ZISH</A>
+			  <BR>
+              Copy Global to Host File
+            </li>
+			<li>
+			  <A HREF="x-list-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LIST^%ZISH, Usage: List Directory, Category: Host Files" 
+				 CLASS="navbarlink">$$LIST^%ZISH</A>
+			  <BR>
+              List Directory
+            </li>
+			<li>
+			  <A HREF="x-mv-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$MV^%ZISH, Usage: Rename Host File, Category: Host Files" 
+				 CLASS="navbarlink">$$MV^%ZISH</A>
+			  <BR>
+              Rename Host File
+            </li>
+			<li>
+			  <A HREF="open-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OPEN^%ZISH, Usage: Open Host File, Category: Host Files" 
+				 CLASS="navbarlink">OPEN^%ZISH</A>
+			  <BR>
+              Open Host File
+            </li>
+			<li>
+			  <A HREF="x-pwd-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PWD^%ZISH, Usage: Get Current Directory, Category: Host Files" 
+				 CLASS="navbarlink">$$PWD^%ZISH</A>
+			  <BR>
+              Get Current Directory
+            </li>
+			<li>
+		      <A HREF="x-status-zish.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$STATUS^%ZISH, Usage: Return End-of-File Status, Category: Host Files" 
+				 CLASS="navbarlink">$$STATUS^%ZISH</A>
+			  <BR>
+              Return End-of-File Status
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 		  
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="institution_file">Institution File</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-active-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACTIVE^XUAF4, Usage: Institution Active Facility (True/False), Category: Institution File" 
+				 CLASS="navbarlink">$$ACTIVE^XUAF4</A>
+			  <BR>
+              Inst. Active Facility (True/False)
+            </li>
+			<li>
+			  <A HREF="cdsys-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CDSYS^XUAF4, Usage: Coding System Name, Category: Institution File" 
+				 CLASS="navbarlink">CDSYS^XUAF4</A>
+			  <BR>
+              Coding System Name
+            </li>
+			<li>
+			  <A HREF="children-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CHILDREN^XUAF4, Usage: List of Child Institutions for a Parent, Category: Institution File" 
+				 CLASS="navbarlink">CHILDREN^XUAF4</A>
+			  <BR>
+              List of Child Inst. for a Parent
+            </li>
+		    <li>
+			  <A HREF="x-cirn-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CIRN^XUAF4, Usage: Institution CIRN-enabled Field Value, Category: Institution File" 
+				 CLASS="navbarlink">$$CIRN^XUAF4</A>
+			  <BR>
+              Inst. CIRN-enabled Field Value
+            </li>
+			<li>
+			  <A HREF="f4-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: F4^XUAF4, Usage: Institution Data for a Station Number, Category: Institution File" 
+				 CLASS="navbarlink">F4^XUAF4</A>
+			  <BR>
+              Inst. Data for a Station Number
+            </li>
+		    <li>
+			  <A HREF="x-id-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ID^XUAF4, Usage: Institution Identifier, Category: Institution File" 
+				 CLASS="navbarlink">$$ID^XUAF4</A>
+			  <BR>
+              Institution Identifier
+            </li>
+			<li>
+			  <A HREF="x-idx-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$IDX^XUAF4, Usage: Institution IEN (Using Coding System & ID), Category: Institution File" 
+				 CLASS="navbarlink">$$IDX^XUAF4</A>
+			  <BR>
+              Inst. IEN (Using Coding System &amp; ID)
+            </li>
+			<li>
+			  <A HREF="x-ien-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$IEN^XUAF4, Usage: IEN for Station Number, Category: Institution File" 
+				 CLASS="navbarlink">$$IEN^XUAF4</A>
+			  <BR>
+              IEN for Station Number
+            </li>
+			<li>
+			  <A HREF="x-legacy-xuaf4.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$LEGACY^XUAF4, Usage: Institution Realigned/Legacy (True/False), Category: Institution File" 
+				 CLASS="navbarlink">$$LEGACY^XUAF4</A>
+			  <BR>
+              Inst. Realigned/Legacy (True/False)
+            </li>
+			<li>
+			  <A HREF="x-lkup-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LKUP^XUAF4, Usage: Institution Lookup, Category: Institution File" 
+				 CLASS="navbarlink">$$LKUP^XUAF4</A>
+			  <BR>
+              Institution Lookup
+            </li>
+		    <li>
+			  <A HREF="lookup-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: LOOKUP^XUAF4, Usage: Look Up Institution Identifier, Category: Institution File" 
+				 CLASS="navbarlink">LOOKUP^XUAF4</A>
+			  <BR>
+              Look Up Institution Identifier
+            </li>
+		    <li>
+			  <A HREF="x-madd-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$MADD^XUAF4, Usage: Institution Mailing Address, Category: Institution File" 
+				 CLASS="navbarlink">$$MADD^XUAF4</A>
+			  <BR>
+              Institution Mailing Address
+            </li>
+		    <li>
+			  <A HREF="x-name-xuaf4.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$NAME^XUAF4, Usage: Institution Official Name, Category: Institution File" 
+			     CLASS="navbarlink">$$NAME^XUAF4</A>
+			  <BR>
+              Institution Official Name
+            </li>
+			<li>
+			  <A HREF="x-nnt-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NNT^XUAF4, Usage: Institution Station Name, Number, and Type, Category: Institution File" 
+				 CLASS="navbarlink">$$NNT^XUAF4</A>
+			  <BR>
+              Inst. Station Name, Number, &amp; Type
+            </li>
+			<li>
+			  <A HREF="x-ns-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NS^XUAF4, Usage: Institution Name and Station Number, Category: Institution File" 
+				 CLASS="navbarlink">$$NS^XUAF4</A>
+			  <BR>
+              Inst. Name &amp; Station Number
+            </li>
+			<li>
+			  <A HREF="x-o99-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$O99^XUAF4, Usage: IEN of Merged Station Number, Category: Institution File" 
+				 CLASS="navbarlink">$$O99^XUAF4</A>
+			  <BR>
+              IEN of Merged Station Number
+            </li>
+			<li>
+			  <A HREF="x-padd-xuaf4.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$PADD^XUAF4, Usage: Institution Physical Address, Category: Institution File" 
+				 CLASS="navbarlink">$$PADD^XUAF4</A>
+			  <BR>
+              Institution Physical Address
+            </li>
+			<li>
+			  <A HREF="parent-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: PARENT^XUAF4, Usage: Parent Institution Lookup, Category: Institution File" 
+				 CLASS="navbarlink">PARENT^XUAF4</A>
+			  <BR>
+              Parent Institution Lookup
+            </li>
+			<li>
+			  <A HREF="x-prnt-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PRNT^XUAF4, Usage: Institution Parent Facility, Category: Institution File" 
+				 CLASS="navbarlink">$$PRNT^XUAF4</A>
+			  <BR>
+              Institution Parent Facility
+            </li>
+			<li>
+			  <A HREF="x-rf-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$RF^XUAF4, Usage: Realigned From Institution Information, Category: Institution File" 
+				 CLASS="navbarlink">$$RF^XUAF4</A>
+			  <BR>
+              Realigned From Inst. Info.
+            </li>
+			<li>
+			  <A HREF="x-rt-xuaf4.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$RT^XUAF4, Usage: Realigned To Institution Information, Category: Institution File" 
+			     CLASS="navbarlink">$$RT^XUAF4</A>
+			  <BR>
+              Realigned To Inst. Info.
+            </li>
+		    <li>
+			  <A HREF="sibling-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SIBLING^XUAF4, Usage: Sibling Institution Lookup, Category: Institution File" 
+				 CLASS="navbarlink">SIBLING^XUAF4</A>
+			  <BR>
+              Sibling Institution Lookup
+            </li>
+			<li>
+			  <A HREF="x-sta-xuaf4.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$STA^XUAF4, Usage: Station Number for IEN, Category: Institution File" 
+				 CLASS="navbarlink">$$STA^XUAF4</A>
+			  <BR>
+              Station Number for IEN
+            </li>
+			<li>
+			  <A HREF="x-tf-xuaf4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TF^XUAF4, Usage: Treating Facility (True/False), Category: Institution File" 
+				 CLASS="navbarlink">$$TF^XUAF4</A>
+			  <BR>
+              Treating Facility (True/False)
+            </li>
+			<li>
+			  <A HREF="x-what-xuaf4.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$WHAT^XUAF4, Usage: Institution Single Field Information, Category: Institution File" 
+			     CLASS="navbarlink">$$WHAT^XUAF4</A>
+			  <BR>
+              Inst. Single Field Info.
+            </li>
+			<li>
+			  <A HREF="x-ien-xumf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$IEN^XUMF, Usage: Institution IEN (Using IFN, Coding System, & ID), Category: Institution File" 
+				 CLASS="navbarlink">$$IEN^XUMF</A>
+			  <BR>
+              Inst. IEN (Using IFN, Coding System, &amp; ID)
+            </li>
+			<li>
+			  <A HREF="main-xumfi.html"
+				 TARGET="display"
+				 TITLE="Kernel API: MAIN^XUMFI, Usage: HL7 Master File Message Builder, Category: Institution File" 
+			     CLASS="navbarlink">MAIN^XUMFI</A>
+			  <BR>
+              HL7 Master File Message Builder
+            </li>
+			<li>
+			  <A HREF="main-xumfp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: MAIN^XUMFP, Usage: Master File Parameters, Category: Institution File" 
+				 CLASS="navbarlink">MAIN^XUMFP</A>
+			  <BR>
+              Master File Parameters
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+	  <tr> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+		  <H5><A NAME="kids">KIDS</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="update-xpdid.html"
+				 TARGET="display"
+				 TITLE="Kernel API: UPDATE^XPDID, Usage: Update KIDS Installation Progress Bar, Category: KIDS" 
+				 CLASS="navbarlink">UPDATE^XPDID</A>
+			  <BR>
+              Update KIDS Install Progress Bar
+            </li>
+			<li>
+			  <A HREF="en-xpdij.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN^XPDIJ, Usage: Task Off KIDS Install, Category: KIDS" 
+			     CLASS="navbarlink">EN^XPDIJ</A>
+			  <BR>
+              Task Off KIDS Install
+            </li>
+			<li>
+			  <A HREF="x-pkgpat-xpdip.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PKGPAT^XPDIP, Usage: Update Patch History, Category: KIDS" 
+				 CLASS="navbarlink">$$PKGPAT^XPDIP</A>
+			  <BR>
+              Update Patch History
+            </li>
+			<li>
+			  <A HREF="bmes-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: BMES^XPDUTL, Usage: Output Message with Blank Line, Category: KIDS" 
+				 CLASS="navbarlink">BMES^XPDUTL</A>
+		      <BR>
+              Output Message with Blank Line
+            </li>
+			<li>
+			  <A HREF="x-comcp-xpdutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$COMCP^XPDUTL, Usage: Complete Checkpoint, Category: KIDS" 
+				 CLASS="navbarlink">$$COMCP^XPDUTL</A>
+			  <BR>
+              Complete Checkpoint
+            </li>
+			<li>
+			  <A HREF="x-curcp-xpdutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$CURCP^XPDUTL, Usage: Get Current Checkpoint Name/IEN, Category: KIDS" 
+			     CLASS="navbarlink">$$CURCP^XPDUTL</A>
+			  <BR>
+              Get Current Checkpoint Name/IEN
+            </li>
+			<li>
+			  <A HREF="x-instaldt-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$INSTALDT^XPDUTL, Usage: Return All Install Dates/Times, Category: KIDS" 
+				 CLASS="navbarlink">$$INSTALDT^XPDUTL</A>
+			  <BR>
+              Return All Install Dates/Times
+            </li>
+			<li>
+		      <A HREF="x-last-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LAST^XPDUTL, Usage: Last Software Patch, Category: KIDS" 
+				 CLASS="navbarlink">$$LAST^XPDUTL</A>
+			  <BR>
+              Last Software Patch
+            </li>
+			<li>
+			  <A HREF="mes-xpdutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: MES^XPDUTL, Usage: Output a Message, Category: KIDS" 
+			     CLASS="navbarlink">MES^XPDUTL</A>
+			  <BR>
+              Output a Message
+            </li>
+			<li>
+			  <A HREF="x-newcp-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NEWCP^XPDUTL, Usage: Create Checkpoint, Category: KIDS" 
+				 CLASS="navbarlink">$$NEWCP^XPDUTL</A>
+			  <BR>
+              Create Checkpoint
+            </li>
+			<li>
+			  <A HREF="x-optde-xpdutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$OPTDE^XPDUTL, Usage: Disable/Enable an Option, Category: KIDS" 
+			     CLASS="navbarlink">$$OPTDE^XPDUTL</A>
+			  <BR>
+              Disable/Enable an Option
+            </li>
+			<li>
+			  <A HREF="x-parcp-xpdutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$PARCP^XPDUTL, Usage: Get Checkpoint Parameter, Category: KIDS" 
+				 CLASS="navbarlink">$$PARCP^XPDUTL</A>
+			  <BR>
+              Get Checkpoint Parameter
+            </li>
+			<li>
+			  <A HREF="x-patch-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PATCH^XPDUTL, Usage: Verify Patch Installation, Category: KIDS" 
+				 CLASS="navbarlink">$$PATCH^XPDUTL</A>
+			  <BR>
+              Verify Patch Installation
+            </li>
+			<li>
+			  <A HREF="x-pkg-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PKG^XPDUTL, Usage: Parse Software Name from Build Name, Category: KIDS" 
+				 CLASS="navbarlink">$$PKG^XPDUTL</A>
+			  <BR>
+              Parse Software Name from Build Name
+            </li>
+			<li>
+			  <A HREF="x-prode-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PRODE^XPDUTL, Usage: Disable/Enable a Protocol, Category: KIDS" 
+				 CLASS="navbarlink">$$PRODE^XPDUTL</A>
+			  <BR>
+              Disable/Enable a Protocol
+            </li>
+			<li>
+			  <A HREF="x-rtnup-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$RTNUP^XPDUTL, Usage: Update Routine Action, Category: KIDS" 
+				 CLASS="navbarlink">$$RTNUP^XPDUTL</A>
+			  <BR>
+              Update Routine Action
+            </li>
+			<li>
+			  <A HREF="x-upcp-xpdutl.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$UPCP^XPDUTL, Usage: Update Checkpoint, Category: KIDS" 
+			     CLASS="navbarlink">$$UPCP^XPDUTL</A>
+			  <BR>
+              Update Checkpoint
+            </li>
+			<li>
+			  <A HREF="x-ver-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VER^XPDUTL, Usage: Parse Version from Build Name, Category: KIDS" 
+				 CLASS="navbarlink">$$VER^XPDUTL</A>
+			  <BR>
+              Parse Version from Build Name
+            </li>
+			<li>
+			  <A HREF="x-vercp-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VERCP^XPDUTL, Usage: Verify Checkpoint, Category: KIDS" 
+				 CLASS="navbarlink">$$VERCP^XPDUTL</A>
+			  <BR>
+              Verify Checkpoint
+            </li>
+			<li>
+			  <A HREF="x-version-xpdutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VERSION^XPDUTL, Usage: Package File Current Version, Category: KIDS"
+				 CLASS="navbarlink">$$VERSION^XPDUTL</A>
+			  <BR>
+              Package File Current Version
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <tr>
+		<TD>
+		  <HR>
+		</TD> 
+	  </tr>
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="menu_manager">Menu Manager</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-add-xpdmenu.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ADD^XPDMENU, Usage: Add Option to Menu, Category: Menu Manager" 
+				 CLASS="navbarlink">$$ADD^XPDMENU</A>
+			  <BR>
+              Add Option to Menu
+            </li>
+			<li>
+			  <A HREF="x-delete-xpdmenu.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DELETE^XPDMENU, Usage: Delete Menu Item, Category: Menu Manager" 
+				 CLASS="navbarlink">$$DELETE^XPDMENU</A>
+			  <BR>
+              Delete Menu Item
+            </li>
+			<li>
+			  <A HREF="x-lkopt-xpdmenu.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$LKOPT^XPDMENU, Usage: Look Up Option IEN, Category: Menu Manager" 
+				 CLASS="navbarlink">$$LKOPT^XPDMENU</A>
+			  <BR>
+              Look Up Option IEN
+            </li>
+			<li>
+			  <A HREF="out-xpdmenu.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OUT^XPDMENU, Usage: Edit Option's Out of Order Message, Category: Menu Manager" 
+				 CLASS="navbarlink">OUT^XPDMENU</A>
+			  <BR>
+              Edit Option's Out of Order Message
+            </li>
+			<li>
+			  <A HREF="rename-xpdmenu.html"
+				 TARGET="display"
+				 TITLE="Kernel API: RENAME^XPDMENU, Usage: Rename Option, Category: Menu Manager" 
+				 CLASS="navbarlink">RENAME^XPDMENU</A>
+			  <BR>
+              Rename Option
+            </li>
+			<li>
+			  <A HREF="x-type-xpdmenu.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TYPE^XPDMENU, Usage: Get Option Type, Category: Menu Manager" 
+				 CLASS="navbarlink">$$TYPE^XPDMENU</A>
+			  <BR>
+              Get Option Type
+            </li>
+			<li>
+			  <A HREF="x-add-xpdprot.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ADD^XPDPROT, Usage: Add Child Protocol to Parent Protocol, Category: Menu Manager" 
+			     CLASS="navbarlink">$$ADD^XPDPROT</A>
+			  <BR>
+              Add Child Protocol to Parent Protocol
+            </li>
+			<li>
+			  <A HREF="x-delete-xpdprot.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DELETE^XPDPROT, Usage: Delete Child Protocol from Parent Protocol, Category: Menu Manager" 
+				 CLASS="navbarlink">$$DELETE^XPDPROT</A>
+			  <BR>
+              Delete Child Protocol from Parent Protocol
+            </li>
+			<li>
+			  <A HREF="find-xpdprot.html"
+				 TARGET="display"
+				 TITLE="Kernel API: FIND^XPDPROT, Usage: Find All Parents for a Protocol, Category: Menu Manager" 
+				 CLASS="navbarlink">FIND^XPDPROT</A>
+			  <BR>
+              Find All Parents for a Protocol
+            </li>
+			<li>
+			  <A HREF="x-lkprot-xpdprot.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LKPROT^XPDPROT, Usage: Look Up Protocol IEN, Category: Menu Manager" 
+				 CLASS="navbarlink">$$LKPROT^XPDPROT</A>
+			  <BR>
+              Look Up Protocol IEN
+            </li>
+			<li>
+			  <A HREF="out-xpdprot.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OUT^XPDPROT, Usage: Edit Protocol's Out of Order Message, Category: Menu Manager" 
+				 CLASS="navbarlink">OUT^XPDPROT</A>
+			  <BR>
+              Edit Protocol's Out of Order Message
+            </li>
+			<li>
+			  <A HREF="rename-xpdprot.html"
+				 TARGET="display"
+				 TITLE="Kernel API: RENAME^XPDPROT, Usage: Rename Protocol, Category: Menu Manager" 
+				 CLASS="navbarlink">RENAME^XPDPROT</A>
+			  <BR>
+              Rename Protocol
+            </li>
+			<li>
+			  <A HREF="x-type-xpdprot.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TYPE^XPDPROT, Usage: Get Protocol Type, Category: Menu Manager" 
+				 CLASS="navbarlink">$$TYPE^XPDPROT</A>
+			  <BR>
+              Get Protocol Type
+            </li>
+			<li>
+			  <A HREF="next-xq92.html"
+				 TARGET="display"
+				 TITLE="Kernel API: NEXT^XQ92, Usage: Restricted Times Check, Category: Menu Manager" 
+				 CLASS="navbarlink">NEXT^XQ92</A>
+			  <BR>
+              Restricted Times Check
+            </li>
+			<li>
+		      <A HREF="x-access-xqchk.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACCESS^XQCHK, Usage: User Option Access Test, Category: Menu Manager" 
+				 CLASS="navbarlink">$$ACCESS^XQCHK</A>
+			  <BR>
+              User Option Access Test
+            </li>
+			<li>
+			  <A HREF="op-xqchk.html"
+				 TARGET="display"
+			     TITLE="Kernel API: OP^XQCHK, Usage: Current Option Check, Category: Menu Manager" 
+				 CLASS="navbarlink">OP^XQCHK</A>
+			  <BR>
+              Current Option Check
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD> 
+		  <H5><A NAME="miscellaneous">Miscellaneous</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="exit-xpdid.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EXIT^XPDID, Usage: Progress Bar Emulator: Restore Screen, Clean Up Variables, & Display Text, Category: Miscellaneous" 
+				 CLASS="navbarlink">EXIT^XPDID</A>
+			  <BR>
+              Progress Bar Emulator:
+              Restore Screen, Clean Up Variables, &amp; Disp. Text
+            </li>
+			<li>
+			  <A HREF="init-xpdid.html"
+				 TARGET="display"
+				 TITLE="Kernel API: INIT^XPDID, Usage: Progress Bar Emulator: Initialize Device & Draw Box Borders, Category: Miscellaneous" 
+				 CLASS="navbarlink">INIT^XPDID</A>
+			  <BR>
+              Progress Bar Emulator: Initialize Device &amp; Draw Box Borders
+            </li>
+			<li>
+			  <A HREF="title-xpdid.html"
+				 TARGET="display"
+			     TITLE="Kernel API: TITLE^XPDID, Usage: Progress Bar Emulator: Display Title Text, Category: Miscellaneous" 
+				 CLASS="navbarlink">TITLE^XPDID</A>
+			  <BR>
+              Progress Bar Emulator: Display Title Text
+            </li>
+		    <li>
+			  <A HREF="xqdate.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^XQDATE (Obsolete), Usage: Convert $H to VA FileMan Format (Obsolete), Category: Miscellaneous" 
+				 CLASS="navbarlink">^XQDATE</A>
+			  <BR>
+              Convert $H to VA FileMan Format (Obsolete)
+            </li>
+			<li>
+			  <A HREF="x-en-xua4a71.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$EN^XUA4A71, Usage: Convert String to Soundex, Category: Miscellaneous"
+				 CLASS="navbarlink">$$EN^XUA4A71</A>
+			  <BR>
+              Convert String to Soundex
+            </li>
+			<li>
+			  <A HREF="xuworkdy.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^XUWORKDY (Obsolete), Usage: Workday Calculation (Obsolete), Category: Miscellaneous" 
+			     CLASS="navbarlink">^XUWORKDY</A>
+			  <BR>
+              Workday Calculation (Obsolete)
+            </li>
+			<li>
+		      <A HREF="x-en-xuworkdy.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$EN^XUWORKDY, Usage: Number of Workdays Calculation, Category: Miscellaneous" 
+				 CLASS="navbarlink">$$EN^XUWORKDY</A>
+			  <BR>
+              Number of Workdays Calculation
+            </li>
+			<li>
+		      <A HREF="x-workday-xuworkdy.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$WORKDAY^XUWORKDY, Usage: Workday Validation, Category: Miscellaneous" 
+				 CLASS="navbarlink">$$WORKDAY^XUWORKDY</A>
+			  <BR>
+              Workday Validation
+            </li>
+			<li>
+			  <A HREF="x-workplus-xuworkdy.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$WORKPLUS^XUWORKDY, Usage: Workday Offset Calculation, Category: Miscellaneous" 
+				 CLASS="navbarlink">$$WORKPLUS^XUWORKDY</A>
+			  <BR>
+              Workday Offset Calculation
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+		  <H5><A NAME="name_standardization">Name Standardization</A></H5>
+	      <ul>
+		    <li>
+			  <A HREF="x-bldname-xlfname.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$BLDNAME^XLFNAME, Usage: Build Name from Component Parts, Category: Name Standardization"
+			     CLASS="navbarlink">$$BLDNAME^XLFNAME</A>
+		      <BR>
+              Build Name from Component Parts
+            </li>
+			<li>
+			  <A HREF="x-cleanc-xlfname.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CLEANC^XLFNAME, Usage: Name Component Standardization Routine, Category: Name Standardization"
+				 CLASS="navbarlink">$$CLEANC^XLFNAME</A>
+			  <BR>
+              Name Component Std. Routine
+            </li>
+			<li>
+			  <A HREF="x-fmname-xlfname.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$FMNAME^XLFNAME, Usage: Convert HL7 Formatted Name to Name, Category: Name Standardization"
+			     CLASS="navbarlink">$$FMNAME^XLFNAME</A>
+			  <BR>
+              Conv. HL7 Formatted Name to Name
+            </li>
+			<li>
+		      <A HREF="x-hlname-xlfname.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$HLNAME^XLFNAME, Usage: Convert Name to HL7 Formatted Name, Category: Name Standardization"
+			     CLASS="navbarlink">$$HLNAME^XLFNAME</A>
+			  <BR>
+              Conv. Name to HL7 Formatted Name
+            </li>
+			<li>
+			  <A HREF="namecomp-xlfname.html"
+				 TARGET="display"
+				 TITLE="Kernel API: NAMECOMP^XLFNAME, Usage: Component Parts from Standard Name, Category: Name Standardization"
+				 CLASS="navbarlink">NAMECOMP^XLFNAME</A>
+			  <BR>
+              Component Parts from Std. Name
+            </li>
+			<li>
+			  <A HREF="x-namefmt-xlfname.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NAMEFMT^XLFNAME, Usage: Formatted Name from Name Components, Category: Name Standardization"
+				 CLASS="navbarlink">$$NAMEFMT^XLFNAME</A>
+			  <BR>
+              Formatted Name from Name Components
+            </li>
+		    <li>
+			  <A HREF="stdname-xlfname.html"
+				 TARGET="display"
+				 TITLE="Kernel API: STDNAME^XLFNAME, Usage: Name Standardization Routine, Category: Name Standardization" 
+				 CLASS="navbarlink">STDNAME^XLFNAME</A>
+			  <BR>
+              Name Standardization Routine
+            </li>
+			<li>
+		      <A HREF="delcomp-xlfname2.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DELCOMP^XLFNAME2, Usage: Delete Name Components Entry, Category: Name Standardization"
+				 CLASS="navbarlink">DELCOMP^XLFNAME2</A>
+			  <BR>
+              Delete Name Components Entry
+            </li>
+			<li>
+			  <A HREF="updcomp-xlfname2.html"
+				 TARGET="display"
+				 TITLE="Kernel API: UPDCOMP^XLFNAME2, Usage: Update Name Components Entry, Category: Name Standardization"
+				 CLASS="navbarlink">UPDCOMP^XLFNAME2</A>
+			  <BR>
+              Update Name Components Entry
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR>
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR>
+      <TR>
+		<TD> 
+		  <H5><A NAME="npi">National Provider Identifier</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-chkdgt-xusnpi.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CHKDGT^XUSNPI, Usage: Validate NPI Format, Category: National Provider Identifier (NPI)" 
+				 CLASS="navbarlink">$$CHKDGT^XUSNPI</A>
+			  <BR>
+              Validate NPI Format
+            </li>
+			<li>
+			  <A HREF="x-npi-xusnpi.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NPI^XUSNPI, Usage: Get NPI from Files #200 or #4, Category: National Provider Identifier (NPI)" 
+				 CLASS="navbarlink">$$NPI^XUSNPI</A>
+			  <BR>
+              Get NPI from Files #200 or #4
+            </li>
+			<li>
+			  <A HREF="x-qi-xusnpi.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$QI^XUSNPI, Usage: Get Provider Entities, Category: National Provider Identifier (NPI)" 
+				 CLASS="navbarlink">$$QI^XUSNPI</A>
+			  <BR>
+              Get Provider Entities
+            </li>
+			<li>
+			  <A HREF="x-taxind-xustax.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TAXIND^XUSTAX, Usage: Get Taxonomy Code from File #200, Category: National Provider Identifier (NPI)" 
+				 CLASS="navbarlink">$$TAXIND^XUSTAX</A>
+		      <BR>
+              Get Taxonomy Code from File #200
+            </li>
+			<li>
+			  <A HREF="x-taxorg-xustax.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TAXORG^XUSTAX, Usage: Get Taxonomy Code from File #4, Category: National Provider Identifier (NPI)" 
+				 CLASS="navbarlink">$$TAXORG^XUSTAX</A>
+			  <BR>
+              Get Taxonomy Code from File #4
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="os_interface">OS Interface</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-cputime-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CPUTIME^XLFSHAN, Usage: Return System and User CPU Time, Category: Operating System Interface" 
+				 CLASS="navbarlink">$$CPUTIME^XLFSHAN</A>
+			  <BR>
+              Return System and User CPU Time
+            </li>
+		    <li>
+			  <A HREF="x-etimems-xlfshan.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ETIMEMS^XLFSHAN, Usage: Return System and User CPU Time, Category: Operating System Interface" 
+				 CLASS="navbarlink">$$ETIMEMS^XLFSHAN</A>
+			  <BR>
+              Return System and User CPU Time
+            </li>
+			<li>
+			  <A HREF="zosf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^%ZOSF, Usage: Operating System-dependent Logic Global, Category: Operating System Interface" 
+				 CLASS="navbarlink">^%ZOSF</A>
+			  <BR>
+              Operating System-dependent Logic Global
+            </li>
+			<li>
+			  <A HREF="x-actj-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACTJ^%ZOSV, Usage: Number of Active Jobs, Category: Operating System Interface" 
+				 CLASS="navbarlink">$$ACTJ^%ZOSV</A>
+			  <BR>
+              Number of Active Jobs
+            </li>
+			<li>
+		      <A HREF="x-avj-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$AVJ^%ZOSV, Usage: Number of Available Jobs, Category: Operating System Interface" 
+				 CLASS="navbarlink">$$AVJ^%ZOSV</A>
+			  <BR>
+              Number of Available Jobs
+            </li>
+			<li>
+			  <A HREF="dolro-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DOLRO^%ZOSV, Usage: Display Local Variables, Category: Operating System Interface" 
+				 CLASS="navbarlink">DOLRO^%ZOSV</A>
+			  <BR>
+              Display Local Variables
+            </li>
+			<li>
+			  <A HREF="getenv-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: GETENV^%ZOSV, Usage: Current System Information, Category: Operating System Interface" 
+				 CLASS="navbarlink">GETENV^%ZOSV</A>
+			  <BR>
+              Current System Info.
+            </li>
+			<li>
+			  <A HREF="x-lgr-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LGR^%ZOSV, Usage: Last Global Reference, Category: Operating System Interface" 
+				 CLASS="navbarlink">$$LGR^%ZOSV</A>
+			  <BR>
+              Last Global Reference
+            </li>
+			<li>
+			  <A HREF="logrsrc-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: LOGRSRC^%ZOSV, Usage: , Category: Operating System Interface" 
+				 CLASS="navbarlink">LOGRSRC^%ZOSV</A>
+			  <BR>
+              Record Resource Usage (RUM)
+            </li>
+			<li>
+			  <A HREF="x-os-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$OS^%ZOSV, Usage: Get Operating System Information, Category: Operating System Interface" 
+				 CLASS="navbarlink">$$OS^%ZOSV</A>
+			  <BR>
+              Get Operating System Info.
+            </li>
+			<li>
+			  <A HREF="setenv-zosv.html"
+				 TARGET="display"
+			     TITLE="Kernel API: SETENV^%ZOSV, Usage: Set VMS Process Name (Caché/OpenVMS Systems), Category: Operating System Interface" 
+				 CLASS="navbarlink">SETENV^%ZOSV</A>
+			  <BR>
+              Set VMS Process Name (Caché/OpenVMS)
+            </li>
+			<li>
+			  <A HREF="setnm-zosv.html"
+				 TARGET="display"
+			     TITLE="Kernel API: SETNM^%ZOSV, Usage: Set VMS Process Name: Parameter Passing Version (Caché/OpenVMS Systems), Category: Operating System Interface" 
+				 CLASS="navbarlink">SETNM^%ZOSV</A>
+			  <BR>
+              Set VMS Process Name: Parameter Passing (Caché/OpenVMS)
+            </li>
+			<li>
+			  <A HREF="t0-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: T0^%ZOSV (Obsolete), Usage: Start RT Measure (Obsolete), Category: Operating System Interface" 
+				 CLASS="navbarlink">T0^%ZOSV</A>
+			  <BR>
+              Start RT Measure (Obsolete)
+            </li>
+			<li>
+			  <A HREF="t1-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: T1^%ZOSV (Obsolete), Usage: Stop RT Measure (Obsolete), Category: Operating System Interface" 
+				 CLASS="navbarlink">T1^%ZOSV</A>
+			  <BR>
+              Stop RT Measure (Obsolete)
+            </li>
+			<li>
+			  <A HREF="x-version-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VERSION^%ZOSV, Usage: Get OS Version Number or Name, Category: Operating System Interface" 
+				 CLASS="navbarlink">$$VERSION^%ZOSV</A>
+			  <BR>
+              Get OS Version Number or Name
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+      <tr>
+		<TD> 
+		  <H5><A NAME="rpc_broker">RPC Broker</A></H5>
+		  <ul>
+		    <li>
+		      <A HREF="x-broker-xwblib.html"
+			     TARGET="display"
+				 TITLE="RPC Broker API: $$BROKER^XWBLIB, Usage: Test for Broker Context, Category: RPC Broker" 
+				 CLASS="navbarlink">$$BROKER^XWBLIB</A>
+			  <BR>
+              Test for Broker Context
+            </li>
+			<li>
+			  <A HREF="x-rtrnfmt-xwblib.html"
+				 TARGET="display"
+			     TITLE="RPC Broker API: $$RTRNFMT^XWBLIB, Usage: Change RPC Return Type, Category: RPC Broker" 
+				 CLASS="navbarlink">$$RTRNFMT^XWBLIB</A>
+			  <BR>
+              Change RPC Return Type
+            </li>
+			<li>
+			  <A HREF="chkprmit-xwbsec.html"
+				 TARGET="display"
+				 TITLE="RPC Broker API: CHKPRMIT^XWBSEC, Usage: Check Permissions, Category: Signon/Security"
+				 CLASS="navbarlink">CHKPRMIT^XWBSEC</A>
+			  <BR>
+              Check Permissions
+            </li>
+			<li>
+		      <A HREF="crcontxt-xwbsec.html"
+				 TARGET="display"
+				 TITLE="RPC Broker API: CRCONTXT^XWBSEC, Usage: Create Context, Category: Signon/Security" 
+				 CLASS="navbarlink">CRCONTXT^XWBSEC</A>
+			  <BR>
+              Create Context
+            </li>
+		    <li>
+			  <A HREF="set-xwbsec.html"
+				 TARGET="display"
+				 TITLE="RPC Broker API: SET^XWBSEC, Usage: Set the State Variable, Category: Signon/Security" 
+				 CLASS="navbarlink">SET^XWBSEC</A>
+			  <BR>
+              Set the State Variable
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </tr>
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="security_keys">Security Keys</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="del-xpdkey.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DEL^XPDKEY, Usage: Delete Security Key, Category: Security Keys" 
+				 CLASS="navbarlink">DEL^XPDKEY</A>
+			  <BR>
+              Delete Security Key
+            </li>
+			<li>
+			  <A HREF="x-lkup-xpdkey.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LKUP^XPDKEY, Usage: Look Up Security Key Value, Category: Security Keys" 
+				 CLASS="navbarlink">$$LKUP^XPDKEY</A>
+			  <BR>
+              Look Up Security Key Value
+            </li>
+			<li>
+			  <A HREF="x-rename-xpdkey.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$RENAME^XPDKEY, Usage: Rename Security Key, Category: Security Keys" 
+				 CLASS="navbarlink">$$RENAME^XPDKEY</A>
+			  <BR>
+              Rename Security Key
+            </li>
+			<li>
+			  <A HREF="ownskey-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OWNSKEY^XUSRB, Usage: Verify Security Keys Assigned to a User, Category: Security Keys" 
+				 CLASS="navbarlink">OWNSKEY^XUSRB</A>
+			  <BR>
+              Verify Security Keys Assigned to a User
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="signon_security">Signon/Security</A></H5>
+	      <ul>
+		    <li>
+			  <A HREF="x-get-xuparam.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$GET^XUPARAM, Usage: Get Parameters, Category: Signon/Security" 
+				 CLASS="navbarlink">$$GET^XUPARAM</A>
+			  <BR>
+              Get Parameters
+            </li>
+			<li>
+			  <A HREF="x-ksp-xuparam.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$KSP^XUPARAM, Usage: Return Kernel Site Parameter, Category: Signon/Security" 
+				 CLASS="navbarlink">$$KSP^XUPARAM</A>
+			  <BR>
+              Return Kernel Site Parameter
+            </li>
+			<li>
+			  <A HREF="x-lkup-xuparam.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LKUP^XUPARAM, Usage: Look Up Parameters, Category: Signon/Security" 
+				 CLASS="navbarlink">$$LKUP^XUPARAM</A>
+			  <BR>
+              Look Up Parameters
+            </li>
+			<li>
+			  <A HREF="set-xuparam.html"
+				 TARGET="display"
+			     TITLE="Kernel API: SET^XUPARAM, Usage: Set Parameters, Category: Signon/Security" 
+			     CLASS="navbarlink">SET^XUPARAM</A>
+			  <BR>
+              Set Parameters
+            </li>
+			<li>
+			  <A HREF="x-prod-xuprod.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$PROD^XUPROD, Usage: Production Vs. Test Account, Category: Signon/Security" 
+				 CLASS="navbarlink">$$PROD^XUPROD</A>
+			  <BR>
+              Production Vs. Test Acct.
+            </li>
+			<li>
+			  <A HREF="h-xus.html"
+				 TARGET="display"
+				 TITLE="Kernel API: H^XUS, Usage: Programmer Halt, Category: Signon/Security" 
+				 CLASS="navbarlink">H^XUS</A>
+			  <BR>
+              Programmer Halt
+            </li>
+			<li>
+			  <A HREF="set-xus1a.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SET^XUS1A, Usage: Output Message During Signon, Category: Signon/Security" 
+				 CLASS="navbarlink">SET^XUS1A</A>
+			  <BR>
+              Output Message During Signon
+            </li>
+			<li>
+			  <A HREF="avhlptxt-xus2.html"
+				 TARGET="display"
+				 TITLE="Kernel API: AVHLPTXT^XUS2, Usage: Get Help Text, Category: Signon/Security" 
+				 CLASS="navbarlink">AVHLPTXT^XUS2</A>
+			  <BR>
+              Get Help Text
+            </li>
+			<li>
+			  <A HREF="x-create-xusap.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CREATE^XUSAP, Usage: Create Application Proxy User, Category: Signon/Security" 
+				 CLASS="navbarlink">$$CREATE^XUSAP</A>
+			  <BR>
+              Create Application Proxy User
+            </li>
+			<li>
+			  <A HREF="kill-xusclean.html"
+				 TARGET="display"
+				 TITLE="Kernel API: KILL^XUSCLEAN, Usage: Clear All but Kernel Variables, Category: Signon/Security" 
+				 CLASS="navbarlink">KILL^XUSCLEAN</A>
+			  <BR>
+              Clear All but Kernel Variables
+            </li>
+			<li>
+			  <A HREF="x-add-xusernew.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ADD^XUSERNEW, Usage: Add New User, Category: Signon/Security" 
+				 CLASS="navbarlink">$$ADD^XUSERNEW</A>
+			  <BR>
+              Add New User
+            </li>
+			<li>
+			  <A HREF="x-checkav-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CHECKAV^XUSRB, Usage: Check Access/Verify Codes, Category: Signon/Security" 
+				 CLASS="navbarlink">$$CHECKAV^XUSRB</A>
+			  <BR>
+              Check Access/Verify Codes
+            </li>
+			<li>
+		      <A HREF="cvc-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CVC^XUSRB, Usage: VistALink-Change User's Verify Code, Category: Signon/Security" 
+			     CLASS="navbarlink">CVC^XUSRB</A>
+			  <BR>
+              VistALink-Change User's Verify Code
+            </li>
+			<li>
+			  <A HREF="x-inhibit-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$INHIBIT^XUSRB, Usage: Check if Logons Inhibited, Category: Signon/Security" 
+				 CLASS="navbarlink">$$INHIBIT^XUSRB</A>
+			  <BR>
+              Check if Logons Inhibited
+            </li>
+			<li>
+			  <A HREF="intro-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: INTRO^XUSRB, Usage: VistALink-Get Introductory Text, Category: Signon/Security" 
+				 CLASS="navbarlink">INTRO^XUSRB</A>
+			  <BR>
+              VistALink-Get Introductory Text
+            </li>
+			<li>
+			  <A HREF="logout-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: LOGOUT^XUSRB, Usage: VistALink-Log Out User from M, Category: Signon/Security" 
+				 CLASS="navbarlink">LOGOUT^XUSRB</A>
+		      <BR>
+              VistALink-Log Out User from M
+            </li>
+			<li>
+			  <A HREF="setup-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SETUP^XUSRB, Usage: VistALink-Set Up User's Partition in M, Category: Signon/Security" 
+				 CLASS="navbarlink">SETUP^XUSRB</A>
+			  <BR>
+              VistALink-Set Up User's Partition in M
+            </li>
+			<li>
+		      <A HREF="validav-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: VALIDAV^XUSRB, Usage: VistALink-Validate User Credentials, Category: Signon/Security" 
+				 CLASS="navbarlink">VALIDAV^XUSRB</A>
+			  <BR>
+              VistALink-Validate User Credentials
+            </li>
+			<li>
+			  <A HREF="x-decryp-xusrb1.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DECRYP^XUSRB1, Usage: Decrypt String, Category: Signon/Security" 
+				 CLASS="navbarlink">$$DECRYP^XUSRB1</A>
+			  <BR>
+              Decrypt String
+            </li>
+			<li>
+			  <A HREF="x-encryp-xusrb1.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ENCRYP^XUSRB1, Usage: Encrypt String, Category: Signon/Security" 
+				 CLASS="navbarlink">$$ENCRYP^XUSRB1</A>
+			  <BR>
+              Encrypt String
+            </li>
+		    <li>
+			  <A HREF="x-handle-xusrb4.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$HANDLE^XUSRB4, Usage: Return Unique Session ID String, Category: Signon/Security" 
+				 CLASS="navbarlink">$$HANDLE^XUSRB4</A>
+			  <BR>
+              Return Unique Session ID String
+            </li>
+			<li>
+			  <A HREF="xuverify.html"
+				 TARGET="display"
+			     TITLE="Kernel API: ^XUVERIFY, Usage: Verify Access and Verify Codes, Category: Signon/Security" 
+				 CLASS="navbarlink">^XUVERIFY</A>
+			  <BR>
+              Verify Access and Verify Codes
+            </li>
+			<li>
+			  <A HREF="x-checkav-xuverify.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CHECKAV^XUVERIFY, Usage: Check Access/Verify Codes, Category: Signon/Security"
+				 CLASS="navbarlink">$$CHECKAV^XUVERIFY</A>
+			  <BR>
+              Check Access/Verify Codes
+            </li>
+			<li>
+			  <A HREF="witness-xuverify.html"
+				 TARGET="display"
+				 TITLE="Kernel API: WITNESS^XUVERIFY, Usage: Return IEN of Users with A/V Codes & Security Keys, Category: Signon/Security"
+				 CLASS="navbarlink">WITNESS^XUVERIFY</A>
+			  <BR>
+              Return IEN of Users with A/V Codes &amp; Security Keys
+            </li>
+			<li>
+			  <A HREF="getpeer-zosv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: GETPEER^%ZOSV, Usage: VistALink-Get IP Address for Current Session, Category: Signon/Security" 
+				 CLASS="navbarlink">GETPEER^%ZOSV</A>
+			  <BR>
+              VistALink-Get IP Address for Current Session
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD>
+		  <HR>
+		</TD> 
+      </TR> 
+      <TR> 
+		<TD> 
+		  <H5><A NAME="spooling">Spooling</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="dsd-zispl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DSD^ZISPL, Usage: Delete Spool Data File Entry, Category: Spooling" 
+				 CLASS="navbarlink">DSD^ZISPL</A>
+			  <BR>
+              Delete Spool Data File Entry
+            </li>
+			<li>
+			  <A HREF="dsdoc-zispl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DSDOC^ZISPL, Usage: Delete Spool Document File Entry, Category: Spooling" 
+				 CLASS="navbarlink">DSDOC^ZISPL</A>
+			  <BR>
+              Delete Spool Document File Entry
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="taskman">TaskMan</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="touch-xusclean.html"
+				 TARGET="display"
+				 TITLE="Kernel API: TOUCH^XUSCLEAN, Usage: Notify Kernel of Tasks that Run 7 Days or Longer, Category: TaskMan" 
+				 CLASS="navbarlink">TOUCH^XUSCLEAN</A>
+			  <BR>
+              Notify Kernel of Tasks that Run 7 Days or Longer
+            </li>
+			<li>
+			  <A HREF="x-dev-xutmdevq.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$DEV^XUTMDEVQ, Usage: Force Queuing&#8212;Ask for Device, Category: TaskMan" 
+				 CLASS="navbarlink">$$DEV^XUTMDEVQ</A>
+			  <BR>
+              Force Queuing&#8212;Ask for Device
+            </li>
+			<li>
+			  <A HREF="en-xutmdevq.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN^XUTMDEVQ, Usage: Run a Task (Directly or Queued), Category: TaskMan" 
+				 CLASS="navbarlink">EN^XUTMDEVQ</A>
+			  <BR>
+              Run a Task (Directly or Queued)
+            </li>
+			<li>
+			  <A HREF="x-nodev-xutmdevq.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NODEV^XUTMDEVQ, Usage: Run a Task (Force Queuing&#8212;No Device Selection), Category: TaskMan" 
+				 CLASS="navbarlink">$$NODEV^XUTMDEVQ</A>
+			  <BR>
+              Run a Task (Force Queuing&#8212;No Device Selection)
+            </li>
+			<li>
+			  <A HREF="x-qq-xutmdevq.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$QQ^XUTMDEVQ, Usage: Double Queue&#8212;Direct Queuing in a Single Call, Category: TaskMan" 
+				 CLASS="navbarlink">$$QQ^XUTMDEVQ</A>
+			  <BR>
+              Double Queue&#8212;Direct Queuing in a Single Call
+            </li>
+			<li>
+			  <A HREF="x-reqq-xutmdevq.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$REQQ^XUTMDEVQ, Usage: Schedule Second Part of a Task, Category: TaskMan" 
+				 CLASS="navbarlink">$$REQQ^XUTMDEVQ</A>
+			  <BR>
+              Schedule Second Part of a Task
+            </li>
+			<li>
+			  <A HREF="disp-xutmopt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DISP^XUTMOPT, Usage: Display Option Schedule, Category: TaskMan" 
+				 CLASS="navbarlink">DISP^XUTMOPT</A>
+			  <BR>
+              Display Option Schedule
+            </li>
+			<li>
+			  <A HREF="edit-xutmopt.html"
+				 TARGET="display"
+			     TITLE="Kernel API: EDIT^XUTMOPT, Usage: Edit an Option's Scheduling, Category: TaskMan" 
+				 CLASS="navbarlink">EDIT^XUTMOPT</A>
+			  <BR>
+              Edit an Option's Scheduling
+            </li>
+			<li>
+			  <A HREF="optstat-xutmopt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OPTSTAT^XUTMOPT, Usage: Obtain Option Schedule, Category: TaskMan" 
+				 CLASS="navbarlink">OPTSTAT^XUTMOPT</A>
+			  <BR>
+              Obtain Option Schedule
+            </li>
+			<li>
+			  <A HREF="resch-xutmopt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: RESCH^XUTMOPT, Usage: Set Up Option Schedule, Category: TaskMan" 
+				 CLASS="navbarlink">RESCH^XUTMOPT</A>
+			  <BR>
+              Set Up Option Schedule
+            </li>
+			<li>
+			  <A HREF="en-xutmtp.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN^XUTMTP, Usage: Display HL7 Task Information, Category: TaskMan" 
+				 CLASS="navbarlink">EN^XUTMTP</A>
+		      <BR>
+              Display HL7 Task Info.
+            </li>
+			<li>
+			  <A HREF="ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ^%ZTLOAD, Usage: Queue a Task, Category: TaskMan" 
+				 CLASS="navbarlink">^%ZTLOAD</A>
+			  <BR>
+              Queue a Task
+            </li>
+			<li>
+		      <A HREF="x-askstop-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ASKSTOP^%ZTLOAD, Usage: Stop TaskMan Task, Category: TaskMan" 
+				 CLASS="navbarlink">$$ASKSTOP^%ZTLOAD</A>
+			  <BR>
+              Stop TaskMan Task
+            </li>
+			<li>
+			  <A HREF="desc-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DESC^%ZTLOAD, Usage: Find Tasks with a Description, Category: TaskMan" 
+				 CLASS="navbarlink">DESC^%ZTLOAD</A>
+			  <BR>
+              Find Tasks with a Description
+            </li>
+			<li>
+			  <A HREF="dq-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DQ^%ZTLOAD, Usage: Unschedule a Task, Category: TaskMan" 
+				 CLASS="navbarlink">DQ^%ZTLOAD</A>
+			  <BR>
+              Unschedule a Task
+            </li>
+			<li>
+			  <A HREF="isqed-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ISQED^%ZTLOAD, Usage: Return Task Status, Category: TaskMan" 
+				 CLASS="navbarlink">ISQED^%ZTLOAD</A>
+			  <BR>
+              Return Task Status
+            </li>
+			<li>
+			  <A HREF="x-job-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$JOB^%ZTLOAD, Usage: Return a Job Number for a Task, Category: TaskMan" 
+				 CLASS="navbarlink">$$JOB^%ZTLOAD</A>
+			  <BR>
+              Return a Job Number for a Task
+            </li>
+			<li>
+			  <A HREF="kill-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: KILL^%ZTLOAD, Usage: Delete a Task, Category: TaskMan" 
+				 CLASS="navbarlink">KILL^%ZTLOAD</A>
+			  <BR>
+              Delete a Task
+            </li>
+			<li>
+			  <A HREF="option-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: OPTION^%ZTLOAD, Usage: Find Tasks for an Option, Category: TaskMan" 
+				 CLASS="navbarlink">OPTION^%ZTLOAD</A>
+			  <BR>
+              Find Tasks for an Option
+            </li>
+			<li>
+			  <A HREF="pclear-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: PCLEAR^%ZTLOAD, Usage: Clear Persistent Flag for a Task, Category: TaskMan" 
+				 CLASS="navbarlink">PCLEAR^%ZTLOAD</A>
+			  <BR>
+              Clear Persistent Flag for a Task
+            </li>
+			<li>
+			  <A HREF="x-pset-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PSET^%ZTLOAD, Usage: Set Task as Persistent, Category: TaskMan" 
+				 CLASS="navbarlink">$$PSET^%ZTLOAD</A>
+			  <BR>
+              Set Task as Persistent
+            </li>
+			<li>
+			  <A HREF="req-ztload.html"
+				 TARGET="display"
+			     TITLE="Kernel API: REQ^%ZTLOAD, Usage: Requeue a Task, Category: TaskMan" 
+				 CLASS="navbarlink">REQ^%ZTLOAD</A>
+			  <BR>
+              Requeue a Task
+            </li>
+			<li>
+			  <A HREF="rtn-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: RTN^%ZTLOAD, Usage: Find Tasks that Call a Routine, Category: TaskMan" 
+				 CLASS="navbarlink">RTN^%ZTLOAD</A>
+			  <BR>
+              Find Tasks that Call a Routine
+            </li>
+			<li>
+			  <A HREF="x-s-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$S^%ZTLOAD, Usage: Check for Task Stop Request, Category: TaskMan" 
+				 CLASS="navbarlink">$$S^%ZTLOAD</A>
+			  <BR>
+              Check for Task Stop Request
+            </li>
+			<li>
+			  <A HREF="stat-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: STAT^%ZTLOAD, Usage: Task Status, Category: TaskMan" 
+			     CLASS="navbarlink">STAT^%ZTLOAD</A>
+			  <BR>
+              Task Status
+            </li>
+			<li>
+			  <A HREF="x-tm-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TM^%ZTLOAD, Usage: Check if TaskMan is Running, Category: TaskMan" 
+				 CLASS="navbarlink">$$TM^%ZTLOAD</A>
+			  <BR>
+              Check if TaskMan is Running
+            </li>
+			<li>
+			  <A HREF="ztsave-ztload.html"
+				 TARGET="display"
+				 TITLE="Kernel API: ZTSAVE^%ZTLOAD, Usage: Build ZTSAVE Array, Category: TaskMan" 
+			     CLASS="navbarlink">ZTSAVE^%ZTLOAD</A>
+			  <BR>
+              Build ZTSAVE Array
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR>
+		<TD>
+		  <HR>
+        </TD> 
+	  </TR>
+      <TR>
+	    <TD> 
+		  <H5><A NAME="toolkit_data_standardization">Toolkit&#8212;Data Standardization</A></H5>
+		  <ul>
+	        <li>
+			  <a href="x-getrplc-xtidtrm.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$GETRPLC^XTIDTRM, Usage: Get Immediate Replacement Term (Term/Concept), Category: Toolkit&#8212;Data Standardization"
+				 CLASS="navbarlink">$$GETRPLC^XTIDTRM</a>
+			  <BR>
+		      Get Immediate Replacement Term (Term/Concept)
+		    </li>
+			<li>
+		      <a href="x-rplclst-xtidtrm.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: $$RPLCLST^XTIDTRM, Usage: Get List of Replacement Terms, w/Optional Status Date and History (Term/Concept), Category: Toolkit&#8212;Data Standardization"
+				 CLASS="navbarlink">$$RPLCLST^XTIDTRM</a>
+			  <br>
+		      Get List of Replacement Terms, w/Optional Status Date and History (Term/Concept)
+		    </li>
+			<li>
+			  <a href="x-rplcmnt-xtidtrm.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: $$RPLCMNT^XTIDTRM, Usage: Get Final Replacement Term (Term/Concept), Category: Toolkit&#8212;Data Standardization"
+				 CLASS="navbarlink">$$RPLCMNT^XTIDTRM</a>
+			  <br>
+		      Get Final Replacement Term (Term/Concept)
+		    </li>
+			<li>
+			  <a href="x-rplctrl-xtidtrm.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$RPLCTRL^XTIDTRM, Usage: Get Replacement Trail for Term, with Replaced &#8220;BY&#8221; and Replacement &#8220;FOR&#8221; Terms (Term/Concept), Category: Data Standardization"
+				 CLASS="navbarlink">$$RPLCTRL^XTIDTRM</a>
+			  <br>
+		      Get Replacement Trail for Term, with Replaced &#8220;BY&#8221; and Replacement &#8220;FOR&#8221; Terms (Term/Concept)
+		    </li>
+			<li>
+			  <a href="x-rplcvals-xtidtrm.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: RPLCVALS^XTIDTRM, Usage: Get Field Values of Final Replacement Term (Term/Concept), Category: Toolkit&#8212;Data Standardization)"
+				 CLASS="navbarlink">$$RPLCVALS^XTIDTRM</a>
+			  <br>
+			  Get Field Values of Final Replacement Term (Term/Concept)
+			</li>
+			<li>
+		      <a href="x-setrplc-xtidtrm.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: $$SETRPLC^XTIDTRM, Usage: Set Replacement Term (Term/Concept), Category: Toolkit&#8212;Data Standardization"
+				 CLASS="navbarlink">$$SETRPLC^XTIDTRM</a>
+			  <br>
+			  Set Replacement Term (Term/Concept)
+			</li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+	  <TR>
+	    <TD>
+	      <HR>
+	    </TD> 
+	  </TR>
+      <TR>
+		<TD> 
+		  <H5><A NAME="toolkit_duplicate_record_merge">Toolkit&#8212;Duplicate Record Merge</A></H5>
+		  <ul>
+		    <li>
+		      <a href="en-xdrmerg.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: EN^XDRMERG, Usage: Merge File Entries, Category: Toolkit&#8212;Duplicate Record Merge"
+				 CLASS="navbarlink">EN^XDRMERG</a>
+			  <BR>
+			  Merge File Entries
+			</li>
+			<li>
+			  <a href="restart-xdrmerg.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: RESTART^XDRMERG, Usage: Restart Merge, Category: Toolkit&#8212;Duplicate Record Merge"
+				 CLASS="navbarlink">RESTART^XDRMERG</a>
+			  <br>
+			  Restart Merge
+			</li>
+			<li>
+		      <a href="savemerg-xdrmergb.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: SAVEMERG^XDRMERG, Usage: Save Image of Existing and Merged Data, Category: Toolkit&#8212;Duplicate Record Merge"
+				 CLASS="navbarlink">SAVEMERG^XXDRMERG</a>
+			  <br>
+			  Save Image of Existing and Merged Data
+			</li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+	  <TR>
+	    <TD>
+	      <HR>
+	    </TD> 
+	  </TR>
+	  <TR> 
+	    <TD> 
+		  <H5><A NAME="toolkit_http_client_helper">Toolkit&#8212;HTTP Client Helper</A></H5>
+		  <ul>
+		    <li>
+			  <A HREF="x-geturl-xthc10.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$GETURL^XTHC10, Usage: Return URL Data Using HTTP, Category: Toolkit&#8212;HTTP Client Helper" 
+				 CLASS="navbarlink">$$GETURL^XTHC10</A>
+			  <BR>
+              Return URL Data Using HTTP
+            </li>
+			<li>
+			  <A HREF="x-encode-xthcurl.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$ENCODE^XTHCURL, Usage: Encodes a Query String, Category: Toolkit&#8212;HTTP Client Helper" 
+				 CLASS="navbarlink">$$ENCODE^XTHCURL</A>
+			  <BR>
+              Encodes a Query String
+            </li>
+			<li>
+			  <A HREF="x-makeurl-xthcurl.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$MAKEURL^XTHCURL, Usage: Creates a URL from Components, Category: Toolkit&#8212;HTTP Client Helper" 
+				 CLASS="navbarlink">$$MAKEURL^XTHCURL</A>
+			  <BR>
+              Creates a URL from Components
+            </li>
+			<li>
+			  <A HREF="x-parseurl-xthcurl.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$PARSEURL^XTHCURL, Usage: Parses a URL, Category: Toolkit&#8212;HTTP Client Helper" 
+				 CLASS="navbarlink">$$PARSEURL^XTHCURL</A>
+			  <BR>
+              Parses a URL
+            </li>
+			<li>
+			  <A HREF="x-decode-xthcutl.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$DECODE^XTHCUTL, Usage: Decodes a String, Category: Toolkit&#8212;HTTP Client Helper" 
+			     CLASS="navbarlink">$$DECODE^XTHCUTL</A>
+			  <BR>
+              Decodes a String
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <tr>
+	    <TD>
+	      <HR>
+	    </TD> 
+	  </TR>
+      <TR>
+		<TD> 
+		  <H5><A NAME="toolkit_kermit">Toolkit&#8212;Kermit</A></H5>
+		  <ul>
+		    <li>
+			  <a href="rfile-xtkerm4.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: RFILE^XTKERM4, Usage: Add Entries to Kermit Holding File, Category: Toolkit&#8212;Kermit"
+				 CLASS="navbarlink">RFILE^XTKERM4</a>
+			  <BR>
+		      Add Entries to Kermit Holding File
+		    </li>
+			<li>
+		      <a href="receive-xtkermit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: RECEIVE^XTKERMIT, Usage: Load a File into the Host, Category: Toolkit&#8212;Kermit"
+				 CLASS="navbarlink">RECEIVE^XTKERMIT</a>
+			  <BR>
+			  Load a File into the Host
+			</li>
+			<li>
+			  <a href="send-xtkermit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: SEND^XTKERMIT, Usage: Send Data from Host, Category: Toolkit&#8212;Kermit"
+				 CLASS="navbarlink">SEND^XTKERMIT</a>
+			  <br>
+			  Send Data from Host
+			</li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+	  <TR>
+	    <td>  
+	      <HR>
+	    </TD> 
+	  </tr>
+      <tr>
+		<TD> 
+		  <H5><A NAME="toolkit_m_unit">Toolkit&#8212;M Unit Utility</A></H5>
+		  <ul>
+		    <li>
+		      <A HREF="en-xtmunit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: EN^XTMUNIT, Usage: Run Unit Tests, Category: Toolkit&#8212;M Unit Utility" 
+				 CLASS="navbarlink">EN^XTMUNIT</A>
+			  <BR>
+              Run Unit Tests
+            </li>
+			<li>
+			  <A HREF="chktf-xtmunit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: CHKTF^XTMUNIT, Usage: Test Conditional Values, Category: Toolkit&#8212;M Unit Utility" 
+				 CLASS="navbarlink">CHKTF^XTMUNIT</A>
+			  <BR>
+              Test Conditional Values
+            </li>
+			<li>
+			  <A HREF="chkeq-xtmunit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: CHKEQ^XTMUNIT, Usage: Check Two Values for Equivalence, Category: Toolkit&#8212;M Unit Utility"
+				 CLASS="navbarlink">CHKEQ^XTMUNIT</A>
+			  <BR>
+              Check Two Values for Equivalence
+            </li>
+			<li>
+			  <A HREF="fail-xtmunit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: FAIL^XTMUNIT, Usage: Generate an Error Message, Category: Toolkit&#8212;M Unit Utility" 
+				 CLASS="navbarlink">FAIL^XTMUNIT</A>
+			  <BR>
+              Generate an Error Message
+            </li>
+			<li>
+			  <a href="succeed-xtmunit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: SUCCEED^XTMUNIT, Usage: Increment Test Counter, Category: Toolkit&#8212;M Unit Utility" 
+				 CLASS="navbarlink">SUCCEED^XTMUNIT</a>
+			  <BR>
+              Increment Test Counter
+            </li>
+			<li>
+			  <a href="chkleaks-xtmunit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: CHKLEAKS^XTMUNIT, Usage: Check for Variable Leaks, Category: Toolkit&#8212;M Unit Utility" 					    
+				 CLASS="navbarlink">CHKLEAKS^XTMUNIT</A>
+			  <BR>
+              Check for Variable Leaks
+            </li>
+			<li>
+			  <a href="x-isutest-xtmunit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$ISUTEST^XTMUNIT, Usage: Evaluate if Unit Test is Running, Category: Toolkit&#8212;M Unit Utility" 
+				 CLASS="navbarlink">$$ISUTEST^XTMUNIT</A>
+			  <BR>
+              Evaluate if Unit Test is Running
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </tr>
+	  <TR>
+	    <TD>
+	      <HR>
+	    </TD> 
+	  </TR>
+      <TR>
+	    <TD> 
+		  <H5><A NAME="toolkit_multi_term_lookup">Toolkit&#8212;Multi-Term Look-Up (MTLU)</A></H5>
+		  <ul>
+		    <li>
+		      <a href="xtlkkwl-xtlkkwl.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: XTLKKWL^XTLKKWL, Usage: Perform Supported VA FileMan Calls on Files Configured for MTLU, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">XTLKKWL^XTLKKWL</a>
+		      <BR>
+		      Perform Supported VA FileMan Calls on Files Configured for MTLU
+		    </li>
+			<li>
+		      <a href="dk-xtlkmgr.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: DK^XTLKMGR, Usage: Delete Keywords from the Local Keyword File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">DK^XTLKMGR</a>
+			  <br>
+			  Delete Keywords from the Local Keyword File
+			</li>
+			<li>
+			  <a href="dll-xtlkmgr.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: DLL^XTLKMGR, Usage: Delete an Entry from the Local Lookup File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">DLL^XTLKMGR</a>
+			  <br>
+		      Delete an Entry from the Local Lookup File
+		    </li>
+			<li>
+		      <a href="dsh-xtlkmgr.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: DSH^XTLKMGR, Usage: Delete Shortcuts from the Local Shortcut File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">DSH^XTLKMGR</a>
+			  <br>
+			  Delete Shortcuts from the Local Shortcut File
+			</li>
+			<li>
+		      <a href="dsy-xtlkmgr.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: DSY^XTLKMGR, Usage: Delete Synonyms from the Local Synonym File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">DSY^XTLKMGR</a>
+			  <br>
+		      Delete Synonyms from the Local Synonym File
+		    </li>
+			<li>
+			  <a href="k-xtlkmgr.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: K^XTLKMGR, Usage: Add Keywords to the Local Keyword File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">K^XTLKMGR</a>
+			  <br>
+			  Add Keywords to the Local Keyword File
+			</li>
+			<li>
+			  <a href="l-xtlkmgr.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: L^XTLKMGR, Usage: Define a File in the Local Lookup File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">L^XTLKMGR</a>
+			  <br>
+			  Define a File in the Local Lookup File
+			</li>
+			<li>
+			  <a href="lkup-xtlkmgr.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: LKUP^XTLKMGR, Usage: General Lookup Facility for MTLU, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">LKUP^XTLKMGR</a>
+			  <br>
+			  General Lookup Facility for MTLU
+			</li>
+			<li>
+			  <a href="sh-xtlkmgr.html"
+			     TARGET="display"
+				 TITLE="Kernel Toolkit API: SH^XTLKMGR, Usage: Add Shortcuts to the Local Shortcut File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">SH^XTLKMGR</a>
+			  <br>
+			  Add Shortcuts to the Local Shortcut File
+			</li>
+			<li>
+			  <a href="sy-xtlkmgr.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: SY^XTLKMGR, Usage: Add Terms and Synonyms to the Local Synonym File, Category: Toolkit&#8212;Multi-Term Look-Up (MTLU)"
+				 CLASS="navbarlink">SY^XTLKMGR</a>
+			  <br>
+			  Add Terms and Synonyms to the Local Synonym File
+			</li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </TR>
+      <tr>
+		<TD>
+		  <HR>
+        </TD> 
+	  </tr>
+      <tr>
+		<TD> 
+		  <H5><A NAME="toolkit_parameter_tools">Toolkit&#8212;Parameter Tools</A></H5>
+		  <ul>
+		    <li>
+		      <A HREF="add-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: ADD^XPAR, Usage: Add Parameter Value, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">ADD^XPAR</A>
+			  <BR>
+              Add Parameter Value
+            </li>
+			<li>
+			  <A HREF="chg-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: CHG^XPAR, Usage: Change Parameter Value, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">CHG^XPAR</A>
+			  <BR>
+              Change Parameter Value
+            </li>
+			<li>
+			  <a href="del-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: DEL^XPAR, Usage: Delete Parameter Value, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">DEL^XPAR</A>
+			  <BR>
+              Delete Parameter Value
+            </li>
+			<li>
+			  <a href="en-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: EN^XPAR, Usage: Add, Change, Delete Parameters, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">EN^XPAR</A>
+			  <BR>
+              Add, Change, Delete Parameters
+            </li>
+			<li>
+			  <a href="enval-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: ENVAL^XPAR, Usage: Return All Parameter Instances, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">ENVAL^XPAR</A>
+			  <BR>
+              Return All Parameter Instances
+            </li>
+			<li>
+			  <A HREF="x-get-xpar.html"
+				 TARGET="display"
+			     TITLE="Kernel Toolkit API: $$GET^XPAR, Usage: Return an Instance of a Parameter, Category: Toolkit&#8212;Parameter Tools" 
+			     CLASS="navbarlink">$$GET^XPAR</A>
+			  <BR>
+              Return an Instance of a Parameter
+            </li>
+			<li>
+			  <A HREF="getlst-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: GETLST^XPAR, Usage: Return All Instances of a Parameter, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">GETLST^XPAR</A>
+			  <BR>
+              Return All Instances of a Parameter
+            </li>
+			<li>
+			  <A HREF="getwp-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: GETWP^XPAR, Usage: Return Word-Processing Text, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">GETWP^XPAR</A>
+			  <BR>
+              Return Word-Processing Text
+            </li>
+			<li>
+			  <A HREF="ndel-xpar.html"
+				 TARGET="display"
+			     TITLE="Kernel Toolkit API: NDEL^XPAR, Usage: Delete All Instances of a Parameter, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">NDEL^XPAR</A>
+			  <BR>
+              Delete All Instances of a Parameter
+            </li>
+			<li>
+			  <A HREF="put-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: PUT^XPAR, Usage: Add/Update Parameter Instance, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">PUT^XPAR</A>
+			  <BR>
+              Add/Update Parameter Instance
+            </li>
+			<li>
+			  <A HREF="rep-xpar.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: REP^XPAR, Usage: Replace Instance Value, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">REP^XPAR</A>
+			  <BR>
+              Replace Instance Value
+            </li>
+			<li>
+			  <A HREF="bldlst-xparedit.html"
+				 TARGET="display"
+			     TITLE="Kernel Toolkit API: BLDLST^XPAREDIT, Usage: Return All Entities of a Parameter, Category: Toolkit&#8212;Parameter Tools" 
+			     CLASS="navbarlink">BLDLST^XPAREDIT</A>
+			  <BR>
+              Return All Entities of a Parameter
+            </li>
+			<li>
+			  <A HREF="edit-xparedit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: EDIT^XPAREDIT, Usage: Edit Instance and Value of a Parameter, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">EDIT^XPAREDIT</A>
+			  <BR>
+              Edit Instance and Value of a Parameter
+            </li>
+			<li>
+			  <A HREF="editpar-xparedit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: EDITPAR^XPAREDIT, Usage: Edit Single Parameter, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">EDITPAR^XPAREDIT</A>
+			  <BR>
+              Edit Single Parameter
+            </li>
+			<li>
+			  <A HREF="en-xparedit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: EN^XPAREDIT, Usage: Parameter Edit Prompt, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">EN^XPAREDIT</A>
+			  <BR>
+              Parameter Edit Prompt
+            </li>
+			<li>
+		      <A HREF="getent-xparedit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: GETENT^XPAREDIT, Usage: Prompt for Entity Based on Parameter, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">GETENT^XPAREDIT</A>
+			  <BR>
+              Prompt for Entity Based on Parameter
+            </li>
+			<li>
+			  <A HREF="getpar-xparedit.html"
+				 TARGET="display"
+			     TITLE="Kernel Toolkit API: GETPAR^XPAREDIT, Usage: Select Parameter Definition File, Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">GETPAR^XPAREDIT</A>
+			  <BR>
+              Select Parameter Definition File
+            </li>
+			<li>
+			  <A HREF="ted-xparedit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: TED^XPAREDIT, Usage: Edit Template Parameters (No Dash Dividers), Category: Toolkit&#8212;Parameter Tools" 
+				 CLASS="navbarlink">TED^XPAREDIT</A>
+			  <BR>
+              Edit Template Parameters (No Dash Dividers)
+            </li>
+			<li>
+			  <A HREF="tedh-xparedit.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: TEDH^XPAREDIT, Usage: Edit Template Parameters (with Dash Dividers), Category: Toolkit&#8212;Parameter Tools" 
+			     CLASS="navbarlink">TEDH^XPAREDIT</A>
+			  <BR>
+              Edit Template Parameters (with Dash Dividers)
+            </li>
+		  </ul>
+		  <P></P>
+		</TD> 
+	  </tr>
+	  <TR>
+	    <td>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <tr>
+		<TD height="345"> 
+		  <H5><A NAME="toolkit_vha_unique_id_vuid">Toolkit&#8212;VHA Unique ID (VUID)</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="getiref-xtid.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: GETIREF^XTID, Usage: Get IREF (Term/Concept), Category: Toolkit&#8212;VHA Unique ID (VUID)" 
+				 CLASS="navbarlink">GETIREF^XTID</A>
+			  <BR>
+              Get IREF (Term/Concept)
+            </li>
+	        <li>
+			  <A HREF="x-getmastr-xtid.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$GETMASTR^XTID, Usage: Get Master VUID Flag (Term/Concept), Category: Toolkit&#8212;VHA Unique ID (VUID)" 
+				 CLASS="navbarlink">$$GETMASTR^XTID</A>
+			  <BR>
+              Get Master VUID Flag (Term/Concept)
+            </li>
+	        <li>
+			  <A HREF="x-getstat-xtid.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$GETSTAT^XTID, Usage: Get Status Information (Term/Concept), Category: Toolkit&#8212;VHA Unique ID (VUID)"
+				 CLASS="navbarlink">$$GETSTAT^XTID</A>
+			  <BR>
+              Get Status Information (Term/Concept)
+            </li>
+	        <li>
+		      <A HREF="x-getvuid-xtid.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$GETVUID^XTID, Usage: Get VUID (Term/Concept, Category: Toolkit&#8212;VHA Unique ID (VUID)" 
+				 CLASS="navbarlink">$$GETVUID^XTID</A>
+			  <BR>
+              Get VUID (Term/Concept)
+            </li>
+	        <li>
+			  <A HREF="x-screen-xtid.html"
+				 TARGET="display"
+			     TITLE="Kernel Toolkit API: $$SCREEN^XTID, Usage: Get Screening Condition (Term/Concept), Category: Toolkit&#8212;VHA Unique ID (VUID)" 
+			     CLASS="navbarlink">$$SCREEN^XTID</A>
+			  <BR>
+              Get Screening Condition (Term/Concept)
+            </li>
+	        <li>
+			  <A HREF="x-setmastr-xtid.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$SETMASTR^XTID, Usage: Set Master VUID Flag (Term/Concept), Category: Toolkit&#8212;VHA Unique ID (VUID)" 
+				 CLASS="navbarlink">$$SETMASTR^XTID</A>
+			  <BR>
+              Set Master VUID Flag (Term/Concept)
+            </li>
+	        <li>
+			  <A HREF="x-setstat-xtid.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$SETSTAT^XTID, Usage: Set Status Information (Term/Concept), Category: Toolkit&#8212;VHA Unique ID (VUID)" 
+				 CLASS="navbarlink">$$SETSTAT^XTID</A>
+			  <BR>
+              Set Status Information (Term/Concept)
+            </li>
+	        <li>
+			  <A HREF="x-setvuid-xtid.html"
+				 TARGET="display"
+				 TITLE="Kernel Toolkit API: $$SETVUID^XTID, Usage: Set VUID (Term/Concept), Category: Toolkit&#8212;VHA Unique ID (VUID)" 
+				 CLASS="navbarlink">$$SETVUID^XTID</A>
+		      <BR>
+              Set VUID (Term/Concept)
+            </li>
+          </ul>
+		  <P></P>
+		</TD> 
+	  </tr>
+      <tr>
+		<TD>
+		  <HR>
+		</TD> 
+      </tr>
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+		  <H5><A NAME="unwinder">Unwinder</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="en-xqor.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN^XQOR, Usage: Navigating Protocols, Category: Unwinder" 
+				 CLASS="navbarlink">EN^XQOR</A>
+			  <BR>
+              Navigating Protocols
+            </li>
+	        <li>
+			  <A HREF="en1-xqor.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN1^XQOR, Usage: Navigating Protocols (entry & exit actions of the initial protocol are not executed), Category: Unwinder" 
+				 CLASS="navbarlink">EN1^XQOR</A>
+			  <BR>
+              Navigating Protocols
+              <BR>
+              (Entry/Exit Actions Not Executed)
+            </li>
+	        <li>
+			  <A HREF="msg-xqor.html"
+				 TARGET="display"
+			     TITLE="Kernel API: MSG^XQOR, Usage: Enable HL7 Messaging, Category: Unwinder" 
+			     CLASS="navbarlink">MSG^XQOR</A>
+			  <BR>
+              Enable HL7 Messaging
+            </li>
+	        <li>
+			  <A HREF="en-xqorm.html"
+				 TARGET="display"
+			     TITLE="Kernel API: EN^XQORM, Usage: Menu Item Display and Selection, Category: Unwinder" 
+				 CLASS="navbarlink">EN^XQORM</A>
+			  <BR>
+              Menu Item Display and Selection
+            </li>
+	        <li>
+			  <A HREF="xref-xqorm.html"
+				 TARGET="display"
+				 TITLE="Kernel API: XREF^XQORM, Usage: Force Menu Recompile, Category: Unwinder" 
+				 CLASS="navbarlink">XREF^XQORM</A>
+			  <BR>
+              Force Menu Recompile
+            </li>
+	        <li>
+		      <A HREF="disp-xqorm1.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DISP^XQORM1, Usage: Display Menu Selections From Help Code, Category: Unwinder" 
+				 CLASS="navbarlink">DISP^XQORM1</A>
+			  <BR>
+              Disp. Menu Selections From Help Code
+            </li>
+          </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD>
+	      <HR>
+	    </TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+	    <TD> 
+		  <H5><A NAME="user">User</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="x-code2txt-xua4a72.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CODE2TXT^XUA4A72, Usage: Get Health Care Financing Administration (HCFA) Text, Category: User"
+				 CLASS="navbarlink">$$CODE2TXT^XUA4A72</A>
+			  <BR>
+              Get HCFA Text
+            </li>
+	        <li>
+			  <A HREF="x-get-xua4a72.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$GET^XUA4A72, Usage: Get Specialty and Subspecialty for a User, Category: User" 
+				 CLASS="navbarlink">$$GET^XUA4A72</A>
+			  <BR>
+              Get Specialty &amp; Subspecialty for a User
+            </li>
+	        <li>
+			  <A HREF="x-ien2code-xua4a72.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$IEN2CODE^XUA4A72, Usage: Get VA Code, Category: User"
+				 CLASS="navbarlink">$$IEN2CODE^XUA4A72</A>
+			  <BR>
+              Get VA Code
+            </li>
+	        <li>
+			  <A HREF="x-dtime-xup.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DTIME^XUP, Usage: Reset DTIME for USER, Category: User" 
+				 CLASS="navbarlink">$$DTIME^XUP</A>
+			  <BR>
+              Reset DTIME for USER
+            </li>
+	        <li>
+			  <A HREF="x-active-xuser.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$ACTIVE^XUSER, Usage: Status Indicator, Category: User" 
+				 CLASS="navbarlink">$$ACTIVE^XUSER</A>
+			  <BR>
+              Status Indicator
+            </li>
+	        <li>
+			  <A HREF="x-dea-xuser.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DEA^XUSER, Usage: Get User's DEA Number, Category: User: DEA ePCS Utility" 
+				 CLASS="navbarlink">$$DEA^XUSER</A>
+			  <BR>
+              Get User's DEA Number
+            </li>
+	        <li>
+		      <A HREF="x-detox-xuser.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DETOX^XUSER, Usage: Get Detox/Maintenance ID Number, Category: User: DEA ePCS Utility" 
+				 CLASS="navbarlink">$$DETOX^XUSER</A>
+			  <BR>
+			  Get Detox/Maintenance ID Number
+			</li>
+	        <li>
+			  <A HREF="div4-xuser.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DIV4^XUSER, Usage: Get User Divisions, Category: User" 
+				 CLASS="navbarlink">DIV4^XUSER</A>
+			  <BR>
+              Get User Divisions
+            </li>
+	        <li>
+			  <A HREF="x-lookup-xuser.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LOOKUP^XUSER, Usage: New Person File Lookup, Category: User" 
+				 CLASS="navbarlink">$$LOOKUP^XUSER</A>
+			  <BR>
+              New Person File Lookup
+            </li>
+	        <li>
+			  <A HREF="x-name-xuser.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NAME^XUSER, Usage: Get Name of User, Category: User" 
+				 CLASS="navbarlink">$$NAME^XUSER</A>
+			  <BR>
+              Get Name of User
+            </li>
+	        <li>
+			  <A HREF="x-provider-xuser.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PROVIDER^XUSER, Usage: Providers in New Person File, Category: User"
+				 CLASS="navbarlink">$$PROVIDER^XUSER</A>
+			  <BR>
+              Providers in New Person File
+            </li>
+	        <li>
+			  <A HREF="x-sdea-xuser.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SDEA^XUSER, Usage: Check for Prescribing Privileges, Category: User: DEA ePCS Utility" 
+			     CLASS="navbarlink">$$SDEA^XUSER</A>
+			  <BR>
+              Check for Prescribing Privileges
+            </li>
+	        <li>
+			  <A HREF="x-vdea-xuser.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$VDEA^XUSER, Usage: Check if User Can Sign Controlled Substance Orders, Category: User: DEA ePCS Utility" 
+				 CLASS="navbarlink">$$VDEA^XUSER</A>
+			  <BR>
+              Check if User Can Sign Controlled Substance Orders
+            </li>
+	        <li>
+			  <A HREF="x-kchk-xusrb.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$KCHK^XUSRB, Usage: Check If User Holds Security Key, Category: User" 
+				 CLASS="navbarlink">$$KCHK^XUSRB</A>
+			  <BR>
+              Check If User Holds Security Key
+            </li>
+	        <li>
+			  <A HREF="divget-xusrb2.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DIVGET^XUSRB2, Usage: Get Divisions for Current User, Category: User" 
+				 CLASS="navbarlink">DIVGET^XUSRB2</A>
+			  <BR>
+              Get Divisions for Current User
+            </li>
+	        <li>
+			  <A HREF="divset-xusrb2.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DIVSET^XUSRB2, Usage: Set Division for Current User, Category: User" 
+			     CLASS="navbarlink">DIVSET^XUSRB2</A>
+			  <BR>
+              Set Division for Current User
+            </li>
+	        <li>
+			  <A HREF="userinfo-xusrb2.html"
+				 TARGET="display"
+				 TITLE="Kernel API: USERINFO^XUSRB2, Usage: Get Demographics for Current User, Category: User" 
+				 CLASS="navbarlink">USERINFO^XUSRB2</A>
+			  <BR>
+              Get Demographics for Current User
+            </li>
+          </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR ALIGN="LEFT"> 
+		<TD> 
+		  <H5><A NAME="xgf_function_library">XGF Function Library</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="chga-xgf.html"
+				 TARGET="display"
+			     TITLE="Kernel API: CHGA^XGF, Usage: Screen Change Attributes, Category: XGF Function Library" 
+				 CLASS="navbarlink">CHGA^XGF</A>
+			  <BR>
+              Screen Change Attributes
+            </li>
+	        <li>
+			  <A HREF="clean-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CLEAN^XGF, Usage: Screen/Keyboard Exit and Cleanup, Category: XGF Function Library" 
+				 CLASS="navbarlink">CLEAN^XGF</A>
+			  <BR>
+              Screen/Keyboard Exit and Cleanup
+            </li>
+	        <li>
+			  <A HREF="clear-xgf.html"
+				 TARGET="display"
+			     TITLE="Kernel API: CLEAR^XGF, Usage: Screen Clear Region, Category: XGF Function Library" 
+				 CLASS="navbarlink">CLEAR^XGF</A>
+			  <BR>
+              Screen Clear Region
+            </li>
+	        <li>
+			  <A HREF="frame-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: FRAME^XGF, Usage: Screen Frame, Category: XGF Function Library" 
+				 CLASS="navbarlink">FRAME^XGF</A>
+			  <BR>
+              Screen Frame
+            </li>
+	        <li>
+			  <A HREF="initkb-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: INITKB^XGF, Usage: Keyboard Setup Only, Category: XGF Function Library" 
+				 CLASS="navbarlink">INITKB^XGF</A>
+			  <BR>
+              Keyboard Setup Only
+            </li>
+	        <li>
+			  <A HREF="ioxy-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: IOXY^XGF, Usage: Screen Cursor Placement, Category: XGF Function Library" 
+				 CLASS="navbarlink">IOXY^XGF</A>
+			  <BR>
+              Screen Cursor Placement
+            </li>
+	        <li>
+			  <A HREF="prep-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: PREP^XGF, Usage: Screen/Keyboard Setup, Category: XGF Function Library" 
+				 CLASS="navbarlink">PREP^XGF</A>
+			  <BR>
+              Screen/Keyboard Setup
+            </li>
+	        <li>
+			  <A HREF="x-read-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$READ^XGF, Usage: Read Using Escape Processing, Category: XGF Function Library" 
+				 CLASS="navbarlink">$$READ^XGF</A>
+			  <BR>
+              Read Using Escape Processing
+            </li>
+	        <li>
+			  <A HREF="resetkb-xgf.html"
+				 TARGET="display"
+			     TITLE="Kernel API: RESETKB^XGF, Usage: Exit XGF Keyboard, Category: XGF Function Library" 
+			     CLASS="navbarlink">RESETKB^XGF</A>
+			  <BR>
+              Exit XGF Keyboard
+            </li>
+	        <li>
+			  <A HREF="restore-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: RESTORE^XGF, Usage: Screen Restore, Category: XGF Function Library" 
+				 CLASS="navbarlink">RESTORE^XGF</A>
+			  <BR>
+              Screen Restore
+            </li>
+	        <li>
+			  <A HREF="save-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SAVE^XGF, Usage: Screen Save, Category: XGF Function Library" 
+				 CLASS="navbarlink">SAVE^XGF</A>
+			  <BR>
+              Screen Save
+            </li>
+	        <li>
+			  <A HREF="say-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SAY^XGF, Usage: Screen String, Category: XGF Function Library" 
+				 CLASS="navbarlink">SAY^XGF</A>
+			  <BR>
+              Screen String
+            </li>
+	        <li>
+			  <A HREF="sayu-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SAYU^XGF, Usage: Screen String with Attributes, Category: XGF Function Library" 
+				 CLASS="navbarlink">SAYU^XGF</A>
+			  <BR>
+              Screen String with Attributes
+            </li>
+	        <li>
+			  <A HREF="seta-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: SETA^XGF, Usage: Screen Video Attributes, Category: XGF Function Library" 
+				 CLASS="navbarlink">SETA^XGF</A>
+			  <BR>
+              Screen Video Attributes
+            </li>
+	        <li>
+			  <A HREF="win-xgf.html"
+				 TARGET="display"
+				 TITLE="Kernel API: WIN^XGF, Usage: Screen Text Window, Category: XGF Function Library" 
+				 CLASS="navbarlink">WIN^XGF</A>
+			  <BR>
+              Screen Text Window
+            </li>
+          </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD>
+		  <HR>
+		</TD> 
+      </TR> 
+	  <TR> 
+		<TD> 
+		  <H5><A NAME="xlf_function_library">XLF Function Library</A></H5> 
+		  <H5><A NAME="crc_functions">CRC Functions</A></H5>
+          <ul>
+	        <li>
+		      <A HREF="x-crc16-xlfcrc.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CRC16^XLFCRC, Usage: Cyclic Redundancy Code 16, Category: XLF Function Library: Other Functions" 
+				 CLASS="navbarlink">$$CRC16^XLFCRC</A>
+			  <BR>
+              Cyclic Redundancy Code 16
+            </li>
+	        <li>
+			  <A HREF="x-crc32-xlfcrc.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CRC32^XLFCRC, Usage: Cyclic Redundancy Code 32, Category: XLF Function Library: Other Functions" 
+				 CLASS="navbarlink">$$CRC32^XLFCRC</A>
+			  <BR>
+              Cyclic Redundancy Code 32
+            </li>
+          </ul>
+		  <H5><A NAME="date_functions">Date Functions</A></H5>
+          <ul>
+	        <li>
+		      <A HREF="x-h-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: USERDEL^XQALERT, Usage: Convert Seconds to $H, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$%H^XLFDT</A>
+			  <BR>
+              Convert Seconds to $H
+            </li>
+	        <li>
+			  <A HREF="x-dow-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DOW^XLFDT, Usage: Day of Week, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$DOW^XLFDT</A>
+			  <BR>
+              Day of Week
+            </li>
+	        <li>
+			  <A HREF="x-dt-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DT^XLFDT, Usage: Current Date (VA FileMan Date Format), Category: XLF Function Library: Date Functions" 
+			     CLASS="navbarlink">$$DT^XLFDT</A>
+			  <BR>
+              Current Date (FM Format)
+            </li>
+	        <li>
+			  <A HREF="x-fmadd-xlfdt.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$FMADD^XLFDT, Usage: VA FileMan Date Add, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$FMADD^XLFDT</A>
+			  <BR>
+              VA FileMan Date Add
+            </li>
+	        <li>
+			  <A HREF="x-fmdiff-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FMDIFF^XLFDT, Usage: VA FileMan Date Difference, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$FMDIFF^XLFDT</A>
+			  <BR>
+              VA FileMan Date Difference
+            </li>
+	        <li>
+			  <A HREF="x-fmte-xlfdt.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$FMTE^XLFDT, Usage: Convert VA FileMan Date to External Format, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$FMTE^XLFDT</A>
+			  <BR>
+              Convert FM Date to External Format
+            </li>
+	        <li>
+		      <A HREF="x-fmth-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FMTH^XLFDT, Usage: Convert VA FileMan Date to $H, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$FMTH^XLFDT</A>
+			  <BR>
+              Convert VA FileMan Date to $H
+            </li>
+	        <li>
+			  <A HREF="x-fmthl7-xlfdt.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$FMTHL7^XLFDT, Usage: Convert VA FileMan Date to HL7 Date, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$FMTHL7^XLFDT</A>
+			  <BR>
+              Convert FM Date to HL7 Date
+            </li>
+	        <li>
+		      <A HREF="x-hadd-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$HADD^XLFDT, Usage: $H Add, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$HADD^XLFDT</A>
+			  <BR>
+              $H Add
+            </li>
+	        <li>
+		      <A HREF="x-hdiff-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$HDIFF^XLFDT, Usage: $H Difference, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$HDIFF^XLFDT</A>
+			  <BR>
+              $H Difference
+            </li>
+	        <li>
+			  <A HREF="x-hl7tfm-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$HL7TFM^XLFDT, Usage: Convert HL7 Date to VA FileMan Date, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$HL7TFM^XLFDT</A>
+			  <BR>
+              Convert HL7 Date to FM Date
+            </li>
+	        <li>
+			  <A HREF="x-hte-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$HTE^XLFDT, Usage: Convert $H to External Format, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$HTE^XLFDT</A>
+			  <BR>
+              Convert $H to External Format
+            </li>
+	        <li>
+			  <A HREF="x-htfm-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$HTFM^XLFDT, Usage: Convert $H to VA FileMan Date Format, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$HTFM^XLFDT</A>
+			  <BR>
+              Convert $H to FM Date Format
+            </li>
+	        <li>
+			  <A HREF="x-now-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NOW^XLFDT, Usage: Current Date and Time (VA FileMan Format), Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$NOW^XLFDT</A>
+			  <BR>
+              Current Date &amp; Time (FM Format)
+            </li>
+	        <li>
+		      <A HREF="x-sch-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SCH^XLFDT, Usage: Next Scheduled Runtime, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$SCH^XLFDT</A>
+			  <BR>
+              Next Scheduled Runtime
+            </li>
+	        <li>
+			  <A HREF="x-sec-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SEC^XLFDT, Usage: Convert $H/VA FileMan date to Seconds, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$SEC^XLFDT</A>
+			  <BR>
+              Convert $H/FM date to Seconds
+            </li>
+	        <li>
+			  <A HREF="x-tz-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TZ^XLFDT, Usage: Time Zone Offset (GMT), Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$TZ^XLFDT</A>
+			  <BR>
+              Time Zone Offset (GMT)
+            </li>
+	        <li>
+			  <A HREF="x-within-xlfdt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$WITHIN^XLFDT, Usage: Checks Dates/Times within Schedule, Category: XLF Function Library: Date Functions" 
+				 CLASS="navbarlink">$$WITHIN^XLFDT</A>
+			  <BR>
+              Checks Dates/Times within Schedule
+            </li>
+          </ul>
+		  <H5><A NAME="hyperbolic_functions">Hyperbolic Trigonometric Functions</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="x-acosh-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACOSH^XLFHYPER, Usage: Hyperbolic Arc-Cosine, Category: XLF Function Library: Hyperbolic Trigonometric"
+				 CLASS="navbarlink">$$ACOSH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Arc-Cosine
+            </li>
+	        <li>
+			  <A HREF="x-acoth-xlfhyper.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$ACOTH^XLFHYPER, Usage: Hyperbolic Arc-Cotangent, Category: XLF Function Library: Hyperbolic Trigonometric"
+				 CLASS="navbarlink">$$ACOTH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Arc-Cotangent
+            </li>
+	        <li>
+	          <A HREF="x-acsch-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACSCH^XLFHYPER, Usage: Hyperbolic Arc-Cosecant, Category: XLF Function Library: Hyperbolic Trigonometric"
+				 CLASS="navbarlink">$$ACSCH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Arc-Cosecant
+            </li>
+	        <li>
+			  <A HREF="x-asech-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ASECH^XLFHYPER, Usage: Hyperbolic Arc-Secant, Category: XLF Function Library: Hyperbolic Trigonometric"
+				 CLASS="navbarlink">$$ASECH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Arc-Secant
+            </li>
+	        <li>
+			  <A HREF="x-asinh-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ASINH^XLFHYPER, Usage: Hyperbolic Arc-Sine, Category: XLF Function Library: Hyperbolic Trigonometric"
+				 CLASS="navbarlink">$$ASINH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Arc-Sine
+            </li>
+	        <li>
+			  <A HREF="x-atanh-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ATANH^XLFHYPER, Usage: Hyperbolic Arc-Tangent, Category: XLF Function Library: Hyperbolic Trigonometric"
+				 CLASS="navbarlink">$$ATANH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Arc-Tangent
+            </li>
+	        <li>
+			  <A HREF="x-cosh-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$COSH^XLFHYPER, Usage: Hyperbolic Cosine, Category: XLF Function Library: Hyperbolic Trigonometric" 
+				 CLASS="navbarlink">$$COSH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Cosine
+            </li>
+	        <li>
+			  <A HREF="x-coth-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$COTH^XLFHYPER, Usage: Hyperbolic Cotangent, Category: XLF Function Library: Hyperbolic Trigonometric" 
+				 CLASS="navbarlink">$$COTH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Cotangent
+            </li>
+	        <li>
+			  <A HREF="x-csch-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CSCH^XLFHYPER, Usage: Hyperbolic Cosecant, Category: XLF Function Library: Hyperbolic Trigonometric" 
+				 CLASS="navbarlink">$$CSCH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Cosecant
+            </li>
+	        <li>
+			  <A HREF="x-sech-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SECH^XLFHYPER, Usage: Hyperbolic Secant, Category: XLF Function Library: Hyperbolic Trigonometric" 
+				 CLASS="navbarlink">$$SECH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Secant
+            </li>
+	        <li>
+			  <A HREF="x-sinh-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SINH^XLFHYPER, Usage: Hyperbolic Sine, Category: XLF Function Library: Hyperbolic Trigonometric" 
+				 CLASS="navbarlink">$$SINH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Sine
+            </li>
+	        <li>
+			  <A HREF="x-tanh-xlfhyper.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TANH^XLFHYPER, Usage: Hyperbolic Tangent, Category: XLF Function Library: Hyperbolic Trigonometric" 
+				 CLASS="navbarlink">$$TANH^XLFHYPER</A>
+			  <BR>
+              Hyperbolic Tangent
+            </li>
+          </ul>
+		  <H5><A NAME="math_functions">Math Functions</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="x-abs-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ABS^XLFMTH, Usage: Absolute Value, Category: XLF Function Library: Math Functions"
+				 CLASS="navbarlink">$$ABS^XLFMTH</A>
+			  <BR>
+              Absolute Value
+            </li>
+	        <li>
+			  <A HREF="x-acos-xlfmth.html"
+				 TARGET="display" 
+				 TITLE="Kernel APIs: $$ACOS^XLFMTH, Usage: Arc-Cosine (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$ACOS^XLFMTH</A>
+			  <BR>
+              Arc-Cosine (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-acosdeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACOSDEG^XLFMTH, Usage: Arc-Cosine (Degrees), Category: XLF Function Library: Math Functions"
+			     CLASS="navbarlink">$$ACOSDEG^XLFMTH</A>
+			  <BR>
+              Arc-Cosine (Degrees)
+            </li>
+	        <li>
+	          <A HREF="x-acot-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACOT^XLFMTH, Usage: Arc-Cotangent (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$ACOT^XLFMTH</A>
+			  <BR>
+              Arc-Cotangent (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-acotdeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACOTDEG^XLFMTH, Usage: Arc-Cotangent (Degrees), Category: XLF Function Library: Math Functions"
+				 CLASS="navbarlink">$$ACOTDEG^XLFMTH</A>
+			  <BR>
+              Arc-Cotangent (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-acsc-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACSC^XLFMTH, Usage: Arc-Cosecant (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$ACSC^XLFMTH</A>
+			  <BR>
+              Arc-Cosecant (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-acscdeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ACSCDEG^XLFMTH, Usage: Arc-Cosecant (Degrees), Category: XLF Function Library: Math Functions"
+				 CLASS="navbarlink">$$ACSCDEG^XLFMTH</A>
+			  <BR>
+              Arc-Cosecant (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-asec-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ASEC^XLFMTH, Usage: Arc-Secant (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$ASEC^XLFMTH</A>
+			  <BR>
+              Arc-Secant (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-asecdeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ASECDEG^XLFMTH, Usage: Arc-Secant (Degrees), Category: XLF Function Library: Math Functions"
+				 CLASS="navbarlink">$$ASECDEG^XLFMTH</A>
+			  <BR>
+              Arc-Secant (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-asin-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ASIN^XLFMTH, Usage: Arc-Sine (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$ASIN^XLFMTH</A>
+			  <BR>
+              Arc-Sine (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-asindeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ASINDEG^XLFMTH, Usage: Arc-Sine (Degrees), Category: XLF Function Library: Math Functions"
+				 CLASS="navbarlink">$$ASINDEG^XLFMTH</A>
+			  <BR>
+              Arc-Sine (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-atan-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ATAN^XLFMTH, Usage: Arc-Tangent (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$ATAN^XLFMTH</A>
+			  <BR>
+              Arc-Tangent (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-atandeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ATANDEG^XLFMTH, Usage: Arc-Tangent (Degrees), Category: XLF Function Library: Math Functions"
+				 CLASS="navbarlink">$$ATANDEG^XLFMTH</A>
+			  <BR>
+              Arc-Tangent (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-cos-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$COS^XLFMTH, Usage: Cosine (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$COS^XLFMTH</A>
+			  <BR>
+              Cosine (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-cosdeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$COSDEG^XLFMTH, Usage: Cosine (Degrees), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$COSDEG^XLFMTH</A>
+			  <BR>
+              Cosine (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-cot-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$COT^XLFMTH, Usage: Cotangent (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$COT^XLFMTH</A>
+			  <BR>
+              Cotangent (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-cotdeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$COTDEG^XLFMTH, Usage: Cotangent (Degrees), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$COTDEG^XLFMTH</A>
+		      <BR>
+              Cotangent (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-csc-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CSC^XLFMTH, Usage: Cosecant (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$CSC^XLFMTH</A>
+			  <BR>
+              Cosecant (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-cscdeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CSCDEG^XLFMTH, Usage: Cosecant (Degrees), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$CSCDEG^XLFMTH</A>
+			  <BR>
+              Cosecant (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-decdms-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DECDMS^XLFMTH, Usage: Convert Decimals to Degrees:Minutes:Seconds, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$DECDMS^XLFMTH</A>
+			  <BR>
+              Conv. Decimals to Degrees:Minutes:Seconds
+            </li>
+	        <li>
+			  <A HREF="x-dmsdec-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DMSDEC^XLFMTH, Usage: Convert Degrees:Minutes:Seconds to Decimal, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$DMSDEC^XLFMTH</A>
+			  <BR>
+              Conv. Degrees:Minutes:Seconds to Decimal
+            </li>
+	        <li>
+			  <A HREF="x-dtr-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DTR^XLFMTH, Usage: Convert Degrees to Radians, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$DTR^XLFMTH</A>
+			  <BR>
+              Convert Degrees to Radians
+            </li>
+	        <li>
+			  <A HREF="x-e-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$E^XLFMTH, Usage: e&#8212;Natural Logarithm, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$E^XLFMTH</A>
+			  <BR>
+              e&#8212;Natural Logarithm
+            </li>
+	        <li>
+			  <A HREF="x-exp-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$EXP^XLFMTH, Usage: e&#8212;Natural Logarithm to the Nth Power, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$EXP^XLFMTH</A>
+			  <BR>
+              e&#8212;Natural Logarithm to the Nth Power
+            </li>
+	        <li>
+	          <A HREF="x-ln-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LN^XLFMTH, Usage: Natural Log (Base e), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$LN^XLFMTH</A>
+			  <BR>
+              Natural Log (Base e)
+            </li>
+	        <li>
+			  <A HREF="x-log-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LOG^XLFMTH, Usage: Logarithm (Base 10), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$LOG^XLFMTH</A>
+			  <BR>
+              Logarithm (Base 10)
+            </li>
+	        <li>
+			  <A HREF="x-max-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$MAX^XLFMTH, Usage: Maximum of Two Numbers, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$MAX^XLFMTH</A>
+			  <BR>
+              Maximum of 2 Numbers
+            </li>
+	        <li>
+			  <A HREF="x-min-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$MIN^XLFMTH, Usage: Minimum of Two Numbers, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$MIN^XLFMTH</A>
+			  <BR>
+              Minimum of 2 Numbers
+            </li>
+	        <li>
+			  <A HREF="x-pi-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PI^XLFMTH, Usage: PI, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$PI^XLFMTH</A>
+			  <BR>
+              PI
+            </li>
+	        <li>
+			  <A HREF="x-pwr-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PWR^XLFMTH, Usage: X to the Y Power, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$PWR^XLFMTH</A>
+			  <BR>
+              X to the Y Power
+            </li>
+	        <li>
+			  <A HREF="x-rtd-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$RTD^XLFMTH, Usage: Convert Radians to Degrees, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$RTD^XLFMTH</A>
+			  <BR>
+              Convert Radians to Degrees
+            </li>
+	        <li>
+			  <A HREF="x-sd-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SD^XLFMTH, Usage: Standard Deviation, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$SD^XLFMTH</A>
+			  <BR>
+              Standard Deviation
+            </li>
+	        <li>
+			  <A HREF="x-sec-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SEC^XLFMTH, Usage: Secant (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$SEC^XLFMTH</A>
+			  <BR>
+              Secant (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-secdeg-xlfmth.html"
+				 TARGET="display"
+			     TITLE="Kernel API: $$SECDEG^XLFMTH, Usage: Secant (Degrees), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$SECDEG^XLFMTH</A>
+			  <BR>
+              Secant (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-sin-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SIN^XLFMTH, Usage: Sine (Radians), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$SIN^XLFMTH</A>
+			  <BR>
+              Sine (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-sindeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SINDEG^XLFMTH, Usage: Sine (Degrees), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$SINDEG^XLFMTH</A>
+			  <BR>
+              Sine (Degrees)
+            </li>
+	        <li>
+			  <A HREF="x-sqrt-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SQRT^XLFMTH, Usage: Square Root, Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$SQRT^XLFMTH</A>
+			  <BR>
+              Square Root
+            </li>
+	        <li>
+			  <A HREF="x-tan-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TAN^XLFMTH, Usage: Tangent (Radians), Category: XLF Function Library: Math Functions" 
+			     CLASS="navbarlink">$$TAN^XLFMTH</A>
+			  <BR>
+              Tangent (Radians)
+            </li>
+	        <li>
+			  <A HREF="x-tandeg-xlfmth.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TANDEG^XLFMTH, Usage: Tangent (Degrees), Category: XLF Function Library: Math Functions" 
+				 CLASS="navbarlink">$$TANDEG^XLFMTH</A>
+			  <BR>
+              Tangent (Degrees)
+            </li>
+          </ul>
+		  <H5><A NAME="measurement_functions">Measurement Functions</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="x-bsa-xlfmsmt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$BSA^XLFMSMT, Usage: Body Surface Area, Category: XLF Function Library: Measurement Functions" 
+				 CLASS="navbarlink">$$BSA^XLFMSMT</A>
+			  <BR>
+              Body Surface Area
+            </li>
+	        <li>
+			  <A HREF="x-length-xlfmsmt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LENGTH^XLFMSMT, Usage: Convert Length, Category: XLF Function Library: Measurement Functions"
+				 CLASS="navbarlink">$$LENGTH^XLFMSMT</A>
+			  <BR>
+              Convert Length
+            </li>
+	        <li>
+			  <A HREF="x-temp-xlfmsmt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TEMP^XLFMSMT, Usage: Convert Temperature, Category: XLF Function Library: Measurement Functions" 
+				 CLASS="navbarlink">$$TEMP^XLFMSMT</A>
+			  <BR>
+              Convert Temperature
+            </li>
+	        <li>
+			  <A HREF="x-volume-xlfmsmt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VOLUME^XLFMSMT, Usage: Convert Volume, Category: XLF Function Library: Measurement Functions"
+				 CLASS="navbarlink">$$VOLUME^XLFMSMT</A>
+			  <BR>
+              Convert Volume
+            </li>
+	        <li>
+			  <A HREF="x-weight-xlfmsmt.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$WEIGHT^XLFMSMT, Usage: Convert Weight, Category: XLF Function Library: Measurement Functions"
+			     CLASS="navbarlink">$$WEIGHT^XLFMSMT</A>
+			  <BR>
+              Convert Weight
+            </li>
+          </ul>
+		  <H5><A NAME="string_functions">String Functions</A></H5>
+          <ul>
+	        <li>
+		      <A HREF="x-cj-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CJ^XLFSTR, Usage: Center Justify String, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$CJ^XLFSTR</A>
+			  <BR>
+              Center Justify String
+            </li>
+	        <li>
+			  <A HREF="x-invert-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$INVERT^XLFSTR, Usage: Invert String, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$INVERT^XLFSTR</A>
+			  <BR>
+              Invert String
+            </li>
+	        <li>
+			  <A HREF="x-lj-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LJ^XLFSTR, Usage: Left Justify String, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$LJ^XLFSTR</A>
+			  <BR>
+              Left Justify String
+            </li>
+	        <li>
+			  <A HREF="x-low-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$LOW^XLFSTR, Usage: Convert String to Lowercase, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$LOW^XLFSTR</A>
+			  <BR>
+              Convert String to Lowercase
+            </li>
+	        <li>
+			  <A HREF="x-repeat-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$REPEAT^XLFSTR, Usage: Repeat String, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$REPEAT^XLFSTR</A>
+			  <BR>
+              Repeat String
+            </li>
+	        <li>
+			  <A HREF="x-replace-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$REPLACE^XLFSTR, Usage: Replace Strings, Category: XLF Function Library: String Functions"
+				 CLASS="navbarlink">$$REPLACE^XLFSTR</A>
+			  <BR>
+              Replace Strings
+            </li>
+	        <li>
+			  <A HREF="x-rj-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$RJ^XLFSTR, Usage: Right Justify String, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$RJ^XLFSTR</A>
+			  <BR>
+              Right Justify String
+            </li>
+	        <li>
+			  <A HREF="x-sentence-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SENTENCE^XLFSTR, Usage: Convert String to Sentence Case, Category: String Functions" 
+				 CLASS="navbarlink">$$SENTENCE^XLFSTR</A>
+			  <BR>
+              Convert String to Sentence Case
+            </li>
+	        <li>
+			  <A HREF="x-strip-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$STRIP^XLFSTR, Usage: Strip a String, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$STRIP^XLFSTR</A>
+			  <BR>
+              Strip a String
+            </li>
+	        <li>
+			  <A HREF="x-title-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TITLE^XLFSTR, Usage: Convert String to Title Case, Category: String Functions" 
+				 CLASS="navbarlink">$$TITLE^XLFSTR</A>
+			  <BR>
+              Convert String to Title Case
+            </li>
+	        <li>
+			  <A HREF="x-trim-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TRIM^XLFSTR, Usage: Trim String, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$TRIM^XLFSTR</A>
+			  <BR>
+              Trim String
+            </li>
+	        <li>
+			  <A HREF="x-up-xlfstr.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$UP^XLFSTR, Usage: Convert String to Uppercase, Category: XLF Function Library: String Functions" 
+				 CLASS="navbarlink">$$UP^XLFSTR</A>
+			  <BR>
+              Convert String to Uppercase
+            </li>
+          </ul>
+		  <H5><A NAME="utility_functions">Utility Functions</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="x-base-xlfutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$BASE^XLFUTL, Usage: Convert Between Two Bases, Category: XLF Function Library: Utility Functions" 
+				 CLASS="navbarlink">$$BASE^XLFUTL</A>
+			  <BR>
+              Convert Between Two Bases
+            </li>
+	        <li>
+			  <A HREF="x-ccd-xlfutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CCD^XLFUTL, Usage: Append Check Digit, Category: XLF Function Library: Utility Functions" 
+				 CLASS="navbarlink">$$CCD^XLFUTL</A>
+			  <BR>
+              Append Check Digit
+            </li>
+	        <li>
+			  <A HREF="x-cnv-xlfutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CNV^XLFUTL, Usage: Convert Base 10 to Another Base, Category: XLF Function Library: Utility Functions" 
+				 CLASS="navbarlink">$$CNV^XLFUTL</A>
+			  <BR>
+              Convert Base 10 to Another Base
+            </li>
+	        <li>
+			  <A HREF="x-dec-xlfutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$DEC^XLFUTL, Usage: Convert Another Base to Base 10, Category: XLF Function Library: Utility Functions" 
+				 CLASS="navbarlink">$$DEC^XLFUTL</A>
+			  <BR>
+              Convert Another Base to Base 10
+            </li>
+	        <li>
+			  <A HREF="x-vcd-xlfutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VCD^XLFUTL, Usage: Verify Integrity, Category: XLF Function Library: Utility Functions" 
+				 CLASS="navbarlink">$$VCD^XLFUTL</A>
+			  <BR>
+              Verify Integrity
+            </li>
+          </ul>
+		  <H5><A NAME="ip_address_functions">IP Address Functions</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="x-convert-xlfipv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CONVERT^XLFIPV, Usage: Convert any IP Address to Standardized IP Address Format, Category: XLF Function Library: IP Address Functions" 
+			     CLASS="navbarlink">$$CONVERT^XLFIPV</A>
+			  <BR>
+              Convert any IP Address to Standardized IP Address Format
+            </li>
+	        <li>
+			  <A HREF="x-forceip4-xlfipv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FORCEIP4^XLFIPV, Usage: Convert any IP Address to IPv4, Category: XLF Function Library: IP Address Functions" 
+				 CLASS="navbarlink">$$FORCEIP4^XLFIPV</A>
+			  <BR>
+              Convert any IP Address to IPv4
+            </li>
+	        <li>
+			  <A HREF="x-forceip6-xlfipv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$FORCEIP6^XLFIPV, Usage: Convert any IP Address to IPv6, Category: XLF Function Library: IP Address Functions" 
+				 CLASS="navbarlink">$$FORCEIP6^XLFIPV</A>
+			  <BR>
+              Convert any IP Address to IPv6
+            </li>
+	        <li>
+			  <A HREF="x-validate-xlfipv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VALIDATE^XLFIPV, Usage: Validate IP Address Format, Category: XLF Function Library: IP Address Functions" 
+				 CLASS="navbarlink">$$VALIDATE^XLFIPV</A>
+			  <BR>
+              Validate IP Address Format
+            </li>
+	        <li>
+			  <A HREF="x-version-xlfipv.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VERSION^XLFIPV, Usage: Show System Settings for IPv6, Category: XLF Function Library: IP Address Functions" 
+				 CLASS="navbarlink">$$VERSION^XLFIPV</A>
+			  <BR>
+              Show System Settings for IPv6
+            </li>
+          </ul>
+        </td>
+	  </TR> 
+	  <TR> 
+		<TD>
+		  <HR>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD> 
+		  <H5><A NAME="xml">XML Parser (VistA)</A></H5>
+          <ul>
+	        <li>
+			  <A HREF="x-attrib-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$ATTRIB^MXMLDOM, Usage: Get First or Next Node Attribute Name, Category: XML Parser (VistA)"
+			     CLASS="navbarlink">$$ATTRIB^MXMLDOM</A>
+			  <BR>
+              Get First or Next Node Attribute Name
+            </li>
+	        <li>
+			  <A HREF="x-child-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CHILD^MXMLDOM, Usage: Get Parent Node&#8217;s First or Next Child, Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">$$CHILD^MXMLDOM</A>
+			  <BR>
+              Get Parent Node&#8217;s First or Next Child
+            </li>
+	        <li>
+			  <A HREF="x-cmnt-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$CMNT^MXMLDOM, Usage: Extract Comment Text (True/False), Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">$$CMNT^MXMLDOM</A>
+			  <BR>
+              Extract Comment Text (True/False)
+            </li>
+	        <li>
+			  <A HREF="cmnt-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: CMNT^MXMLDOM, Usage: Extract Comment Text (True/False), Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">CMNT^MXMLDOM</A>
+			  <BR>
+              Extract Comment Text (True/False)
+            </li>
+	        <li>
+			  <A HREF="delete-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: DELETE^MXMLDOM, Usage: Delete Document Instance, Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">DELETE^MXMLDOM</A>
+			  <BR>
+              Delete Document Instance
+            </li>
+	        <li>
+			  <A HREF="x-en-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$EN^MXMLDOM, Usage: Initial Processing of XML Document, Build In-memory Image, Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">$$EN^MXMLDOM</A>
+			  <BR>
+              Initial Processing of XML Document, Build In-memory Image
+            </li>
+	        <li>
+			  <A HREF="x-name-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$NAME^MXMLDOM, Usage: Get Element Name, Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">$$NAME^MXMLDOM</A>
+			  <BR>
+              Get Element Name
+            </li>
+	        <li>
+			  <A HREF="x-parent-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$PARENT^MXMLDOM, Usage: Get Parent Node, Category: XML Parser (VistA)"
+				 CLASS="navbarlink">$$PARENT^MXMLDOM</A>
+			  <BR>
+              Get Parent Node
+            </li>
+	        <li>
+			  <A HREF="x-sibling-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$SIBLING^MXMLDOM, Usage: Get Sibling Node, Category: XML Parser (VistA)"
+				 CLASS="navbarlink">$$SIBLING^MXMLDOM</A>
+			  <BR>
+              Get Sibling Node
+            </li>
+	        <li>
+			  <A HREF="x-text-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$TEXT^MXMLDOM, Usage: Extract Non-markup Text  (True/False), Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">$$TEXT^MXMLDOM</A>
+			  <BR>
+              Extract Non-markup Text  (True/False)
+            </li>
+	        <li>
+			  <A HREF="text-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: TEXT^MXMLDOM, Usage: Extract Non-markup Text  (True/False), Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">TEXT^MXMLDOM</A>
+			  <BR>
+              Extract Non-markup Text  (True/False)
+            </li>
+	        <li>
+			  <A HREF="x-value-mxmldom.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$VALUE^MXMLDOM, Usage: Get Attribute Value, Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">$$VALUE^MXMLDOM</A>
+			  <BR>
+              Get Attribute Value
+            </li>
+	        <li>
+			  <A HREF="en-mxmlprse.html"
+				 TARGET="display"
+				 TITLE="Kernel API: EN^MXMLPRSE, Usage: Event Driven API, Category: XML Parser (VistA)" 
+				 CLASS="navbarlink">EN^MXMLPRSE</A>
+			  <BR>
+              Event Driven API
+            </li>
+	        <li>
+			  <A HREF="x-symenc-mxmlutl.html" 
+				 TARGET="display"
+				 TITLE="Kernel API: $$SYMENC^MXMLUTL, Usage: Replace XML Symbols with XML Encoding, Category: XML Parser (VistA)"
+				 CLASS="navbarlink">$$SYMENC^MXMLUTL</A>
+			  <BR>
+              Replace XML Symbols with XML Encoding
+            </li>
+	        <li>
+			  <A HREF="x-xmlhdr-mxmlutl.html"
+				 TARGET="display"
+				 TITLE="Kernel API: $$XMLHDR^MXMLUTL, Usage: Get XML Message Header, Category: XML Parser (VistA)"
+				 CLASS="navbarlink">$$XMLHDR^MXMLUTL</A>
+			  <BR>
+              Get XML Message Header
+            </li>
+          </ul>
+		  <P></P>
+		</TD> 
+	  </TR> 
+      <TR ALIGN="LEFT"> 
+		<TD>
+		  <BR>
+		  <BR>
+		  <A HREF="http://www.va.gov/"
+		     TARGET="_top">
+<!-- VA seal -->
+		  <IMG SRC="images/vaseal.gif"
+			   ALT="Department of Veterans Affairs Seal: Return to Home Page"
+			   WIDTH="96"
+			   HEIGHT="94"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="142"
+			   HEIGHT="1"
+			   BORDER="0">
+		  <BR>
+	    </TD> 
+	  </TR> 
+    </TABLE>  
+<!--End of left hand frame text, images, and content links-->
+  </BODY>
+   </NOFRAMES>
+ </FRAMESET> 
+</HTML>

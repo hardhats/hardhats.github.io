@@ -1,0 +1,259 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel Toolkit APIs: EN^XDRMERG">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,toolkit,programmer,developer,programmer manual,developer's guide,apis,application programming interface,application,programming,interface,entry point,EN^XDRMERG,EN,XDRMERG,Duplicate Record Merge,supported">
+    <meta name="description"
+	      content="Kernel Toolkit APIs: EN^XDRMERG">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel Toolkit APIs: EN^XDRMERG</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/toolkit_heading_APIs.gif"
+			   ALT="Kernel Toolkit 7.3 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+	<H3><a name="navskip">EN^XDRMERG</a>(): Merge File Entries</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit&#8212;Duplicate Record Merge,
+	<B>ICR#:</B> 2365</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The EN^XDRMERG API provides for merging of one or more pairs of records in a specified file. This 
+	API takes two (<strong>2</strong>) arguments:</P>
+    <ul>
+	  <li>
+	    File number (a numeric value).
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Closed reference to the location where the program finds an array with subscripts indicating the record pairs to be merged (a text value).</li>
+    </ul>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  EN^XDRMERG(file,arraynam)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>file:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Specifies the file number of the file in which the indicated entries are to be merged.</P>
+        </TD> 
+	  </TR> 
+	  </TABLE> 
+	<H4>Input / <A NAME="output">Output</A> Parameters</H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>arraynam:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) This parameter contains the name of the array as a closed root under which the subscripts indicating the 
+		  <strong>FROM</strong> and <strong>TO</strong> entries are found. The data can have either two or four subscripts descendent from the array, which is passed.</P>
+          <p><b>REF:</b> For examples of its usage, see the &#8220;Overview&#8221; section in the "Toolkit&#8212;Duplicate Record Merge" section in the <i>Kernel 
+		  8.0 &amp; Kernel Toolkit 7.3 Developer's Guide</i>.</p>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<h4>Examples</h4>
+	<p>The following command would result in record pairs specified as subscripts in the array 
+	<strong>MYLOC</strong> to be merged in a hypothetical 
+	File #999000014:</p>
+    <pre>     <strong>D EN^XDRMERG(999000014,&#8221;MYLOC&#8221;)</strong></pre>
+    <p>The array <strong>MYLOC</strong> might have been set up prior to this call in the following manner (or any equivalent way) where the subscripts represent the internal entry numbers of the 
+	<strong>FROM</strong> and <strong>TO</strong> records, respectively.</p>
+    <pre>     <strong>S MYLOC(147,286)=&#8220;&#8221;,MYLOC(182,347)=&#8220;&#8221;,MYLOC(2047,192)=&#8220;&#8221;</strong>
+    <strong>S MYLOC(837,492)=&#8220;&#8221;,MYLOC(298,299)=&#8220;&#8221;</strong></pre>
+    <p>This would result in five record pairs being merged with record <strong>147</strong> (the 
+	<strong>FROM</strong> record) being merged into record 286 (the <strong>TO</strong> record), record 
+	<strong>182</strong> being merged into record <strong>347</strong>, etc., to record 
+	<strong>298</strong> being merged into <strong>299</strong>. Merges using the two subscript format occurs without a specific record of the entries prior to the merge (The internal entry numbers merged would be recorded under the file number in XDR REPOINTED ENTRY 
+	[#15.3] file) An alternative is a four subscript format for the data array that uses variable pointer formats for the 
+	<strong>FROM</strong> and <strong>TO</strong> records as the third and fourth subscripts. If the merge is performed with this four subscript array, then a pre-merge image of the data of both the 
+	<strong>FROM</strong> and <strong>TO</strong> records in the primary file and all other merged files (those related by 
+	<strong>DINUM</strong>) and information on all single value pointer values modified is stored in the MERGE IMAGE 
+	(#15.4) file.</p>
+    <p>For the sample data above [assuming that the global root for the hypothetical file #999000014 is ^DIZ(999000014,] the four subscript array might be generated using the following code:</p>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <pre>     S MYROOT=&#8220;;DIZ(99900014,&#8221;  &lt;--- note the leading ^ is omitted
+     S MYLOC(147,286,147_MYROOT,286_MYROOT)=&#8220;&#8221;
+     S MYLOC(182,347,182_MYROOT,347_MYROOT)=&#8220;&#8221;
+     S MYLOC(2047,192,2047_MYROOT,192_MYROOT)=&#8220;&#8221;
+     S MYLOC(837,492,837_MYROOT,492_MYROOT)=&#8220;&#8221;
+     S MYLOC(298,299,298_MYROOT,299_MYROOT)=&#8220;&#8221;
+     ;
+     D EN^XDRMERG(99900014,&#8221;MYLOC&#8221;) </pre>           
+        </td>
+      </tr>
+    </table>
+    <p>Exclusion of Multiple Pairs For a Record&#8212;To insure that there are no unanticipated problems due to relationships between a specific record in multiple merges, prior to actually merging any data the various 
+	<strong>FROM</strong> and <strong>TO</strong> records included in the process are examined, and if one record is involved in more than one merge, all except the first pair of records involving that one are excluded from the merge. If any pairs are excluded for this reason, a mail message is generated to the individual responsible for the merge process as indicated by the 
+	<strong>DUZ</strong>.</p>
+    <p>If the following entries were included in the <strong>MYLOC</strong> array:</p>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <pre>     MYLOC(128,247)
+     MYLOC(128,536) and
+     MYLOC(247,128)</pre>           
+        </td>
+      </tr>
+    </table>   
+    <p>Only the first of these entries (based on the numeric sorting of the array) would be permitted to remain in the merge process, while the other two pairs would be omitted). And although it may seem unlikely that someone would indicate that a record should be merged into two different locations, while another location should be merged into one that was merged away, if the pairs are selected automatically and checks are not included to prohibit such behavior, they show up. That is why the merge process does not include more than one pair with a specific record in it.</p>
+    <h4>Problems Related To Data Entry While Merging</h4>
+    <p>The Merge Process has been designed to combine data associated with the two records in the manner described above. On occasion, however, there are problems that cause VA FileMan to reject the data that is being entered. This may happen for a number of reasons. Some examples that have been observed include:</p>
+    <ul>
+      <li>
+        Clinics that had been changed so they no longer were indicated as Clinics (so they would not add to the number that people had to browse through to select a clinic), but were rejected since the input transform checked that they be clinics.
+        <br>
+        <br>
+      </li>
+      <li>
+       Pointer values that no longer had a valid value in the pointed to file (dangling pointers).
+       <br>
+       <br> 
+      </li>
+      <li>
+       Fields that have input transforms that prohibit data entry. 
+      </li>
+    </ul>
+    <p>It is possible to use a validity checker on your data prior to initiating the actual merge process (this is the action taken by merges working from the Potential Duplicate file). The data pairs are processed in a manner similar to the actual merge, so only that data in any of the files that would be merged and for which the data would be entered using VA FileMan utilities for the specific pair are checked to insure they pass the input transform. Any problems noted are incorporated into a mail message for resolution prior to attempting to merge the pair again, and the pair is removed from the data array that was passed in. Pairs that pass through this checking should 
+	<em>not</em> encounter any data problems while being merged.</p>
+	<p>&nbsp;</p>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/en-xdrmerg.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

@@ -1,0 +1,244 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$CRC32^XLFCRC">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$CRC32^XLFCRC,$$CRC32,XLFCRC,other functions,other,functions,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$CRC32^XLFCRC">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$CRC32^XLFCRC</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$CRC32^XLFCRC</A>(): Cyclic Redundancy Code 32</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Other Functions,
+	<B>ICR#:</B> 3156</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$CRC32^XLFCRC extrinsic function computes a Cyclic Redundancy Code (CRC) of the 
+    <strong>8</strong>-bit character string, using the following as the 
+	polynomial<strong>:</strong></P>
+    <P><strong>&nbsp;&nbsp;&nbsp; X^32 + X^26 + X^23 + X^22 + X^16 + 
+    X^12 + X^11 + X^10 + X^8 + X^7 + X^5 + X^4 + X^2 + X + 1</strong> </P>
+    <P>The optional <strong>seed</strong> input parameter can supply an initial value, which allows for 
+    running CRC calculations on multiple strings. If the <strong>seed</strong> 
+    input parameter is <I>
+    not</I> specified, a default value of <strong>4,294,967,295 (2^32-1)</strong> is assumed. 
+    The value of <strong>seed</strong> is limited to <strong>0 &lt;= seed &lt;= 2^32</strong>. The 
+    <strong>function</strong> value 
+    is between <strong>0</strong> and <strong>2^32</strong>.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$CRC32^XLFCRC(string[,seed])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5" BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       ID="table4"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>string:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (required) String upon which 
+          to compute the <strong>CRC32</strong>.
+        </TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>seed:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  (optional) Seed value. Needed to compute the <strong>CRC32</strong> over multiple strings.
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       ID="table5"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>returns:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  Returns the Cyclic Redundancy Code (CRC) <strong>32</strong> value.
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<PRE><B>SET CRC=$$CRC32^XLFCRC(string)</B></PRE> 
+	<P>A checksum can also be calculated over multiple strings.</P>
+    <TABLE BORDER="1"
+           WIDTH="100%"
+           CELLSPACING="3"
+           CELLPADDING="3"
+           ID="table6">
+      <TR>
+        <TD> 
+	      <PRE><B>SET (I,C)=0</B>
+<B>FOR SET I=$ORDER(X(I)) QUIT:'I DO </B>
+<B>. SET C=$$CRC32^XLFCRC(X(I),C)</B></PRE> 
+	    </TD>
+      </TR>
+    </TABLE>
+    <P>Or:</P>
+    <TABLE BORDER="1"
+           WIDTH="100%"
+           CELLSPACING="3"
+           CELLPADDING="3"
+           ID="table7">
+      <TR>
+        <TD> 
+	      <PRE><B>SET I=0,C=4294967295</B>
+<B>FOR SET I=$ORDER(X(I)) QUIT:'I DO </B>
+<B>. SET C=$$CRC32^XLFCRC(X(I),C)</B></PRE> 
+	    </TD>
+      </TR>
+    </TABLE>
+    <P>As long as the save method is used all the time.</P>
+	<H4>Example 2</H4> 
+	<TABLE BORDER="1"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       ID="table8">
+      <TR>
+        <TD> 
+	      <PRE><B>CRC322 ;Test call CRC32^XLFCRC multiple times</B>
+<B>S TEXT=&quot;Now is the time for all good children&quot;,TEXT2=&quot;to come to the aid of their country.&quot;</B>
+<B>S CRC=0,CRC=$$CRC32^XLFCRC(TEXT,CRC)</B>
+<B>If 715820230=$$CRC32^XLFCRC(TEXT2,CRC) WRITE !,&quot;CRC32 OK&quot;</B>
+<B>Q</B></PRE> 
+	    </TD>
+      </TR>
+    </TABLE>
+    <P><B>NOTE:</B> These have been approved for inclusion in a future ANSI M 
+    language standard as part of the library.</P>
+    <P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-crc32-xlfcrc.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

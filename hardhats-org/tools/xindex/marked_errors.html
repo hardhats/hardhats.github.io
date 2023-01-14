@@ -1,0 +1,149 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+	<meta name="language"
+	      content="en">
+	<meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+	<meta name="subject"
+	      content="Kernel Toolkit XINDEX: Marked Items Errors (Manual Check)">
+	<meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information and Technology,OI&T,OIT,VISTA,kernel,toolkit,programmer,developer,programmer manual,xindex,errors,messages,sacc,sac,Marked Items Errors (Manual Check),marked items,marked,items,manual check,manual">
+	<meta name="description"
+	      content="Kernel Toolkit XINDEX: Marked Items Errors (Manual Check)">
+	<meta name="datecreated"
+	      content="20120124">
+	<meta name="datereviewed"
+	      content="20180720">
+	<meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <TITLE>Kernel Toolkit XINDEX: Marked Items Errors (Manual Check)</TITLE>
+    <META NAME="subject"
+          CONTENT="">
+    <META NAME="keywords"
+	      CONTENT="">
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY>
+    <header> 
+<!-- Start Title Banner (image) -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="3"
+           CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel-toolkit_heading_xindex.jpg"
+			   ALT="Kernel & Toolkit APIs Banner"
+			   WIDTH="429"
+			   HEIGHT="29"
+			   BORDER="0">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   WIDTH="429"
+			   HEIGHT="30"
+			   BORDER="0">
+		</TD> 
+	  </TR> 
+    </TABLE> 
+<!-- End Title Banner (image) -->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">XINDEX: Marked Items Errors (Manual Check)</A></H3> 
+    <P>You <em>must</em> manually check flagged references under Marked Items.</P>
+	<p>Currently, Marked Items only apply if a line contains <strong>$TEXT ($T)</strong>. 
+	XINDEX records the location of the <strong>$T</strong> code and prints it out under 
+	the &quot;Marked Items&quot; sub-header on the XINDEX report, since XINDEX 
+	does <em>not</em> check the references of a <strong>$T</strong>.</p>
+	<p>M uses the <strong>$TEXT</strong> function to retrieve lines from a routine, and 
+	routines sometimes incorporate data items that are retrieved in this 
+	fashion. Section 2.2.4 of the SAC describes the required format for 
+	lines referenced by <strong>$TEXT</strong>, which states (in part):</p>
+	<blockquote>2.2.4.1 <strong>LABEL+OFFSET</strong> references will <em>not</em> be used except for <strong>$TEXT</strong> references.
+	<br>
+	<br>
+	2.2.4.2 Lines referenced by <strong>$TEXT</strong> for use other than to check for the existence of a routine or a line label
+	in that routine must be in the following format: <strong>[LABEL-optional]&lt;ls&gt;;;text</strong> or M code.</blockquote>
+	<p>In standard M, a semicolon (<b>;</b>) introduces comments. A double 
+	semicolon (<b>;;</b>) indicates that the comment should be preserved even if the routine is compiled. The <strong>LABEL+OFFSET</strong> syntax 
+	is required to prevent errors that could be introduced if lines are inserted ahead of the label. According to the SAC, if code uses <strong>$T</strong>, 
+	the reference <i>must</i> start with a double semicolon (<b>;;</b>).</p>
+	<P>&nbsp;</P>
+<!-- End Content -->
+	<footer>
+	<HR COLOR="003399">
+<!-- Start Bottom Links -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/vhaoi/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+    <A HREF="https://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology Home Page">
+	   <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!-- End Bottom Links -->
+<!-- Date Content was Reviewed or Updated -->
+    <p align="center">Reviewed/Updated: 07/20/2018
+    <br>
+    <br>
+    For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+	<A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/xindex/marked_errors.html"
+	   TITLE="Send mail to the Webmasters regarding this page"
+	   class="bodylink">Webmasters</A></p> 
+    <P>&nbsp;</P>
+    </footer>
+  </BODY>
+</HTML>

@@ -1,0 +1,343 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$NPI^XUSNPI">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information and Technology (OIT),OIT,OI&T,Infrastructure and Security Services,Information Infrastructure Service,ISS,IIS,OI&T,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$NPI^XUSNPI,$$NPI,XUSNPI,national provider identifier (npi),npi,providers,controlled subscription,controlled,subscription">
+    <meta name="description"
+	      content="Kernel APIs: $$NPI^XUSNPI">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180814">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$NPI^XUSNPI</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$NPI^XUSNPI</A>(): Get NPI from Files #200, #4, or #355.93</H3> 
+	<P><B>Reference Type:</B> Controlled Subscription, <B>Category:</B> National 
+    Provider Identifier (NPI), <B>ICR#:</B> 4532</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$NPI^XUSNPI extrinsic function retrieves the National Provider Identifier (NPI) and related
+	utilities from any of the following files:</P>
+    <ul>
+	  <li>
+	    NEW PERSON (#200)
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    INSTITUTION (#4)
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    IB NON/OTHER VA BILLING PROVIDER (#355.93)
+	  </li>
+    </ul>
+    <P><strong>NOTE:</strong> This API was released with Kernel Patch XU*8.0*410.</P>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$NPI^XUSNPI(xusqi,xusien[,xusdate])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xusqi:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) The Qualified Identifier for the NPI. For example:</P>
+		  <P>&nbsp;&nbsp;&nbsp; Individual_ID, Organization_ID, or Non_VA_Provider_ID</P>
+		  <P>No default.</P>
+		</TD> 
+	  </TR> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xusien:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) The Internal Entry Number (IEN) from any of the following files:</P>
+		  <ul>
+		    <li>
+		      NEW PERSON (#200)
+		      <br>
+			  <br>
+			</li>
+			<li>
+			  INSTITUTION (#4)
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  IB NON/OTHER VA BILLING PROVIDER (#355.93)
+			</li>
+		  </ul>
+		  <P>No default.</P>
+		</TD> 
+	  </TR> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xusdate:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(optional) A date of interest. Defaults to "<strong>Today</strong>&quot;.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns any of the following strings:</P> 
+		  <UL> 
+		    <LI>
+		      <strong>NPI^EffectiveDate^Status&#8212;</strong>If National Provider Identifier (NPI) exists.
+              <BR>
+		      <BR>
+		    </LI> 
+			<LI>
+			  <strong>0&#8212;</strong>If NPI does <I>not</I> exist.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  <strong>-1^ErrorMessage&#8212;</strong>If invalid <strong>xusqi</strong> or 
+			  <strong>xusien</strong> input parameters.
+			</LI> 
+		  </UL>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>The following example uses the following file data:</P>
+	<UL>
+      <LI>
+        Individual_ID = <strong>NEW PERSON (#200)</strong> file
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        NPI = <strong>9876543213</strong>
+        <BR>
+        <BR>
+      <LI>
+        EffectiveDate = <strong>3061108.123651</strong>
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Status = <strong>Active</strong>
+      </LI>
+    </UL>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>W $$NPI^XUSNPI(&quot;Individual_ID&quot;,82)</B>
+9876543213^3061108.123651^Active</PRE>          
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 2</H4> 
+	<P>The following example uses the following file data:</P>
+	<UL>
+      <LI>
+        Organization_ID = <strong>INSTITUTION (#4)</strong> file
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        NPI = <strong>1111111112</strong>
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        EffectiveDate = <strong>3070122</strong>
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Status = <strong>Active</strong>
+      </LI>
+    </UL>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>W $$NPI^XUSNPI(&quot;Organization_ID&quot;,1)</B>
+1111111112^3070122^Active</PRE>          
+        </td>
+      </tr>
+    </table>	 
+	<H4>Example 3</H4> 
+	<P>The following example uses the following file data:</P>
+	<UL>
+      <LI>
+        Organization_ID = <strong>IB NON/OTHER VA BILLING PROVIDER (#355.93)</strong> file
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        NPI = <strong>2222222228</strong>
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        EffectiveDate = <strong>3070122</strong>
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Status = <strong>Active</strong>
+      </LI>
+    </UL>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>W $$NPI^XUSNPI("Non_VA_Provider_ID ",1)</B>
+2222222228 ^3070122^Active</PRE>          
+        </td>
+      </tr>
+    </table>	 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/14/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-npi-xusnpi.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

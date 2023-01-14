@@ -1,0 +1,403 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: OPKG^XUHUI">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,OPKG^XUHUI,opkg,xuhui,hui,supported">
+    <meta name="description"
+	      content="Kernel APIs: OPKG^XUHUI">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: OPKG^XUHUI</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">OPKG^XUHUI</A>(): Monitor New Style Cross-referenced Fields</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Field Monitoring,
+	<B>ICR#:</B> 3589</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The OPKG^XUHUI API allows other packages to task an Option or Protocol from a New
+	Style cross-reference. This API can be used to monitor any field or fields in
+	any file using a New Style cross-reference.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>     OPKG^XUHUI([xuhuiop,]xuhuinm[,xuhuia],xuhuixr)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xuhuiop:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (optional) This parameter is
+		  a set of Numeric codes that tells the Unwinder to use the PROTOCOL 
+		  (#101) file or the OPTION (#19) file. If this parameter is <strong>NULL</strong>, the 
+		  default value is used (i.e., <strong>101</strong>): 
+		  <UL> 
+		    <LI>
+		      <strong>101 (default)&#151;</strong>PROTOCOL (#101) file is used.
+		      <BR>
+		      <BR>
+		    </LI> 
+		    <LI>
+		      <strong>19&#151;</strong>The OPTION (#19) file is used.
+		    </LI> 
+		  </UL>
+	    </TD>
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xuhuinm:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (required) This parameter is
+		  the NAME (#.01) value of the Protocol or Option that is to be launched.
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xuhuia:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (optional) This parameter is a Set of Codes. If this input parameter 
+		  is <strong>NULL</strong>, the default value is used (i.e., <b>S</b>): 
+		  <UL> 
+		    <LI>
+		      <b>S (default)&#151;</b>The data being passed is from the <strong>SET</strong>ting of
+			  the cross-reference.
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  <b>K&#151;</b>The data being passed is from the <strong>KILL</strong>ing of the cross-reference.
+			</LI> 
+		  </UL>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xuhuixr:</B>
+	    </TD> 
+	    <TD VALIGN="TOP"
+	        WIDTH="85%">
+	      (required) This parameter is the name of the cross-reference.
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      See <A HREF="#example"
+	             CLASS="bodylink"
+	             TITLE="OPKG^XUHUI Example">Example</A>
+	    </TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  Monitored Fields with a New Style cross-reference.
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>The Hui Project needs to monitor the following fields at the top-level
+	of the NEW PERSON (#200) file for changes in value, in the order listed:</P> 
+	<UL> 
+	  <LI>
+	    NAME (#.01)
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    TERMINATION DATE (#9.2)
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    DOB (#5)
+	    <BR>
+	    <BR>
+	  </LI> 
+	  <LI>
+	    SSN (#9)
+	  </LI> 
+	</UL> 
+	<H4><A NAME="create_cross-references">Create New Style Cross-references</A></H4> 
+	<P> Create a MUMPS New Style cross-reference for the fields that are to be
+	monitored for value changes, as shown below:</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE>Index Name: AXUHUI (#n)
+
+Short Description: Hui Project Top File Cross-reference
+
+      Description: This MUMPS New Style cross-reference is on non-multiple
+                   fields in the NEW PERSON (#200) file that the Hui Project
+                   needs to monitor for changes in value.  The following fields
+                   are being monitored in the order listed: 
+
+                          .01 (NAME) 
+                           9.2 (TERMINATION DATE) 
+                           5 (DOB) 
+                           9 (SSN) 
+                   For details on how this cross-reference processes changes,
+                   see the patch description for Kernel Patch XU*8*236.
+                   For more detailed information about the MUMPS New Style 
+                   cross-reference, see the "VA FileMan V. 22.0 Key  
+                   and Index Tutorial" at the following web address: 
+
+            http://vista.med.va.gov/fileman/fileMan_training/online_pres/FMtut_frm.htm
+            (see Lessons #5 and #6)
+
+               Type: MUMPS
+
+          EXECUTION: RECORD
+
+                Use: ACTION
+
+      Set Logic:  D OPKG^XUHUI("","XUHUI FIELD CHANGE EVENT","","AXUHUI") Q 
+     Kill Logic:  Q 
+     Whole Kill:  Q 
+           X(1):  NAME  (200,.01)  (forwards) 
+           X(2):  TERMINATION DATE  (200,9.2)  (forwards) 
+           X(3):  DOB  (200,5)  (forwards) 
+           X(4):  SSN  (200,9)  (forwards)</PRE>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<P>&nbsp;</P> 
+	<H4><A NAME="sample_scenario">Sample Scenario</A></H4> 
+	<P>Change a monitored (cross-referenced) field value in the NEW PERSON 
+	(#200) file, as shown below:</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE>INPUT TO WHAT FILE: NEW PERSON// <B>&lt;Enter&gt;</B> 
+ EDIT WHICH FIELD: ALL// <B>DOB</B>  
+ THEN EDIT FIELD: <B>SSN</B> 
+ THEN EDIT FIELD: <B>&lt;Enter&gt;</B>
+   
+ Select NEW PERSON NAME: <B>KRNUSER &lt;Enter&gt;</B> KRNUSER,ONE     OK 
+ DOB: JUL 4,1950// <B>12.24.49 &lt;Enter&gt;</B> (DEC 24, 1949) 
+ SSN: 000220000// <B>000558888</B></PRE>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<P>In this example the ONE KRNUSER's Date of Birth (DOB) was changed from 07/04/50 to
+	12/24/49 and also changed the Social Security Number (SSN) from 000-22-0000 to
+	000-55-8888. Since these fields are being monitored (i.e., MUMPS New Style
+	cross-reference, see the 
+	"<A HREF="#create_cross-references"
+	    CLASS="bodylink"
+		TITLE="Create Cross-references">Create Cross-references</A>" topic), 
+	you should
+	see this data passed to the "XUHUI FIELD CHANGE EVENT" protocol (see the "
+	<A HREF="#internal_results"
+	   CLASS="bodylink"
+	   TITLE="Internal Results for Developers">Internal Results for Developers</A>" 
+	section that follows).</P> 
+	<P>&nbsp;</P> 
+	<H4><A NAME="internal_results">Internal Results for Developer</A></H4> 
+	<P>The following data is passed to the "XUHUI FIELD CHANGE EVENT" Protocol
+	via the Kernel OPKG^XUHUI API that is called in the AXUHUI cross-reference (see
+	the "<A HREF="#create_cross-references"
+	        CLASS="bodylink"
+		    TITLE="Create Cross-references">Create Cross-references</A>" topic). (Comments
+	about the data are displayed in boldface type and in italics.)</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE> -------------------------------------------------------------------------
+ If executing the Kill logic, then the 'X' array will  be equal to the 'X1'
+ array.  If executing the Set logic, then the 'X' array will be equal to
+ the 'X2' array.  
+ -------------------------------------------------------------------------
+ X=KRNUSER,ONE 
+ X(1)=KRNUSER,ONE 
+ X(2)= 
+ X(3)=2491224 
+ X(4)=000558888 
+ -------------------------------------------------------------------------
+ X1=KRNUSER,ONE  <B><I>&lt;-- Old values are in this array.</I></B> 
+ X1(1)=KRNUSER,ONE 
+ X1(2)= 
+ X1(3)=2500704 
+ X1(4)=999220000 
+ -------------------------------------------------------------------------
+ X2=KRNUSER,ONE  <B><I>&lt;-- New values are in this array.</I></B> 
+ X2(1)=KRNUSER,ONE 
+ X2(2)= 
+ X2(3)=2491224 
+ X2(4)=000558888 
+ -------------------------------------------------------------------------
+ XUHUIA=S  <B><I>&lt;-- "S" = Set Logic is being executed, "K" = Kill logic being executed.</I></B> 
+ XUHUIDA=70  <B><I>&lt;-- "DA" array.</I></B>
+ XUHUIFIL=200  <B><I>&lt;-- File number.</I></B>
+ XUHUIFLD=  <B><I>&lt;-- Field numbers if available.</I></B> 
+ XUHUINM=XUHUI FIELD CHANGE EVENT  <B><I>&lt;-- Name of Extended Action entry in 
+                                        File #101 or in File #19.</I></B>
+ XUHUIOP=101 <B><I>&lt;-- File number of where to find the Extended Action.</I></B>
+ XUHUIX=KRNUSER,ONE  <B><I>&lt;-- The "X" array.</I></B> 
+ XUHUIX(1)=KRNUSER,ONE 
+ XUHUIX(2)= 
+ XUHUIX(3)=2491224 
+ XUHUIX(4)=000558888 
+ XUHUIX1=KRNUSER,ONE  <B><I>&lt;-- The "X1" array.</I></B> 
+ XUHUIX1(1)=KRNUSER,ONE 
+ XUHUIX1(2)= 
+ XUHUIX1(3)=2500704 
+ XUHUIX1(4)=999220000 
+ XUHUIX2=KRNUSER,ONE  <B><I>&lt;-- The "X2" array.</I></B> 
+ XUHUIX2(1)=KRNUSER,ONE 
+ XUHUIX2(2)= 
+ XUHUIX2(3)=2491224 
+ XUHUIX2(4)=000558888 
+ XUHUIXR=AXUHUI  <B><I>&lt;-- Name of cross-reference being executed by DIK.</I></B></PRE>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/opkg-xuhui.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

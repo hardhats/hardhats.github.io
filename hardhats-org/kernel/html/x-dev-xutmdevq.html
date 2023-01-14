@@ -1,0 +1,338 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: DEV^XUTMDEVQ">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,DEV^XUTMDEVQ,EN,XUTMDEVQ,taskman,supported">
+    <meta name="description"
+	      content="Kernel APIs: DEV^XUTMDEVQ">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: DEV^XUTMDEVQ</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$DEV^XUTMDEVQ</A>(): Force Queuing&#8212;Ask for Device</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> TaskMan,
+	<B>ICR#:</B> 1519</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$DEV^XUTMDEVQ extrinsic function encapsulates the logic to handle direct (forced) queuing in a 
+	single call and prompts users for a device.</P>
+    <P><strong>NOTE:</strong> This API was released with Kernel Patch XU*8.0*275.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$DEV^XUTMDEVQ(ztrtn[,ztdesc][,%var][,%voth][,%zis][,iop][,%wr])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>ztrtn:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) The API that TaskMan will <strong>DO</strong> to start the task. You 
+          can specify it as any of the following:</P>
+		  <ul>
+			<li>
+			  &quot;<strong>LABEL^ROUTINE</strong>&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;<strong>^ROUTINE</strong>&quot;
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  &quot;<strong>ROUTINE</strong>&quot;
+			</li>
+		  </ul>
+        </TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>ztdesc:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Task description, up to <strong>200</strong> characters
+	      describing the task, with the software application name at the front. Default 
+          to name of [tag]^routine.</P>
+        </TD>
+	  </TR>
+	  <TR>
+		<TD VALIGN="TOP">
+		  <B>%var:</B>
+		</TD>
+		<TD VALIGN="TOP">
+	      <P>(optional) <strong>ZTSAVE</strong> values for the task. Single value or passed by 
+          reference, this is used to <strong>S ZTSAVE()</strong>. It can be a string of 
+          variable names separated by &quot;<B>;</B>&quot;. Each <B>;</B>-piece is 
+          used as a subscript in <strong>ZTSAVE</strong>.</P>
+        </TD>
+	  </TR>
+	  <TR>
+		<TD VALIGN="TOP">
+		  <B>.%voth:</B>
+		</TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) Passed by reference, <strong>%VOTH(SUB)=&quot;&quot;</strong> or explicit value 
+          sub&#8212;this is any other 
+          <a href="ztload.html"
+             title="^%ZTLOAD API"
+             class="bodylink">%ZTLOAD</a> variable besides <strong>ZTRTN</strong>, 
+			<strong>ZTDESC</strong>, <strong>ZTIO</strong>, and  
+          <strong>ZTSAVE</strong>. For example:</P>
+          <PRE>  %VOTH(&quot;ZTDTH&quot;)==$H</PRE>
+        </TD>
+	  </TR> 
+	  <TR>
+		<TD VALIGN="TOP">
+		  <B>%zis:</B>
+		</TD>
+		<TD VALIGN="TOP">
+		  <P>(optional) Default value <strong>MQ</strong>. Passed by reference, standard <strong>%ZIS</strong> 
+          variable array for calling the Device Handler.</P>
+        </TD>
+	  </TR> 
+	  <TR>
+		<TD VALIGN="TOP">
+		  <B>iop:</B>
+		</TD>
+		<TD VALIGN="TOP">
+	      <P>(optional) The <strong>IOP</strong> variable as defined in Kernel's Device Handler.</P>
+	    </TD>
+	  </TR> 
+	  <TR>
+		<TD VALIGN="TOP">
+		  <B>%wr:</B>
+		</TD>
+		<TD VALIGN="TOP">
+	      <P>(optional) If <strong>%WR&gt;0</strong> then write text to the screen as to whether or 
+          not the queuing was successful.</P>
+        </TD>
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Parameter</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>returns:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns:</P>
+          <UL>
+            <LI>
+              <strong>0&#8212;</strong>If run <strong>ZTRTN</strong> without queuing.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <strong>-1&#8212;</strong>If unsuccessful device call or failed the %XTLOAD call.
+            </LI>
+          </UL>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>This example is a job that consists of gathering information and then printing 
+	it. Assume that the gathering takes a few hours. You do <i>not</i> want the device 
+	that the user selects to be tied up for that time, so you divide the job into 
+	two tasks:</P>
+    <ol>
+	  <li>
+	    The first task gathers the information.
+	    <br>
+		<br>
+	  </li>
+	  <li>
+	    The second task prints it.
+	  </li>
+    </ol>
+    <P>Use the following APIs:</P>
+    <ol>
+	  <li>
+	    $$DEV^XUTMDEVQ API to select the device and queue up the print task.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <A HREF="x-nodev-xutmdevq.html"
+           CLASS="bodylink"
+           TITLE="$$NODEV^XUTMDEVQ API">$$NODEV^XUTMDEVQ</A> API to schedule the 
+	    gather task.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <A HREF="req-ztload.html"
+           CLASS="bodylink"
+           TITLE="REQ^ZTLOAD API">REQ^%ZTLOAD</A> API to 
+	    schedule the print task when the gather task finishes.
+        <BR>
+	    <BR>
+	    <B>NOTE:</B> You could also use the 
+        <A HREF="x-reqq-xutmdevq.html"
+           CLASS="bodylink"
+           TITLE="$$REQQ^XUTMDEVQ API">$$REQQ^XUTMDEVQ</A> 
+        API to schedule the print task.
+      </li>
+    </ol>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>ARHBQQ   ;SFVAMC/GB - Demo of 'gather' and 'print' in 2 tasks ;1/19/06  08:31
+         ;;1.1
+DEV      ;
+         N ARH,ARHZTSK,X
+         ;The user doesn't know it, but he's actually queuing the second task,
+         ;the "print" portion of the job.  The only question the user will be
+         ;asked is to select the device.
+         S ARH("ZTDTH")="@" ;Don't schedule the task to run, we'll do it later.
+         ;In the following, the "Q" sets IOP=Q, which forces queuing.
+         S X=$$DEV^XUTMDEVQ("PRINT^ARHBQQ","ARHB Print",,.ARH,,"Q",1)
+         W !,"X=",X
+         Q:X&lt;1
+         N ARH
+         ;Now queue the first task, the "gather" portion of the job.  The user
+         ;won't be asked any questions.
+         S ARHZTSK=X ; Save the ZTSK number of the &quot;print&quot; task.
+         S ARH(&quot;ZTDTH&quot;)=$H ; Force the task to start now.
+         ;To ask the user the start time, comment out the above line.
+         S X=$$NODEV^XUTMDEVQ("GATHER^ARHBQQ","ARHB Gather","ARHZTSK",.ARH,1)
+         W !,"X=",X
+         Q</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-dev-xutmdevq.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

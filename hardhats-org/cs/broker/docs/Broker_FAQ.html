@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Subj: RPC Broker System Mgr. FAQ</title>
+<meta NAME="GENERATOR" CONTENT="Internet Assistant for Microsoft Word 2.0z"></head>
+<body BGCOLOR="#ffffff">
+<p><font SIZE="+2" COLOR="#005588" FACE="ARIAL,HELV"><b><a NAME="Return">Ask
+Dr. Broker: System Manager FAQ</a></b></font></p>
+<hr SIZE="5" WIDTH="100%">
+<ul>
+<li><a HREF="#DNS"><b>DNS/Server Issues for Workstations
+</b></a><br>
+<br>
+<ul>
+<li><a HREF="#SERVERLIST">What happened to the VISTA.INI file?</a></li>
+<li><a HREF="#HOSTS">What about the HOSTS file?</a></li>
+<li><a HREF="#winregistry">Is it possible to update the Windows Registry
+settings for Server and Listener port centrally rather than on each individual
+PC?</a></li>
+<li><a HREF="#vista-ini_update">Is it possible to update the VISTA.INI file in
+one location rather than on each individual PC?</a></li>
+<li><a HREF="#rpctest_brokerserver">RPCTEST did not work when using the
+default server name BROKERSERVER</a></li>
+<li><a HREF="#rpctest_wsaeintr">The RPCTEST diagnostic program can't connect
+to the server after a few seconds of trying and reports a WSAEINTR error</a></li></ul><br>
+</li>
+<li><a HREF="#General"><b>General Client/Server Issues
+</b></a>
+<br><br>
+<ul>
+<li><a HREF="#RPCTEST_EGCHO">What happened to EGCHO?</a></li>
+<li><a HREF="#broker_vs_app">A <b>V</b><i><font SIZE="-1">IST</font></i><b>A</b>
+client/server application (e.g., PCMM) is not working. How do I determine if it
+is a Broker or application problem?</a></li>
+<li><a HREF="#app_errors_out">The application on the client connects to the
+server. It runs for a while, then errors out</a></li>
+<li><a HREF="#test_versions">Errors occur on the client side after upgrading a
+Broker test version with a client/server application test version</a></li>
+<li><a HREF="#laptop_gpf">I'm getting GPF errors after loading a laptop
+computer with Microsoft (MS) Windows 95 (with MS Windows Internet Explorer),
+Broker, and a <b>V</b><i><font SIZE="-1">IST</font></i><b>A</b> GUI
+application (i.e., CPRS).</a></li>
+<li><a HREF="#network_adaptors">I have Multiple network adapters (including
+Dial-Up/Modem) on the client workstation</a></li>
+<li><a HREF="#rpctest_gpf">The client workstation gets a General Protection
+Fault (GPF) error when running the RPCTEST diagnostic program</a></li>
+<li><a HREF="#rpctest_wsaeconnrefused">Running the RPCTEST diagnostic program
+results in a WSAECONNREFUSED error message</a></li>
+<li><a HREF="#signon_characters">The <b>V</b><font SIZE="-1"><i>IST</i></font><b>A</b>
+Sign-on screen has extraneous characters displayed in the introductory text</a></li></ul><br></li>
+<li><a HREF="#Server"><b>V<i><font SIZE="-1">IST</font></i>A  M Server
+Issues</b><br><br></a>
+<ul>
+<li><a HREF="#port_parameter">What is expected in the port parameter passed
+via D STRT^XWBTCP()? What does the 9200 represent?</a></li>
+<li><a HREF="#multiple_servers">When and why should sites set up multiple
+servers?</a></li>
+<li><a HREF="https://www.hardhats.org/cs/broker/docs/shutdown_restart">We shut down DSM and restarted it; when we
+tried to restart the Broker Listener it says it's already running!</a></li>
+<li><a HREF="#translate_x">Why shouldn't I translate X* (all globals starting
+with X) to one volume/UCI?</a></li>
+<li><a HREF="#msm_broker">MSM sites are unable to get the Broker server
+started</a></li></ul><br></li>
+<li><a HREF="winsock.html#WINSOCK"><b>Common Winsock API Error/Status
+Messages
+</b></a><br><br>
+<ul>
+<li><a HREF="winsock.html#Winsock_List">List of Error/Status Messages</a></li>
+<li><a HREF="winsock.html#Winsock_sites">Other Sites for Winsock Information</a></li></ul><br></li></ul>
+<hr SIZE="5" WIDTH="100%">
+<h3><a NAME="DNS">DNS/Server Issues for Workstations</a></h3>
+<ul>
+<li><b><a NAME="SERVERLIST">Q: What happened to the VISTA.INI file?</a></b>
+<p><b> Dr. Broker: </b>Applications compiled with V. 1.0 of the RPC Broker use
+a workstation's VISTA.INI file. This file contains settings made by a site
+manager and is used to determine the location of the Client Manager, server(s)
+and listener port(s) to connect to, and programmer preferences of the Broker
+component.</p>
+<p>Applications compiled with V. 1.1 of the RPC Broker no longer look at the
+VISTA.INI file. Instead, they look at the what the site manager specifies in a
+workstation's Windows Registry. The VISTA.INI settings are copied to the
+Window's Registry during the end-user workstation installation of version 1.1 of
+the Broker. The Registry  is used to determine the location of the Client Agent,
+server(s) and listener port(s) that a workstation can connect to, signon screen
+user customizations, and programmer preferences of the Broker component.</p>
+<p>To modify the list of servers in the Windows Registry, use the
+SERVERLIST.EXE program provided with the Broker Development Kit.</p>
+<p>If your site is supporting applications compiled with both V. 1.1 <i>and</i>
+1.0 of the RPC Broker, you need to maintain the list of servers to connect to in
+both places (Windows Registry <i>and</i> VISTA.INI) until all of your
+applications are recompiled with V. 1.1 of the RPC Broker.</p>
+<p></p></li>
+<li><b><a NAME="HOSTS">Q: What about the HOSTS file?</a></b>
+<p><b> Dr. Broker: </b>Windows uses the HOSTS file to manually associate a
+string with a particular IP address. </p>
+<p>If you set up workstations to connect a server that is either an IP address
+(e.g. 152.130.999.1) or that can be resolved automatically through domain name
+server (DNS) (e.g. alpha3.yourva.gov), there is no need for you to make any
+entries in a workstation's HOSTS file. (True for both V. 1.1 and V. 1.0.)</p>
+<p>If you set up workstations to connect a &quot;server&quot; that is a generic
+name (e.g., DHCPSERVER or BROKERSERVER) that is not resolved by DNS, this is
+when you need to use the HOSTS file to force an association between that string
+and a particular IP address (the one your Broker Listener is running on).</p>
+<p></p></li>
+<li><a NAME="winregistry"><b>Q: Is it possible to update the Windows Registry
+settings for Server and Listener port centrally rather than on each individual
+PC?</b></a>
+<p><b> Dr. Broker: </b>There is no central process provided by the RPC Broker
+to update workstation's Window Registry settings for server and listener ports.</p>
+<br></li>
+<li><a NAME="vista-ini_update"><b>Q: Is it possible to update the VISTA.INI
+file in one location rather than on each individual PC?</b></a>
+<p><b> Dr. Broker: </b>If you are maintaining VISTA.INI files for
+compatibility with applications compiled with V. 1.0 of the RPC Broker, you must
+update the VISTA.INI files on each individual client workstation. There is no
+batch mode process available.</p>
+<p>It could be possible to centrally create a VISTA.INI file and &quot;push&quot;
+it out to each workstation, however,  you'd be taking the chance that each
+workstation is configured as you expected.</p>
+<br></li>
+<li><b> <a NAME="rpctest_brokerserver">Q: RPCTEST did not work when using the
+default server name BROKERSERVER.</a></b>
+<p>The installation of the Broker on the client and the server completed
+successfully and the RPCTEST test program worked for a specific test account IP
+address. The local client HOSTS file had the name BROKERSERVER mapped to the
+correct IP address.</p>
+<p><b> Dr. Broker: </b>We found any calls to Winsock requesting the IP address
+resolution of the Host name BROKERSERVER would get a wrong address (both the
+Broker and PING would find the wrong server). This was due to the fact that the
+site was running a Name Server and it had an incorrect IP address in its table.
+Changing the table fixed the problem.</p>
+</li>
+<li><b><a NAME="rpctest_wsaeintr">Q: The RPCTEST diagnostic program can't
+connect to the server after a few seconds of trying and reports a</a>
+<a HREF="winsock.html#WSAEINTR">WSAEINTR</a> error.</b>
+<p><b> Dr. Broker: </b>The client workstation is not reaching the <b>V</b><i><font SIZE="-1">IST</font></i><b>A</b> server host IP. Try PINGing the server by its
+name and IP address.</p>
+<pre>NOTE: PINGing is a way to test connectivity. PINGing sends an
+      Internet Control Message Protocol (ICMP) packet to the server
+      in question and requests a response. It verifies if the server
+      is running and the network is properly configured.
+</pre>
+<p>If you can ping the server by IP address but not by name, an entry needs to
+be made in the HOSTS file or DNS table.</p>
+<br></li></ul>
+<hr SIZE="5" WIDTH="100%">
+<h3><a NAME="General">General Client/Server Issues
+</a></h3>
+<ul>
+<li><a NAME="RPCTEST_EGCHO"><b>Q: What happened to EGCHO?</b></a>
+<p><b> Dr. Broker:</b> A new diagnostic program, RPCTEST.EXE, is provided with
+V. 1.1 of the RPC Broker that replaces EGCHO (the diagnostic program in V. 1.0
+of the Broker). A scaled-down version of the EGCHO application is still
+distributed with V. 1.1 of the RPC Broker, but as a sample application for
+developers to demonstrate how to make RPC Broker calls. It's called
+BrokerExample.</p>
+<br></li>
+<li><a NAME="broker_vs_app"><b>Q: A V<i><font SIZE="-1">IST</font></i>A
+client/server application (e.g., PCMM) is not working. How do I determine if it
+is a Broker or application problem?</b></a>
+<p><b> Dr. Broker: </b>Each site based on their system/network configurations,
+etc. may encounter different problems at different points of installation and
+implementation. Use the RPCTEST diagnostic application to test if the client
+workstation can connect with the server. If RPCTEST can connect with the server,
+the problem is probably not with the Broker but with the application. Contact
+support for that application (e.g., PCMM).</p>
+<br></li>
+<li><b><a NAME="app_errors_out">Q: The application on the client connects to
+the server. It runs for a while, then errors out.</a></b>
+<p> <b>Dr. Broker: </b>Check the Kernel error trap on the server (e.g., D
+^XTER). Chances are there will be a new error related to the application that
+may explain the problem.</p>
+<br></li>
+<li><a NAME="test_versions"><b> Q: Errors occur on the client side after
+upgrading a Broker test version with a client/server application test version.</b></a>
+<p> <b>Dr. Broker: </b>Stop and restart the Listener on the server so the new
+code takes effect.</p>
+<p>This indicates another area of potential problems. When installing the
+Broker, VMS sites should not map routines at this time. It is possible that
+errors can be introduced when the running image does not match the installed
+source.</p>
+<br></li>
+<li><a NAME="laptop_gpf"><b>Q: I'm getting GPF errors after loading a laptop
+computer with Microsoft (MS) Windows 95 (with MS Windows Internet Explorer),
+Broker, and a <b>V</b><i><font SIZE="-1">IST</font></i><b>A</b> GUI
+application (i.e., CPRS).</b></a>
+<p><b> Dr. Broker: </b>After analysis, the GPFs were found in the WINSOCK.DLL
+due to conflicting RAS and Ethernet connections.  The user needed to disable
+RAS. Apparently the installation of MS Windows Internet Explorer on the laptop
+changed the networking to use RAS whenever a TCP/IP connection was attempted.</p>
+<br></li>
+<li><a NAME="network_adaptors"><b>Q: I have Multiple network adapters
+(including Dial-Up/Modem) on the client workstation.</b></a>
+<p><b> Dr. Broker: </b>To avoid problems, try the following:
+</p>
+<ol>
+<li>First, make sure you actually have TCP/IP running correctly on your
+workstation.
+<p>At the DOS prompt type PING nnn.nnn.nnn.nnn to the <b>V</b><i><font SIZE="-1">IST</font></i><b>A</b> server host to which you are trying to
+connect (where nnn.nnn.nnn.nnn equals the IP address of the server). For
+example:
+</p>
+<pre>     C:\&gt;PING 127.0.0.1</pre><br>
+<pre>NOTE: PINGing is a way to test connectivity. PINGing
+      sends an Internet Control Message Protocol (ICMP)
+      packet to the server in question and requests a
+      response. It verifies if the server is running
+      and the network is properly configured.</pre>
+<ul>
+<li>If the host is unreachable, there is a network problem and you should
+consult with your network administrator.<br></li>
+<li>If you get a time-out, it may be your network configuration on the client
+workstation, go to Step 2.<br></li>
+<li>If the server is reachable, proceed to Step 4.</li></ul><br></li>
+<li>If you have more than one networking environment set up on the client
+workstation, remove the ones you won't be using with the Broker. For example, if
+you are going to use Ethernet, remove the Dial-Up adapter and Direct Connect
+adapter (make sure you do it through the Add/Remove programs in Windows 95). For
+example, in Windows 95, do the following:
+<ol>
+<li>Go to the Network Neighborhood icon and right-click (or opposite click,
+left-handers should left-click) to display a menu.</li>
+<li>Choose Properties and select the Configuration tab.</li>
+<li>You should only have one TCP/IP protocol. Remove any extraneous items.</li>
+<li>Reboot your computer. Don't be concerned if Windows automatically
+reinstalls hardware.</li></ol><br><br></li>
+<li>Check the properties of the WINSOCK.DLL on the client workstation and make
+sure it's the correct version. Install the latest Service Pack.<br><br></li>
+<li>Make sure that the files on the client are in the correct directories. In
+Windows 95, the WINSOCK.DLL expects the HOSTS file to be located in the WINDOWS
+root directory. In Windows NT 4.0 the HOSTS file should be in
+WINNT\SYSTEM32\DRIVERS\ETC directory. You should only have <i>one</i> copy each
+of the WINSOCK.DLL and the HOSTS file on the client. (However, there may be a
+<i>second</i> copy that Windows 95 keeps in the WINDOWS/SYSBCKUP directory). If
+Windows 95 detects that some of its core files have been overwritten with older
+versions, supposedly, it will automatically update files on reboot.<br><br></li>
+<li>Make sure that all of the client workstation TCP/IP setting are correct in
+the network properties. Typo's, etc. can be a real problem, as can gateways, DNS
+servers, etc. Try removing items in your WINS configuration/DNS configuration,
+etc.</li></ol>
+<br></li>
+<li><b><a NAME="rpctest_gpf">Q: The client workstation gets a General
+Protection Fault (GPF) error when running the RPCTEST diagnostic program.</a></b>
+<p>The GPF occurs prior to seeing the <b>V</b><i><font SIZE="-1">IST</font></i><b>A</b>
+login screen. The machine is a Windows 95 machine with a secondary RAS address
+which is not part of the local LAN (it is used for a commercial Internet
+provider). While this dual IP situation exists, other workstations are unable to
+PING the bad client.
+</p>
+<p> <b>Dr. Broker: </b>This problem is related to Winsock, not just the
+Broker. Remove the secondary IP address.</p>
+<br></li>
+<li><b><a NAME="rpctest_wsaeconnrefused">Q: Running the
+</a>RPCTEST diagnostic program results in a
+<a HREF="winsock.html#WSAECONNREFUSED">WSAECONNREFUSED</a> error message.</b>
+<p> <b>Dr. Broker: </b>The RPCTEST diagnostic program on the client
+workstation can't connect to the server.</p>
+<ul>
+<li>Verify that the server/port with which the RPCTEST diagnostic program is
+trying to connect has the Listener process running. Log on to the correct server
+IP address and do a system status. For example:
+<pre>     <b>D ^%SS</b>
+       or
+     <b>D ^%SY</b></pre><br><br></li>
+<li>Verify if the XWBTCPL routine is running in the correct volume/UCI. In VMS,
+you can use UCX SHOW DEVICE_SOCKET to see if the expected Listener port is
+listed.</li></ul>
+<p>If any of these conditions do not check out, the Listener is either not
+running, running on the wrong IP address, or is listening on the wrong port. To
+correct this, log on to the correct IP address and volume/UCI and start the
+Listener:</p>
+<pre>     <b>D STRT^XWBTCP(correct_port)</b></pre>
+</li>
+<li><b><a NAME="signon_characters">Q: The V<font SIZE="-1"><i>IST</i></font>A
+Sign-on screen has extraneous characters displayed in the introductory text</a></b>
+<p>The <b>V</b><font SIZE="-1"><i>IST</i></font><b>A</b> Sign-on screen has
+extra characters surrounding the introductory text. For example:</p>
+<br>
+<center><img SRC="signon_intro_error.gif" ALT="Signon Introductory Text Problem Sample" WIDTH="520" HEIGHT="303"></center><br>
+<p> <b>Dr. Broker: </b>This results when the introductory text has been
+modified to display special effects in the roll-and-scroll environment (e.g.,
+reverse video, blinking, underlines, etc.) using escape sequences.  This works
+fine for roll-and-scroll for some terminal types, however, these special
+characters have no meaning to a standard Windows text display.  (We assume the
+vertical bar is the &lt;ESC&gt; character.)</p>
+<br></li></ul>
+<hr SIZE="5" WIDTH="100%">
+<h3><a NAME="Server">V<font SIZE="-1"><i>IST</i></font>A M Server Issues</a></h3>
+<ul>
+<li><a NAME="port_parameter"><b>Q: What is expected in the port parameter
+passed via D STRT^XWBTCP()? What does the 9200 represent?</b></a>
+<p> <b>Dr. Broker: </b>By convention we've been using port 9200. There's
+nothing magical about this number and you can use whatever you choose, however,
+you must stay above 1024 as the ports below that are reserved and may be in use.</p>
+<p>Clients and servers in a medical center must agree on some known &quot;application
+service ports&quot;. We started to use 9200 as a convention but a medical center
+may fire up several servers, as long as the combination of IP and Port is
+unique. Clients will attempt to connect to the servers on these established
+ports. 9200 was an example, hospitals could choose anything they have available
+greater than 1024 (i.e., sockets 1 to 1024 are reserved for standard, well-known
+services like SMTP, FTP, Telnet, etc.).</p>
+<p>It is possible that your port selection may conflict with someone else using
+the same port on the same machine. However, this should not affect you if you
+are running on different machines. Doing UCX SHOW DEVICE will show you what is
+available. Someday it may be possible that hospitals want to query each other.
+When this happens, hospitals would have to agree on a known service port. In the
+Internet community, port 25 is mail and everyone is guaranteed to find an SMTP
+server attached to that port. We may eventually have a port which all hospitals
+would have to support to allow for inter-medical center communications.
+</p>
+<br></li>
+<li><a NAME="multiple_servers"><b>Q: When and why should sites set up
+multiple servers?</b></a>
+<p> <b>Dr. Broker: </b>There are several ways that multiple servers can be set
+up and used at a site. </p>
+<ol>
+<li> One way is to have TCP/IP load balancing.  However, this is only supported
+in VMS on Alpha machines and may require un upgrade to UCX (see further
+explanation below).<br><br></li>
+<li>The other way is to start multiple listeners on different servers and allow
+each user to select which server-port they want to connect to.</li></ol>
+<p> The first approach is better, since it's the most passive in that the
+application does not need to be modified in any way and the user does not need
+to do anything special.</p>
+<p>On VMS sites running the latest release of UCX, a TCP/IP alias can be
+created which will support several IP addresses.  The scenario would be as
+follows:<br></p>
+<pre>     alias: <b>BROKERSERVER.site_name.MED.VA.GOV</b>
+     ip: <b>152.xxx.xxx.xx1, 152.xxx.xxx.xx2,... 152.xxx.xxx.xx7</b><br></pre>
+<p>The RPC broker server should be started on each system at some established
+port (<i>same for all</i>).  In the client, the IP is setup so the Windows name
+serving is supported.  The WINS server entry on the client will point to the IP
+address of the Alpha machine which acts as the name resolver.</p>
+<p>Now, the client only has to attempt a connection to <b>BROKERSERVER.site_name.MED.VA.GOV</b>
+at a known port and it will be sent to one of the seven addresses in this
+example.  This is a <i>general</i> description, <i>not</i> the actual steps to
+configure UCX.  The port to connect to has to be the same in this scenario
+because only IP addresses are being resolved.  Once again,<i> this
+functionality is only supported at Alpha sites</i>.</p>
+<br></li>
+<li><a NAME="shutdown_restart"><b>Q: We shut down DSM and restarted it; when
+we tried to restart the Broker Listener it says it's already running!</b></a>
+<p><b> Dr. Broker: </b>This is due to a lock not being released. During the
+original shutdown, the Broker Listener process was not shut down normally
+through STOP^XWBTC. You need to release the lock, and then try restarting the
+Broker Listener process again. It is best to always stop the Broker Listener
+process prior to shutting down the system.</p>
+</li>
+<li><a NAME="translate_x"><b>Q: Why shouldn't I translate X* (all globals
+starting with X) to one volume/UCI?</b></a>
+<p><b> Dr. Broker: </b>This prevents running more than one server. The Broker
+uses LOCK to identify if a server is already running. Resolution requires an
+internal change to the server.</p>
+</li>
+<li><a NAME="msm_broker"><b> Q: MSM sites are unable to get the Broker server
+started.
+</b></a> 
+<p> <b>Dr. Broker: </b>Sites may be unfamiliar with TCP/IP and changes to MSM
+architecture required by client/server approach.  The NT box (i.e., GSA system)
+needs to be configured as a compute server with appropriate access to Kernel,
+Broker, and <b>V</b><i><font SIZE="-1">IST</font></i><b>A</b> routines.
+After reconfiguring, test the Broker using the RPCTEST.EXE diagnostic program.</p>
+<br></li></ul>
+<hr SIZE="5" WIDTH="100%"></body></html>

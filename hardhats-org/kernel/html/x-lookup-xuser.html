@@ -1,0 +1,268 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$LOOKUP^XUSER">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OI&T,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$LOOKUP^XUSER,$$LOOKUP,XUSER,user,lookup,look up,supported,2343,icr #2343">
+    <meta name="description"
+	      content="Kernel APIs: $$LOOKUP^XUSER">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180814">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$LOOKUP^XUSER</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$LOOKUP^XUSER</A>(): New Person File Lookup</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> User, <B>ICR#:</B> 2343</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$LOOKUP^XUSER extrinsic function does a user lookup on the NEW PERSON (#200) file
+	screening out users that are terminated. You are first asked to enter a name of
+	a user in the NEW PERSON (#200) file. By default, the function then asks if the
+	correct user name was selected. For example:</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE>  Select NEW PERSON NAME: <B>XUUSER,THREE</B>
+  Is XUUSER,THREE the one you want? YES//</PRE>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<P>If the optional input parameter is set to <b>Q</b> then the second,
+	confirmation prompt is suppressed. The return is in the same format as a call
+	to DIC (i.e., IEN^NAME). Adding new entries is <I>not</I> allowed.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$LOOKUP^XUSER([""])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        width="10%">
+	      <B>"":</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    width="90%"> 
+		  <P>(optional) This optional input parameter does the following:</P>
+		  <UL>
+		    <LI>
+		      <strong>NULL (default)&#151;</strong>Do <i>not</i> suppress the NEW PERSON 
+			  (#200) file
+			  name confirmation prompt for each entry selected.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>A&#151;</strong>Screen out terminated users.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>Q&#151;</strong>Suppress the NEW PERSON (#200) file name confirmation
+			  prompt for each entry selected.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>AQ&#151;</strong>Screen out terminated users and suppress the NEW PERSON 
+			  (#200)
+			  file name confirmation prompt for each entry selected.
+			</LI>
+		  </UL>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="10%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="90%"> 
+	      <P>Returns the Internal Entry Number (IEN) and name of the user in
+	      the NEW PERSON (#200) file entered after the "Select NEW PERSON NAME:" prompt
+		  (IEN^NAME).</P>
+		</TD> 
+	  </TR> 
+	</TABLE>
+	<h4>Examples</h4>
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>This is an example of a lookup of an active user when <I>not</I> passing 
+	in the optional <b>Q</b> parameter (showing confirmation prompt):</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE>  &gt;<B>S LRDOC=$$LOOKUP^XUSER("")</B>
+
+  Select NEW PERSON NAME: <B>?</B>
+   Answer with NEW PERSON NAME, or INITIAL, or SSN, or VERIFY CODE, or
+       NICK NAME, or SERVICE/SECTION, or DEA#, or ALIAS
+   Do you want the entire 1601-Entry NEW PERSON List? <B>N &lt;Enter&gt;</B> (No)
+  Select NEW PERSON NAME: <strong>XUUSER,TWO E &lt;Enter&gt;</strong>      TX          COMPUTER SPECIALIST
+  Is XUUSER,TWO E the one you want? YES// <B>&lt;Enter&gt;</B>
+  &gt;<B>W LRDOC</B>
+  1529^XUUSER,TWO E</PRE>
+	    </TD>
+	  </TR>
+	</TABLE> 
+    <H4>Example 2</H4> 
+	<P>This is an example of a lookup of an active user when passing in the 
+	optional <b>Q</b> parameter (suppressing confirmation prompt):</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE>  &gt;<B>S LRDOC=$$LOOKUP^XUSER("Q")</B>
+
+  Select NEW PERSON NAME: <B>XUUSER,TWO E &lt;Enter&gt;</B>       TX          COMPUTER SPECIALIST
+  &gt;<B>W LRDOC</B>
+  1529^XUUSER,TWO E</PRE>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<H4>Example 3</H4> 
+	<P>This is an example of a lookup of a terminated user when passing in the 
+	optional <b>A</b> parameter:</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+		  <PRE>  &gt;<B>S LRDOC=$$LOOKUP^XUSER("A")</B>
+
+  Select NEW PERSON NAME: <B>XUUSER,EIGHT &lt;Enter&gt;</B>       EX
+                 This user was terminated on May 04, 1998
+  Select NEW PERSON NAME:</PRE>
+        </TD>
+	  </TR>
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/14/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-lookup-xuser.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

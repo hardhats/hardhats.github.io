@@ -1,0 +1,466 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+	<meta name="language"
+	      content="en">
+	<meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+	<meta name="subject"
+	      content="Kernel Toolkit XINDEX: Standards Violation Errors (According to VA Standards)">
+	<meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information and Technology,OI&T,OIT,VISTA,kernel,toolkit,programmer,developer,programmer manual,xindex,errors,messages,sacc,sac,Standards Violation Errors (According to VA Standards),standards,violations,va standards">
+	<meta name="description"
+	      content="Kernel Toolkit XINDEX: Standards Violation Errors (According to VA Standards)">
+	<meta name="datecreated"
+	      content="20120124">
+	<meta name="datereviewed"
+	      content="20180720">
+	<meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <TITLE>Kernel Toolkit XINDEX: Standards Violation Errors (According to VA Standards)</TITLE>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY>
+    <header>
+    <!-- Start Title Banner (image) -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="3"
+           CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel-toolkit_heading_xindex.jpg"
+			   ALT="Kernel & Toolkit APIs Banner"
+			   WIDTH="429"
+			   HEIGHT="29"
+			   BORDER="0">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   WIDTH="429"
+			   HEIGHT="30"
+			   BORDER="0">
+		</TD> 
+	  </TR> 
+    </TABLE> 
+<!-- End Title Banner (image) -->
+    </header> 
+<!-- Start Content -->
+    <H3><A NAME="navskip">XINDEX: Standards Violation Errors (According to VA Standards)</A></H3> 
+	<p>These are issues that do <em>not</em> pertain to the M language <i>per se</i>, but 
+	rather the requirements of the VA Standards and Conventions (SAC). Issues 
+	flagged as Standards Violations can still be syntactically correct M code 
+	that follows the portability guidelines, but does <em>not</em> follow the more 
+	stringent requirements set forth in the SAC.</p>
+    <H4><a name="s_view_function_used">S&#8212;$View function used</a></H4>
+    <P>The <strong>$VIEW</strong> function is used to directly examine memory. The use of 
+	<strong>$VIEW</strong> is restricted to Kernel and VA FileMan.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_access_to_ssvns_restricted_to_kernel">S&#8212;Access to SSVN's restricted to Kernel</a></H4>
+    <P>Structured System Variable Names (SSVNs) are a mechanism used to provide programmatic information to certain system information and are covered in Section 7.1.3 of the M language standard. The use of SSVNs is restricted to Kernel.</P>
+	<P>Common SSVNs include the following:</P>
+    <ul>
+      <li>
+		<strong>^$ROUTINE</strong>
+		<br>
+	    <br>
+      </li>
+	  <li>
+		<strong>^$JOB</strong>
+		<br>
+	    <br>
+      </li>
+	  <li>
+		<strong>^$LOCK</strong>
+		<br>
+	    <br>
+      </li>
+	  <li>
+	   <strong>^$GLOBAL</strong> 
+	  </li>
+	</ul>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_break_command_used">S&#8212;Break command used</a></H4>
+    <P>The <strong>BREAK</strong> command is prohibited except for Kernel.</P>
+    <p>If applications ever need to use <strong>BREAK</strong>, they should use 
+	<strong>^%ZOSF("BRK")</strong> and <strong>^%ZOSF("NBRK")</strong> instead.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_extended_reference">S&#8212;Extended reference</a></H4>
+    <P>In M, use extended references to refer to routines or globals outside the current environment (called a namespace in Caché). The use of extended references is restricted to Kernel.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_first_line_of_routine_violates_sac">S&#8212;First line of routine violates the SAC</a></H4>
+    <P>Section 2.2.1 of the SAC specifies the format of the first line of a routine as follows:</P>
+    <blockquote>2.2.1 The first line of a routine <em>must</em> be in the following format: 
+	<strong>routine name &lt;ls&gt;; site/programmer&lt;space&gt;-&lt;space&gt;brief description [optional space];date [time is optional]</strong>.
+    <br>
+    <br>
+    ZZAA12 ;DALOI/XXX - Example Routine;2/13/07</blockquote>
+	<p><b>NOTE:</b> M editors frequently modify the first line of a routine.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_2nd_line_of_routine_violates_sac">S&#8212;2nd line of routine violates the SAC</a></H4>
+    <P>In VistA, the second line of routines records the following information:</P>
+    <ul>
+	  <li>
+		Package/Application version number
+		<br>
+		<br>
+	  </li>
+	  <li>
+		Package/Application name
+		<br>
+	    <br>
+	  </li>
+	  <li>
+		Patches ID numbers (if any applied)
+		<br>
+		<br>
+	  </li>
+	  <li>
+		Original routine creation date &amp; time
+		<br>
+		<br>
+	  </li>
+	  <li>
+	    Build number 
+	  </li>
+	</ul>
+	<p>Section 2.2.2 of the SAC specifies the second line format as follows:</p>
+	<blockquote>2.2.2 The second line of a routine must be in the following format: 
+	<strong>[LABEL-optional]&lt;ls&gt;;;version number; package name; **pm,...pn**; version date;Build n</strong> where:
+    <br>
+    <br>
+    ;;1.0;PACKAGE;**pm,&#8230;pn**;Feb 1, 2007;Build 1</blockquote>
+    <p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_patch_number_missing_from_second_line">S&#8212;Patch number '<i>nnn</i>' missing from second line</a></H4>
+    <P>The list of patch numbers must fall between the set of asterisks (<b>**</b>) and be separated by commas as shown in Section 2.2.2 of the SAC.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_halt_command_should_be_invoked_through_g_xusclean">S&#8212;'HALT' command should be invoked through 'G ^XUSCLEAN'</a></H4>
+    <P>The <strong>HALT</strong> command is used to cause a program to exit; this is 
+	<em>not</em> a common requirement in VistA. If for some reason a routine needs to halt, you 
+	<em>must</em> first perform certain housekeeping tasks. Kernel provides an API to cleanly halt a program. Application programs 
+	<em>cannot</em> use the <strong>HALT</strong> command.</P>
+	<h5>Anomaly</h5>
+	<p>This reported error message is out of date; applications should use 
+	<a href="http://vaww.vista.med.va.gov/kernel/apis/h%5Exus.shtml"
+	   title="H^XUS API"
+	   class="bodylink">H^XUS</a> (see Section 2.4.3 of the SAC).</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_kill_of_protected_variable">S&#8212;Kill of a protected variable (<i>variable name</i>)</a></H4>
+    <P>Kernel makes use of certain local variables to maintain a standard environment for processes. Applications 
+	<em>cannot</em> <strong>KILL</strong> the following variables:</P>
+    <ul>
+	  <li>
+		<strong>DT</strong>
+		<br>
+        <br>
+	  </li>
+	  <li>
+		<strong>DTIME</strong>
+		<br>
+		<br>
+	  </li>
+	  <li>
+		<strong>DUZ</strong>
+		<br>
+	    <br>
+	  </li>
+	  <li>
+		<strong>IOST</strong>
+		<br>
+		<br>
+	  </li>
+	  <li>
+	    <strong>IOM</strong>
+		<br>
+	    <br>
+	  </li>
+	  <li>
+	    <strong>U</strong>  
+	  </li>
+	</ul>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_kill_of_an_unsubscripted_global">S&#8211;Kill of an unsubscripted global</a></H4>
+    <P>The SAC specifies that unsubscripted globals shall be <strong>KILL</strong>ed:</P>
+    <blockquote>2.3.2.3 The <strong>KILL</strong>ing of unsubscripted globals is prohibited and should be protected. (Special instruction to the site will be
+    required to enable the <strong>KILL</strong>ing of a unsubscripted global. Application developers 
+	<em>must</em> document when calls to 
+	<a href="http://vaww.vista.med.va.gov/fileman/docs/dg/cl_diu2.shtml"
+	   title="EN^DIU2 API"
+	   class="bodylink">EN^DIU2</a> are made to delete files 
+    stored in unsubscripted globals).</blockquote>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_unargumented_kill">S&#8212;Unargumented Kill</a></H4>
+    <P style="height: 11px">Kernel maintains a set of local variables that <em>cannot</em> be 
+	<strong>SET</strong> nor <strong>KILL</strong>ed. The unargumented <strong>KILL</strong> is prohibited except for Kernel.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_exclusive_kill">S&#8212;Exclusive Kill</a></H4>
+    <P>The use of the exclusive <strong>KILL</strong> is prohibited except for Kernel.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_exclusive_or_unargumented_new_command">S&#8212;Exclusive or Unargumented NEW command</a></H4>
+    <P>The exclusive <strong>NEW</strong> command is the same as the exclusive 
+	<strong>KILL</strong> and is restricted except for Kernel.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_label_offset_syntax">S&#8212;LABEL+OFFSET syntax</a></H4>
+    <P>The only situation in which application routines are allowed to use the 
+	<strong>LABEL+OFFSET</strong> syntax to refer to lines of code is when using 
+	<strong>$TEXT</strong> to retrieve data lines. For example, it <em>cannot</em> be used in conjunction with a
+	<strong>DO</strong> or <strong>GOTO</strong> command.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_line_is_longer_than_245_bytes">S&#8212;Line is longer than 245 bytes</a></H4>
+    <P>Lines of code cannot be longer than <strong>245</strong> bytes.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_lock_missing_timeout">S&#8212;Lock missing Timeout</a></H4>
+    <P>In M, a <strong>LOCK</strong> command may include a timeout. If the specified timeout period expires before obtaining the lock, the 
+	<strong>LOCK</strong> command fails. In VistA, application programs are required to specify a timeout when using this command. If for some reason it is necessary to use a 
+	<strong>LOCK</strong> with no timeout (e.g., to manage collaborating processes), an exemption is required.</P>
+    <p><b>NOTE:</b> Kernel can use locks <em>without</em> a timeout. Kernel can also use 
+	<em>non</em>-incremental and unargumented locks.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_lower_mixed_case_variable_name_used">S&#8212;Lower/Mixed case Variable name used</a></H4>
+    <P>The rules regarding variable case have been relaxed somewhat in the most recent revision of the SAC. The relevant sections are:</P>
+    <blockquote>2.2.5 The line body <em>must</em> contain at least <strong>1</strong> printable character, 
+	<em>must</em> <em>not</em> exceed <strong>245</strong> characters in length, and 
+	<em>must</em> contain only the ASCII characters values <strong>32-126</strong>. Line labels, global variable names, system variables, SSVNs, etc. 
+	<em>must</em> be uppercase.
+    <br>
+    <br>
+    2.3.1.1 Local variable names may <em>not</em> exceed <strong>sixteen</strong> characters. Namespaced variables may 
+	<em>not</em> contain lowercase characters. Variables local to a routine, subroutine or
+	<strong>DoDot</strong> may be any case. Any variable containing lowercase characters 
+	<em>must</em> be <strong>NEW</strong>ed at the beginning of the routine, subroutine or 
+	<strong>DoDot</strong>.</blockquote>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_lowercase_commands_used_in_line">S&#8211;Lowercase command(s) used in line</a></H4>
+    <P>All M commands <em>must</em> be upper case. They can be spelled out or abbreviated to the first character.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_non-incremental_lock">S&#8212;Non-Incremental Lock</a></H4>
+    <P>M allows locks to be one of the following types:</P>
+    <ul>
+      <li>
+        <strong>Incremental&#8212;</strong>Allows a process to maintain multiple locks on the same resource and release them one at a time.
+        <br>
+        <br>
+      </li>
+      <li>
+        <strong><em>Non</em>-Incremental&#8212;</strong>A process either obtains the lock or the command fails.       </li>
+    </ul>
+    <p>AApplication programs are required to use the incremental form of the 
+	<strong>LOCK</strong> command.</p>
+    <p><b>NOTE:</b>  This restriction does <em>not</em> apply to Kernel.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_non-standard_z_function_used">S&#8212;Non-standard $Z function used</a></H4>
+    <P>M implementations may provide special functions with names beginning with 
+	<b>$Z</b>.. These are platform dependent. Application programs <em>cannot</em> use them.</P>
+    <p><b>NOTE:</b>  This restriction does <em>not</em> apply to Kernel.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_non-standard_z_variable_used">S&#8212;Non-standard $Z special variable used</a></H4>
+    <P>M implementations may provide special variables with names beginning with <b>$Z</b>.. These are platform dependent. Application programs 
+	<em>cannot</em> use them.</P>
+    <p><b>NOTE:</b>  This restriction does <em>not</em> apply to Kernel.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_open_command_should_be_invoked_through_zis">S&#8212;'OPEN' command should be invoked through ^%ZIS</a></H4>
+    <P>Applications <em>cannot</em> directly use the <strong>OPEN</strong> and 
+	<strong>CLOSE</strong> commands. Instead, they <em>must</em> use the Kernel Device Handler.</P>
+    <p><b>NOTE:</b>  This restriction does <em>not</em> apply to Kernel, MailMan, and VA FileMan. See the noted exemptions in Section 2.4.8.1 of the SAC.</p>
+	<h5>Anomaly</h5>
+	<p>This error is a bit misleading, because there are now several APIs other than 
+	<a href="http://vaww.vista.med.va.gov/kernel/apis/zis.shtml"
+	   title="^%ZIS API"
+	   class="bodylink">^%ZIS</a> that can be used. This includes:</p>
+    <ul>
+      <li>
+		^%ZISH
+		<br>
+	    <br>
+	  </li>
+      <li>
+		^%ZISUTL
+		<br>
+	    <br>
+	  </li>
+	  <li>
+	    ^%ZISTCP
+	  </li>
+	</ul>
+	<p>Regardless, applications <em>must</em> use one of the <strong>^%ZIS*</strong> APIs and 
+	<em>cannot</em> use <strong>OPEN</strong> directly.</p>
+	<p><b>REF:</b> For more details of the <strong>CLOSE</strong> command, see the "
+	<a href="#s_close_command_should_be_invoked_through_d__zisc"
+	   title="See the S&#8212;'Close' command should be invoked through 'D ^%ZISC' error message"
+	   class="bodylink">S&#8212;'Close' command should be invoked through 'D ^%ZISC'</a>" section.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_close_command_should_be_invoked_through_d__zisc">S&#8212;'Close' command should be invoked through 'D ^%ZISC'</a></H4>
+    <P>Kernel's Device Handler encapsulates certain <strong>I/O</strong>-related commands (e.g., 
+	<strong>OPEN</strong> and <strong>CLOSE</strong>) and provides a common device abstraction used by VistA applications. Applications are required to use the Device Handler.</P>
+    <p>At one time, devices were always opened using <strong>D ^%ZIS</strong> and closed using 
+	<strong>D ^%ZISC</strong>, but that is no longer true. Kernel provides some additional APIs:</p>
+    <ul>
+      <li>
+        ^%ZISH for working with host files (that is, operating system files).
+        <br>
+        <br>
+      </li>
+      <li>
+        ^%ZISUTL to make working with multiple devices easier.
+        <br>
+        <br>
+      </li>
+      <li>
+        ^%ZISTCP for TCP connections. 
+      </li>
+    </ul>
+    <p>If a device is opened using 
+    <a href="http://vaww.vista.med.va.gov/kernel/apis/open%5Ezisutl.shtml"
+       title="OPEN^%ZISUTL API"
+       class="bodylink">OPEN^%ZISUTL</a>, it
+	<em>must</em> be closed with 
+	<a href="http://vaww.vista.med.va.gov/kernel/apis/close%5Ezisutl.shtml"
+	   title="CLOSE^%ZISUTL API"
+	   class="bodylink">CLOSE^%ZISUTL</a>. Do <em>not</em> close the device through the <strong>CLOSE</strong> command.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_read_command_does_not_have_a_timeout">S&#8212;Read command doesn't have a timeout</a></H4>
+    <P>Application programs <em>must</em> provide a timeout (usually the variable 
+	<strong>DTIME</strong>) when using the <strong>READ</strong> command. In fact, it is good practice for applications to 
+	<em>not</em> use 
+	<strong>READ</strong> at all, but use the VA FileMan 
+	<a href="http://vaww.vista.med.va.gov/fileman/docs/dg/cl_dir.shtml"
+	   title="^%DIR API"
+	   class="bodylink">^%DIR</a> API (commonly known as the 
+	&quot;Response Reader&quot;); though, this is <em>not</em> a requirement. It is, however, a requirement to use a timeout.</P>
+    <p>In addition, if a timeout exceeds <strong>300</strong> seconds, you <em>must</em> document that fact in the package technical manual.</p>
+    <p>If for some reason this is inappropriate, an exemption is required.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_routine_code_exceeds_sacc_maximum_size_of_15000">S&#8212;Routine code exceeds SACC maximum size of 15000 (<i>nnnnn</i>)</a></H4>
+    <P>The maximum routine size for M code and <strong>;;</strong> comments (comments beginning with double semi-colons are considered code) is set to 
+	<strong>15K</strong> characters in a routine.</P>
+    <p><b>NOTE:</b> An additional <strong>5K</strong> characters in a routine is available for regular comments (i.e., comments beginning with a single semi-colon).</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="s_routine_exceeds_sacc_maximum_size_of_20000">S&#8212;Routine exceeds SACC maximum size of 20000 (<i>nnnnn</i>)</a></H4>
+    <P>The maximum routine size as determined by <strong>^%ZOSF("SIZE")</strong> is set to 
+	<strong>20K</strong> for all characters in a routine.</P>
+    <HR COLOR="003399"> 
+    <H4><a name="s_Set_to_a_%_global">S&#8212;Set to a '%' global</a></H4>
+    <p>Application programs <em>cannot</em> modify globals with names beginning 
+	with <b>%</b>.</p>
+    <p><b>NOTE:</b> This restriction does <em>not</em> apply to Kernel.</p>
+    <P>&nbsp;</P>
+    <HR COLOR="003399"> 
+    <H4><a name="s_should_use_taskman_instead_of_job_command">S&#8212;Should use 'TASKMAN' instead of 'JOB' command</a></H4>
+    <P>This is a requirement. Application programs <em>cannot</em> start background processes with the 
+	<strong>JOB</strong> command, but <em>must</em> use one of the APIs provided by TaskMan.</P>
+    <p><b>NOTE:</b> This restriction does <em>not</em> apply to Kernel.</p>
+    <P>&nbsp;</P>
+    <HR COLOR="003399"> 
+    <H4><a name="s_view_command_used">S&#8212;View command used</a></H4>
+    <P>The <strong>VIEW</strong> command is used to modify memory or disk buffers. Use of this command is restricted to Kernel and VA FileMan.</P>
+    <p><b>REF:</b> For more details about <strong>VIEW</strong> and <strong>$VIEW</strong>, see the 
+    "<a href="#s_view_function_used"
+        title="See S&#8212;$View function used error message"
+        class="bodylink">S&#8212;$View function used</a>" section.</p>
+    <P>&nbsp;</P>
+    <HR COLOR="003399"> 
+    <H4><a name="s_violates_va_programming_standards">S&#8212;Violates VA programming standards</a></H4>
+    <P>This is something of a catchall category and requires manual review for violations of VA programming standards.</P>
+	<P>&nbsp;</P>
+<!-- End Content -->
+	<footer>
+	<HR COLOR="003399">
+<!-- Start Bottom Links -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/vhaoi/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+    <A HREF="https://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology Home Page">
+	   <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!-- End Bottom Links -->
+<!-- Date Content was Reviewed or Updated -->
+    <p align="center">Reviewed/Updated: 07/20/2018
+    <br>
+    <br>
+    For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+	<A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/xindex/standards.html"
+	   TITLE="Send mail to the Webmasters regarding this page"
+	   class="bodylink">Webmasters</A></p> 
+    <P>&nbsp;</P>
+    </footer>
+  </BODY>
+</HTML>

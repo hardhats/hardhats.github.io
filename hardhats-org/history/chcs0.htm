@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS0</TITLE></HEAD>
+<BODY>
+<BLOCKQUOTE>
+<H1>COMPARISON OF CHCS FILEMAN AND DHCP FILEMAN</H1>
+<P>by <A HREF="mailto:gtimson@pacbell.net">George Timson</A></P>
+<P>Prepared for the Department of Veterans Affairs, 1995</P>
+<HR>
+<H2>TABLE OF CONTENTS </H2>
+<H3><A HREF="chcs1.htm">I. INTRODUCTION</A></H3>
+<H3><A HREF="chcs2.htm">II. DISCREPANCIES BETWEEN GLOBAL STRUCTURES IN THE TWO
+SYSTEMS                                     </A></H3>
+<BLOCKQUOTE>
+<P>A. File-level Discrepancies                                                 
+                   </P>
+<BLOCKQUOTE>
+<P>&quot;Group Cross-References&quot; on a File </P>
+<P>Special lookup code for a particular File </P>
+<P>&quot;Pre-lookup&quot; code in CHCS </P>
+<P>&quot;Post-Lookup&quot; code in DHCP </P>
+<P>LAYGO Code in DHCP </P>
+<P>&quot;Copy Access&quot; in CHCS </P></BLOCKQUOTE>
+<P>B. Field-level Discrepancies                                                
+                   </P>
+<BLOCKQUOTE>
+<P>Uneditable Word-Processing Fields </P>
+<P>Consistency Checks in CHCS </P>
+<P>Auditing flags </P>
+<P>&quot;KWIC&quot; index can parse on other delimiters in DHCP </P>
+<P>&quot;SET&quot; Fields can contain MUMPS &quot;Screens&quot; in DHCP </P>
+<P>&quot;Technical Description&quot; of a Field in DHCP </P>
+<P>&quot;Sort Value&quot; and &quot;Transfer Tag&quot; of a Field in CHCS </P>
+<P>&quot;Archive&quot; flag in CHCS </P></BLOCKQUOTE>
+<P>C. Other Global-Structure Incompatibilities                                 
+                  </P>
+<BLOCKQUOTE>
+<P>&quot;Previous&quot; values stored in a different MUMPS Global </P>
+<P>&quot;Check&quot; nodes in Input Templates </P></BLOCKQUOTE>
+<P>D. Summary of Changes Needed When Porting DHCP Files to CHCS                
+                  </P>
+<P>E. Summary of Changes Needed When Porting CHCS Files to DHCP                
+                  </P></BLOCKQUOTE>
+<H3><A HREF="chcs3.htm">III. DISCREPANCIES CAUSED BY CHCS ENHANCEMENTS TO
+OUTPUT ROUTINES                                  </A></H3>
+<BLOCKQUOTE>
+<P>A. CHCS Output Enhancements                                                 
+                  </P>
+<BLOCKQUOTE>
+<P>Specifying a list of values to sort on </P>
+<P>Specifying Computed &quot;FROM&quot; and &quot;TO&quot; values in a Sort
+Template </P>
+<P>Specifying which Cross-Reference to sort on </P>
+<P>Allowing the &quot;HEADER:&quot; question to be asked at run time </P>
+<P>Print Formatter </P>
+<P>Captions for &quot;SUBTOTALS&quot; </P>
+<P>Search Option can stop at &quot;MAXIMUM NUMBER OF HITS&quot; </P>
+<P>Lower-case Print Specifiers </P></BLOCKQUOTE>
+<P>B. Summary of Changes Needed When Porting CHCS Sort and Print Templates to
+DHCP </P></BLOCKQUOTE>
+<H3><A HREF="chcs4.htm">IV. DISCREPANCY CAUSED BY DHCP ENHANCEMENT TO OUTPUT
+ROUTINES </A>                                     </H3>
+<BLOCKQUOTE>
+<P>A. Storage of &quot;FROM&quot; and &quot;TO&quot; values in DHCP Sort
+Templates                                    </P></BLOCKQUOTE>
+<H3><A HREF="chcs5.htm">V. USER-INTERACTION INCOMPATIBILITIES CAUSED BY
+ENHANCEMENTS TO CHCS FILEMAN </A></H3>
+<BLOCKQUOTE>
+<P>A. Input Templates                                                          
+                  </P>
+<BLOCKQUOTE>
+<P>&quot;;F&quot; and &quot;;N&quot; Multiple Fields in CHCS Input Templates   
+                                             </P>
+<P>&quot;Going down twice&quot; into a Multiple Field in CHCS FileMan </P></BLOCKQUOTE>
+<P>B. Miscellaneous User-Interaction Discrepancies                             
+                  </P>
+<BLOCKQUOTE>
+<P>Lookup dialogue at &quot;?&quot; input offers user a better display </P></BLOCKQUOTE></BLOCKQUOTE>
+<H3><A HREF="chcs6.htm">VI. USER-INTERACTION INCOMPATIBILITES CAUSED BY
+ENHANCEMENTS TO DHCP FILEMAN</A></H3>
+<BLOCKQUOTE>
+<P>A. Input Templates                                                          
+                 </P>
+<BLOCKQUOTE>
+<P>'REQ' Fields in DHCP Input Templates </P>
+<P>'DUP' Fields in DHCP Input Templates </P></BLOCKQUOTE>
+<P>B. Miscellaneous User-Interaction Discrepancies Caused by DHCP Enhancements 
+                                                                          </P>
+<BLOCKQUOTE>
+<P>Lookup doesn't generally stop at exact match </P>
+<P>Aborting output by typing &quot;^&quot; </P>
+<P>'CAPTIONED' output can show Computed Fields </P>
+<P>'Uneditable' Fields don't display and pause </P></BLOCKQUOTE></BLOCKQUOTE>
+<H3><A HREF="chcs7.htm">VII. SCREEN-HANDLING IN THE TWO SYSTEMS   </A></H3>
+<BLOCKQUOTE>
+<P>A. Incompatibilities in Screen Layout                                       
+                  </P>
+<P>B. Features in DHCP ScreenMan not found in CHCS ScreenMan                   
+                  </P>
+<P>C. Features in CHCS ScreenMan not found in DHCP ScreenMan                   
+                  </P></BLOCKQUOTE>
+<H3><A HREF="chcs8.htm">VIII. PROGRAMMER-UTILITY INCOMPATIBILITIES CAUSED BY
+ENHANCEMENTS TO CHCS FILEMAN</A> </H3>
+<BLOCKQUOTE>
+<P>A. Calls to the date-handling routines                                      
+                  </P>
+<P>B. Calls to the ^DIC routine                                                
+                  </P>
+<P>C. Calls to the ^DIE routine                                                
+                  </P>
+<P>D. Calls to the ^DIP routine                                                
+                  </P>
+<P>E. Calls to ScreenMan routines                                              
+                  </P></BLOCKQUOTE>
+<H3><A HREF="chcs9.htm">IX. PROGRAMMER-UTILITY INCOMPATIBILITIES CAUSED BY
+ENHANCEMENTS TO DHCP FILEMAN </A></H3>
+<BLOCKQUOTE>
+<P>A. Call to EN^DIB                                                           
+                  </P>
+<P>B. Calls to the ^DIC routine                                                
+                  </P>
+<P>C. Calls to the ^DIE routine                                                
+                  </P>
+<P>D. Calls to the ^DIK routine                                                
+                  </P>
+<P>E. Calls to the ^DIP routine                                                
+                  </P>
+<P>F. Calls to the ^DIQ routine                                                
+                  </P>
+<P>G. Listing and Deleting Files                                               
+                  </P>
+<P>H. Calls to Routines Non-existent in CHCS                                   
+                  </P></BLOCKQUOTE>
+<H3><A HREF="chcs10.htm">X. DATA EXTRACTION IN THE TWO SYSTEMS -- DIFROM,
+TAPEMAN, FILEGRAMS AND ARCHIVING </A></H3>
+<H3><A HREF="chcs11.htm">XI. CONCLUSION              </A>                     
+                                                 </H3></BLOCKQUOTE></BODY></HTML>

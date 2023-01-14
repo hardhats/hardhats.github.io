@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+   <title>Kernel Task Management</title>
+   <meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
+</head>
+<body TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#000066" VLINK="#336633">
+
+<table CELLSPACING="6" CELLPADDING="6" BORDER="0" WIDTH="100%">
+<tr>
+<td align="center"><img SRC="../images/logo.gif" HEIGHT="79" WIDTH="120"><br>
+<b><font FACE="Arial"><font SIZE="+2">Task Management</font></font></b></td>
+
+<td align="center" width="80%">
+<center><p><a HREF="../index.html"><img SRC="../images/shopSHomeOff.gif" ALT="Home Page" BORDER="0" ALIGN="TOP" WIDTH="54" HEIGHT="76"></a>
+<a HREF="../m/Mmain.html"><img SRC="../images/shopSMOff.gif" ALT="M |" BORDER="0" ALIGN="TOP" WIDTH="54" HEIGHT="76"></a>
+<a HREF="../fileman/FMmain.html"><img SRC="../images/shopSFmOff.gif" ALT="FileMan |" BORDER="0" ALIGN="TOP" WIDTH="54" HEIGHT="76"></a>
+<a HREF="KRNmain.html"><img SRC="../images/shopSKrnOn.gif" ALT="Kernel |" BORDER="0" ALIGN="TOP" WIDTH="54" HEIGHT="76"></a>
+<a HREF="../cs/CSmain.html"><img SRC="../images/shopSCsOff.gif" ALT="CS/MM/Web |" BORDER="0" ALIGN="TOP" WIDTH="62" HEIGHT="86"></a>
+<a HREF="../tools/TOOLSmain.html"><img SRC="../images/shopSPgmOff.gif" ALT="Programmer Tools |" BORDER="0" ALIGN="TOP" WIDTH="54" HEIGHT="86"></a>
+<a HREF="../apps/APPSmain.html"><img SRC="../images/shopSAppOff.gif" ALT="Applications" BORDER="0" ALIGN="TOP" WIDTH="54" HEIGHT="76"></a>
+</p></center>
+</td>
+</tr>
+</table>
+
+<center><table CELLSPACING="6" CELLPADDING="6" WIDTH="100%">
+<tr>
+<td valign="top" width="30%" bgcolor="#e6e6e6">
+<center><p><b><font FACE="Arial"><font SIZE="+1">Contents</font></font></b>
+</p></center>
+
+<ul>
+<li><font SIZE="-1"><a HREF="#Manager">Task Manager</a></font></li>
+
+<li><font SIZE="-1"><a HREF="#Menu">TaskMan Management Menu</a></font></li>
+
+<li><font SIZE="-1"><a HREF="#Utilities">TaskMan Management Utilities</a></font></li>
+
+<li><font SIZE="-1"><a HREF="#APIs">Programmer API's</a></font></li>
+</ul>
+</td>
+
+<td valign="top" width="70%" bgcolor="#fff"><a NAME="Manager"></a><b><font FACE="arial"><font COLOR="#FF0000">Task
+Manager<br>
+<br>
+</font></font></b>The Kernel Task Manager, also know as TaskMan, allows
+you to run tasks in the background while you continue working on your system.
+A TaskMan program, called the Manager, runs at all times in the background.
+The Manager monitors your system constantly looking for tasks requested
+by foreground jobs. 
+<p>Foreground jobs cannot start any background jobs. Instead, they call
+a TaskMan API to queue job requests in the TASK and SCHEDULE files. The
+Manager monitors the schedule file and initiates the background jobs as
+needed. Submanagers are the processes that actually run tasks. The Manager
+starts submanagers whenever more are needed to handle the current workload
+of tasks. Each task performs the work it was created to do and then quits,
+returning control back to the submanager that started it. The submanager
+will wait around for a period of time for new tasks so that the Manager
+won't have to start a new submanager. If no new tasks arrives during a
+designed time, the submanager will quit.</p>
+
+<center><p><img SRC="../images/lineNailKRN.gif" ALT HEIGHT="16" WIDTH="396"></p></center>
+
+<p><a NAME="Menu"></a><b><font FACE="arial"><font COLOR="#FF0000">TaskMan
+Management Menu<br>
+<br>
+</font></font></b>Kernel provides system managers with a set of tools to
+manage tasks. The TaskMan Management Menu is the main entry point into
+Taskman options. It contains the following options:</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Schedule/Unschedule
+Options</b> - schedule options that run regularly and unschedule an option
+that's no longer needed.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>One
+time Options Queue</b> - queue a task to run only once without affecting
+the option's normal schedule.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Taskman
+Management Utilities</b> - provides several options to set up, monitor,
+and modify TaskMan environment.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>List
+Tasks</b> - choose between several useful ways of displaying tasks.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Dequeue
+Tasks</b> - unschedule a task so that the task remains in the TASKS file,
+but is no longer scheduled to run.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Requeue
+Tasks</b> - reschedule a task that has been unscheduled.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Delete
+Tasks</b> - unschedule a task and delete the task from the TASK file.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Print
+Options that are Scheduled to run</b> - lists all currently scheduled options
+on your system.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Cleanup
+Task List</b> - remove a task entry from a task list for a job that is
+no longer running.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox2.gif" ALT="*" HEIGHT="43" WIDTH="45" ALIGN="LEFT"><b>Print
+Options Recommended for Queuing</b> - Displays all options that are recommended
+for scheduling by the developer.<br CLEAR="LEFT">
+</p>
+
+<center><p><img SRC="../images/lineNailKRN.gif" ALT HEIGHT="16" WIDTH="396"></p></center>
+
+<p><a NAME="Utilities"></a><b><font FACE="arial"><font COLOR="#FF0000">TaskMan
+Management Utilities<br>
+<br>
+</font></font></b>A submenu on the TaskMan Management Menu, called the
+Taskman Management Utilities, provides several options to setup, monitor,
+and modify the TaskMan environment. This menu contains the following options:</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Monitor
+TaskMan</b> - displays the current state of TaskMan and offers you many
+ways to get more information.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Check
+TaskMan's Environment</b> - performs all of the checks that the Task Manager
+does and identifies any problem with the environment.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Edit
+TaskMan Parameters</b> - edit the TaskMan parameter files.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Restart
+Task Manager</b> - ability to restart TaskMan if the Manager crashes or
+is stopped.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Place
+TaskMan in a WAIT State</b> - ability to turn the Manager's activities
+off without having to completely shut down the Manager.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Remove
+TaskMan from WAIT State</b> - ability to turn the Manager's activities
+back on to process tasks and allow submanagers to recycle.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Stop
+Task Manager</b> - provides a clean way of stopping Task Manager from within
+the menu system.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>TaskMan
+Error Logs</b> - choose between several useful ways of displaying and managing
+errors caused by tasks.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>Clean
+Task File</b> - clean out the Task Log removing all entries for tasks that
+have completed, have been rejected, or have aborted with an error.<br CLEAR="LEFT">
+</p>
+
+<p><img SRC="../images/transToolbox1.gif" ALT="*" HEIGHT="44" WIDTH="45" ALIGN="LEFT"><b>SYNC
+flag file control</b> - remove a SYNC FLAG entry from the file and delete
+all waiting tasks with the same SYNC FLAG<br CLEAR="LEFT">
+</p>
+
+<center><p><img SRC="../images/lineNailKRN.gif" ALT HEIGHT="16" WIDTH="396"></p></center>
+
+<p><a NAME="APIs"></a><b><font FACE="arial"><font COLOR="#FF0000">Programmer
+API's<br>
+<br>
+</font></font></b>Kernel provides programmers with API callable entry points
+to create and schedule tasks. Once you become familiar with Task Manager's
+queueing system, you can increase productivity by using some of TaskMan's
+special features.<br>
+<br>
+</p>
+</td>
+</tr>
+</table></center>
+
+<center><p><script language="JavaScript"><!--
+
+document.write("</center><font face=\"arial,helv\" size=1> This page last updated on " + document.lastModified+".</font>")
+
+//--></script>
+
+
+
+<!-- Thanks to Metropolitan Community College of Nebraska for thefollowing javascript function //--></p></center>
+
+<center><p><map NAME="kernel"><area SHAPE="RECT" COORDS="39,24,95,54" HREF="KRNmain.html"><area SHAPE="RECT" COORDS="97,24,136,54" HREF="KRNintro.html"><area SHAPE="RECT" COORDS="137,24,194,54" HREF="KRNsignon.html"><area SHAPE="RECT" COORDS="195,24,271,54" HREF="KRNmenu.html"><area SHAPE="RECT" COORDS="272,24,327,54" HREF="KRNdevice.html"><area SHAPE="RECT" COORDS="329,24,386,54" HREF="KRNtask.html"><area SHAPE="RECT" COORDS="388,24,435,54" HREF="KRNkids.html"><area SHAPE="RECT" COORDS="437,24,500,54" HREF="KRNrepairs.html"></map><img USEMAP="#kernel" SRC="../images/lineKernel.gif" HEIGHT="58" WIDTH="518" ALIGN="CENTER" BORDER="0"></p></center>
+
+<center><p><a HREF="KRNmain.html">Overview</a> | <a HREF="KRNintro.html">Intro</a> | <a HREF="KRNsignon.html">Sign-On/Security</a> | <a HREF="KRNmenu.html">Menu Management</a>
+|<br><a HREF="KRNdevice.html">Device Management</a> | <a HREF="KRNtask.html">Task Management</a> | <a HREF="KRNkids.html">KIDS</a> | <a HREF="KRNrepairs.html">Repairs</a> | </p></center>
+
+<p align="center"><font size="1" face="Arial">Search | </font><a href="../index.html"><font size="1" face="Arial">Home</font></a><font size="1" face="Arial"> | </font><a href="../m/Mmain.html"><font size="1" face="Arial">MUMPS</font></a><font size="1" face="Arial">
+| </font><a href="../fileman/FMmain.html"><font size="1" face="Arial">Fileman</font></a><font size="1" face="Arial"> | </font><a href="KRNmain.html"><font size="1" face="Arial">Kernel</font></a><font size="1" face="Arial"> | </font><a href="../cs/CSmain.html"><font size="1" face="Arial">C/S, Mailman, Web</font></a><font size="1" face="Arial"> | </font><a href="../tools/TOOLSmain.html"><font size="1" face="Arial">Programmer Tools</font></a><font size="1" face="Arial"> | </font><a href="../apps/APPSmain.html"><font size="1" face="Arial">Applications</font></a></p>
+
+</body>
+</html>

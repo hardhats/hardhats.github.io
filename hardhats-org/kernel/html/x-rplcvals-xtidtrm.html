@@ -1,0 +1,271 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel Toolkit APIs: $$RPLCVALS^XTIDTRM">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,VUID,DATA STANDARDIZATION,TERM,REPLACEMENT TERM,VistA Legacy,OED,Office of Enterprise Development,VHA Unique ID (VUID),Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$GETMASTR^XTID,GETMASTR,XTID,data standardization,supported">
+    <meta name="description"
+	      content="Kernel Toolkit APIs: $$RPLCVALS^XTIDTRM">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180817">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel Toolkit APIs: $$RPLCVALS^XTIDTRM</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/toolkit_heading_APIs.gif"
+			   ALT="Kernel Toolkit 7.3 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$RPLCVALS^XTIDTRM()</A>: Get Field Values of Final Replacement Term (Term/Concept)</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> 
+	Toolkit&#8212;Data Standardization,
+	<B>ICR#:</B> 5078</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$RPLCVALS^XTIDTRM extrinsic function retrieves one or more fields of data from an entry's 
+	final replacement term.  The REPLACED BY VHA STANDARD TERM (#99.97) field is recursively traversed until the final replacement term is reached.  The requested fields of the final replacement term are returned. It effectively bundles $$RPLCMNT^XTIDTRM and GETS^DIQ into a single call.</P>
+    <P><b>NOTE:</b> For an overview of the Data Standardization API set, read 
+    <a href="xt_7_3_111_patch_desc.html"
+       TITLE="To the Data Standardization API set overview."
+       class="bodylink">Data Standardization APIs</a>.<br>
+    <br>
+    For a chart mapping the Data Standardization API set in context, read  
+	<a href="xt_7_3_111_patch_desc.html#Replacement_Relationships"
+	   TITLE="To the Replacement Relationships chart showing the mapping the Data Standardization API set in context."
+	   class="bodylink">Replacement Relationships</a>.</P> 
+ 	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$RPLCVALS^XTIDTRM(file,ien,fields,flags,outarr)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>file:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) File number.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>ien:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Internal Entry Number (IEN).</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <b>fields:</b>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (required) Fields for which you wish to get values.<p><b>REF:</b> For 
+		  detailed description, see the definition of the FIELD parameter in the  
+		  <a href="http://vaww.vista.med.va.gov/fileman/docs/dg/db_diqgs.shtml"
+			 TITLE="To the VA FileMan GETS^DIQ( ): Data Retriever online documentation."
+			 class="bodylink">GETS^DIQ</a> API.
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <b>flags:</b>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  (required) Flags that control output format.<p><b>REF:</b> For 
+		  detailed description, see the definition of the FLAGS parameter in the  
+	      VA FileMan  
+		  <a href="http://vaww.vista.med.va.gov/fileman/docs/dg/db_diqgs.shtml"
+			 TITLE="To the VA FileMan GETS^DIQ( ): Data Retriever online documentation."
+			 class="bodylink">GETS^DIQ</a> API.
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Input/Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <strong>outarr:</strong>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <p>Input/Output:</p> 
+		  <ul>
+			<li>
+			  <strong>I:</strong> (required) Array to put trail of replacement terms into (closed root).
+			  <br>
+			  <br>
+            </li>
+			<li>
+			  <strong>O:</strong> The output array is in FDA format.
+			</li>
+		  </ul>
+		  <p><b>REF:</b> For example output, see the 
+		  VA FileMan 
+		  <a href="http://vaww.vista.med.va.gov/fileman/docs/dg/db_diqgs.shtml"
+			 TITLE="To the VA FileMan GETS^DIQ( ): Data Retriever online documentation."
+			 class="bodylink">GETS^DIQ</a> API.
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>The $$RPLCVALS^XTIDTRM extrinsic function sets <strong>X</strong> to <strong>IEN_";"_FileNumber</strong> of the entry that ultimately replaces the input entry:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=$$RPLCVALS^XTIDTRM(file,ien,fields,flags,outarr)</B></PRE>           
+        </td>
+      </tr>
+    </table>	
+    <p><b>NOTES:</b></p>
+    <ul>
+	  <li>
+	    <strong>NULL</strong> is returned on error. This typically occurs when the 
+        input entry does <i>not</i> exist.
+        <br>
+	    <br>
+	  </li>
+	  <li>
+	    If an error occurs when extracting the requested fields from the final 
+        replacement term then a reference to the final replacement term is still 
+        returned and <strong>outarr</strong> is <strong>KILL</strong>ed.
+        <br>
+	    <br>
+	  </li>
+	  <li>
+	    If the input entry is <i>not</i> replaced by another term then a reference to the input 
+        term is returned and <strong>outarr()</strong> contains the field values for the input entry.
+      </li>
+    </ul>
+    <p>&nbsp;</p>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/17/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-rplcvals-xtidtrm.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

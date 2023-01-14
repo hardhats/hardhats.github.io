@@ -1,0 +1,23 @@
+package gov.va.vista.kernel;
+
+import java.awt.*;
+
+public abstract class WorkBenchItem extends Panel {
+
+  public Dimension getPreferredSize() {
+    ..get the preferred size of the application form.  If the preferred
+      size is larger then the current display area, the workbench will
+      resize itself to accomodate the application form.
+  }
+
+  public String getTitle() {
+    ..the workbench calls this method to get the title to display on the
+      workbench title bar.
+  }
+
+  public MenuBar getMenuBar() {
+    ..the workbench calls this method to get the menus to display on the
+      workbench menu bar.  These menus are merged with the kernel workbench
+      menus.
+  }
+}

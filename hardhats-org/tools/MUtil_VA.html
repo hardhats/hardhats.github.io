@@ -1,0 +1,645 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>VA Utilities</title>
+<style><!--
+	body 	{ font-family: arial, helv, helvetica, sans-serif;
+		font-size: 8pt ; }
+	table { font-size : 8pt }
+	th {
+ 	font-size : 10 pt;
+ 	font-weight : bold;
+	font-family : verdana }
+	body	{ background: #ffffff;
+	margin-left: 3%; margin-right: 2%;
+	}
+	A:link	{color: #0000FF; text-decoration : none;}
+	A:visited	{color: #0000FF; text-decoration: none;}
+	A:active	{color: #FF0000; text-decoration: underline;}
+	A:hover	{color: #FF0000; text-decoration: none;}
+	-->
+</style>
+
+</head>
+<body bgcolor="#FFFFFF">
+<table width="95%" border="0" cellpadding="2">
+  <tr>
+    <td bgcolor="#FFFF00"><a name="topofpage"></a><font size="3"><b>COMMON VA UTILITIES: </b></font></td>
+  </tr>
+  <tr>
+  	<td valign="middle">
+	<ul>
+	<li><a href="#classic_FM">VA FileMan - Classic</a></li>
+	<li><a href="#classic_DBMS">VA FileMan - Database Server</a></li>
+	<li><a href="#DEVMAN">Device Management</a></li>
+	<li><a href="#MAILMAN">MailMan</a></li>
+	<li><a href="#MENUMAN">Menu Management</a></li>
+	<li><a href="#SECMAN">Sign-on/Security</a></li>
+	<li><a href="#TASKMAN">TaskMan</a></li>
+	<li><a href="#MISC">Miscellaneous Utilities</a></li>
+	
+	</ul>
+  </tr>
+</table>
+
+<table border="1" cellpadding="5" cellspacing="1" width="95%">
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height="17"><b><a name="classic_FM"></a><a href="../fileman/pm/cla_frm.htm">VA 
+      Fileman - Classic: </a>&nbsp;&nbsp;</b></th>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dicn1.htm">Add 
+      Entry to a File</a></td>
+    <td width="20%">FILE^DICN</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dikz1.htm">Compile 
+      Crossreferences</a></td>
+    <td width="20%">^DIKZ</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_diez1.htm">Compile 
+      Input Template</a></td>
+    <td width="20%">^DIEZ</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dipz1.htm">Compile 
+      Print Template</a></td>
+    <td width="20%">^DIPZ, EN^DIPZ</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dio2.htm">Compile 
+      Sort Template</a></td>
+    <td width="20%">^DIOZ</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_did.htm">Data 
+      Dictionary List</a></td>
+    <td width="20%">EN^DID</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_die.htm">Edit 
+      a File Entry</a></td>
+    <td width="20%">^DIE</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dib.htm">Enter/Edit 
+      File Entries</a></td>
+    <td width="20%">EN^DIB</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_diac.htm">File 
+      Access</a></td>
+    <td width="20%">^DIAC</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/pu_di.htm">FM 
+      Programmer</a></td>
+    <td width="20%">P^DI, Q^DI</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dt1.htm">FM 
+      Date Selector</a></td>
+    <td width="20%">^%DT</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dtc1.htm">FM 
+      Date Operations</a></td>
+    <td width="20%">tag^%DTC</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dt2.htm">Internal 
+      to External Date</a></td>
+    <td width="20%">DD^%DT, ^DD("DD")</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dic.htm">Lookup/Add 
+      File Entries</a></td>
+    <td width="20%">^DIC, IX^DIC, MIX^DIC1</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_ddiol.htm">Message 
+      Loader</a></td>
+    <td width="20%">EN^DDIOL</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dip.htm">Print 
+      Data</a></td>
+    <td width="20%">EN1^DIP</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dipt1.htm">Print 
+      Template Display</a></td>
+    <td width="20%">^DIPT</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dir.htm">Reader</a></td>
+    <td width="20%">^DIR</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dis.htm">Search 
+      File Entries</a></td>
+    <td width="20%">EN^DIS</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dipt2.htm">Sort 
+      Template Display</a></td>
+    <td width="20%">DIBT^DIPT</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_diwe.htm">Text 
+      Editing</a></td>
+    <td width="20%">EN^DIWE</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_dicd.htm">Wait 
+      Message</a></td>
+    <td width="20%">WAIT^DICD</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/cl_diwp1.htm">Word 
+      Processor Formatter/Print</a></td>
+    <td width="20%">^DIWP, ^DIWW</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height="17"><a name="classic_DBMS"></a><a href="../fileman/pm/dba_frm.htm"><b>VA 
+      Fileman - Database Server</b></a></th>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_die_c.htm">Data 
+      Checker</a></td>
+    <td width="20%">CHK^DIE()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_diqgs.htm">Data 
+      Retriever</a></td>
+    <td width="20%">GETS^DIQ()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_diqg1.htm">Data 
+      Retriever, Single</a></td>
+    <td width="20%">$$GET1^DIQ()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_dilf4.htm">Date 
+      Converter</a></td>
+    <td width="20%">DT^DILF()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_didg.htm">DD 
+      Attribute Retriever</a></td>
+    <td width="20%">$$GET1^DID()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_didf1.htm">DD 
+      Field Retriever</a></td>
+    <td width="20%">FIELD^DID()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_didf3.htm">DD 
+      File Retriever</a></td>
+    <td width="20%">FILE^DID()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_die_f.htm">Filer</a></td>
+    <td width="20%">FILE^DIE()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_dicf.htm">Finder</a></td>
+    <td width="20%">FIND^DIC()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_dicf1.htm">Finder, 
+      Single Record</a></td>
+    <td width="20%">$$FIND1^DIC()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_dic_l.htm">Lister</a></td>
+    <td width="20%">LIST^DIC()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_die_u.htm">Updater</a></td>
+    <td width="20%">UPDATE^DIE()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%"><a href="../fileman/pm/db_die_w.htm">Word 
+      Processor Filer</a></td>
+    <td width="20%">WP^DIE()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height=17><b><a name="DEVMAN">Device Management</a></b></th>
+  </tr>
+  <tr> 
+    <td width="25%">Close Device</td>
+    <td width="20%">^%ZISC</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Device Availability</td>
+    <td width="20%">DEVOK^%ZOSV</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Device Selector</td>
+    <td width="20%">^%ZIS</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Open HOME Device</td>
+    <td width="20%">HOME^%ZIS</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Host File Close</td>
+    <td width="20%">CLOSE^%ZISH(handle)</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Host File Delete</td>
+    <td width="20%">$$DEL^%ZISH()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Host File Open</td>
+    <td width="20%">OPEN^%ZISH()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Host File into a Global</td>
+    <td width="20%">$$FTG^%ZISH()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Global to Host File</td>
+    <td width="20%">$$GTF^%ZISH()<br>
+      $$GATF^%ZISH()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25%">Open TCP connection</td>
+    <td width="20%">CALL^%ZISTCP(...)</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Reset Home Device Variables</td>
+    <td width="20%">RESETVAR^%ZIS</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height=17><b><a name="MAILMAN">MailMan</a></b></th>
+  </tr>
+  <tr> 
+    <td width="25%">Interactive User Options</td>
+    <td width="20%">tag^XMXAPIU<br>
+      tag^XM</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Mailbox and Basket Action API's</td>
+    <td width="20%">tag^XMXAPIB</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Message Action API's</td>
+    <td width="20%">tag^XMXAPI</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Message Editing</td>
+    <td width="20%">tag^XMXEDIT</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Message Security</td>
+    <td width="20%">tag^XMXSEC</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Message Utilities</td>
+    <td width="20%">tag^XMXUTIL</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">NetMail Programmer</td>
+    <td width="20%">^XMC</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height=17><b><a name="MENUMAN">Menu Management</a></b></th>
+  </tr>
+  <tr> 
+    <td width="25%">Add an Option to a Menu</td>
+    <td width="20%">$$ADD^XPDMENU</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Rename an Option</td>
+    <td width="20%">RENAME^XPDMENU</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Test an Option</td>
+    <td width="20%">^XQ1</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height=17><b><a name="SECMAN">Sign-on/Security</a></b></th>
+  </tr>
+  <tr> 
+    <td width="25%">Clear all variables except Kernel</td>
+    <td width="20%">KILL^XUSCLEAN</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Encrypt Data String</td>
+    <td width="20%">EN^XUSHSHP</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Hash Electronic Signature Code</td>
+    <td width="20%">HASH^XUSHSHP</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Output Message during Signon</td>
+    <td width="20%">SET^XUS1A</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Programmer Halt</td>
+    <td width="20%">H^XUS, ^XUSCLEAN</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Signon - Programmer</td>
+    <td width="20%">^XUP</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Signon - User</td>
+    <td width="20%">^XUS, ^ZU</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Site Parameters</td>
+    <td width="20%">$$KSP^XUPARAM(param)</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">User Status Report</td>
+    <td width="20%">^XUS91</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Validate Access and Verify Codes</td>
+    <td width="20%">^XUVERIFY</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height=17><b><a name="TASKMAN">TaskMan</a></b></th>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan Monitor</td>
+    <td width="20%">^ZTMON, EN2^ZTMON</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan Start</td>
+    <td width="20%">^ZTMB</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan Restart</td>
+    <td width="20%">RESTART^ZTMB</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan Stop</td>
+    <td width="20%">STOP^ZTMKU</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan - Stop One</td>
+    <td width="20%">SMAN^ZTMKU(node)</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan - Check Environment</td>
+    <td width="20%">^ZTMCHK</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan - Place in Wait</td>
+    <td width="20%">WAIT^ZTMKU</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan - Remove from Wait</td>
+    <td width="20%">RUN^ZTMKU</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">TaskMan, Queue Status</td>
+    <td width="20%">ISQED^%ZTLOAD</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Task, Queue a</td>
+    <td width="20%">^%ZTLOAD</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Task, Delete</td>
+    <td width="20%">KILL^%ZTLOAD</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Task, Requeue</td>
+    <td width="20%">REQ^%ZTLOAD</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Task, Unschedule</td>
+    <td width="20%">DQ^%ZTLOAD</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr bgcolor="#71B0D7"> 
+    <th align="left" colspan="6" height="17"><b><a name="MISC">Miscellaneous Utilities</a></b></th>
+  </tr>
+  <tr> 
+    <td width="25%">CPRS Parameters</td>
+    <td width="20%">^XPAREDIT</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Editor</td>
+    <td width="20%">X ^%Z</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Error Trap</td>
+    <td width="20%">^%ZTER</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Error Trap Display</td>
+    <td width="20%">^XTER</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Error Log Purge</td>
+    <td width="20%">^XTERPUR</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Functions - Date</td>
+    <td width="20%">tag^XLFDT()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Functions - Math</td>
+    <td width="20%">tag^XLFMTH()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Functions - Measurement</td>
+    <td width="20%">tag^XLFMSMT()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Functions - String</td>
+    <td width="20%">tag^XLFSTR()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Functions - Trigonometric</td>
+    <td width="20%">tag^XLFHYPER()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Functions - Utility</td>
+    <td width="20%">tag^XLFUTL()</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine - Calculate Checksum</td>
+    <td width="20%">^XTRCMP</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine Cross-Referencer</td>
+    <td width="20%">^XINDEX</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine Compare</td>
+    <td width="20%">^XTRCMP</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine - Create Integrity Checker</td>
+    <td width="20%">^XTSUMBLD</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine Delete</td>
+    <td width="20%">^%ZTRDEL</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine - First Line List</td>
+    <td width="20%">^%ZTP1</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine Patches</td>
+    <td width="20%">^%ZTPTCH</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Routine Print</td>
+    <td width="20%">^%ZTPP</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Start RPC Broker</td>
+    <td width="20%">STRT^XWBTCP(port)</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">Stop RPC Broker</td>
+    <td width="20%">STOP^XWBTCP(port)</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="25%">VPE</td>
+    <td width="20%">X ^%ZVEMS</td>
+    <td width="55%">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#FFFF00"> 
+    <td colspan="3" align="right"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+</table>
+
+</body>
+</html>

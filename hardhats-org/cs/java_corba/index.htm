@@ -1,0 +1,233 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Java/M 3 tier system solution</title>
+
+
+<meta name="Microsoft Theme" content="none"><meta name="Microsoft Border" content="none, default"></head>
+
+<body>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="15">
+  <tr>
+    <td bgcolor="#C0C0C0" width="15%"><font face="Arial"><img src="images/VISTAsm.gif" alt="VISTAsm.gif (1269 bytes)" WIDTH="110" HEIGHT="60"></font></td>
+    <td width="85%"><p align="center"><strong><font face="Arial" size="3" color="#0000A0"><u>Java/M
+    3 tier system solution</u></font></strong></p>
+    <p align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" bgcolor="#C0C0C0" width="15%"><font color="#FF2600" face="Arial"><strong><small><small>Introduction</small></small></strong></font></td>
+    <td valign="top" align="left" width="85%"><font face="Arial" size="2">This discussion
+    gives an overview of the work being done to investigate the possibility of using Java and
+    a 3 tier solution for VISTA's CIRN application.&nbsp; The decision to investigate a
+    three-tier solution is driven by the need for sharing of patient information between
+    hospitals and non-VA systems.</font><p><font face="Arial" size="2">The idea of sharing
+    information between systems is not a new idea.&nbsp; Ever since serial communication
+    computers have been sharing information (there could be earlier examples, but this is as
+    far back as I go!).&nbsp; When you think of&nbsp; HL7, it is a standardized stream of
+    characters that enable systems to share information.&nbsp; Basically an agreement between
+    to HL7 systems that specify where to expect certain data in a stream of characters.</font></p>
+    <p><font face="Arial" size="2">With the advent of the Object world and acceptance of
+    Delphi within VISTA, a 3-tier solution allows us to take sharing of information to the
+    next level of communication, specifically objects.&nbsp; This leads into Object Request
+    Brokers (basically software that serves up Objects rather than a stream of
+    characters).&nbsp; This of course lead to Common Object Request Broker Architecture (<a href="http://www.omg.org">CORBA</a>) which defines a standard way that ORBs talk.&nbsp;
+    And of course this leads to spin-offs like a group called <a href="http://www.omg.org/corbamed">CORBAMed</a> that defines standard ways that clinical
+    Objects are used in the same way that HL7 standardized a stream of characters.</font></p>
+    <p><font face="Arial" size="2">What does Objects provide over parsing a streams of
+    characters?&nbsp; Think of an HL7 character stream that may be made up of 1000's of
+    characters and you want the patient's last name.&nbsp; In this stream there are multiple
+    names (Doctor's name, Patient Name, maybe next of kin, etc.).&nbsp; This basically forces
+    you to learn a very lengthy standard to figure out just how to get the patient's name and
+    where it is located.&nbsp; This is an over-simplified example, but it gets the point
+    across (especially for those of you who had to carry the HL7 standard documentation
+    around).</font></p>
+    <p><font face="Arial" size="2">Now in the object world, this could be as simple as:
+    MyCORBAMedObject.getPatientLastName().&nbsp; That's it.&nbsp; Setting data is just as easy
+    as MyCORBAMedObject.setPatientLastName(&quot;Smith&quot;).&nbsp; Much easier to use.</font></p>
+    <p><font face="Arial" size="2">When you also realize that objects support more than
+    characters, like images or sound you begin to realize that a lot more potential and value
+    exists in the object world.</font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" bgcolor="#C0C0C0" width="15%"><font color="#FF2600" face="Arial"><strong><small><small>About CIRN</small></small></strong></font></td>
+    <td valign="top" align="left" width="85%"><p align="left"><font face="Arial" size="2">The
+    CIRN project is an initiative within the Department of Veteran's Affairs to integrate
+    patient information within the VA.&nbsp; Historically, patient information was not easily
+    or readily available between VA Medical Centers (VAMCs).&nbsp; The CIRN project allows a
+    VAMC to have access to up-to-date clinical information for a patient.&nbsp; This
+    information is a history of the patients care that may span many VAMCs.&nbsp;&nbsp; This
+    is not a project that &quot;combines&quot; databases, but rather allows sharing of patient
+    information between VA Medical Centers.</font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="center" bgcolor="#C0C0C0" width="15%"><p align="left"><font color="#FF2600" face="Arial"><strong><small><small>Current Data Transportation using an
+    Object Request Broker (ORB)</small></small></strong></font></td>
+    <td valign="top" align="left" width="85%"><font face="Arial" size="2">The technology being
+    utilized in this discussion is a three tier solution using a CORBA compliant ORB server as
+    the middle tier.&nbsp; Please view our <a href="links.htm">Java Links</a> section for more
+    information on CORBA and our <a href="diagrams.htm">Technical Diagram</a> section for
+    information on how this three-tier solution works.</font><p><font face="Arial" size="2">Basically,
+    a middle tier separates the client system from the database.&nbsp; This means the client
+    does not care whether the data is coming from a M-System database, SQL Database (MS
+    Access, MS-SQL, etc.)&nbsp; or any other platform.</font></p>
+    <p><font face="Arial" size="2">What this provides the Department of Veteran's Affairs is
+    the following:</font><ol>
+      <li><font face="Arial" size="2">It opens VISTA up to COTS application that need to extract
+        data from our database without COTS needing to directly interface with the database
+        itself.</font></li>
+      <li><font face="Arial" size="2">We use a non-propriety industry standard for accessing our
+        database.&nbsp; In other words, access to a VISTA database is not tied to a vendor
+        specific implementation.</font></li>
+      <li><font face="Arial" size="2">Security is provided with utilities provided by the ORB
+        server and also by design.&nbsp; Software is now executed on the Server that is in a
+        controlled environment.&nbsp; This means that critical data and software designed remain
+        on the server and not installed on an unsecured client machine.</font></li>
+      <li><font face="Arial" size="2">Speed is also a consideration.&nbsp; Most data processing
+        remains on the server which eliminates the need for porting large amounts of data to the
+        client machine for processing.&nbsp; For example: A large search process would take place
+        on the server end and only the result of the search is ported to the client machine.</font></li>
+      <li><font face="Arial" size="2">Software distribution to client machines is kept to a
+        minimum or eliminated.&nbsp; With Java running in a web-page, software is loaded on the
+        client machine automatically or as-needed.&nbsp; Also, since the majority of software is
+        executed on the ORB Server, software updates need only be loaded on the server and not the
+        clients.</font></li>
+    </ol>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" align="center" bgcolor="#C0C0C0" width="15%"><small><small><strong><font color="#FF2600" face="Arial"><p align="left"></font><font face="Arial" color="#FF0000">What
+    needs to be done to implement this design?</font></strong></small></small></td>
+    <td valign="top" align="left" width="85%"><font face="Arial" size="2">All the pieces
+    already exist to implement a three-tier solution all the way from the Client end
+    (Java/Delphi to the VISTA database using the current Kernel RPC).&nbsp; The work can be
+    accomplished by pulling all the &quot;pieces&quot; together.&nbsp; Here is a general list
+    of the parts of the system I designed:</font><ol>
+      <li><font face="Arial" size="2">Client System (MS Window NT, Win95, Win98, Internet Browser,
+        Unix, etc.)</font><p><font face="Arial" size="2">- Basic Kernel tools for user sign-on<br>
+        - GUI Workbench (provides basic utilities for displaying GUI forms)</font></p>
+      </li>
+      <li><font face="Arial" size="2">Server System (MS Windows NT, Win95, Win98)</font><p><font face="Arial" size="2">- Kernel RPC broker DLL that supports silent logon<br>
+        - Basic kernel tools for managing user sign-ons<br>
+        - ORB Server<br>
+        - Application Objects Wrappers</font></p>
+      </li>
+      <li><font face="Arial" size="2">Legacy System (M-Database)</font><p><font face="Arial" size="2">- Kernel RPC support</font></p>
+      </li>
+    </ol>
+    <p><font face="Arial" size="2">For more technical &quot;stuff&quot;, visit <a href="ingredients.htm">Technical Ingredients</a> page that describes some of the Java
+    classes in more detail.<br>
+    </font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="center" bgcolor="#C0C0C0" width="15%"><font face="Arial" color="#FF0000"><small><small><strong><p align="left">VISTA Demo utilizing a 3 tier
+    solution</strong></small></small></font></td>
+    <td valign="top" align="left" width="85%"><font face="Arial" size="2">The following <a href="demo.htm">demonstration</a> displays a user session.&nbsp; This is a screen-capture
+    of a &quot;Live&quot; demo using the system here at the Altoona VAMC.</font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" bgcolor="#C0C0C0" width="15%"><p align="left"><font face="Arial" color="#FF0000"><small><small><strong>Making M-Database into ORB objects</strong></small></small></font></td>
+    <td width="85%"><font face="Arial" size="2">The majority of work in implementing this
+    architecture is transforming VISTA data into objects that can be used with the ORB
+    server.&nbsp; To create an ORB object is very similar to the current VISTA Delphi/M
+    architecture.&nbsp; One must first define the object, write the M-RPC calls to support the
+    object, and then place the data into the object. &nbsp; Eventually this mapping process
+    becomes repetitive.</font><p><font face="Arial" size="2">A solution to this problem that
+    has been investigated is to write a Java program that will compile an ORB Object based on
+    a VISTA FileMan file.&nbsp; This FileMan file would operate very much like a FileMan print
+    template.&nbsp; But instead of compiling the template for output to a device, the file
+    would compiled to produce the necessary data-extraction routines, Kernel RPC calls, ORB
+    server routine, and ORB skeleton objects necessary to implement the the ORB object.</font></p>
+    <p><font face="Arial" size="2">This may sound complicated, but it isn't and allows
+    M-programmers not familiar with Java, Delphi, Objects, etc. to create objects required by
+    COTS or VISTA GUI's.</font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" bgcolor="#C0C0C0" width="15%"><small><small><font face="Arial" color="#FF0000"><strong><p align="left">M-Legacy System and Business logic</strong></font></small></small></td>
+    <td width="85%"><font face="Arial" size="2">A major consideration when designing a
+    client/server or 3-tier system is the location of the business logic.&nbsp; When an
+    M-System is not separated, this is not an issue as the User Interfaces (UI's) and business
+    logic is contained within the M-environment.</font><p><font face="Arial" size="2">However,
+    what happens when you develop a GUI (using Java, Delphi, etc.) that becomes the front-end
+    to your M-system?&nbsp; You will notice that business logic tends to become duplicated
+    causing a maintenance headache.</font></p>
+    <p><font face="Arial" size="2">For example, let's say you are to design a patient
+    registration form that has a prompt &quot;Date of Birth&quot; as one of the prompts.&nbsp;
+    Simple enough...right? Well, not really.&nbsp; As any programmer would ask&nbsp; is
+    &quot;what is a valid date?&quot;&nbsp; Should I allow 100 years, 110 years, 120 years in
+    the past to be entered? (hmmm...).&nbsp; The first act is to &quot;peek&quot; at the
+    legacy system to see how they do it...ahh..the limit is 110 years...my answer...so that
+    gets coded into the GUI.&nbsp; Two weeks later, a change is made on the legacy system to
+    make 120 years a valid date, but they don't notify the GUI programmer...now your GUI is
+    inconsistent with your legacy system.&nbsp; Multiply this one prompt by a large system
+    like VISTA and you have a major problem.</font></p>
+    <p><font face="Arial" size="2">Your goal should be to make your GUI as unintelligent as
+    possible...make it sing the song &quot;If I only had a brain&quot;.&nbsp; Code your forms
+    to collect information (not process) and have these forms sent to the legacy system to be
+    accepted or rejected.&nbsp; If the form is rejected by legacy, a message describing the
+    problem is given to the user.&nbsp; Obviously minor logic will still need to be contained
+    in the GUI.&nbsp; For example, date prompts should only allow dates and number prompts
+    should only allow numbers.</font></p>
+    <p><font face="Arial" size="2">The additional two alternatives begin to go outside the
+    scope of this discussion, but are worth mentioning if you goal is to eventually replace
+    your M-System:</font></p>
+    <p><font face="Arial" size="2">The second alternative is to place your business logic on
+    the middle-tier (in this case Java).&nbsp; This becomes much more complex to implement
+    when you consider all the legacy business logic that will have to be converted to your ORB
+    server.&nbsp; This may be an appropriate solution if your overall goal is to eventually
+    move your data to another platform.&nbsp; You will need to make sure your newly converted
+    ORB objects don't access data &quot;the old way&quot; (using RPCs) since you will have to
+    convert these when you drop in your new database.&nbsp; A black box should be considered
+    that can be &quot;switched&quot; to the new database access logic.</font></p>
+    <p><font face="Arial" size="2">A better alternative is to research Object Oriented
+    Databases that have ORBs built into the database.&nbsp; This basically combines the 2nd
+    and 3rd tier into one.&nbsp; You client systems will deal with an object environment and
+    this eliminates the need to create objects on-the-fly from a legacy system as mentioned in
+    the previous sections.&nbsp; You would basically design your objects and then move your
+    legacy data into these objects during time of conversion.</font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" bgcolor="#C0C0C0" width="15%"><p align="left"><font face="Arial" color="#FF0000"><small><small><strong>Summary</strong></small></small></font></td>
+    <td width="85%"><font face="Arial" size="2">When considering to Implement a 3-tier
+    solution, you would assume that it means a major investment in another technology outside
+    the M-system.&nbsp; By keeping your business logic and data on the M-System and
+    implementing automated ORB wrappers and basic GUI forms, your major investment still
+    remains with your M-System and M-professionals.</font><p><font face="Arial" size="2">Also,
+    keep in mind that once you setup your ORB server, you can utilize any CORBA compliant
+    front-end GUI (Delphi for example).&nbsp; It does not have to be a total Java
+    solution.&nbsp; Java on the client end is good if you want your GUI to be compatible with
+    many different platforms (not just Windows).</font></p>
+    <p><font face="Arial" size="2">As with any system, technology should not drive the system
+    requirements. &nbsp; You need to determine your business requirements, and then technology
+    should be researched to determine the best approach.&nbsp; There are other alternatives
+    such as Java-&gt;M-System (no ORB server) or you could use Java RMI (Remote Method
+    Invocation).&nbsp; Java RMI is &quot;free&quot; unlike commercial ORB Servers, but it
+    isn't as robust.</font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" bgcolor="#C0C0C0" width="15%"><font face="Arial" color="#FF0000"><small><small><strong><p align="left">Disclaimer</strong></small></small></font></td>
+    <td width="85%"><font face="Arial" size="2">The opinions expressed contained in this
+    section is that of a programmer stuck in a corner with the window-shades pulled down for
+    an extreme period of time and not that of the Department of Veteran's Affairs.&nbsp; Read
+    at your own risk.</font></td>
+  </tr>
+  <tr>
+    <td valign="top" align="right" bgcolor="#C0C0C0" width="15%"><font face="Arial" color="#FF0000"><small><small><strong><p align="left">About&nbsp; the author</strong></small></small></font></td>
+    <td width="85%"><font face="Arial" size="2"><a href="mailto:rgyac@hotmail.com">Bob
+    Yacobucci</a> has been involved with VISTA and M since 1984 and currently works at the
+    Altoona VAMC for the Birmingham IRMFO.</font></td>
+  </tr>
+</table>
+
+<hr>
+<!--webbot bot="Include" U-Include="nav.htm" TAG="BODY" startspan -->
+
+<p align="center"><font face="Arial"><small><a href="index.htm">[Home Page]</a> <a href="demo.htm">[VISTA Demonstration]</a> <a href="links.htm">[Java Links]</a></small><br>
+<small><a href="diagrams.htm">[Technical Diagrams]</a> <a href="ingredients.htm">[Technical
+Ingredients]</a></small></font></p>
+<!--webbot bot="Include" endspan i-checksum="38908" -->
+
+</body>
+</html>

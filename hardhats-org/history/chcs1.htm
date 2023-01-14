@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS1</TITLE></HEAD>
+<BODY>
+<H1>I.  INTRODUCTION</H1>
+<P>The FileMan DBMS used in the Department of Defense's CHCS Hospital
+Information System was derived from the same MUMPS system used in the DVA's DHCP
+program since 1982.  The two &quot;FileMen&quot; began diverging in 1986, when
+CHCS development began.  At that point, the version number of FileMan in the VA
+was Version 17.</P>
+<P>The version of DHCP FileMan that will be studied in this document is denoted
+as &quot;Version 20&quot;.  It was fully deployed in the VA in 1994, when this
+study was begun. A more recent &quot;Version 21&quot;, released early in 1995,
+will occasionally be mentioned here, when it differs from Version 20 in some way
+relevant to the discussion.</P>
+<P>The current deployed version of CHCS FileMan, and the one discussed here, is
+denoted as &quot;Version 25&quot;.</P>
+<P>In many particulars, the two &quot;FileMen&quot; have evolved, as one could
+say, in parallel.</P>
+<P>For example,</P>
+<UL>
+<LI> &quot;MUMPS&quot; and &quot;VARIABLE-POINTER&quot; data types were
+implemented in both systems, in virtually identical fashion.
+</LI>
+<LI> Both systems have been changed to support a Print Header specification of &quot;@@&quot;,
+which means &quot;no page break at all&quot;.
+</LI>
+<LI> The FileMan module which is used to parse and validate strings of MUMPS
+code (the &quot;^DIM routines&quot;) have been independently changed to support
+the 1990 MUMPS Standard syntax.  (But note that neither system supports the &quot;1995&quot;
+syntax currently in preparation.)
+</LI>
+<LI> Certain Entry points, like MIX^DIC1, have been added to the
+programming-call repertoire in both systems.
+</LI>
+<LI> Certain programming variables, like the output variable 'Y(0,0)' in the
+^DIC routine, have been added to both systems.
+</LI>
+<LI> Internal FileMan code has been &quot;cleaned up&quot;, so that
+</LI>
+<LI>a. All occurrences of the MUMPS $NEXT function have been removed.</LI>
+<LI>b. Virtually every occurrence of the MUMPS READ command is a &quot;timed&quot;
+READ.</LI>
+<LI>c. Incremental MUMPS LOCK commands have replaced virtually all the earlier
+non-incremental forms of that command.</LI></UL>
+<P>In general, however, the two systems, DHCP and CHCS, have evolved in a
+divergent, rather than convergent, fashion since 1986.  Two different methods of
+data archiving have been devised.  Two different modes of input auditing are in
+use. Most strikingly, two totally different &quot;CHUI&quot; screen handlers are
+used in the two systems for data entry and editing.  Additionally, the many
+smaller-scale differences between the two systems (documented below) make the
+hypothetical task of moving a robust application from one system to the other a
+very problematic one.</P>
+<P>How shall we describe and assess all these discrepancies?  To quote the
+Statement of Work for this study, &quot;the purpose of this study is to document
+the potential for application exchange between DHCP and CHCS.&quot;  In all the
+following documentation, therefore, the focus will be on answering the question,
+&quot;how does each discrepancy diminish the likelihood that a given DHCP
+application could be moved to CHCS, or a given CHCS application be moved to
+DHCP?&quot;  As each discrepancy is described, a separate paragraph will be
+presented, headed &quot;Portability Effect&quot;.  This will describe the &quot;effect&quot;
+of the discrepancy on portability from one system to the other.  Five categories
+of effects are distinguished, from &quot;Serious&quot; (1) to &quot;Nil&quot;
+(5).</P>
+<OL>
+<LI> Portability Effects are flagged as &quot;SERIOUS&quot; when they would
+cause real (perhaps insuperable) problems in the transporting of functionality
+from one system to the other.
+</LI>
+<LI> Portability Effects are flagged as &quot;Requires conversion&quot; when
+they must be attended to to preserve the application functionality from one
+system to the other, but when there is a straightforward (potentially automated)
+way of converting from one system to the other.
+</LI>
+<LI> Portability Effects are flagged as &quot;Uncertain&quot; when they are
+unlikely to be problematic in any real-world porting between the two systems,
+and when, in any case, there is a straightforward workaround to the discrepancy.
+</LI>
+<LI> Portability Effects are flagged as &quot;Minor&quot; when the functional
+difference between the two systems involves only &quot;cosmetic&quot; or &quot;user-training&quot;
+issues.
+</LI>
+<LI> Portability Effects are flagged as &quot;Nil&quot; when the discrepancy
+causes no foreseeable impact on application transfer.
+</LI></OL>
+<P>Since the focus of the present study is on application exchange, little will
+be documented here concerning the differences between the two systems in the
+process of creating an application. In other words, we shall not treat the
+differences in dialog involved in creating and editing Files, Fields, Screens,
+and Templates.  In general, it can be said that if a programmer/developer is
+adept at doing these things in one of the systems, he can easily learn how to do
+them in the other.  The creation and editing of &quot;ScreenMan&quot; screens is
+perhaps an exception to this rule, as will be pointed out in
+<A HREF="chcs7.htm">Section VII.</A></P>
+<P>For the most part, the concern in this document is with MUMPS Global
+structures, and MUMPS code, that can be assumed to be already existant, and with
+the differences in the way that users, not developers, perceive the workings of
+the two systems.</P>
+<P>In all these comparisons, it will be assumed that neither CHCS FileMan nor
+DHCP FileMan can themselves be modified to correct discrepancies.  Of course,
+this assumption is not necessarily correct, and in a concluding section, we will
+make suggestions as to which unilateral enhancements would be easiest and most
+desireable to retrofit from one FileMan to the other.  It is hoped, then, that
+the present work, besides treating the perhaps hypothetical issue of
+portability, may serve in the future as a catalogue of suggestions to either
+DHCP or CHCS FileMan developers who might be interested in what their
+counterparts have found useful to implement.</P>
+<P>Finally, for ease of exposition, two conventions are observed in the current
+study:</P>
+<OL>
+<LI> Male pronouns are used in their generic sense to refer to antecedents like
+&quot;the user&quot; or &quot;the programmer&quot;.
+</LI>
+<LI> The computer language in which CHCS and DHCP FileMan are implemented is
+referred to as &quot;MUMPS&quot;.
+</LI></OL>
+<P ALIGN="RIGHT">																																														
+<A HREF="chcs2.htm"><IMG SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

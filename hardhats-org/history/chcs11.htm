@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>C:CHCS11</TITLE></HEAD>
+<BODY>
+<H1>XI.  CONCLUSION</H1>
+<P>The reader who has some familiarity with the complexity of existing DHCP and
+CHCS applications will probably come to the end of this study in a pessimistic
+mood.</P>
+<P>For all the desirability of transporting applications from one system to the
+other, there are great obstacles to doing this reliably in any automated way,
+given the subtle incompatibilities we have elucidated.  Certainly any
+application that uses screen-oriented input (and all major CHCS applications are
+built around ScreenMan) would have to be carefully re-designed in the process of
+portation, because of the problems outlined in Section VII.  Unless a large
+front-end effort were put into an automated &quot;ScreenMan-to-ScreenMan&quot;
+translation package, the most likely scenario is that a designer would have to
+re-build his data-entry screens by hand, in whichever &quot;foreign&quot; system
+he was targeting.</P>
+<P>As for the many other, non-ScreenMan, inconsistencies we have listed, let us
+try to be as optimistic as possible as to their impact on portability. Surely
+one can say that the &quot;simpler&quot; an application, and the less hard coded
+MUMPS it involves, the more likely it could be easily moved from one system to
+the other. Just by scanning this study's Table of Contents, a developer or
+programmer can get an overview of which FileMan features he could consider to be
+&quot;non-standard&quot; from the standpoint of DHCP-CHCS exchangeability.</P>
+<P>Finally, leaving aside portability of applications, let us end on a note of
+reconciliation, as promised in the Introduction.  After all, the evolution of
+the two &quot;FileMen&quot; has not been completely divergent; there has been
+some convergence, too.  One can find MUMPS data types, Variable-Pointers, and
+FileGrams in CHCS FileMan, even though all of these first appeared in DHCP
+FileMan, after 1986. Similarly, a few concepts original to CHCS have turned up
+subsequently in the VA repertoire; the &quot;;NODUP&quot; Print specifier, for
+example, that is available to DHCP users in Version 21, has been in CHCS FileMan
+for years.  To the reader familiar with DHCP FileMan, this study has surely
+suggested one or two features of the CHCS system that could usefully be added to
+the VA development environment.  Assuming, therefore, that it is DHCP FileMan
+that is the more open to enhancements fostering portability, suggestions are
+here offered as to which CHCS features could best be carried over to DHCP. 
+Needless to say, we also assume that any such future work would be done in a
+manner consistent with U.S. Copyright law!</P>
+<P>The CHCS enhancements suggested below have been selected because they meet
+three criteria:</P>
+<BLOCKQUOTE>
+<OL>
+<LI> They are relatively easy (and backwards-compatible) to make in DHCP.
+</LI>
+<LI> They are judged to be useful for their own sake within DHCP.
+</LI>
+<LI> They all solve a problem that we have called &quot;SERIOUS&quot; in
+porting CHCS applications to DHCP.
+</LI></OL></BLOCKQUOTE>
+<H3>``N Lookup syntax </H3>
+<P>The facility of &quot;looking up an Entry that points to Entry #N&quot; is
+explained in <A HREF="chcs8.htm#N">Section VIII. B</A>.  This addition to the
+capability of the general &quot;^DIC&quot; lookup utility within FileMan is
+helpful both to users and programmers, and it can be made with very little code
+change to this one routine.  It has the added advantage, when used, of
+significantly speeding up a lookup into a &quot;Pointer File&quot;, which is
+traditionally a very CPU-intensive FileMan exercise.</P>
+<H3>Group Cross-References</H3>
+<P><A HREF="chcs2.htm">Group Cross-References</A>, were also instituted in
+CHCS FileMan for performance reasons.  Programmers use them when (as is
+frequently the case) the values of a &quot;group&quot; of Fields are tightly
+interrelated; it is more efficient to re-examine and re-validate the
+interrelated values once, after the user has changed several of them, rather
+than trying (with a Syntax Check or Consistency Check)) to check each new value
+separately against all the others, over and over.  Also, since Group
+Cross-references are basic, structural parts of a File's Data Dictionary, they
+seem particularly worthy of DHCP emulation in some way.</P>
+<H3>List of values to Sort on </H3>
+<P>The CHCS user or programmer can ask to <A HREF="chcs3.htm">specify a list
+or a single value to Sort on,</A> at any level of sorting, using the Specifiers &quot;;2&quot;
+or &quot;;1&quot;.  Use of this feature can often replace some tortuous hard
+code with a simple call to ^DIP, and it, too, can result in improved
+performance.  Furthermore, users don't have to make awkward specifications like</P>
+<BLOCKQUOTE>
+<P>Sort by: FIELD</P>
+<P>Start with FIELD: FIRST// ABC</P>
+<P>Go to FIELD: ABC</P></BLOCKQUOTE>
+<P>to get certain values that they want.</P>
+<H3>Uneditable Word-Processing Fields </H3>
+<P>This  <A HREF="chcs2.htm#UNEDWP">small enhancement</A> is, admittedly, not
+high on most developers' wish lists.  However, it is structural (part of the
+Data Dictionary), it is relatively easy to make, and it is desirable just from
+the standpoint of consistency.  Why should Word-Processing fields be the only
+kind of data Fields that cannot be made Uneditable?</P>
+<P>Nineteen (!) years have elapsed since the first FileMan code was written in
+the VA, and eleven years since CHCS FileMan was begun.  There should be no doubt
+that the longevity and portability of FileMan, through its long evolution(s), is
+owing to its being based on the ANSI Standard MUMPS language.  The unique
+database flexibility of MUMPS (through Globals), and its conduciveness to &quot;self-constructed
+code&quot; (through Indirection) are essential to the nature of FileMan, and to
+the applications that have been built around it. However hard it might be to
+reconcile the DHCP and CHCS FileMan work within MUMPS, it is worth urging, as a
+final thought, that porting either of these huge systems to a non-MUMPS
+environment would be a task many, many times more severe!</P></BODY></HTML>

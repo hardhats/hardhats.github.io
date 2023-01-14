@@ -1,0 +1,243 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: DELETEA^XQALERT">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,DELETEA^XQALERT,DELETEA,XQALERT,alerts,supported">
+    <meta name="description"
+	      content="Kernel APIs: DELETEA^XQALERT">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: DELETEA^XQALERT</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">DELETEA^XQALERT</A>: Clear Obsolete Alerts</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Alerts,
+	<B>ICR#:</B> 10081</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The DELETEA^XQALERT API deletes (clears) all alerts with the same software application
+	identifier, for the current user (<strong>XQAKILL=1</strong>) or all recipients (<strong>XQAKILL=0</strong> or
+	<strong>XQAKILL</strong> undefined). The current user (as identified by the value of 
+	<strong>DUZ</strong>) does
+	<i>not</i> need to be a recipient of an alert; however, in that case, only a value of
+	<strong>zero</strong> (<strong>0</strong> or undefined) for <strong>XQAKILL</strong> makes sense.<BR><BR>One example of the use of
+	DELETEA^XQALERT is when a troublesome condition has been resolved. You 
+    can use this API to delete any unprocessed alerts associated with the 
+    condition. It deletes all alerts whose software application identifiers 
+    match the software application identifier you pass in the <strong>XQAID</strong> input 
+	variable (multiple alerts
+	can potentially share the same software application identifier).<BR><BR><b>
+	REF:</b>
+	For more information on software application identifiers, see the
+	"Package Identifier versus Alert Identifier" topic in the <i>Kernel 8.0 &amp; 
+	Kernel Toolkit 7.3 Developer's Guide</i>.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  DELETEA^XQALERT</PRE> 
+    <P>Make sure to perform the following steps before calling this API:</P>
+    <OL>
+      <LI>
+        <strong>NEW</strong> all <i>non</i>-namespaced variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Set all input variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Call the API.
+      </LI>
+    </OL>
+	<H4><A NAME="input_variables">Input Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>XQAID:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>(required) All alerts whose software application identifier 
+          matches the value of this input parameter are deleted, for the 
+          alert recipients designated by the <strong>XQAKILL</strong> input 
+		  variable.
+          <BR>
+          <BR>
+          The form of <strong>XQAID</strong> can be exactly as initially set when creating the alert. 
+          Alternatively, it can contain the two additional semicolon pieces added by the Alert Handler (the
+		  full alert identifier). The two additional semicolon pieces are ignored,
+		  however; this API only requires the original software application
+		  identifier.
+		  <BR>
+		  <BR>
+		  If the alert identifier you specify is "<b>NO-ID</b>", however,
+		  (the generic software application id assigned to alerts with no original
+		  software application identifier), this API does <i>not</i> delete matching alerts.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>XQAKILL:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) <strong>XQAKILL</strong> determines how the alert is deleted. If 
+		  <strong>XQAKILL</strong> is:</P>
+		  <ul>
+			<li>
+			  <strong>Undefined or Zero (0)&#8212;</strong>The Alert Handler deletes
+		      matching alerts for all recipients.
+		      <br>
+			  <br>
+			</li>
+			<li>
+			  <strong>Set to 1&#8212;</strong>Alert Handler deletes matching
+		      alerts for the current user, as identified by <strong>DUZ</strong>.
+		      <P><strong>NOTE:</strong> Using a value of <strong>1</strong> only
+		      makes sense if the current user is also a recipient, however).</P>
+		    </li>
+		  </ul>		  
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>none</B>.
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+	      <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+	         <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/deletea-xqalert.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

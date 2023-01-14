@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS7</TITLE></HEAD>
+<BODY>
+<H1>VII. SCREEN-HANDLING IN THE TWO SYSTEMS </H1>
+<P>CHCS and DHCP FileMan both offer developers the ability to build &quot;CHUI&quot;
+(Character-oriented User Interface) screens which will handle input to FileMan
+databases.  In both systems, the name &quot;ScreenMan&quot; has been used to
+designate the subset of FileMan utilities that handle the building and running
+of these screen-oriented input sessions.  In DHCP, the sequence of screens used
+in one such session is called a &quot;Form&quot;.</P>
+<P>The two &quot;ScreenMen&quot;, developed quite independently, have some
+basic characteristics in common.  For example, both use a transaction-oriented
+mode of processing: the user enters data (usually for a single Entry in a File,
+although both systems allow &quot;Relational Jumps&quot;) into the windows on
+one or more screens, and only when he has completed this sequence of input is
+the data filed, en masse, into the FileMan database.  The user can always abort
+the data-entry process at any point up until the final filing, in which case no
+change to the FileMan database takes place at all.  (In both systems, the
+exception to this rule is that a deleted Entry or Multiple Field remains deleted
+even if the data-entry session is subsequently aborted.)  Furthermore, in both
+systems the developer can write MUMPS code that controls &quot;branching logic&quot;
+from one window to the next, or that intervenes between the user's input and the
+filing, to evaluate and/or validate the data entered before it is written into
+the 'real' FileMan globals.  Both systems allow &quot;display-only&quot;
+literals or Computed Expressions to be put anywhere on the screen.</P>
+<P>Unfortunately from the standpoint of portability, the differences between
+the two systems are more striking than the similarities.  The discussion below
+will make two basic points:</P>
+<BLOCKQUOTE>
+<OL>
+<LI>  From the end-user's standpoint, the data-display and data-entry
+conventions of the two systems are different enough that 'cross-training'
+between the systems would certainly cause some annoyance and confusion for most
+users.
+</LI>
+<LI>  From the developer's standpoint, and from the standpoint of internal
+Global structure, the way in which screens are designed, created and organized
+is completely different in the two systems.  This, disappointingly, means that a
+screen developed in one of the systems is unlikely to be automatically portable
+to the other system.
+</LI></OL></BLOCKQUOTE>
+<H2>A. Incompatibilities in Screen Layout</H2>
+<P>Any porting of CHCS screens to DHCP would be particularly problematic
+because of the fact that CHCS ScreenMan allows data entry to take place on lines
+2 through 23 of the 24-line screen, whereas DHCP ScreenMan allows data entry
+only on lines 1 through 17.  Thus, in general, it would be impossible simply to
+map the graph-paper design of a screen in CHCS into a layout acceptible to DHCP.
+ Given the way existing CHCS application screens have been designed, taking full
+advantage of 22 editing lines, it would be typical that one CHCS screen would
+have to be 'mapped' to two DHCP screens.</P>
+<P>Porting to CHCS would seem to be more straightforward; seventeen lines, one
+supposes, can always fit in a 22-line space.  Even here there are caveats,
+however.</P>
+<P>First of all, DHCP ScreenMan allows a data window, as it appears on screen,
+to be shorter than the allowed length of the corresponding data being edited. 
+In fact, when the DHCP user is editing a very long free-text field (say, 200
+characters long), the screen necessarily shows (perhaps misleadingly?) only a
+trucated version of the data (no more than 80 characters, depending on the
+screen designer's specification).  In this case, the user accomplishes the entry
+of the &quot;overflow&quot; characters either by continuing to type, and
+watching his input &quot;wrap around&quot; out of view, or else (in Version 21)
+he hits a special keystroke sequence to invoke multi-line &quot;Zoom editing&quot;
+in the &quot;Command Area&quot; at the bottom of the screen.  CHCS ScreenMan, on
+the other hand, allows one to edit only what one can see; free-text data longer
+than 80 characters appears in place in a multi-line display.  Thus, if we
+imagine a screen containing this kind of &quot;long&quot; data being ported from
+DHCP to CHCS, we can see that the screen layout would have to be &quot;blown up&quot;
+to map data element to data element.</P>
+<P>Further complicating the mapping possibilities, DHCP ScreenMan (Version 21)
+allows a multiple field to be handled in two different ways: either using a
+single display line, a la scrolling-mode:</P>
+<P>Select MULTIPLE: FIRST</P>
+<P>with a pop-up window handling all the 'lower-level' information, or,
+alternatively, using a multiple-line display (multiple 'replications') within
+the 'upper-level' data:</P>
+<P>Select MULTIPLE: FIRST         ID1</P>
+<P>SECOND        ID2</P>
+<P>THIRD         ID3...</P>
+<P>Now, CHCS ScreenMan only uses this second, 'replicated' way of displaying
+multiples.  Hence it is possible that a screen layout designed in DHCP would not
+fit into a CHCS screen, if it contained many multiples of the first type.</P>
+<P>Moreover, DHCP allows the &quot;scrolling multiples&quot; to occupy only
+part of the width of the 80-column screen, whereas CHCS ScreenMan requires such
+scrolling to take place across the whole width of the display. In DHCP
+ScreenMan, therefore, Fields might appear to the right or left of a repeating
+multiple, as, for example --</P>
+<P>Name:             Select MULTIPLE: FIRST         ID1           Height:</P>
+<P>Sex:                               SECOND        ID2           Weight:</P>
+<P>Phone:                             THIRD         ID3...        BP:</P>
+<P>where CHCS ScreenMan would not accommodate the equivalent layout.</P>
+<P>Finally, and perhaps most annoyingly, whereas CHCS ScreenMan allows FileMan
+Word-Processing text Fields to be displayed along with other Fields on the same
+screen, DHCP requires that any Word-Processing Field text appear and be edited
+on its own screen (with its characteristic tab-and-margin ruler at the bottom).
+Obviously, this means that any display screens that include one or more
+Word-Processing Fields must look dramatically different in the two systems.</P>
+<H2>B. Features in DHCP ScreenMan not found in CHCS ScreenMan </H2>
+<P>The two packages differ in the way an 80-by-24 display is conceptualized. 
+In CHCS, one such display corresponds to a &quot;Screen&quot;, and there is thus
+in CHCS FileMan a File of SCREENS.  In DHCP there is a File of FORMS, and each
+Form is conceptually broken down into PAGES, which are in turn broken down into
+BLOCKS, which are Entries in the Block File.  A Block may correspond to an
+entire 80-by-24 display, or to just a part of one display.  By adding the
+concept of a Block, DHCP ScreenMan allows for the ability to combine &quot;sub-screens&quot;
+easily in the design and construction of many displays that look somewhat alike.</P>
+<P>Portability effect: Requires conversion.  CHCS ScreenMan doesn't include the
+concept of a &quot;Block&quot;.  Therefore, any attempt to port DHCP screens
+into a CHCS system would need to include a mechanism to &quot;flatten&quot; DHCP
+Forms and Blocks into what CHCS ScreenMan simply calls Screens.  Contrariwise,
+when CHCS screens are moved to DHCP, a converse mechanism would be required to
+create Blocks within Forms.</P>
+<P>In the <A HREF="chcs6.htm">previous Section,</A> we mentioned that DHCP
+FileMan Input Templates allow the Specifier &quot;;REQ&quot; to make a Field &quot;required&quot;
+for that Template, even if it is not &quot;required&quot; by its Data Dictionary
+definition.  In the same way, a Field on a DHCP ScreenMan screen can be denoted
+as &quot;required&quot; only there. Again, CHCS does not provide for the
+equivalent design functionality.</P>
+<P>Portability effect: Requires conversion.  Again, we must judge that if a
+developer wants a data-entry event to be &quot;required&quot;, he must have a
+reason for it. Therefore, conversion of a DHCP ScreenMan screen to CHCS would
+have to take into account any &quot;Required&quot; Fields.  Within CHCS
+ScreenMan, though, we have a rough-and-ready way to try to mimic the &quot;required&quot;
+functionality: we can use some specially-programmed &quot;Pre-filing logic&quot;
+in the <A HREF="chcs2.htm#CHECK">&quot;CHK&quot; node of the associated Input
+Template</A>.  This logic would look for the absence of entered values for the &quot;required&quot;
+Fields on the screen.  If it found, for example, that Field 6 was blank and
+still needed to be entered, it would set the MUMPS variable &quot;Y&quot; equal
+to &quot;6&quot; and QUIT, which would return the user to the editing window for
+Field 6.  The 'check logic', though, only happens at the end of all data entry,
+so it would not work exactly the same way as DHCP ScreenMan's &quot;required&quot;
+Fields do, where errors of omission are caught immediately.</P>
+<P>A basic screen-design feature found in DHCP ScreenMan and not in CHCS is the
+so-called Form-only Field.  This is a data-entry 'window' that can be defined
+only for the purpose of a specific Form (screen), and does not correspond to any
+permanent Field in any FileMan File.  A simple example is a window that asks a
+YES/NO query like</P>
+<P>Do you want to stop at this point:</P>
+<P>Portability effect: SERIOUS.  Since CHCS ScreenMan does not offer &quot;form-only&quot;
+fields, some workaround would be needed to port DHCP screens containing such
+fields into a CHCS environment.  One distasteful way of doing this would be to
+add new Fields into the DataBase definition of the Files involved, at the CHCS
+end, just so that each such dummy Field could be used on a Screen.</P>
+<P>Another DHCP ScreenMan feature never implemented in CHCS is the concept of a
+Display-only Block.  DHCP developers can effectively use ScreenMan as a tool for
+simply building read-only output screens.</P>
+<P>Portability effect: Requires conversion.  No DHCP &quot;Display-only&quot;
+Block should ever be moved unmodified into a CHCS environment!  Editing would
+there be allowed of data which the developer intended to be &quot;seen but not
+touched&quot;.  The conversion would require turning every Field on a
+Display-only Block into a Computed-Expression field in CHCS.</P>
+<P>DHCP ScreenMan allows Field Captions (like &quot;AGE:&quot;) to be &quot;Executable&quot;,
+i.e., generated on-the-fly by MUMPS code.  CHCS ScreenMan offers no equivalent.</P>
+<P>Portability effect: Uncertain.   It seems that this functionality would be
+seldom used.  Nevertheless, if it were present in a DHCP screen (Block), it
+would be just possible to program a workaround in porting to CHCS.  The
+workaround would probably involve code that actually did a MUMPS WRITE command
+to that place on the screen where the Caption was known to appear.  Messy!</P>
+<P>Although not directly related to application portability, it should be
+mentioned that the DHCP's characteristic boxed pop-up displays have a more
+sophisticated &quot;look&quot; than does CHCS Screenman.  And for the designer
+of screens, the DHCP Form Editor is far more sophisticated than its CHCS
+equivalent, which essentially just turns a Word-Processed document, with Field &quot;|WINDOWS|&quot;
+in it, into a Screen sequence.</P>
+<P>It's also worth noting that DHCP ScreenMan has a user keystroke
+functionality (not included in CHCS) that can significantly reduce user anxiety:
+the user can type &quot;PF1-S&quot; to &quot;Save&quot; permanently all data
+thus far entered, without leaving the screen-editing process.</P>
+<P>Finally, the following Word-Processing functionalities are available to the
+DHCP ScreenMan user, and are not found in CHCS:</P>
+<P>True Tab stops (CHCS merely lets the &quot;TAB&quot; key generate five
+spaces).</P>
+<P>Delete from cursor to end of word (which also deletes the space at the end
+of the word!).</P>
+<P>Move to end of line.</P>
+<P>Status line toggle.</P>
+<P>Wrap/nowrap toggle.</P>
+<P>Switch back to scrolling-mode editing.</P>
+<P>Again, these user features, per se, do not impact on the portability of
+screens. They are counterbalanced by the awkwardness of having to edit every
+Word-Processing text on a separate display screen, and having to hit more than a
+simple &quot;return&quot; to leave a blank text.</P>
+<H2>C. Features in CHCS ScreenMan not found in DHCP ScreenMan </H2>
+<P>Certainly the most significant feature of CHCS ScreenMan not available in
+DHCP is the basic ability to create a screen sequence from an existing FileMan
+Input Template.  To see the advantage in this approach, consider a developer who
+needs to upgrade an existing &quot;legacy&quot; FileMan system to
+screen-oriented input.  Using CHCS ScreenMan, he can simply name all the
+existing Input Templates that he wants to convert to screens, and, for each such
+Template, a first-pass screen sequence will automatically be built. In this
+process, ScreenMan assigns Field positions on the screens it builds using the
+Data Dictionary information about the maximum lengths of each Field value, and
+also obeys Template specification such as those pertaining to branching logic
+and alternative Field captions (e.g., NAME;&quot;Patient Name&quot;). After this
+speedy Template-to-Screen conversion, the developer can go into each Screen in
+turn, and start to refine the specification of where fields are placed on the
+screen, how many multiples are shown, etc.  He does this by editing the Input
+Template associated with the Screen, because in CHCS, virtually all the
+information that specifies a screen sequence can be stored in the Input Template
+File.  This interchangeability between Templates and screens allows many
+ScreenMan screens to be run, unmodified, as old-fashioned scrolling-mode Input
+Templates, in case the user happens to be at a terminal (e.g. a printer with
+keyboard) that cannot be used in screen mode.  Indeed, at the higher level of
+package construction, CHCS developers put together input applications by
+referring to Input Templates (with MUMPS code calling &quot;^DIE&quot;, just as
+in the old scrolling-mode days), rather than explicitly to Screen Sequences or &quot;Forms&quot;.</P>
+<P>Portability effect: SERIOUS.  Not only does porting screens from DHCP to
+CHCS require the 'flattening' of screen design, as mentioned in Part B. of this
+Section, it also implies that a link must somehow be built from each DHCP &quot;Form&quot;
+to a brand-new CHCS Input Template -- a Template that wouldn't exist in the DHCP
+source! Porting from CHCS to DHCP, on the other hand would require somehow
+constructing explicitly the hierarchy of Blocks and Pages that is only implicit
+in CHCS screen design, while at the same time dropping the CHCS link between
+Input Templates and Screens.</P>
+<P>A recent development at SAIC seems to offer some hope that this
+screen-conversion problem might be less troublesome in the future.  In the most
+recent SAIC development version (called Version 26), an alternative
+screen-handler, often referred to as &quot;WindowMan&quot; is supplanting CHCS
+ScreenMan for application development.  &quot;WindowMan&quot; has an internal
+structure much more similar to the DHCP tool, although it still lacks the
+distinction between &quot;Blocks&quot; and &quot;Forms&quot;. Encouragingly,
+too, a rough &quot;ScreenMan-to-WindowMan&quot; translating tool has been
+written for internal use at SAIC (the &quot;^DWUX&quot; routine).  The existence
+of this tool implies that the job of turning CHCS ScreenMan Templates into DHCP
+screens is at least partially susceptible to automation, although a programmer
+is needed to &quot;tidy up&quot; a lot of the converted Screens</P>
+<P>In spite of the &quot;WindowMan&quot; development in CHCS, the layout
+problems presented above seem to indicate that any attempt to port screens from
+one system to the other would have to be done by developers &quot;from scratch&quot;
+by re-inputting screen designs in the target system.  Complete automation of the
+process seems impracticable.</P>
+<P>CHCS ScreenMan offers the developer a rarely-used &quot;;B&quot; Specifier
+on any Field, which makes the input &quot;Blind&quot;.  In operation, the user
+types an answer and does not see it, because character-echo is turned off within
+that one data window.</P>
+<P>Portability effect: Requires conversion.  This feature was obviously
+instituted because of a security concern that some password or confidential
+piece of data might be observed by someone else as it was typed.  It is unlikely
+that this functionality would need to be carried over to the less-paranoid
+environment of</P>
+<P>DHCP.  If the equivalent were required, one might effect it by inserting &quot;ECHO-OFF&quot;
+MUMPS code into the &quot;blind&quot; Field's &quot;Pre Action&quot;, and &quot;ECHO-ON&quot;
+code into the &quot;Post Action&quot;.  This workaround, of course, would have
+to be done carefully, to avoid Operating-System-dependence.</P>
+<P>Although it does not impact so obviously on the conversion of applications
+from one system to the other, another distinctive feature of CHCS ScreenMan
+worth noting is that user keystrokes are associated with  each functionality by
+tables, rather than being hard-coded.  The tables can be customized by a
+non-programmer who understands ASCII.  Thus, on the same CHCS computer at the
+same time, one user may be using &quot;ESC&quot; to signal the &quot;abort&quot;
+functionality, while another is using &quot;PF1-Q&quot;.  CHCS ScreenMan is thus
+easily customizable to a greater variety of terminals, including
+non-ANSI-Standard terminals such as QUMEs.  As regards DHCP-CHCS interchange,
+note that, while one could construct within CHCS ScreenMan a table of keystrokes
+that would match what a DHCP user was familiar with (PF1-Q means &quot;abort&quot;,
+and so on), a CHCS user migrating to DHCP would be required to learn DHCP's
+keystroke conventions.</P>
+<P>Finally, we mention the following user functionalities, which are available
+in CHCS ScreenMan, and are not found in DHCP:</P>
+<P>Move cursor to last window on screen.</P>
+<P>Undo editing of current window or text line.</P>
+<P>Print copy of screen to another device while in the middle of editing.</P>
+<P>Spell-check while in the middle of Word-Processing.</P>
+<P>Transfer text from another Entry, as in scrolling-mode Word-Processing.</P>
+<P>Grab boilerplate text with a &quot;window&quot; code while in
+Word-Processing.</P>
+<P>Again, these features are only noted for comparison purposes; their
+availablity does not directly relate to portability of screen-based
+applications.  It must be said, though, that CHCS users, especially in areas
+like Radiology, have come to consider the availability of dynamic spell-checking
+an important feature of their &quot;applications&quot;.</P>
+<P ALIGN="RIGHT"><A HREF="chcs8.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

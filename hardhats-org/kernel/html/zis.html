@@ -1,0 +1,989 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: ^%ZIS">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,^%ZIS,%ZIS,device handler,supported">
+    <meta name="description"
+	      content="Kernel APIs: ^%ZIS">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: ^%ZIS</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">^%ZIS</A>: Standard Device Call</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Device Handler,
+	<B>ICR#:</B> 10086</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The ^%ZIS API allows you to select a device.</P>
+    <P>All input variables are
+	optional. <i>Non</i>-namespaced variables that are defined and later <strong>KILL</strong>ed by ^%ZIS
+	include: <strong>%A</strong>, <strong>%E</strong>, <strong>%H</strong>, 
+	<strong>%X</strong>, and <strong>%Y</strong>.</P>
+    <P>If device selection is successful,
+	characteristics of the output device are returned in a number of different
+	variables. If selection is unsuccessful, ^%ZIS returns the <strong>POP</strong> output 
+    variable with a positive number. So, it checks for an unsuccessful device selection should
+	be based on the <strong>POP</strong> input variable as a positive number.</P>
+    <P>Device selection can be done as shown in the example that follows.</P>
+    <P><B>NOTE:</B> For a discussion of form feeds, see the "Form Feeds" topic in the
+	"Special Device Issues" section in the <I>Kernel 8.0 &amp; Kernel Toolkit 7.3 Developer's Guide</I>.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  ^%ZIS</PRE>
+    <p>Make sure to perform the following steps before calling this API:</p>
+    <ol>
+      <li>
+        <strong>NEW</strong> all <em>non</em>-namespaced variables.
+        <br>
+        <br>
+      </li>
+      <li>
+        Set all input variables.
+        <br>
+        <br>
+      </li>
+      <li>
+        Call the API.
+      </li>
+    </ol> 
+    <H4><A NAME="input_parameters">Input Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%"><B>%ZIS:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) The <strong>%ZIS</strong> input variable is defined as a string
+		  containing one or more single-character flags that act as input specifications.
+		  The functions of each of the flags that can be included in the string are
+		  described below. If the <strong>%ZIS</strong> input variable contains:</P>
+		  <UL>
+		    <LI>
+		      <b>M&#151;RIGHT MARGIN</b>: The user is prompted with the right margin query.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <b>N&#151;NO OPENING</b>: The Device Handler returns the
+			  characteristics of the selected device <i>without</i> issuing the 
+			  <strong>OPEN</strong> command to open
+			  the device.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <b>P (<i>obsolete</i>)&#151;CLOSEST PRINTER</b>: The closest printer, if one has been
+			  defined in the DEVICE (#3.5) file, is presented at the default response to
+			  the device prompt.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <b>Q&#151;QUEUING ALLOWED</b>: The job can be queued to run 
+			  later. There is no automatic link between the Device Handler and TaskMan. If
+			  queuing is allowed, just before the Device Handler is called, the application
+			  routine <i>must</i> set the <strong>%ZIS</strong> input variable to a string that 
+			  includes the letter <b>Q</b>. For example:
+			  <PRE>  &gt;<B>S %ZIS="MQ" D ^%ZIS</B></PRE>If the user selects queuing, the Device Handler defines
+			  the <strong>IO("Q")</strong> variable as an output variable, to indicate that queuing
+			  was selected. If queuing is selected, the application should set the needed
+			  TaskMan variables and call the TaskMan interface routine <strong>^%ZTLOAD</strong>.
+			  <BR>
+			  <BR>
+			  <b>NOTE:</b> For further details on how to call the TaskMan interface, 
+			  see the "TaskMan: Developer Tools" section in the
+			  <I>Kernel 8.0 &amp; Kernel Toolkit 7.3 Developer's Guide</I>.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <b>0&#151;DON'T USE IO(0)</b>: The Device Handler does <i>not</i> attempt to
+			  use <strong>IO(0)</strong>, the home device at the time of the call to ^%ZIS.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <b>D&#151;DIRECT PRINTING</b>: If the selected device is unavailable, it 
+			  returns a positive number in <strong>POP</strong>.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <b>L&#151;RESET IO("ZIO")</b>: If <strong>%ZIS</strong> contains <b>L</b>, the 
+			  <strong>IO("ZIO")</strong>
+			  output variable is reset with the static physical port name (e.g., the
+			  port name from a terminal server). It is useful when the <strong>$I</strong> of the M implementation does 
+			  <i>not</i> represent a physical port name.
+			</LI>
+		  </UL>
+		</TD> 
+	  </TR>
+	  <TR>
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>%ZIS("A"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Use this variable to replace the default device prompt.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>%ZIS("B"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) If <strong>%ZIS</strong> is defined, <b>HOME</b> is presented as the default
+		  response to the device prompt. Use <strong>%ZIS("B")</strong> to replace this default with
+		  another response.</P>
+		  <PRE>    &gt;<B>S %ZIS("B")=""</B></PRE>(If you do <i>not</i> want to display any default response.)
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>%ZIS("HFSMODE"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Use this variable to pass the Host file access mode to 
+		  <strong>%ZIS</strong>. 
+		  The possible values are:</P>
+		  <ul>
+		    <li>
+		      <b>RW</b> (which may <i>not</i> work in all environments)<b>&#8212;</b><strong>READ/WRITE</strong> access.
+		      <br>
+			  <br>
+            </li>
+			<li>
+			  <b>R</b>&#8212;<strong>READ</strong> Only access.
+			  <br>
+			  <br>
+            </li>
+			<li>
+			  <b>W</b>&#8212;<strong>WRITE</strong> access.
+			  <br>
+			  <br>
+            </li>
+			<li>
+			  <b>A</b>&#8212;Append mode.
+			</li>
+		  </ul>
+		  <P>For example:</P>
+		  <PRE>    &gt;<B>S  %ZIS("HFSMODE")="R"</B></PRE>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>%ZIS("HFSNAME"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Use this variable to pass the name of a Host file to %ZIS. For example:</P>
+		  <PRE>    &gt;<B>S  %ZIS("HFSNAME")="MYFILE.DAT"</B></PRE>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>%ZIS("IOPAR"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Use this input variable to pass <strong>OPEN</strong> command
+		  variables to the Device Handler. If defined, the value of this input variable
+		  is used instead of any value specified in the OPEN PARAMETERS field of the
+		  DEVICE (#3.5) file. The Device Handler uses the data from either this
+		  input variable or from the OPEN PARAMETERS field whether or <i>not</i> the device
+		  type is TRM.
+		  <BR>
+		  <BR>
+		  On some M systems, Right Margin is an OPEN 
+          PARAMETERS. Therefore, any value for Right Margin in the DEVICE (#3.5) 
+          file, TERMINAL TYPE (#3.2) file, or user response can be 
+          ignored when this variable is used.
+		  <BR>
+		  <BR>
+		  To set OPEN PARAMETERS for the tape drive device, a device with
+		  $I=47 and device name of MAGTAPE, the following code could be used:</P>
+		  <PRE>    &gt;<B>S %ZIS("IOPAR")="(""VAL4"":0:2048)"</B>
+
+    &gt;<B>S IOP="MAGTAPE" D ^%ZIS</B></PRE>
+          <P><b>NOTE:</b> The specific variables you pass may <i>not</i> be functional for
+		  all operating systems. Use of this feature should be limited to local
+		  development efforts.</P>
+		</TD>
+      </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>%ZIS("IOUPAR"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Use this input variable in the same way as
+		  <strong>%ZIS("IOPAR")</strong>, but for variables to the <strong>USE</strong> (rather than 
+		  <strong>OPEN</strong>) command. Any
+	      USE PARAMETERS specified in the DEVICE (#3.5) file are overridden. For
+		  example:</P>
+		  <PRE>    &gt;<B>S %ZIS("IOUPAR")="NOECHO"</B>
+
+    &gt;<B>S IOP="C72" D ^%ZIS</B></PRE>
+        </TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>%ZIS("S"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Use this variable to specify a device selection
+		  screen. The string of M code this variable is set to should contain an
+		  <strong>IF</strong> statement to set the value of <strong>$T</strong>. Those entries that the IF sets as 
+		  <strong>$T=0</strong>
+		  are <i>not</i> displayed or selectable. Like comparable VA FileMan screens,
+		  <strong>%ZIS("S")</strong> should be set to sort on nodes and pieces, without using 
+          variables like <strong>ION</strong> or <strong>IOT</strong>. As with 
+		  VA FileMan, the variable <b>Y</b> can be used in
+		  the screen to refer to the Internal Entry Number (IEN) of the device. Also, the
+		  M naked indicator is at the global level <strong>^%ZIS(1,Y,0)</strong>.</P>
+		  <P>An example to limit
+		  device selection to spool device types (<strong>SPL</strong>) only might be coded as follows:</P>
+		  <PRE>    &gt;<B>S %ZIS("S")="I $G(^(""TYPE""))=""SPL"""</B></PRE>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B><A NAME="iop_zis">IOP</A>:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(optional) Use the <strong>IOP</strong> variable to specify the output device. There is no user
+		  interaction when <strong>IOP</strong> is defined to specify an output device; the device NAME
+	      (#.01) field is the usual value of <strong>IOP</strong>. You can also set 
+		  <strong>IOP</strong> to <b>Q</b> and 
+		  <b>P</b>. (The value of <strong>IOP</strong> <i>must not</i> be <strong>$I</strong>.)</P>
+		  <P><b>NOTE:</b> If <strong>IOP</strong> is set to <strong>NULL</strong>, the device handler defaults to the 
+		  <b>HOME</b> device.
+		  <BR>
+		  <BR>
+		  You can request queuing by setting
+		  <strong>IOP="Q"</strong>. The user is then asked to specify a device for queuing. To pre-select
+		  the device, set <strong>IOP="Q;device"</strong>; the device specified after the semicolon is
+		  selected and <strong>IO("Q")</strong> is set.
+		  <BR>
+		  <BR>
+		  You can request the closest printer, as
+		  specified in the DEVICE (#3.5) file, by setting <strong>IOP="P"</strong> or 
+		  <strong>IOP="p"</strong>. If there is
+		  <i>not</i> a closest printer associated with the home device at the time of the call,
+		  device selection fails and <strong>POP</strong> is returned with a positive value.
+		  <BR>
+		  <BR>
+		  You can now also pass the Internal Entry Number (IEN) of the desired device through
+		  <strong>IOP</strong>. For instance, to select a device with an IEN of 202, you can set 
+          <strong>IOP</strong> to an accent grave character (<b>`</b>) followed by the IEN value of 202 before the call to
+		  ^%ZIS. The following example illustrates the call:</P>
+		  <PRE>    &gt;<B>S IOP="`202" D ^%ZIS</B></PRE>
+		  <P>Using the IEN rather than device name can be useful when
+		  applications have the desired device stored as a pointer to the DEVICE 
+		  (#3.5) file rather than as FREE TEXT.</P>
+		</TD>
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>If a device is successfully opened, <strong>IO</strong> is returned with the device
+		  <strong>$I</strong> value of the selected device. If an abnormal exit occurs, <strong>POP</strong> is 
+		  returned with a positive numeric value and <strong>IO</strong> is returned as <strong>NULL</strong>.
+		  <BR>
+		  <BR>
+		  <B>CAUTION: Because the returned value of IO can be changed, since December 1990,
+		  developers have been advised to check for a positive value in 
+          POP rather for IO equal to NULL when determining if an abnormal exit occurred.</B></P>
+        </TD> 
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO(0):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>HOME DEVICE&#151;</b>Contains the <strong>$I</strong> value of the home device at the
+		  time of the call to the Device Handler. Since it is defined at the time of the
+		  call, there is obviously no restoration after the call.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO(1,$I):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>OPENED DEVICES</b>&#8212;This array contains a list of devices opened 
+		  for the current job by the Device Handler. The first subscript of 
+		  this array is <strong>1</strong>. The second subscript is the <strong>$I</strong> value of the device opened. The data value
+		  is <strong>NULL</strong>. The Device Handler sets, <strong>KILL</strong>s, and checks the existence of
+		  <strong>IO(1,IO)</strong>.
+		  <BR>
+		  <BR>
+		  <b>NOTE:</b> This array should <i>not</i> be altered by applications outside 
+		  of Kernel.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("CLNM"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  This variable holds the name of the remote system. It is defined via 
+          the RPC Broker.
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("CLOSE"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>Device closed.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("DOC"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>SPOOL DOCUMENT NAME&#151;</b>If output has been sent to the spool
+		  device, this output variable holds the name of the spool document that was selected.</P>
+          <P><B>NOTE:</B> This variable is <strong>KILL</strong>ed when a call is made to ^%ZIS or 
+	      <A HREF="home-zis.html"
+             CLASS="bodylink"
+             TITLE="home^zis.html API">HOME^%ZIS</A> APIs.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B><A NAME="hfsio_zis">IO("HFSIO")</A>:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>HOST FILE DEVICE IO&#151;</b>This is defined by the Device Handler
+		  when a user queues to a file at the host operating system level (of a layered
+		  system) and selects a file name other than the default. This Host file system
+		  device variable should have the same value as that stored in the <strong>IO</strong>
+		  output variable. If <strong>IO("HFSIO")</strong> exists when the TaskMan interface is called,
+		  the interface saves <strong>IO("HFSIO")</strong> and <strong>IOPAR</strong> so that the scheduled task opens
+		  the appropriate Host file.</P>
+          <P><B>NOTE:</B> This variable is <strong>KILL</strong>ed when a call is made to ^%ZIS 
+		  or 
+	      <A HREF="home-zis.html"
+             CLASS="bodylink"
+             TITLE="home^zis.html API">HOME^%ZIS</A> APIs.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("IP"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  This variable holds the Internet Protocol (IP) of the remote system.</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("P"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>This variable holds data about the new syntax requested.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("Q"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>OUTPUT WAS QUEUED&#151;</b>If queuing is allowed (<strong>%ZIS["Q"</strong>) and an
+		  output device for queuing is selected, this output variable is returned with a
+		  value of <strong>1: IO("Q")=1</strong>. Otherwise, it is undefined.</P>
+          <P><B>NOTE:</B> This variable is <strong>KILL</strong>ed when a call is made to ^%ZIS 
+		  or 
+	      <A HREF="home-zis.html"
+             CLASS="bodylink"
+             TITLE="home^zis.html API">HOME^%ZIS</A> APIs.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("S"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>SLAVED DEVICE&#151;</b>When a slaved printer is selected, the Device
+		  Handler uses this output variable to save the subtype specification for the
+		  home device so that the appropriate close printer logic can be executed with 
+		  <strong>X ^%ZIS("C")</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("SPOOL"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>SPOOLER WAS USED&#151;</b>The existence of this output variable
+		  indicates that output was sent to the spool device. It exists temporarily,
+		  during spooling, and is KILLed upon normal exit.</P>
+          <P><B>NOTE:</B> This variable is <strong>KILL</strong>ed when a call is made to ^%ZIS 
+		  or 
+	      <A HREF="home-zis.html"
+             CLASS="bodylink"
+             TITLE="home^zis.html API">HOME^%ZIS</A> APIs.</P>
+        </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO(&quot;T&quot;):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P>TaskMan call.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IO("ZIO"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>TERMINAL SERVER PORT&#151;</b>If <strong>%ZIS["L"</strong>, both physical port and
+		  server names are returned in <strong>IO("ZIO")</strong> under  Caché. This
+		  information is useful on M implementations where the value of <strong>$I</strong> does 
+		  <i>not</i> represent a port on a terminal server.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOBS:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>BACKSPACE&#151;</b>The code for backspace, usually <strong>$C(8)</strong>, is returned
+		  in this output variable. This code is used to <strong>WRITE</strong>s a backspace with 
+	      <strong>W @IOBS</strong>.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+		  <B>IOCPU:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>CPU INDICATOR&#151;</b>If the selected device is on another CPU, this
+		  output variable is returned with the other CPU reference, obtained from the
+		  VOLUME SET (CPU) field in the DEVICE (#3.5) file. The <strong>IOCPU</strong> input 
+          variable is used by TaskMan as an indicator of where the job should ultimately be run.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOF:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>FORM FEED&#151;</b>This output variable is used to issue a form feed
+		  when writing its value with indirection; that is, <strong>W @IOF</strong>.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOM:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>RIGHT MARGIN&#151;</b>The right margin is commonly set to either 
+		  <strong>80</strong> or <strong>132</strong> columns.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>ION:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>DEVICE NAME&#151;</b>This variable returns the device NAME (#.01)
+		  field as recorded in the DEVICE (#3.5) file.</P>
+		</TD>
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B><A NAME="iopar_zis">IOPAR</A>:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>OPEN PARAMETERS&#151;</b>This variable returns any OPEN
+		  PARAMETERS that may have been defined for the selected device, for example, a
+		  magnetic tape drive. If the <strong>OPEN
+		  PARAMETERS</strong> variable has <i>not</i> been
+		  defined, <strong>IOPAR</strong> is returned as <strong>NULL</strong>.</P>
+          <P><B>NOTE:</B> When a device is closed, this variable gets set to 
+          <strong>NULL</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOUPAR:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>USE PARAMETERS&#151;</b>This variable returns any USE
+		  PARAMETERS that may have been defined for the selected device. If the 
+		  <strong>USE PARAMETERS</strong> variable has <i>not</i> been defined, <strong>IOUPAR</strong> is returned as 
+		  <strong>NULL</strong>.</P>
+          <P><B>NOTE:</B> When a device is closed, this variable gets set to <strong>NULL</strong>.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOS:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>DEVICE NUMBER&#151;</b>The DEVICE (#3.5) file Internal Entry Number (IEN) for the selected device.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOSL:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+	      <P><b>SCREEN/PAGE LENGTH&#151;</b>The number of lines per screen or page is
+		  defined with this variable. The page length of a printing device is
+		  usually <strong>66</strong> lines. The screen length of a display terminal is usually 
+	      <strong>24</strong> lines.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOST:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>SUBTYPE NAME&#151;</b>This variable returns the NAME (#.01) 
+		  field of the selected device's subtype as recorded in the TERMINAL TYPE (#3.2) file.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOST(0):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>SUBTYPE NUMBER&#151;</b>This variable returns the Internal
+		  Entry Number (IEN) of the selected device's subtype as recorded in the TERMINAL
+		  TYPE (#3.2) file.</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOT:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>TYPE OF DEVICE&#151;</b>The DEVICE (#3.5) file holds an indication of
+		  Type for all devices. <strong>IOT</strong> returns the value of the device type (e.g., 
+		  <strong>TRM</strong> for
+		  terminal, <strong>VTRM</strong> for virtual terminal, and <strong>HFS</strong> for Host file server).</P>
+		</TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>IOXY:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>C<b>URSOR POSITIONING&#151;</b>This output variable returns the 
+          executable M code that allows cursor positioning, given the input 
+          variable <strong>DX</strong> and <strong>DY</strong>. The column position is passed in 
+		  <strong>DX</strong> and the row position is passed in <strong>DY</strong>.
+		  <BR>
+		  <BR>
+		  <b>NOTE:</b> The system special variables <strong>$X</strong> and 
+		  <strong>$Y</strong> are <em>not</em> necessarily updated.</P>
+		</TD>
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>POP:</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P><b>EXIT STATUS&#8212;</b>When the Device Handler is called, <strong>POP</strong> is the 
+          output variable that indicates the outcome status. If device 
+          selection is successful, <strong>POP</strong> is returned with a value of <strong>zero</strong> 
+          (<strong>POP=0</strong>). Abnormal exit returns a positive number in the <strong>POP</strong> variable.</P>
+          <P>There are three general conditions for abnormal exit upon 
+          which the <strong>POP</strong> output variable is returned as positive:</P>
+		  <ul>
+		    <li>
+		      The first case is one in which a device is <i>not</i> selected.
+		      <br>
+			  <br>
+            </li>
+			<li>
+			  The second concerns unavailable devices.
+			  <br>
+			  <br>
+            </li>
+			<li>
+			  The third situation arises when a device is identified but is unknown to the system.
+			</li>
+		  </ul>
+          <P>The first condition of no device selection is met if the user types 
+		  a caret (<B>^</B>) or times out at the device prompt. 
+          Exceeding the TIMED READ at the right margin or address/parameters 
+          prompts have the same result.</P>
+          <P>The second condition, unavailability, is met if the Device 
+          Handler <i>cannot</i> open the selected device. The selected 
+          device may also have existed on another computer but queuing was <i>not</i> requested or perhaps 
+		  <i>not</i> permitted (<strong>%ZIS</strong> had <em>not</em> contained <strong>Q</strong>).</P>
+          <P>Finally, the selected device may <i>not</i> exist in the DEVICE 
+		  (#3.5) file. A device 
+          name may have been used that is <i>not</i> found as a <strong>.01</strong> field entry. If 
+          the device is selected with <b>P</b> for the closest printer, the CLOSEST 
+          PRINTER field in the DEVICE file (#3.5) may be <strong>NULL</strong>.</P>
+          <P>If the exit is abnormal, returning <strong>POP</strong> with a positive value, the 
+          following output parameters are restored with their values 
+          before the call to the Device Handler (before <strong>D&nbsp;^%ZIS</strong>):
+		  <strong>ION</strong>, <strong>IOF</strong>, 
+          <strong>IOSL</strong>, <strong>IOBS</strong>, <strong>IOST(0)</strong>, 
+		  <strong>IOST</strong>, <strong>IOPAR</strong>, <strong>IOUPAR</strong>, 
+		  <strong>IOS</strong>, and <strong>IOCPU</strong>.</P>
+          <P><B>NOTE:</B> If <strong>IOF</strong> had been <strong>NULL</strong> before the call, it is 
+          returned with the pound sign as its value (<strong>IOF=&quot;#&quot;</strong>). For 
+          backward compatibility, <strong>IO</strong> is currently returned as <strong>NULL (IO=&quot;&quot;)</strong>. 
+          However, the returned value of <strong>IO</strong> may change in future Kernel versions.</P>
+        </TD>
+	  </TR> 
+	</TABLE>
+	<h4>Examples</h4> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>This following is a simplified example; the process of issuing form
+	feeds is <i>not</i> shown.</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       CELLPADDING="3"
+	       CELLSPACING="3">
+	  <TR>
+	    <TD>
+		  <PRE>SAMPLE   ;SAMPLE ROUTINE
+   ;
+   S %ZIS="QM" D ^%ZIS G EXIT:POP
+   I $D(IO("Q")) D  Q
+   .S ZTRTN="DQ^SAMPLE",ZTDESC="Sample Test routine"
+   .D ^%ZTLOAD D HOME^%ZIS K IO("Q") Q
+DQ U IO W !,"THIS IS YOUR REPORT"
+   W !,"LINE 2"
+   W !,"LINE 3"
+   D ^%ZISC
+EXIT     S:$D(ZTQUEUED) ZTREQ="@" K VAR1,VAR2,VAR3 Q</PRE>
+	    </TD>
+	  </TR>
+	</TABLE> 
+	<H4>Example 2</H4> 
+	<P>The <strong>IOP</strong> variable can be defined to pass a string to the Device
+	Handler so that no user interaction is required for device selection
+	information. The following is the general format for defining <strong>IOP</strong>:</P> 
+	<PRE>    &gt;<B>S IOP=[Q[;]][DEVICE NAME][;SUBTYPE][;SPOOL DOCUMENT NAME][;RIGHT MARGIN[;PAGE LENGTH]]</B></PRE> 
+	<H4>Example 3</H4> 
+	<P>If the SPOOL DOCUMENT NAME is included, then the RIGHT MARGIN and PAGE
+	LENGTH are ignored. Therefore, use the following format if a spool device is
+	desired:</P> 
+	<PRE>    &gt;<B>S IOP=[Q[;]][DEVICE NAME][;SUBTYPE][;SPOOL DOCUMENT NAME]</B></PRE> 
+	<H4>Example 4</H4> 
+	<P>The following shows how a device named "RXPRINTER" in the DEVICE file
+	(#3.5) can be opened <I>without user interaction</I>:</P> 
+	<PRE>    &gt;<B>S IOP="RXPRINTER" D ^%ZIS Q:POP</B></PRE>
+	<H4>Example 5</H4> 
+	<P>When setting the <strong>IOP</strong> variable, you can include the right
+	margin:</P> 
+	<PRE>    &gt;<B>S IOP=ION_";"_IOM  or  S IOP=";120"</B></PRE>
+	<P>Or:</P>
+	<PRE>    &gt;<B>S IOP="RXPRINTER;120"</B></PRE>
+	<P>In this example, <strong>ION</strong> is the local variable that contains the name
+	of the device to be opened and the <strong>IOM</strong> variable contains the value of
+	the desired right margin.</P>
+	<H4>Example 6</H4> 
+	<P>The <strong>IOP</strong> variable can be set to force queuing by starting 
+	the string with <b>Q</b>:</P> 
+	<PRE>    &gt;<B>SET IOP="Q;"_ION_";"_IOM  ... etc.</B></PRE>
+	<P>In order to force queuing and prompt the user for a device:</P>
+	<PRE>    &gt;<B>SET IOP="Q" D ^%ZIS Q:POP</B></PRE>
+	<H4>Example 7</H4> 
+	<P>A <I>spool document name</I> can be passed to the Device Handler:</P> 
+	<PRE>    &gt;<B>S IOP=DEVNAM_";"_IO("DOC") D ^%ZIS Q:POP</B></PRE>
+	<P>Or:</P>
+	<PRE>    &gt;<B>S IOP="SPOOL;"_IO("DOC")</B></PRE>
+	<P>Or:</P>
+	<PRE>    &gt;<B>S IOP=DEVNAM_";"_IOST_";"_IO("DOC")</B></PRE>
+	<P>Or:</P>
+	<PRE>    &gt;<B>S IOP="SPOOL;P-OTHER;MYDOC"</B></PRE>
+	<P><b>NOTE:</b> For more information, see the "Spooling" section in
+	the <I>Kernel 8.0 &amp; Kernel Toolkit 7.3 Systems Management Guide</I>.</P>
+	<P>In this example:</P>
+    <ul>
+	  <li>
+	    <strong>DEVNAM</strong> contains the name of the device to be opened.
+	    <br>
+	    <br>
+      </li>
+	  <li>
+	    <strong>IO("DOC&quot;)</strong> contains the spool document name.
+	    <br>
+	    <br>
+      </li>
+	  <li>
+	    <strong>IOST</strong> contains the name of the
+	    desired subtype.
+	    <br>
+	    <br>
+      </li>
+	  <li>
+	    <strong>"SPOOL"</strong> is the actual name of a device entry that corresponds
+	    to the spool device.
+	    <br>
+	    <br>
+      </li>
+	  <li>
+	    <strong>"P-OTHER"</strong> is the desired subtype.
+	    <br>
+	    <br>
+      </li>
+	  <li>
+	    <strong>&quot;MYDOC"</strong> is the name
+	    of the spool document.
+	    <br>
+      </li>
+    </ul>
+	<H4>Example 8</H4> 
+	<P>Finally, the <strong>IOP</strong> variable can be used to select a device by the
+	device's Internal Entry Number (IEN). To select a device with an IEN of 202,
+	set <strong>IOP</strong> to an grave accent character (<b>`</b>) followed by the IEN value of 202:</P> 
+	<PRE>    &gt;<B>S IOP="`202" D ^%ZIS</B></PRE>
+	<H4>Multiple Devices and ^%ZIS</H4> 
+	<P>Beyond the home device, the ^%ZIS API is <i>not</i> designed to open more than
+	one additional device at a time.
+	<BR>
+	<BR>
+	For interactive users, the home device
+	should already be open and defined in the Kernel environment. ^%ZIS should only
+	be used to open one additional device at a time for interactive users. For a
+	task, you can use ^%ZIS to open one additional device beyond the task's
+	assigned device.
+	<BR>
+	<BR>
+	Beginning with Kernel 8.0, there are three APIs to
+	support using more than one additional device simultaneously:</P>
+	<UL>
+	  <LI>
+	    <A HREF="open-zisutl.html"
+           CLASS="bodylink"
+           TITLE="open^zisutl.html API">OPEN^%ZISUTL(): Open Device with Handle</A>
+		<BR>
+		<BR>
+	  </LI>
+	  <LI>
+	   <A HREF="use-zisutl.html"
+          CLASS="bodylink"
+          TITLE="use^zisutl.html API">USE^%ZISUTL(): Use Device Given a Handle</A>
+		<BR>
+		<BR>
+	  </LI>
+	  <LI>
+	   <A HREF="close-zisutl.html"
+          CLASS="bodylink"
+          TITLE="close^zisutl.html API">CLOSE^%ZISUTL(): Close Device with Handle</A>
+	  </LI>
+	</UL>
+	<P>These "multiple device" APIs are described in their own sections.</P>
+	<H4>Host Files and ^%ZIS</H4> 
+	<P>Although it is possible to use the ^%ZIS API to manipulate Host files,
+	the Host file API (in ^%ZISH) offers more robust Host file
+	functionality.
+	<BR>
+	<BR>
+	<b>NOTE:</b> For more information on using the Host file API,
+	see the "Host Files" chapter in the <I>Kernel 8.0 &amp; Kernel Toolkit 7.3 Developer's guide</I>.</P>
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/zis.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

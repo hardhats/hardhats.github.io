@@ -1,0 +1,268 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$EN^MXMLDOM">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Seucurity Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$EN^MXMLDOM,$$EN,MXMLDOM,xml,extensible markup language,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$EN^MXMLDOM">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$EN^MXMLDOM</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">$$EN^MXMLDOM</A>(): XML&#8212;Initial Processing, Build In-memory Image</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> XML Parser (VistA),
+	<B>ICR#:</B> 3561</P> 
+	<H4><A NAME="description">Description</A></H4> 
+    <P>The $$EN^MXMLDOM extrinsic function performs initial processing of the XML document. The client
+    application <i>must</i> first call this entry point to build the in-memory image
+    of the document before the remaining methods can be applied. The return
+    value is a handle to the document instance that was created and is used by
+    the remaining API calls to identify a specific document instance. The
+    parameters for this entry point are listed by type, requirement (<strong>yes</strong> or
+    <strong>no</strong>), and description. </P> 
+    <H4><A NAME="format">Format</A></H4> 
+    <PRE>  $$EN^MXMLDOM(doc[,opt])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>doc:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+          <P>(required) This string is either of the following:</P>
+		  <ul>
+			<li>
+			  Closed reference to a global root containing the document
+              <br>
+			  <br>
+			</li>
+			<li>
+			  Filename and path reference identifying the document on the host system.
+            </li>
+		  </ul>
+		  <P>If a global root is passed, the document either:</P>
+		  <ul>
+			<li>
+			  <i>Must</i> be stored in standard VA FileMan
+              word-processing format.
+              <br>
+			  <br>
+			</li>
+			<li>
+			  May occur in sequentially numbered nodes
+              below the root node.
+            </li>
+		  </ul>
+		  <P>Thus, if the global reference is
+          <strong>^XYZ</strong>, the global <em>must</em> be of one of the following
+          formats:</P>
+          <UL>
+            <LI>
+              <strong>^XYZ(1,0) = &quot;LINE 1&quot;
+              <BR>
+              <BR>
+              ^XYZ(2,0) = &quot;LINE 2&quot; ...</strong>
+            </LI>
+          </UL>
+          <P>Or:</P>
+          <UL>
+            <LI>
+              <strong>^XYZ(1) = &quot;LINE 1&quot;
+              <BR>
+              <BR>
+              ^XYZ(2) = &quot;LINE 2&quot; ...</strong>
+            </LI>
+          </UL>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>opt:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+          <P>(optional) This string is a list of option flags that control parser
+          behavior. Recognized option flags are:</P>
+          <UL>
+            <LI>
+              <b>W&#8212;</b>Do <i>not</i> report warnings to the client.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <b>V&#8212;</b>Validate the document. If <i>not</i> specified, the parser only checks for conformance.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <b>1&#8212;</b>Terminate parsing on encountering a validation error. (By
+              default, the parser terminates only when a conformance error is encountered.)
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <b>0&#8212;</b>Terminate parsing on encountering a warning.
+            </LI>
+          </UL>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns:</P>
+          <UL>
+            <LI>
+              <strong>Successful&#8212;</strong>A <i>non</i>-<strong>zero</strong> handle of document instance if parsing completed successfully.
+              <BR>
+              <BR>
+            </LI>
+            <LI>
+              <strong>Unsuccessful&#8212;Zero</strong> handle of document instance.
+            </LI>
+          </UL>
+          <P>This handle is passed to all other API methods to indicate which 
+          document instance is being referenced. This allows for multiple 
+          document instances to be processed concurrently.</P> 
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-en-mxmldom.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

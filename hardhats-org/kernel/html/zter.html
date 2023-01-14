@@ -1,0 +1,281 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: ^%ZTER">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,^%ZTER,%ZTER,error processing,supported">
+    <meta name="description"
+	      content="Kernel APIs: ^%ZTER">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: ^%ZTER</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">^%ZTER</A>: Kernel Standard Error Recording Routine</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Error Processing,
+	<B>ICR#:</B> 1621</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>Kernel sets the error trap in <strong>ZU</strong> so that all user errors are trapped. In
+	this context, when an error occurs, the optional <strong>%ZT</strong> input array is set to
+	indicate the user's location in the menu system. Then ^%ZTER is called to
+	record this information in the ERROR LOG (#3.075) file.</P>
+    <P>The application-specific error trap routine, when it is called as a result of an
+	error, can then use the ^%ZTER API to record error information in the ERROR LOG (#3.075)
+	file if it decides that it needs to. ^%ZTER gathers all available
+	information such as local symbols and last global reference and stores that
+	information in an entry in the ERROR LOG (#3.075) file.</P>
+    <P>The simple example below shows an application that replaces the standard Kernel error trap
+	with its own error trap. When an error occurs, and the application's error trap
+	routine is called, it calls 
+	<a href="x-ec-zosv.html"
+	   title="$$EC^%ZOSV API"
+	   class="bodylink">$$EC^%ZOSV</a> to see what type of error occurred. If
+	an end-of-file (EOF) error occurs, it lets the application continue. Otherwise,
+	it calls ^%ZTER to record the error, and then quits to terminate the application.</P>
+    <P><b>NOTE:</b> The recording mechanism of ^%ZTER also functions in
+	the absence of an error. In a debug mode, this would enable a developer to
+	record local symbols and global structures at predetermined places within code
+	execution for later checking.</P>
+    <P><b>NOTE:</b> As of Kernel Patch XU*8.0*431, the ^%ZTER error trap routine 
+    checks a count (limit) in the ERROR TRAP SUMMARY (#3.077) file and stops 
+    recording errors once this limit has been reached. This limit is initialized to 
+    <strong>10</strong> but can be changed by the sites. To change the value, use VA FileMan to edit 
+    the ERROR LIMIT (#520.1) field in the KERNEL SYSTEM PARAMETERS (#8989.3) file.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  ^%ZTER</PRE> 
+     <P>Make sure to perform the following steps before calling this API:</P>
+     <OL>
+      <LI>
+        <strong>NEW</strong> all <em>non</em>-namespaced variables.
+        <BR>
+        <BR>
+      </LI>
+       <LI>
+         Set all input variables.
+         <BR>
+        <BR>
+       </LI>
+       <LI>
+         Call the API.
+       </LI>
+     </OL>
+	<H4><A NAME="input_variables">Input Variable</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="10%">
+	      <B>%ZT:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="90%">
+		  <P>(optional) The <strong>%ZT</strong> array can be used to identify a global node
+		  whose descendents should be recorded in the error log.  When called within the
+		  standard Kernel error trap, <strong>%ZT</strong> is set to record the user's location 
+		  in the menu system:</P>
+		  <PRE>  &gt;<B>S %ZT(&quot;^TMP($J)&quot;)=&quot;&quot;</B>
+  &gt;<B>D ^%ZTER</B></PRE>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A> Variables</H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="10%">
+	      <B>%ZTERROR</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="90%"> 
+	      <P>Calls to the error recorder always return this variable. It has the 
+		  error name and error type as its first and second caret-delimited (<B>^</B>) pieces, for
+		  example, <strong>
+		  <br>
+		  %ZTERROR=UNDEF^P</strong>. While the first piece is always defined since it is
+		  retrieved from the operating system, the second piece could be missing if
+		  unavailable from the ERROR MESSAGES (#3.076) file.</P>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4>Examples</H4>
+    <H4><A NAME="example1">Example 1</A></H4> 
+	<P>The following is an example of the Error Trap:</P>
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3">
+	  <TR>
+	    <TD>
+	      <PRE>ZXGAPP ; 999/NV - sample routine ; 23-FEB-95
+	;;1.0;;
+	;
+FILEOPEN	;
+	;
+	; This code resets the error trap routine that is stepped to 
+	; when an error occurs.
+	;
+	N $ESTACK,$ETRAP S $ETRAP=&quot;D ERR^ZXGAPP&quot;
+	;	
+	; Open a file, and read lines from it until End-of-File (EOF)
+	; is reached.
+	;
+	K %ZIS S %ZIS=""
+	S %ZIS("HFSNAME")="MYFILE.DAT",%ZIS("HFSMODE")="RW"
+	D ^%ZIS Q:POP
+	F  U IO R LINE:DTIME U IO(0) W !,LINE
+	;
+FILECLOS	;
+	;
+	D ^%ZISC Q
+	;
+ERR	;
+	; This is the application specific error trap.
+	;
+	I $$EC^%ZOSV["ENDOFILE" S $ECODE=&quot;&quot; G FILECLOS ; continue if EOF error
+	D ^%ZTER ; record the error if anything other than EOF
+         D UNWIND^%ZTER ; unwind the stack, return to caller. 
+	Q
+	;</PRE>
+	    </TD>
+	  </TR>
+	</TABLE> 
+	<H4><A NAME="example2">Example 2</A></H4> 
+	<p>To test the error limit set in the ERROR LIMIT (#520.1) field in the 
+	KERNEL SYSTEM PARAMETERS (#8989.3) file, run the following:</p>
+	<PRE>    &gt;<b>F I=1:1:20 D APPERROR^%ZTER(&quot;My Application Error&quot;)</b></PRE>
+	<P>Check the error trap and see how many errors with &quot;My Application Error&quot; 
+	get recorded in the Kernel error log (i.e., ERROR LOG [#3.075] file). If the value in the ERROR 
+	LIMIT (#520.1) field is set to <strong>10</strong>, there should just be 
+	<strong>10</strong> occurrences of 
+	the &#8220;My Error&#8221; error in the Kernel error log.</P>
+    <P><b>NOTE:</b> For more information, see the
+    <a href="apperror-zter.html"
+       title="See the APPERROR^%ZTER API"
+       class="bodylink">APPERROR^%ZTER</a> API.</P>
+    <P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/zter.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

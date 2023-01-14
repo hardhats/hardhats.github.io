@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS3</TITLE></HEAD>
+<BODY>
+<H1>III.  DISCREPANCIES CAUSED BY CHCS ENHANCEMENTS TO OUTPUT ROUTINES</H1>
+<H2>A. CHCS Output Enhancements </H2>
+<P>CHCS FileMan includes a number of enhancements in output functionality. The
+existence of these enhancements impacts on portability in two ways:</P>
+<BLOCKQUOTE>
+<P>1) Specifications exist in CHCS Print and Sort Templates that have no
+meaning to DHCP FileMan.</P>
+<P>2) Even without a difference in the stored Templates, the behavior of the
+two systems will be different in certain ways.</P></BLOCKQUOTE>
+<P>The first of these two problems is the more serious type of impact.  Let us
+look at nine CHCS enhancements, keeping in mind both types of portability
+issues, the &quot;structure&quot; issue and the &quot;behavior&quot; issue.</P>
+<H3>Specifying a list of values to sort on </H3>
+<P>CHCS FileMan offers the developer three ways to answer the</P>
+<BLOCKQUOTE>
+<P>Sort by:</P></BLOCKQUOTE>
+<P>query that are not available to the user of DHCP FileMan Version 20:</P>
+<BLOCKQUOTE>
+<P>1) Sort by: FIELD;1</P></BLOCKQUOTE>
+<P>tells CHCS FileMan to ask for &quot;1&quot; Sort value for the Field named &quot;FIELD&quot;.</P>
+<BLOCKQUOTE>
+<P>2) Sort by: FIELD;2</P></BLOCKQUOTE>
+<P>tells CHCS FileMan to ask for a list of values for the Field named &quot;FIELD&quot;.</P>
+<BLOCKQUOTE>
+<P>3) Sort by: ^GLOBAL(</P></BLOCKQUOTE>
+<P>tells CHCS FileMan to take the list of Entry numbers found (at run time) in
+the global array descendant from the root &quot;^GLOBAL(&quot; to use for
+sorting. Within this kind of Sort specification, the developer can optionally
+include a second-level sort, a third-level sort, etc., so that, for example, a
+list of 25 Internal Entry Numbers can appear sorted alphabetically by name, or
+whatever.</P>
+<P>Portability Effect: SERIOUS.  Applications developed with CHCS FileMan will
+possibly include such &quot;Sort By&quot; logic in their Sort Templates.  The &quot;;1&quot;
+and &quot;;2&quot; type of logic would be ignored if ported to a DHCP
+environment, and the &quot;^GLOBAL(&quot; type of logic would cause DHCP FileMan
+to abort output. Therefore, all CHCS Sort Templates need to be vetted for these
+three types of &quot;list sorting&quot;.  A programmer workaround would have to
+be applied to every instance found; usually, such a workaround would require
+substitution of a hard-code routine for the Sort Template.</P>
+<H3>Specifying Computed &quot;FROM&quot; and &quot;TO&quot; values in a Sort
+Template</H3>
+<P>When a CHCS developer stores sort logic in a Sort Template, he is allowed to
+enter Computed Expressions from which FileMan will calculate, at run time, the &quot;FROM&quot;
+and &quot;TO&quot; values on which to sort.  Thus, for example, the expressions &quot;TODAY-30&quot;
+and &quot;TODAY&quot; could be specified as a date range for sorting, and their
+values would be calculated on the day of the output.  DHCP FileMan stores no
+such information within its Sort Templates.</P>
+<P>Portability Effect: SERIOUS.  Applications developed with CHCS FileMan will
+possibly include such logic in their Sort Templates.  They would sort
+incorrectly if ported to DHCP FileMan.  Such Sort Templates can be quickly
+spotted, because they have a characteristic node number 22.  If, then, there
+exists a Global node at</P>
+<BLOCKQUOTE>
+<P>^DIBT(N,22)</P></BLOCKQUOTE>
+<P>in DHCP, then the Sort Template with Internal Entry Number 'N' will not be
+portable to CHCS, and re-programming will be needed.</P>
+<H3>Specifying which Cross-Reference to sort on </H3>
+<P>In CHCS FileMan's output module, the Sort Specifier &quot;;X&quot; can be
+used to tell FileMan which Cross-reference of a Sort Field to use.  For example,</P>
+<BLOCKQUOTE>
+<P>Sort By: SSN;X2</P></BLOCKQUOTE>
+<P>says &quot;use Cross-reference #2 of the SSN Field&quot;.  DHCP FileMan
+(Version 20) has no equivalent capability, although a similar functionality
+(using different syntax) is now under development for Version 21.</P>
+<P>Portability Effect: SERIOUS.  Applications developed with CHCS FileMan will
+possibly include such &quot;;X&quot; Specifiers in their Sort Templates.  Such
+Specifiers would be ignored if ported directly to a DHCP environment, resulting
+in undoubtedly significant changes in the output of the applications. Therefore,
+all CHCS Sort Templates need to be vetted for &quot;;X&quot; before being sent
+to DHCP.  If a &quot;;X&quot; were found, a programmer would have to decide on a
+workaround; in the worst case, such a workaround might require substitution of a
+hard-coded routine for the Sort Template.</P>
+<H3>Allowing the &quot;HEADER:&quot; question to be asked at run time</H3>
+<P>A CHCS Print Template can include in the &quot;DHD&quot; Header Field the
+value &quot;?&quot; (a single question-mark character).  This tells CHCS FileMan
+to ask the user, at run-time, for a report heading.  No default answer to the &quot;HEADING:&quot;
+query is prompted in this case.   DHCP FileMan Print Templates do not support a
+similar functionality, although, under programmer control, the Output module of
+DHCP FileMan can be called in such a way that the user will be asked at run time
+for the output Header.</P>
+<P>Portability Effect: Requires conversion.  At the least, any CHCS Print
+Template being ported to a DHCP environment needs to have its &quot;?&quot;
+Headers removed.  The result of this step would be that an Output which in CHCS
+asked the user for an idiosyncratic, run-time Header, would, in DHCP, run with a
+generic Header.  If this 'cosmetic' difference in functionality were not
+acceptible, re-programming would be required.</P>
+<H3>Print Formatter</H3>
+<P>CHCS FileMan includes a developer tool called the Print Formatter.  This is
+essentially an alternate method for creating a Print Template, via use of the
+full-screen editor in ScreenMan, rather than sequential answering of the
+scrolling &quot;THEN PRINT FIELD:&quot; queries.  Print Templates created using
+this Formatter can, in general be ported to CHCS.</P>
+<P>Portability Effect: Requires conversion.  A trivially-easy modification
+needs to be made to CHCS Print Templates that were created with the Print
+Formatter, should they be ported to DHCP.   Such Templates characteristically
+store information in Global subscripts</P>
+<BLOCKQUOTE>
+<P>^DIPT(Templatenumber,1)   and</P>
+<P>^DIPT(Templatenumber,2)</P></BLOCKQUOTE>
+<P>These nodes need to be KILLed before the Templates are moved to CHCS
+FileMan, because of an incompatibility in Global structure.  That is, DHCP
+FileMan stores a different kind of information in</P>
+<BLOCKQUOTE>
+<P>^DIPT(Templatenumber,1)</P></BLOCKQUOTE>
+<P>namely, information about &quot;FileGram&quot; and &quot;Extract Files&quot;
+that use the Template.</P>
+<H3>Captions for 'SUBTOTALS'</H3>
+<P>Whereas VA FileMan prints &quot;SUBTOTAL&quot; on a report, e.g.,</P>
+<BLOCKQUOTE>
+<P>______</P>
+<P>SUBTOTAL                              456.66</P></BLOCKQUOTE>
+<P>CHCS FileMan prefixes the word &quot;SUBTOTAL&quot; with the name of the
+Field being subtotalled, e.g.,</P>
+<BLOCKQUOTE>
+<P>______</P>
+<P>MONTH SUBTOTAL                        456.66</P></BLOCKQUOTE>
+<P>Portability Effect: Minor.  This is a &quot;behavior&quot; issue only.  A
+DHCP application package could easily include one or more Print Templates that
+include subtotalling.</P>
+<P>Such Print Templates would generate cosmetically different (more verbose)
+output under CHCS.  Vice versa, CHCS applications &quot;count on&quot; the extra
+output, and if it were missing in the porting to DHCP, a design intent might be
+subtly subverted.</P>
+<H3>Search Option can stop at &quot;MAXIMUM NUMBER OF HITS&quot; </H3>
+<P>When a user is running the CHCS FileMan Search Option on a File containing
+more than fifty Entries, he is allowed to specify that the search shall
+terminate after a specified number of &quot;MATCHES&quot;.  This addition to the
+&quot;Search&quot; logic is useful when a user has no idea how many Boolean
+matches he will find, and wants the search to stop if it finds &quot;a lot&quot;
+-- without the user needing to be present and hitting an &quot;abort&quot;
+(Control-C) key.  DHCP FileMan has no equivalent feature.</P>
+<P>Portability Effect: Minor.  This discrepant behavior would be a
+user-training issue only, assuming that the same user were to &quot;cross over&quot;
+from DHCP to CHCS, or vice versa.</P>
+<H3>Lower-case Print Specifiers</H3>
+<P>One last small CHCS enhancement to FileMan is that Specifiers containing
+lower-case alphabetic characters (e.g., &quot;;c2&quot;, or &quot;;s1&quot;) are
+allowed to be entered in the creation of Print, and Sort Templates.</P>
+<P>Portability Effect: Nil.  CHCS FileMan internally converts such Specifiers
+to upper-case, so that any Template sent from CHCS to a DHCP environmnent would
+contain upper-case-only Specifiers, which DHCP FileMan can parse.</P>
+<H2>B.  SUMMARY OF CHANGES NEEDED WHEN PORTING CHCS SORT AND PRINT TEMPLATES TO
+DHCP </H2>
+<P>1. Sort Templates containing &quot;;1&quot;, &quot;;2&quot;, and &quot;;X&quot;,
+Specifiers, as well as &quot;^GLOBAL(&quot; sort logic and Computed &quot;FROM-TO&quot;
+values, need to be examined by a programmer to devise workarounds.  Note that
+DHCP FileMan Version 21, when it becomes available, should offer a
+straightforward functional equivalent for</P>
+<BLOCKQUOTE>
+<P>Sort By: ^GLOBAL( and</P>
+<P>Sort By: FIELD;X</P></BLOCKQUOTE>
+<P>2. Print Templates containing a &quot;DHD&quot; value equal to the character
+&quot;?&quot; need to be examined by a programmer to devise a workaround.  At
+the very least, the &quot;?&quot; must be removed.</P>
+<P>3. Nodes &quot;1&quot; and &quot;2&quot; of Print Templates need to be
+KILLed.</P> 
+<P ALIGN="RIGHT"><A HREF="chcs4.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P>
+</BODY></HTML>

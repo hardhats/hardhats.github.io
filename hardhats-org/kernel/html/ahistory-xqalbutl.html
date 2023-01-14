@@ -1,0 +1,260 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: AHISTORY^XQALBUTL">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,AHISTORY^XQALBUTL,AHISTORY,XQALBUTL,alerts,supported">
+    <meta name="description"
+	      content="Kernel APIs: AHISTORY^XQALBUTL">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180808">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: AHISTORY^XQALBUTL</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">AHISTORY^XQALBUTL</A>(): Get Alert Tracking File Information</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Alerts,
+	<B>ICR#:</B> 2788</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The AHISTORY^XQALBUTL API returns information from the ALERT TRACKING (#8992.1) file for
+	alert with the <strong>xqaid</strong> input parameter as its alert ID. The data is returned
+	descendent from the closed root passed in the <strong>root</strong> input parameter. Usually,
+	<strong>xqaid</strong> is known based on alert processing. </P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  AHISTORY^XQALBUTL(xqaid,root)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xqaid:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) This is the value of the alert identifier.
+		  It is passed to the routine or option that is run when the alert is selected.
+		  It can also be obtained from a listing of all of the <strong>xqaid</strong> values for a specified
+		  user and/or patient.</P>
+		</TD> 
+      </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>root:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+	      <P>(required) This parameter is a closed reference to a local or
+		  global root. The information associated with the desired entry in the ALERT
+		  TRACKING (#8992.1) file is returned descendent from the specified 
+		  <strong>root</strong>.</P> 
+		  <P><strong>NOTE:</strong> A more user (developer) friendly call would be the
+		  <A HREF="alertdat-xqalbutl.html"
+		     TITLE="ALERT^XQALBUTL API"
+			 CLASS="BODYLINK">ALERTDAT^XQALBUTL</A> API, which returns the data in an array
+		  with the field numbers and names as the subscripts and the internal and
+		  external (if different) values as the value.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+	      <P>The data returned reflects the global structure of the ALERT TRACKING 
+		  (#8992.1) file.</P>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>The following example illustrates the use of this API and the format of the data returned.</P>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S XQAID="NO-ID;20;2990212.11294719"</B>
+
+&gt;<B>D AHISTORY^XQALBUTL(XQAID,"XXXROOT")</B>
+
+&gt;<B>ZW XXXROOT</B>
+
+XXXROOT(0)=NO-ID;20;2990212.11294719^2990212.112947^NO-ID^^20
+XXXROOT(1)=TEST MESSAGE (ROUTINE) 20^^^XM
+XXXROOT(20,0)=^8992.11^20^1
+XXXROOT(20,1,0)=20^2990212.112954^2990212.145609^2990212.145621^2990212.145621
+XXXROOT(20,"B",20,1)=</PRE>           
+        </td>
+      </tr>
+    </table>  
+	<P>This is in the basic structure of the nodes taken from the global for
+	this entry, which can be seen from a global map view of the ALERT TRACKING 
+	(#8992.1) file:</P>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>^XTV(8992.1,D0,0)= (#.01) NAME [1F] ^ (#.02) DATE CREATED [2D]^ (#.03) PKG
+     ==&gt;ID [3F] ^ (#.04) PATIENT [4P] ^ (#.05)
+GENERATED BY [5P] ^ 
+     ==&gt;(#.06) GENERATED WHILE QUEUED [6S] ^ (#.07)
+STATUS [7S] ^ 
+     ==&gt;(#.08) RETENTION DATE [8D] ^ 
+
+^XTV(8992.1,D0,1)= (#1.01) DISPLAY TEXT [1F] ^ (#1.02) OPTION FOR PROCESSING
+     ==&gt;[2F] ^ (#1.03) ROUTINE TAG [3F] ^ (#1.04)
+ROUTINE FOR
+     ==&gt;PROCESSING [4F] ^
+
+^XTV(8992.1,D0,2)= (#2) DATA FOR PROCESSING [E1,245F] ^
+
+^XTV(8992.1,D0,20,0)=^8992.11PA^^ (#20) RECIPIENT
+
+^XTV(8992.1,D0,20,D1,0)= (#.01) RECIPIENT [1P] ^ (#.02) ALERT FIRST DISPLAYED
+     ==&gt;[2D] ^ (#.03) FIRST SELECTED ALERT [3D] ^ (#.04)
+     ==&gt;PROCESSED ALERT [4D] ^ (#.05) DELETED ON [5D] ^
+     ==&gt;(#.06) AUTO DELETED [6D] ^ (#.07) FORWARDED BY [7P]
+     ==&gt;^ (#.08) DATE/TIME FORWARDED [8D] ^ (#.09) DELETED
+     ==&gt;BY USER [9P] ^</PRE>          
+        </td>
+      </tr>
+    </table>	 
+	<P><strong>NOTE:</strong> A more user (developer) friendly API would be the
+	<A HREF="alertdat-xqalbutl.html"
+	   TITLE="ALERT^XQALBUTL API"
+	   CLASS="BODYLINK">ALERTDAT^XQALBUTL</A>: API, which returns the data in an array
+	with the field numbers and names as the subscripts and the internal and
+	external (if different) values as the value.</P> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/08/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/ahistory-xqalbutl.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

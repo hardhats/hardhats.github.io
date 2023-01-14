@@ -1,0 +1,2060 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style><!--
+	body 	{ font-family: arial, helv, helvetica, sans-serif;
+		font-size: 8pt ; }
+	table { font-size : 8pt }
+	th {
+ 	font-size : 10 pt;
+ 	font-weight : bold;
+	font-family : verdana }
+	body	{ background: #ffffff;
+	margin-left: 3%; margin-right: 2%;
+	}
+	-->
+ </style>
+
+</head>
+<body bgcolor="#ACC8E3">
+
+<a name="topofpage">&nbsp;</a>
+
+<table border=1 cellpadding=5 cellspacing=1 width="95%">
+
+  <tr>
+  	<th colspan="6" align="left">
+	<ul>
+	<li><a href="#GLOBAL">Global Utilities</a></li>
+	<li><a href="#SYSTEM">System Management Utilities</a></li>
+	<li><a href="#DATABASE">Database Utilities</a></li>
+	<li><a href="#NETWORK">Network Utilities</a></li>
+	<li><a href="#CONFIG">Configuration Utilities</a></li>
+	<li><a href="#MISC">Miscellaneous Utilities</a></li>
+	</ul></th>
+	
+  </tr>
+
+  <tr>
+    <th align="left" colspan="6" bgcolor="#ACC8E3"><b>ROUTINE:</b></th>
+  </tr>
+  <tr>
+    <td width="16%" height=60>Change every</td>
+    <td width="17%">^%RCE</td>
+    <td width="16%">^%RCHANGE</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, (Select 
+      Routines), Edit, Find</td>
+    <td width="16%">^%RCE</td>
+    <td width="16%" nowrap>^%RCHANGE</td>
+  </tr>
+  <tr>
+    <td width="16%" height=75>Compare</td>
+    <td width="17%">^%RCMP</td>
+    <td width="16%">^%RCMP</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, Right-Click 
+      on Routine, compare</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%RCMP</td>
+  </tr>
+  <tr>
+    <td width="16%" height=75>Compare<br>Across<br>Namespace</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%RCMP</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, Right-Click 
+      on Routine, compare</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Compare w/load files</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Compile</td>
+    <td width="17%">^%REPLACE<br>UPGR^%RCON</td>
+    <td width="16%">^%RCOMPIL</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, Right-Click 
+      on Routines, Advanced, Compile</td>
+    <td class=xl46>MUMPS,<br>ZLINK,<br>ZCOMPILE</td>
+    <td width="16%">^%RELOAD</td>
+  </tr>
+  <tr>
+    <td width="16%" height=75>Copy</td>
+    <td width="17%">^%RCOPY</td>
+    <td width="16%">^%RCOPY</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, Right-Click 
+      on a Routine, Copy</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%RCOPY</td>
+  </tr>
+  <tr>
+    <td width="16%">Delete</td>
+    <td width="17%">^%RPURGE</td>
+    <td width="16%">^%RDELETE,<br>^%RPURGE</td>
+    <td width="19%">Explorer, Local Databases or Namespaces</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%RDEL</td>
+  </tr>
+  <tr>
+    <td width="16%" height=52>Directory</td>
+    <td width="17%">^%RD, ^%RDX,<br>LIB^%RD</td>
+    <td width="16%">^%RD</td>
+    <td width="19%">Explorer, Local Databases or Namespaces</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%RD</td>
+  </tr>
+  <tr>
+    <td width="16%" height=45>Display</td>
+    <td width="17%">^%RS</td>
+    <td width="16%">^%RO</td>
+    <td width="19%">Cache Studio, File, Open, Select Routine</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%RPRT (Can display on monitor or other device)</td>
+  </tr>
+  <tr>
+    <td width="16%" height=30>Edit</td>
+    <td width="17%">^%EDT<br>^%TPU</td>
+    <td width="16%">X ^%</td>
+    <td width="19%">Cache Studio</td>
+    <td width="16%">ZEDIT or ZED<br>
+      ZED Routine</td>
+    <td width="16%">X ^%E</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>First line list</td>
+    <td width="17%">^%FL</td>
+    <td width="16%">^%RFIRST</td>
+    <td width="19%">Explorer, Local Database or Namespaces, Routines, 
+      First Line</td>
+    <td width="16%">^%FL</td>
+    <td width="16%">^%FL</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Map install</td>
+    <td width="17%">^RMINS</td>
+    <td width="16%">Not Applicable</td>
+    <td width="19%">Not Applicable</td>
+    <td width="16%">VMS $LINK</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Map show installed</td>
+    <td width="17%">MAPSET^RMSHO</td>
+    <td width="16%">Not Applicable</td>
+    <td width="19%">Not Applicable</td>
+    <td width="16%">OS type *.MAP text file</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=60>Precompile restore</td>
+    <td width="17%">^%PR</td>
+    <td width="16%">^%RIMF</td>
+    <td width="19%">Explorer, Local Database or Namespaces, Routines, 
+      Import</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Precompile save</td>
+    <td width="17%">^%PS</td>
+    <td width="16%">^%ROMF</td>
+    <td width="19%">Explorer, Local Database or Namespaces, Routines, 
+      Export</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Print</td>
+    <td width="17%">^%RS - send output to printer</td>
+    <td width="16%">^%RO - send output to printer</td>
+    <td width="19%">Cache Studio, File, Open (Select Routine), Print</td>
+    <td width="16%">ZPRINT or ZP</td>
+    <td width="16%">^%RPRT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Routine Load</td>
+    <td width="17%">^%RR</td>
+    <td width="16%">^%RI</td>
+    <td width="19%">Explorer, Local Database or Namespaces, Routines, 
+      Import</td>
+    <td width="16%">^%RI</td>
+    <td width="16%">%RR</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Routine Load Object Code</td>
+    <td width="17%">^%PR</td>
+    <td width="16%">^%RIMF</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%">Save</td>
+    <td width="17%">^%RS</td>
+    <td width="16%">^%RO,<br>^%ROMF,<br>^%ROOLD</td>
+    <td width="19%">Explorer, Local Database or Namespaces, 
+      Routines, Export</td>
+    <td width="16%">^%RO</td>
+    <td width="16%">^%RS</td>
+  </tr>
+  <tr> 
+    <td width="16%">Search</td>
+    <td width="17%">^%RSE</td>
+    <td width="16%">^%RFIND,<br><br>^%RFAND</td>
+    <td width=19%>Explorer, Local Databases or Namespaces, 
+      Right-Click on Routine, Find</td>
+    <td width="16%">^%RSE</td>
+    <td width="16%" nowrap>^%RSAND<br><br><br>^%RSE (OR)</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Select routines</td>
+    <td width="17%">^%RSEL</td>
+    <td width="16%">^%RSET</td>
+    <td width="19%">Explorer, Local Database or Namespaces, Routines, 
+      Select Routine(s)</td>
+    <td width="16%">^%RSEL</td>
+    <td width="16%">^%RSEL</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Size</td>
+    <td width="17%">^%RSIZE</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Explorer, Local Database or Namespaces, Routines, 
+      (Select Routine), Properties</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%RSIZE</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Syntax check</td>
+    <td width="17%">^%ERRCHK</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Cache Studio</td>
+    <td width="16%">ZCOMPILE with noobject qualifier</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Transfer</td>
+    <td width="17%">^%RXFER</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%TRANS</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Version control</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%RVERMAX</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Cache Routine Mapping <font color="red">(Routine 
+      Mapping in Cache is different from Routine Mapping in DSM)</font></td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Namespaces Tab, (Select Namespace), 
+      Routine Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" bgcolor="#FFFF80"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr>
+    <th align="left" colspan=6 height=17 bgcolor="#ACC8E3"><b><a name="GLOBAL">GLOBAL:</a></b></th>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Access</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^SWSET</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">GDE</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Copy</td>
+    <td width="17%">^%GC</td>
+    <td width="16%">^%GCOPY</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%GC</td>
+    <td width="16%">^%GCOPY</td>
+  </tr>
+  <tr>
+    <td width="16%" height=75>Delete</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Explorer, Local Database or Namespaces, Globals, 
+      Right-Click on Global, Delete</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%GDEL</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Define implicit global</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">ZGBLDIR</td>
+    <td width="16%">^TRANSLAT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=63>Directory</td>
+    <td width="17%">^%GD,<br>^%EGD,<br>LIB^%GD</td>
+    <td width="16%">^%GD,<br><br>^%GDISP</td>
+    <td width="19%">Explorer, Local Databases or Namespaces 
+      or Control Panel, Local Databases</td>
+    <td width="16%">^%GD</td>
+    <td width="16%">^%GD,<br><br>^%GDE</td>
+  </tr>
+  <tr>
+    <td width="16%" height=60>Display</td>
+    <td width="17%">^%G</td>
+    <td width="16%">^%G</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, Globals, 
+      Right-Click, Open</td>
+    <td width="16%">ZWRITE or ^%G</td>
+    <td width="16%">^%GL</td>
+  </tr>
+  <tr> 
+    <td width="16%">Edit</td>
+    <td width="17%">^%GEDIT,<br>^%GEDR,<br>^%GEDS</td>
+    <td width="16%">^%GED,<br>^%GCHANGE,<br>^%GCREATE</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, 
+      Globals, Right-Click, Open</td>
+    <td width="16%">^%GED</td>
+    <td width="16%">^%GEDIT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Journaling</td>
+    <td width="17%">SETJRN^%GLOMAN</td>
+    <td width="16%">^JOURNAL</td>
+    <td width="19%">Control Panel, Journaling</td>
+    <td width="16%">GDE utility <br>
+      or MUPIP SET</td>
+    <td width="16%">^JRNL</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Journaling of Individual Global</td>
+    <td width="17%">^%GLOMAN</td>
+    <td width="16%">^JOURNAL</td>
+    <td width="19%">Control Panel, Local Databases, (Select Database), 
+      Right-Click Global, Properties</td>
+    <td width="16%">GDE utility <br>
+      or MUPIP SET</td>
+    <td width="16%">^JRNL</td>
+  </tr>
+  <tr> 
+    <td width="16%">List</td>
+    <td width="17%">^%GD</td>
+    <td width="16%">^%GD,<br>^%GDISP</td>
+    <td width="19%">Explorer, Local Databases or Namespaces 
+      or Control Panel, Local Databases</td>
+    <td width="16%">^%G</td>
+    <td width="16%">^%GL</td>
+  </tr>
+  <tr> 
+    <td width="16%">Management</td>
+    <td width="17%">^%GLOMAN</td>
+    <td width="16%">^%GROWTH et al</td>
+    <td width="19%">Control Panel, Local Databases, (Select Namespace), 
+      Double-Click Global</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%GCH</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Protection</td>
+    <td width="17%">SETPRO^%GLOMAN</td>
+    <td width="16%">^GPROTDEF</td>
+    <td width="19%">Control Panel, Local Databases, (Select Namespace), 
+      Double-Click Global</td>
+    <td width="16%">GDE and native OS file security</td>
+    <td width="16%">^%GCH</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Replication</td>
+    <td width="17%">Done using translation table schema</td>
+    <td width="16%">Not Applicable</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping, (Select Global), Replication</td>
+    <td width="16%">MUPIP SET</td>
+    <td width="16%">^TRANSLAT</td>
+  </tr>
+  <tr> 
+    <td width="16%">Restore</td>
+    <td width="17%">^%GBR, ^%GTI</td>
+    <td width="16%">^%GI, ^%GIF,<br>^%GIGEN,<br>^%GIQ</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, 
+      Globals, Import</td>
+    <td width="16%">^%GI,<br>MUPIP RESTORE,<br>MUPIP LOAD</td>
+    <td width="16%">^%GR</td>
+  </tr>
+  <tr> 
+    <td width="16%">Save</td>
+    <td width="17%">^%GBS, ^%GTO</td>
+    <td width="16%">^%GO,^%GOF,<br>^%GOGEN,<br>^%GOQ</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, 
+      Globals, Export</td>
+    <td width="16%">^%GO,<br>MUPIP BACKUP,<br>MUPIP SAVE</td>
+    <td width="16%">^%GS</td>
+  </tr>
+  <tr> 
+    <td width="16%">Select global set</td>
+    <td width="17%">^%GSEL</td>
+    <td width="16%">^%GSET</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%GSEL</td>
+    <td width="16%">^%GSEL</td>
+  </tr>
+  <tr>
+    <td width="16%" height=45>Stats monitor</td>
+    <td width="17%">MONITOR<br>^GLSSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">System Viewer</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^RTHIST offers some global monitoring facilities</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Stats record</td>
+    <td width="17%">RECORD<br>^GLSSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">System Viewer</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">as above</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Stats replay</td>
+    <td width="17%">REPLAY<br>^GLSSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">System Viewer</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%">Search &amp; Change</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, 
+      Globals, Right-Click, Properties, Calculate</td>
+    <td width="16%">^%GCE (change),<br><br>^%GSE (search only)</td>
+    <td width="16%">^%GCHANGE (change),<br><br>^%GSE (search only)</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Size</td>
+    <td width="17%">^%GE</td>
+    <td width="16%">^%Integrit</td>
+    <td width="19%">Explorer, Local Databases or Namespaces, Globals, 
+      Right-Click, Find</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%GE</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Translation tables</td>
+    <td width="17%">^TRANTAB,<br> %TRAN, SHOW^%TRAN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">GDE&gt; SHOW/MAP,<br><br>
+      GDE&gt; ADD/NAME globals /REGION=<br>regionname</td>
+    <td width="16%">^TRANSLAT</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" bgcolor="#FFFF80"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr>
+    <th align="left" colspan=6 height=17 bgcolor="#ACC8E3"><b><a name="SYSTEM">SYSTEM<br>MANAGEMENT:</a></b></th>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Access Control</td>
+    <td width="17%">^ACL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^UCIMGR</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Close devices</td>
+    <td width="17%">IO^%CLOSE</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Directory defaults</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Device control map build</td>
+    <td width="17%">BUILD^IOCBLD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Device control map edit</td>
+    <td width="17%">EDIT^IOCTL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Device show open</td>
+    <td width="17%">IO^%STAT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%DEVUSE</td>
+  </tr>
+  <tr> 
+    <td width="16%">Display Errors</td>
+    <td width="17%">^%ER</td>
+    <td width="16%">^SYSLOG,<br><br>^%ER</td>
+    <td width="19%">Control Panel, Logs, Application Errors</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%ER (Display),<br>^%ERRCODE (Error Message),<br>^%ET (Traps %ZERROR and local symbol table)</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Force exit</td>
+    <td width="17%">^FORCEX</td>
+    <td width="16%">^RESJOB</td>
+    <td width="19%">Control Panel, Processes, Terminate</td>
+    <td width="16%">MUPIP STOP pid</td>
+    <td width="16%">^KILLJOB</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Lat support</td>
+    <td width="17%">$ MC LATCP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^LAT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=45>License information</td>
+    <td width="17%">$ SHOW LICENSE DSM-ALPHA<br> /USAGE</td>
+    <td width="16%">display^LMFCLI</td>
+    <td width="19%">Configuration Manager, Advanced, License</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=30>Lock Table Display</td>
+    <td width="17%">^LOCKTAB</td>
+    <td width="16%">^LOCKTAB</td>
+    <td width="19%">Control Panel, Lock Table</td>
+    <td width="16%">LKE SHOW</td>
+    <td width="16%">^LOCKTAB</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Clear Locks</td>
+    <td width="17%">^FORCEX process with the lock</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Control Panel, Lock Table</td>
+    <td width="16%">LKE CLEAR</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Login control</td>
+    <td width="17%">^LOGIN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%">Performance test</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^BENCH,<br>^BENCHGLO</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Performance monitor</td>
+    <td width="17%">^PMF</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">System Viewer</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=30>Job Status Display</td>
+    <td width="16%">^%JOB</td>
+    <td width="16%">^JOBEXAM</td>
+    <td width="19%">Control Panel, Processes, Details</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^JOBEXAM</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Lock mgr monitor</td>
+    <td width="17%">MONITOR<br>^LKMSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Lock mgr record</td>
+    <td width="17%">RECORD<br>^LKMSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Lock mgr replay</td>
+    <td width="17%">REPLAY<br>^LKMSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Login disable</td>
+    <td width="17%">DISABLE^LOGIN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Login enable</td>
+    <td width="17%">ENABLE^LOGIN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Memory requirements</td>
+    <td width="17%">^MEMREQ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Memory usage</td>
+    <td width="17%">^MEMUSE</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Advanced, Memory</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=30>Message Broadcast</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^BROADCAS</td>
+    <td width="19%">Control Panel, Processes, Broadcast</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^BCS</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Process ctrl priority</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%PRIO</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%HL</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>System Shutdown</td>
+    <td width="17%">^SHUTDWN</td>
+    <td width="16%">^SHUTDOWN</td>
+    <td width="19%">Cache VMS is shutdown from the VMS Command Line</td>
+    <td width="16%">GTMSTOP script</td>
+    <td width="16%">^SSD</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>System Startup</td>
+    <td width="17%">^STU</td>
+    <td width="16%">^STU</td>
+    <td width="19%">Cache VMS is started from the VMS Command Line</td>
+    <td width="16%">GTMSTART script</td>
+    <td width="16%">^STU</td>
+  </tr>
+  <tr> 
+    <td width="16%">System Status</td>
+    <td width="17%">^%SY<br>CLUSTER^%SY<br>CLUSUM^%SY</td>
+    <td width="16%">^%SS</td>
+    <td width="19%">Control Panel, Processes</td>
+    <td width="16%">^%ST</td>
+    <td width="16%">^%SS,<br>^%SI (System info)</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Terminal Status</td>
+    <td width="17%">TERM^%STAT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Terminal Free</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^TTYFREE</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^DEVRESET</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Tied rtn add port</td>
+    <td width="17%">ADD^TTPORT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Tied rtn del port</td>
+    <td width="17%">DELETE^TTPORT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Tied rtn tbl modify</td>
+    <td width="17%">MODIFY^TTROU</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^UCIMGR</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Tied rtn show prots</td>
+    <td width="17%">SHOW^TTPORT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Tied rtn show rtns</td>
+    <td width="17%">SHOW^TTROU</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" bgcolor="#FFFF80"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr>
+    <th align="left" height=17 colspan=6 bgcolor="#ACC8E3"><b><a name="DATABASE">DATABASE</a></b></th>
+  </tr>
+  <tr>
+    <td width="16%" height=30>Backup a dataset</td>
+    <td width="17%">BCKUP^BACKUP</td>
+    <td width="16%">^BACKUP</td>
+    <td width="19%">Control Panel, Backup</td>
+    <td width="16%">MUPIP BACKUP</td>
+    <td width="16%">^MSMDR Backup a Volume Group</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Backup update rev</td>
+    <td width="17%">REV^BACKUP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>BIJ examine</td>
+    <td width="17%">^BIJEXAM</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Superseded by WIJ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>BIJ force no recovery</td>
+    <td width="17%">^BIJFORC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Superseded by WIJ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>BIJ init/create</td>
+    <td width="17%">^BIJINIT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Superseded by WIJ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>BIJ no AIJ recovery</td>
+    <td width="17%">NOAIJ^BIJFORC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Superseded by WIJ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>BIJ no auto recovery</td>
+    <td width="17%">NOBIJ^BIJFORC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Superseded by WIJ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Compact dset in place</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Control Panel, Local Databases, (Select Dataset), 
+      Database Compact</td>
+    <td width="16%">MUPIP REORG</td>
+    <td width="16%">^GBMAINT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=30>Compress/copy dataset</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Not Applicable</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^GBMAINT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=43>Create a dataset</td>
+    <td width="17%">MODIFY<br>^CONDBS</td>
+    <td width="16%">^MSU</td>
+    <td width="19%">Configuration Mgr, Wizards, Create a dataset</td>
+    <td width="16%">MUPIP CREATE</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=45>Delete a dataset</td>
+    <td width="17%">DELETE<br>^CONDBS</td>
+    <td width="16%">^MSU</td>
+    <td width="19%">Configuration Manager, Databases, Delete</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Dejournal</td>
+    <td width="17%">^DEJRNL</td>
+    <td width="16%">^JRNRESTO</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP SET /JOURNAL</td>
+    <td width="16%">^JRNL</td>
+  </tr>
+  <tr> 
+    <td width="16%">Dejournal dsm11 tape</td>
+    <td width="17%">DSM11^DEJRNL</td>
+    <td width="16%">Not Applicable</td>
+    <td width="19%">Not Applicable</td>
+    <td width="16%">Not Applicable</td>
+    <td width="16%">Not Applicable</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Dejournal log file</td>
+    <td width="17%">LOG^DEJRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Dejournal select file</td>
+    <td width="17%">FILE^DEJRNL</td>
+    <td width="16%">^JRNRESTO</td>
+    <td width="19%">Not Applicable</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Dismount M database</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^DISMOUNT</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Display dataset status</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^MSU</td>
+    <td width="19%">Control Panel, Local Database, Right-Click Dataset, 
+      Properties</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Disp dataset summary</td>
+    <td width="17%">DISPLAY<br>^CONDBS</td>
+    <td width="16%">^MSU</td>
+    <td width="19%">Control Panel, Local Database, Right-Click Dataset, 
+      Properties</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Disk usage</td>
+    <td width="17%">^DBT</td>
+    <td width="16%">^%FREECNT</td>
+    <td width="19%">Control Panel, Local Databases, Info on Right Panel</td>
+    <td width="16%">^%FREECNT</td>
+    <td width="16%">^%SP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Extend dataset</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP EXTEND</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran add entry</td>
+    <td width="17%">ADD^CONTR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">GDE&gt; ADD/NAME M* /REGION=<br>MARK</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran del entry</td>
+    <td width="17%">DELETE^CONTR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran edit entry</td>
+    <td width="17%">EDIT^CONTR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran insert entry</td>
+    <td width="17%">INSERT^CONTR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran schema opts</td>
+    <td width="17%">SCHEMA<br>^CONTR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran schema add</td>
+    <td width="17%">SADD^CONTR1</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran schema del.</td>
+    <td width="17%">SDELETE<br>^CONTR1</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran schema edit</td>
+    <td width="17%">SEDIT^CONTR1</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran schema show</td>
+    <td width="17%">SSHOW^CONTR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>Glo tran show table</td>
+    <td width="17%">SHOW^CONTR</td>
+    <td width="16%">^%GXLINFO</td>
+    <td width="19%">Configuration Mgr, Namespaces, (Select Namespace), 
+      Global Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Journal</td>
+    <td width="17%">^JOURNAL</td>
+    <td width="16%">^JOURNAL</td>
+    <td width="19%">Control Panel, Journaling</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^JRNL</td>
+  </tr>
+  <tr> 
+    <td width="16%">Journal file add</td>
+    <td width="17%">ADDFIL^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP SET</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal file close</td>
+    <td width="17%">CLOSEFI^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP SET</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Journal file create</td>
+    <td width="17%">NEWLOG^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP CREATE and MUPIP SET</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Journal file display label</td>
+    <td width="17%">LABEL^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Journal file display name</td>
+    <td width="17%">DISPLAY^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Control Panel, Journaling</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal file init</td>
+    <td width="17%">^JRNINIT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP SET /JOURNAL</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal file open</td>
+    <td width="17%">OPENFIL^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal global set</td>
+    <td width="17%">SETJRN<br>^%GLOMAN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Journal list</td>
+    <td width="17%">^JRNLIS</td>
+    <td width="16%">^JRNDUMP</td>
+    <td width="19%">Control Panel, Journaling, Open</td>
+    <td width="16%">DSE (Data Structure Editor) to show database file 
+      headers gives journal file names</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal op disable</td>
+    <td width="17%">PAUSE^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP SET /JOURNAL</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal op dsable trx</td>
+    <td width="17%">TPOFF^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal op enable</td>
+    <td width="17%">RESUME^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal op enable trx</td>
+    <td width="17%">TPON^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Journal op status</td>
+    <td width="17%">STATUS^JRNL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>List datasets</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Databases</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=35>Modify dataset params</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Databases, Change</td>
+    <td width="16%">DSE &amp; MUPIP utilities</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Mount M database</td>
+    <td width="17%">^MOUNT</td>
+    <td width="16%">^MOUNT</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Repair dataset funcs</td>
+    <td width="17%">^FIX</td>
+    <td width="16%">^MECH</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^DBFIX</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Restore a dataset</td>
+    <td width="17%">REST^BACKUP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP RESTORE</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%">Verify dataset integrity</td>
+    <td width="17%">^FASTIC, ^IC</td>
+    <td width="16%">^%Integrit,<br>^CHECKMAP,<br>^CHECKPNT</td>
+    <td width="19%">Control Panel, Local Databases, Database, 
+      Integrity Check</td>
+    <td width="16%">MUPIP INTEG</td>
+    <td width="16%">^VALIDATE,<br><br>^VERIFY</td>
+  </tr>
+  <tr> 
+    <td width="16%">View pages</td>
+    <td width="17%">^BLDMP</td>
+    <td width="16%">^BLKDIST, ^BLDUMP</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">DSE</td>
+    <td width="16%">^BLKDMP</td>
+  </tr>
+  <tr> 
+    <td width="16%">View dataset params</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Control Panel, Local Databases</td>
+    <td width="16%">DSE</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Vol set access</td>
+    <td width="17%">^VOLINH</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">MUPIP FREEZE</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Vol set upgrade</td>
+    <td width="17%">^UPGCOM</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" bgcolor="#FFFF80"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr>
+    <th align="left" colspan=6 height=17 bgcolor="#ACC8E3"><b><a name="NETWORK">NETWORK:</a></b></th>
+  </tr>
+  <tr>
+    <td width="16%" height=90>DDP circuit status</td>
+    <td width="17%">STA^DDPCIR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP disable circuit</td>
+    <td width="17%">DISAB^DDPCIR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP enable circuit</td>
+    <td width="17%">ENAB^DDPCIR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP reset counters</td>
+    <td width="17%">RESET^DDPCIR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr>
+    <td width="16%" height=90>DDP show counters</td>
+    <td width="17%">COUNT^DDPCIR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP configuration</td>
+    <td width="17%">^CONDDP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP control utility</td>
+    <td width="17%">^DDPUTL</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr>
+    <td width="16%" height=90>DDP link status</td>
+    <td width="17%">^DDPLNK</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP request control</td>
+    <td width="17%">^DDPREQ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP request enable</td>
+    <td width="17%">ENABLE<br>^DDPREQ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP request status</td>
+    <td width="17%">STATUS<br>^DDPREQ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP security add pw</td>
+    <td width="17%">ADD^DDPSEC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP security del pw</td>
+    <td width="17%">DELETE<br>^DDPSEC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP security list db</td>
+    <td width="17%">LIST^DDPSEC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP security mod pw</td>
+    <td width="17%">MODIFY<br>^DDPSEC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP shutdown</td>
+    <td width="17%">STOP^DDPSEC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr>
+    <td width="16%" height=90>DDP startup</td>
+    <td width="17%">START^DDPSEC</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP stats display</td>
+    <td width="17%">MONITOR<br>^DDPSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP stats record</td>
+    <td width="17%">RECORD<br>^DDPSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=90>DDP stats replay</td>
+    <td width="17%">REPLAY<br>^DDPSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Open M can communicate with other systems via DDP 
+      but DDP is not the primary Networking Protocol</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">DDP options within ^SYSGEN and ^DDP</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" bgcolor="#FFFF80"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr> 
+    <th align="left" height=17 colspan=6 bgcolor="#ACC8E3"><b><a name="CONFIG">CONFIGURATION MANAGEMENT</a></b></th>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>AIJ</td>
+    <td width="17%">^CONAIJ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Com line qualifiers</td>
+    <td width="17%">^CONCLQ</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Copy</td>
+    <td width="17%">COPY^CONFIG</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Create</td>
+    <td width="17%">^CONFIG</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Advanced Tab, Files</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^SYSGEN</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Database set modify</td>
+    <td width="17%">^CONDBS</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Databases, Change</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^SYSGEN</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Default config</td>
+    <td width="17%">^CONDEF</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Advanced Tab, Files</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^SYSGEN</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Delete</td>
+    <td width="17%">DELETE^CONFIG</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Advanced Tab, Files</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^SYSGEN</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>DDP options</td>
+    <td width="17%">^CONDDP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Advanced, Network, DDP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^SYSGEN</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Display</td>
+    <td width="17%">DISPLAY<br>^CONFIG</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Select Appropriate Tab</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^SYSGEN</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Global char's</td>
+    <td width="17%">^CONGLO</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Global trx</td>
+    <td width="17%">^CONTR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Horolog offset</td>
+    <td width="17%">^CONHR</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Mapped routine sets</td>
+    <td width="17%">^CONMAP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=45>Modify</td>
+    <td width="17%">MODIFY<br>^CONFIG</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Advanced or Select Appropriate 
+      Tab</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Option file convert</td>
+    <td width="17%">^OPTCON</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Option file create</td>
+    <td width="17%">^OPTBLD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>System options</td>
+    <td width="17%">^CONOPT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Trans Proc edit</td>
+    <td width="17%">^CONTP</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Trans Proc monitor</td>
+    <td width="17%">MONITOR<br>^TPSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Trans Proc record</td>
+    <td width="17%">RECORD^TPSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Trans Proc replay</td>
+    <td width="17%">REPLAY^TPSTA</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>UCI/Namespace add</td>
+    <td width="17%">^UCIADD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Wizards or Configuration Manager, 
+      Namespaces, Add</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^UCIMGR</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>UCI change library</td>
+    <td width="17%">LIB^UCIEDIT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Namespaces, Default Databases/Global 
+      Mapping</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^UCIMGR</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>UCI edit name</td>
+    <td width="17%">^UCIEDIT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Namespaces, Right-Click, Change</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^UCIMGR</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>UCI show</td>
+    <td width="17%">SHOW^UCIADD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Namespaces</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^UCIMGR</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=60>UCI growth</td>
+    <td width="17%">^UCIGAM</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Control Panel, Local Databases, (Select Database), 
+      Right-Click on global, Properties</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^UCIMGR</td>
+  </tr>
+ <tr> 
+    <td width="16%" height=45>Vol set add</td>
+    <td width="17%">ADD^VOLMAN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Control Panel, Local Databases, Right-Click on database, 
+      extent</td>
+    <td width="16%">GDE&gt; ADD /Name<br>
+      GDE&gt; ADD /Region<br>
+      GDE&gt; ADD /Segment</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Vol set create</td>
+    <td width="17%">CREATE<br>^VOLMAN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Wizards or Configuration Manager, 
+      Databases, Add</td>
+    <td width="16%">GDE&gt; ADD /Name<br>
+      GDE&gt; ADD /Region<br>
+      GDE&gt; ADD /Segment</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=75>Vol set extend</td>
+    <td width="17%">EXTEND<br>^VOLMAN</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Configuration Manager, Wizards or Configuration Manager, 
+      Databases, Add</td>
+    <td width="16%">GDE&gt; <br>
+      EXTEND region /Blocks=</td>
+    <td width="16%">^DBMAINT</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Vol set max globals</td>
+    <td width="17%">MAXGLO<br>^VOLMAN2</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Vol set str length</td>
+    <td width="17%">EXPSTR<br>^VOLMAN2</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" bgcolor="#FFFF80"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+  <tr> 
+    <th align="left" colspan=6 bgcolor="#ACC8E3"><b><a name="MISC">MISCELLANEOUS</a></b></th>
+  </tr>
+  <tr> 
+    <td width="16%">Broadcast Message</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^BROADCAS</td>
+    <td width="19%">Control Panel, Processes, Broadcast</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^BCS</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>CMS</td>
+    <td width="17%">^%CMS</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%">Convert<br>date &amp; time</td>
+    <td width="17%">^%H</td>
+    <td width="16%">^%DATE,<br>^%DO,<br>^%TI, ^%TO, <br>^%TIME</td>
+    <td width="19%">&nbsp;</td>
+	<td width="16%">^%DATE, ^%H<br>^%TI, ^%TO</td>
+    <td width="16%">^%D, ^%DI,<br>^%DO, ^%T,<br>^%TI, ^%TO,</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Convert<br>decimal to hex</td>
+    <td width="17%">^%DH</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%DH</td>
+    <td width="16%">^%DH</td>
+  </tr>
+  <tr>
+    <td width="16%" height=17>Convert<br>decimal to oct</td>
+    <td width="17%">^%DO</td>
+    <td width="16%">^%DOCTAL</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%DO</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Convert<br>hex to decimal</td>
+    <td width="17%">^%HD</td>
+    <td width="16%">^%XD</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%HD</td>
+    <td width="16%">^%HD</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Convert hex to octal</td>
+    <td width="17%">^%HO</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%HO</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Convert octal to decimal</td>
+    <td width="17%">^%OD</td>
+    <td width="16%">^%OD</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%OD</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Convert octal to hex</td>
+    <td width="17%">^%OH</td>
+    <td width="16%">^%DX</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%OH</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Date</td>
+    <td width="17%">^%D</td>
+    <td width="16%">^%D</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%D</td>
+    <td width="16%">^%D</td>
+  </tr>
+  <tr>
+    <td width="16%">Debug call stack</td>
+    <td width="17%">^%STACK</td>
+    <td width="16%">^%STACK</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">$STACK(),<br>ZSHOW &quot;S&quot;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Debug routine trace</td>
+    <td width="17%">^%TRACE</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%">Debug info</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%ER, ^%ERN,<br>^%ET, ^%ETN</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%DEBUG</td>
+  </tr>
+  <tr> 
+    <td width="16%">Directory Change</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%CD<br>ZN &quot;nmsp&quot;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">Set $ZGLBDIR,<br>$ZROUTINES,<br>$ZDIRECTORY</td>
+    <td width="16%">^%LOGON</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=45>Directory Disp current</td>
+    <td width="17%">W $ZU(0)</td>
+    <td width="16%">^%DIR</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">Write $ZGLBDIR,<br>$ZROUTINES,<br>$ZDIRECTORY</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Directory Chnge to sysmgr</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%MGDIR</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>ECALL show all pkgs</td>
+    <td width="17%">ALL^%CD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">ZSHOW &quot;C&quot;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>ECALL show lib rtns</td>
+    <td width="17%">LIB^%CD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">ZSHOW &quot;C&quot;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>ECALL show packages</td>
+    <td width="17%">PACKAGE^%CD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>ECALL show user rtns</td>
+    <td width="17%">USER^%CD</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Help</td>
+    <td width="17%">HELP^%INF</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">Utility help is available through ^%HELP</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Help list</td>
+    <td width="17%">^%HELPLIS</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>I/O devices</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%IS</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^SYSGEN</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>I/O define NLS tables</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^NLS</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>I/O define mnemonics</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^SYSMGR</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%">I/O transmit</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%TRANS,<br>^%RECEIVE</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>I/O print</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%SPOOL</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Menu list</td>
+    <td width="17%">^%MENULIS</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Namespace move</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%CD<br> ZN &quot;nmsp&quot;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Operating System Calls</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%OS</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Peek</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^PEEK</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Programmer mode</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%PMODE</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">mumps /run, BREAK</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Routine cvt DSM&gt;RMS</td>
+    <td width="17%">RMS^%RCON</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Not Applicable</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Routine cvt RMS&gt;DSM</td>
+    <td width="17%">DSM^%RCON</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">Not Applicable</td>
+    <td width="16%">MUPIP CONVERT (VMS only)</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%">Spawn</td>
+    <td width="17%">^%SPAWN</td>
+    <td width="16%">^%CLI</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">ZSYSTEM</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Spooling</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%SPOOL</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">JOB</td>
+    <td width="16%">^SPL</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Square root</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%SQROOT</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%SQROOT</td>
+    <td width="16%">^%SQRT</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>System variables</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">^%ST</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Time</td>
+    <td width="17%">^%T</td>
+    <td width="16%">^%T, ^%TIME</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">^%T</td>
+    <td width="16%">^%T</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Undefined array response</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">VIEW &quot;[NO]UNDEF&quot;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>Version information</td>
+    <td width="17%">W $ZV</td>
+    <td width="16%">^VERSION,<br>W $ZV</td>
+    <td width="19%">Configuration Manager, General</td>
+    <td width="16%">$ZVERSION</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>Video Management</td>
+    <td width="17%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">^%VIDEO</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>VMS device info</td>
+    <td width="17%">^%GETDVI</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">$ZGETDVI() (VMS only)</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>VMS file info</td>
+    <td width="17%">^%GETFILE</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">$ZFILE() (VMS only)</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>VMS general info</td>
+    <td width="17%">VMS^%STAT</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=30>VMS message info</td>
+    <td width="17%">^%GETMSG</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">$ZMESSAGE() (VMS only)</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="16%" height=17>VMS process info</td>
+    <td width="17%">^%GETJPI</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">$ZGETJPI() (VMS only)</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%" height=18 class=xl37>VMS system info</td>
+    <td width="17%">^%GETSYI</td>
+    <td width="16%">&nbsp;</td>
+    <td width="19%">&nbsp;</td>
+    <td width="16%">$ZGETSYI() (VMS only)</td>
+    <td width="16%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6" align="right" bgcolor="#FFFF80"><a href="#topofpage">Back to the Top</a></td>
+  </tr>
+</table>
+
+</body>
+</html>

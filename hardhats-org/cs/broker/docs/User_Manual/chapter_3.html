@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>RPC Broker V. 1.1 Systems Manual: Chapter 3 - Troubleshooting</TITLE></HEAD>
+<BODY>
+<P><FONT FACE="Arial,Helvetica" SIZE="5">Troubleshooting</FONT></P>
+<P><FONT SIZE="3" FACE="arial,helv"><B>Topics</B></FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#rpctest">Test the Broker Using
+the RPC Broker Diagnostic Program</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#network">Verify and Test the
+Network Connection</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#signon_delays">Signon Delays</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#customer_support">Customer
+Support</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#feedback">Give Us Your
+Feedback</A></FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="rpctest">Test the Broker
+Using the RPC Broker Diagnostic Program</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">This version of the Broker includes a new
+diagnostic tool for the client workstation. This tool can be used to verify and
+test the Broker client/server connection and signon process. This program (i.e.,
+RPCTEST.EXE) also displays specific information about the client workstation
+that can be useful to IRM personnel when trying to determine and/or correct any
+problems with or to test the Broker.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">It displays the following information:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Default workstation information that
+includes the Name and IP Address</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Local connection information that
+includes the Name, Client IP, and Current Socket</FONT></LI></UL>
+<P><B></B></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+user information that includes the Name and Last SignOn Date/Time</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Remote connection information that
+includes the Server, Port, IP Address, and Operating System Version information</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">A color coded Link State indicator that
+shows the status of your connection (i.e., red = no link/connection, yellow =
+attempting link/connection, and green = successful link/connection)</FONT></LI></UL>
+<P><FONT SIZE="2" FACE="arial,helv">When you run the diagnostic program (i.e.,
+RPCTEST.EXE), the following application window will be displayed:</FONT></P>
+<P><BR></P>
+<CENTER>
+<P><IMG
+SRC="rpctest.gif" ALT="RPCTEST Program Dialog Box" WIDTH="537" HEIGHT="349"></P></CENTER>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">You should verify that the connection from
+the client workstation to the server is functioning correctly. For example:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Try logging on to the server by pressing
+the &quot;Log On&quot; button, you will be presented with the signon window. The
+Link State indicator will change from red to yellow to green as you progress
+through the connection process.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Test various connections by changing the
+server and port information under the &quot;Remote Connection Info&quot; block.
+To verify the connection process is working properly, try logging on to known
+servers and ports with Listeners running.</FONT></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">You can also use this tool to resolve a
+server address without having to log on to the server. Type in a server name in
+the &quot;Server&quot; box located in the Remote Connection section of the
+dialog box and press the enter key. If the server can be found, the IP address
+will be displayed in the &quot;IP Addr&quot; box in that same section.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">If you encounter an error while testing
+the Broker, make sure you check the following:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">Is the Broker Listener running on the
+specified port? If not, start the Broker Listener on the specified port.</FONT>
+<BR><BR>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For more information on starting the
+Broker Listener, please refer to the &quot;<A
+HREF="chapter_1.html#listeners_ports">Broker Listeners and Ports</A>&quot;
+topic.</I></FONT></P></TD></TR></TABLE></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Have you installed all current Kernel,
+Kernel Toolkit, and VA FileMan patches? If not, you must install all required
+patches (see the <I><A HREF="../xwb1_1ig.pdf">RPC Broker V. 1.1 Installation
+Guide</A></I>).</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Did you change the IP address for
+BROKERSERVER in the <A HREF="chapter_1.html#hosts_file">HOSTS file</A> in this
+session? If the IP address and server name are not resolvable, you need to
+correct the entry.</FONT>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>Your site can use the
+<A HREF="chapter_1.html#hosts_file">HOSTS file</A> or DNS to resolve IP
+addresses and server names. If the HOSTS file is not supported in your LAN, then
+you will need to work with the DNS database and see if the value returned by the
+DNS query really identifies the machine where the listener is running.</I></FONT></P></TD></TR></TABLE><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Is the IP address resolvable for the
+BROKERSERVER listed under the TCP/IP Server? If not, edit the
+<A HREF="chapter_1.html#hosts_file">HOSTS file</A> in your Windows directory
+and correct the IP address for the BROKERSERVER or resolve the IP address with
+DNS.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Does the TCP/IP address (used in the
+<A HREF="chapter_1.html#hosts_file">HOSTS file</A>) correspond to the IP
+address that is owned by the node used to start up the Broker Listener? If you
+have several nodes that can service your Test/Production account, you must make
+sure that the one used to start up the Listener is the one being referenced in
+the HOSTS file.</FONT></LI></UL>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="network">Verify and Test the
+Network Connection</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">To detect and avoid network problems, do
+the following:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv">First, make sure you actually have TCP/IP
+running correctly on your workstation.</FONT>
+<P><FONT SIZE="2" FACE="arial,helv">At the DOS prompt type <A NAME="PING">PING</A>
+nnn.nnn.nnn.nnn to the server host to which you are trying to connect (where
+nnn.nnn.nnn.nnn equals the IP address of the server). For example:</FONT></P>
+<P><BR></P>
+<PRE>    C:\&gt;<B>PING 127.0.0.1</B></PRE>
+<P><FONT SIZE="2" FACE="arial,helv">Alternatively, you can PING the same
+server name you are trying to connect to or resolve (e.g., BROKERSERVER). For
+example:</FONT></P>
+<P><BR></P>
+<PRE>    C:\&gt;<B>PING BROKERSERVER</B></PRE><BR><BR>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>&quot;PINGing&quot; is a way to test
+connectivity. PINGing sends an Internet Control Message Protocol (ICMP) packet
+to the server in question and requests a response. It verifies that the server
+is running and the network is properly configured.</I></FONT></P></TD></TR></TABLE><BR><BR>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">If the host is unreachable, there is a
+network problem and you should consult with your network administrator.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">If you get a time-out, it may be your
+network configuration on the client workstation, proceed to Step 2.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">If the server is reachable, proceed to
+Step 4.</FONT></LI></UL><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Check the properties of the
+<A NAME="WINSOCK.DLL">WINSOCK.DLL</A> on the client workstation and make sure
+it's the correct version. Install the latest Service Pack.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Make sure that the files on the client
+are in the correct directories. In Windows 95, the WINSOCK.DLL expects the
+<A HREF="chapter_1.html#hosts_file">HOSTS file</A> to be located in the WINDOWS
+root directory. You should only have one copy each of the WINSOCK.DLL and the
+HOSTS file on the client. (However, there may be a second copy that WIN95 keeps
+in the WINDOWS/SYSBCKUP directory). If Windows 95 detects that some of its core
+files have been overwritten with older versions, supposedly it will
+automatically update files on reboot.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Make sure that all of the client
+workstation TCP/IP settings are correct in the network properties. Typo's, etc.
+can be a real problem, as can gateways, DNS servers, etc. Try removing items in
+your WINS configuration/DNS configuration, etc.</FONT></LI></OL>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For more information on
+telecommunications support, please visit the Telecommunications Support Office
+Home Page at the following address:<BR><BR><A
+HREF="http://vaww.va.gov/tso/default.htm"><FONT FACE="Century Schoolbook">http://vaww.va.gov/tso/default.htm</FONT></A></I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="signon_delays">Signon Delays</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Users signing on to <B>V</B><I><FONT
+SIZE="1">IST</FONT></I><B>A</B> on a client workstation with the Broker Client
+Agent running should <I>not</I> experience any signon delays. </FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">In order to provide users with the
+capability of <A HREF="chapter_1.html#single_signon">single signon</A> in both
+a GUI and roll-and-scroll Telnet session, the Kernel signon process was
+modified.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The Kernel signon process now tries to
+contact the <A HREF="chapter_1.html#client_agent">RPC Broker V. 1.1 Client
+Agent</A> on the client workstation (i.e., prior to and following the Access/<A
+HREF="chapter_2.html#change_verify_code">Verify code</A> prompts) to allow
+single signon to take place. A three-second (or less) delay is built into this
+process while attempting to connect to the Client Agent and allow for any
+possible
+<A HREF="#network">network</A> delays. </FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">If you wish to eliminate the three second
+(or less) signon delay in a GUI/Telnet session (i.e., <I>not</I> associated
+with <A HREF="#network">network</A> delays), do either of the following:</FONT></P>
+<OL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A
+HREF="chapter_1.html#enabling_single_signon">Disable auto signon</A> (a.k.a.
+single signon) for <I>all</I> users by setting the DEFAULT AUTO SIGN-ON field
+in the Kernel System Parameters file to &quot;Disabled'&quot;</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Install and run the Broker Client Agent
+on <I>all</I> client workstations, if auto signon is enabled on your system.</FONT></LI></OL>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For more information on the DEFAULT
+AUTO SIGN-ON field, please refer to the &quot;<A
+HREF="chapter_1.html#single_signon">Integrated Single Signon for Multiple User
+Sessions</A>&quot; topic.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="customer_support">Customer
+Support</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The VA's <B>V</B><I><FONT
+FACE="Century Schoolbook" SIZE="2">IST</FONT></I><B><FONT
+FACE="Century Schoolbook">A</FONT></B> Software Development division determined
+that Borland's Delphi for the Microsoft Windows environment will be the
+supported platform for client/server applications. The VA will develop
+components in Delphi which serve to activate the messaging to the server as part
+of the RPC Broker. The VA intends to support only this method of client/server
+messaging.</FONT></P>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="feedback">Give Us Your
+Feedback</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Alternative methods for providing feedback
+to the RPC Broker Development Team include the following:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">E-mail your messages to the following
+FORUM mail group:<BR><BR><A
+HREF="mailto:RPC BROKER DEVELOPMENT TEAM@forum.va.gov">G.RPC BROKER DEVELOPMENT
+TEAM @FORUM.VA.GOV</A><BR><BR>This is our preferred method of contact. Using
+FORUM facilitates user interaction and information exchange in problem solving.
+Further, it enables us to avoid duplicating our efforts.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Fax your requests to the CIO Field Office
+in San Francisco, Attention: RPC Broker Development Team at the following
+telephone number:<BR><BR>(415) 744-7530</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Mail your requests to the following
+address:</FONT><BR><BR>
+<PRE>Department of Veterans Affairs
+CIO Field Office
+Attention: RPC Broker Development Team
+301 Howard St., Suite 600
+San Francisco, CA  94105-2252</PRE></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">The RPC Broker Development Team
+appreciates and encourages all feedback regarding the Broker and its use. Please
+include any problems encountered or enhancements you would like incorporated
+into the Broker software and documentation. Although we can't guarantee their
+implementation, the RPC Broker Development Team will consider your suggestions
+for future versions of the Broker.</FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P>	<FONT SIZE="2" FACE="arial,helv"><I>For examples of system manager or
+development-specific frequently asked questions (FAQs) about the RPC Broker,
+please refer to the following web sites:<BR><BR><A HREF="../Broker_FAQ.html">System
+Manager FAQs</A><BR><BR><A HREF="../Broker_Dev_FAQ.html">Developer-specific
+FAQs</A></I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR></BODY></HTML>

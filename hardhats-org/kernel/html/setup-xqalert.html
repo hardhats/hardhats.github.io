@@ -1,0 +1,513 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: SETUP^XQALERT">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,SETUP^XQALERT,SETUP,XQALERT,alerts,supported">
+    <meta name="description"
+	      content="Kernel APIs: SETUP^XQALERT">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: SETUP^XQALERT</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">SETUP^XQALERT</A>: Send Alerts</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Alerts,
+	<B>ICR#:</B> 10081</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The SETUP^XQALERT API sends alerts to users; however, the <i>preferred</i> API to use is 
+    <A HREF="x-setup1-xqalert.html"
+       TITLE="$$SETUP1^XQALERT API"
+       CLASS="bodylink">$$SETUP1^XQALERT</A>.
+    <BR>
+    <BR>
+    To send an information-only
+	alert, make sure that <strong>XQAOPT</strong> and <strong>XQAROU</strong> input variables are <i>not</i> defined. To
+	send an alert that takes an action, specify either the <strong>XQAOPT</strong> (to run an
+	option) or <strong>XQAROU</strong> (to run a routine) input variables.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  SETUP^XQALERT</PRE> 
+    <P>Make sure to perform the following steps before calling this API:</P>
+    <OL>
+      <LI>
+        <strong>NEW</strong> all <i>non</i>-namespaced variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Set all input variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Call the API.
+      </LI>
+    </OL>
+	<H4><A NAME="input_parameters">Input Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>XQA:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) Array defining at least one user to receive the alert.
+		  Subscript the array with users' <strong>DUZ</strong> numbers to send to individual users;
+		  subscript the array with mail group names to send to users in mail groups:</P> 
+		  <PRE>  &gt;<B>S XQA(USERDUZ)=""</B>
+  &gt;<B>S XQA("G.MAILGROUP")=""</B></PRE>
+        </TD> 
+	  </TR> 
+	  <TR>
+	    <TD VALIGN="TOP">
+	      <B>XQAARCH:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Number of days that alert tracking information for this alert should be retained in the ALERT TRACKING 
+		  (#8992.1) file. Default time period is <strong>30</strong> days. 
+          Users can specify a different number of days using this input variable. To retain information forever, a value of 
+		  <strong>100000</strong> is <i>recommended</i> (good for approximately <strong>220</strong> years).</P>
+        </TD> 
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP">
+	      <B>XQACNDEL:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Setting a value in the <strong>XQACNDEL</strong> variable prior to calling this API causes the CAN DELETE WITHOUT PROCESSING 
+		  (#.1) field in the ALERT (#8992) file to be set. A value in this field 
+          indicates that the alert can be deleted by the user without having processed it.</P>
+		</TD> 
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP">
+	      <B>XQADATA:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Use this to store a software application-specific data 
+          string, in any format. It is restored in the <strong>XQADATA</strong> input variable
+		  when the user processes the alert, and is therefore, available to the routine or
+		  option that processes the alert.
+		  <BR>
+		  <BR>
+		  You can use any delimiter in the input
+		  variable, including the caret. You can use it to make data such as patient
+		  number, lab accession, or cost center available to your software
+		  application-specific routine or option without needing to query the user when
+		  they process the alert. It is up to your routine or option to know what format
+		  is used for data in this string.</P>
+		</TD> 
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP">
+	      <B>XQAFLG:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Alert flag to regulate processing (currently <i>not</i>
+		  supported). The values are:</P>
+		  <UL> 
+		    <LI>
+		      <b>D&#151;</b>To delete an information-only alert after it has been
+			  processed (the default for information-only alerts).
+			  <BR>
+			  <BR>
+			</LI> 
+			<LI>
+			  <b>R&#151;</b>To run the alert action immediately upon invocation (the
+			  default for alerts that have associated alert actions).
+			</LI> 
+		  </UL> 
+		  <P>This input variable currently has no effect, however.</P>
+		</TD> 
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP">
+	      <B>XQAGUID:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) As of Kernel Patch XU*8.0*207, the GUID FOR GUI adds an interface GUID (a 
+		  <strong>32</strong>-character string containing hexadecimal digits in a specific format 
+          within curly braces) to permit a program on the client to process 
+          the alert. The presence of a GUID in the variable indicates that 
+          the alert can be processed within a GUI environment, and is used to 
+          open the correct application to process the alert within the GUI environment.
+          <BR>
+          <BR>
+          <b>NOTE:</b> This functionality has never been implemented 
+          by CPRS or other GUI applications.</P>
+        </TD> 
+	  </TR>
+      <TR>
+	    <TD VALIGN="TOP">
+	      <B>XQAID:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Package identifier for the alert, typically a software
+		  application namespace followed by a short character string. <i>Must not</i> 
+	      contain carets (<B>^</B>) or semicolons (<B>;</B>). If you do <i>not</i> set 
+		  <strong>XQAID</strong>, you
+		  are <i>not</i> able to identify the alert in the future, either during alert
+		  processing, to delete the alert, or to perform other actions with the
+		  alert.
+		  <BR>
+		  <BR>
+		  <b>REF:</b> For information on CPRS conventions for the format of the
+		  Package Identifier, see the "Package Identifier versus Alert
+		  Identifier" section in the <I>Kernel 8.0 &amp; Kernel Toolkit 7.3 Developer's Guide</I>.</P>
+		</TD> 
+	  </TR>
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>XQAMSG:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) Contains the text of the alert.</P>
+		  <ul>
+			<li>
+			  <strong>80</strong> characters can be displayed in the original alert.
+		      <br>
+			  <br>
+			</li>
+			<li>
+			  <strong>70</strong> characters can be displayed in the View Alert listing.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  The string <i>cannot</i> contain a caret (<B>^</B>).
+			</li>
+		  </ul>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>XQAOPT:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Name of a <i>non</i>-menu type option on the user's primary,
+		  secondary or common menu. The phantom jump is used to navigate to the
+		  destination option, checking pathway restrictions in so doing. An error results
+		  if the specified option is <i>not</i> in the user's menu pathway.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>XQAROU:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Indicates a routine or tag^routine to run when the
+		  alert is processed. If both <strong>XQAOPT</strong> and <strong>XQAROU</strong> are defined, 
+          <strong>XQAOPT</strong> is used and <strong>XQAROU</strong> is ignored.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>XQASUPV:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Number of days to wait before Delete Old (&gt;14d) Alerts option forwards alert to recipient's 
+          supervisor based on Service/Section, if alert is unprocessed by recipient. Can be a number from <strong>1</strong> to <strong>30</strong>.</P>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>XQASURO:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) Number of days to wait before Delete Old (&gt;14d)
+		  Alerts option forwards alert to recipient's MailMan surrogates (if any), if
+		  alert is unprocessed by recipient. Can be a number from <strong>1</strong> to <strong>30</strong>.</P>
+		</TD> 
+	  </TR> 
+      <TR> 
+	    <TD VALIGN="TOP">
+	      <B>XQATEXT:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) As of Kernel Patch XU*8.0*207, this variable permits 
+		  informational text of any length to be passed with an alert. When 
+		  the alert is selected, the contents of this variable are displayed in a ScreenMan form 
+          within the roll and scroll environment.
+          <BR>
+          <BR>
+          <b>NOTE:</b> It was also intended to be displayed within a text display 
+          box within the GUI environment. However, CPRS has never implemented 
+          this functionality, so it can only be viewed in the roll and scroll 
+          environment.</P>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>none.</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>&nbsp;</P>
+        </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="details">Details</A></H4> 
+	<P>Once the alert is created, the user is then able to receive and process
+	the alert from their View Alerts listing. When this occurs, Alert Handler
+	executes the following four steps for the alert:</P> 
+	<OL> 
+	  <LI> 
+	    <P>Alert Handler sets up the following input variables:</P> 
+		<UL> 
+		  <LI>
+		    <strong>XQADATA&#151;</strong>If originally set when alert was created.
+		    <BR>
+		    <BR>
+		  </LI> 
+		  <LI>
+		    <strong>XQAID&#151;</strong>If originally set when alert was created.
+		    <BR>
+		    <BR>
+		  </LI>
+          <LI>
+            <strong>XQAKILL&#151;</strong>The purge indicator; always set to 
+			<strong>1</strong> by the Alert Handler.
+          </LI> 
+		</UL> 
+		<P>If you associated a software application identifier, <strong>XQAID</strong>, with the
+		alert, it is restored along with two additional semicolon pieces:</P> 
+		<UL> 
+		  <LI>
+		    Current user number.
+		    <BR>
+		    <BR>
+		  </LI> 
+		  <LI>
+		    Current date/time.
+		  </LI> 
+		</UL> 
+		<P>With the two additional semicolon pieces, the software application
+		identifier becomes the alert identifier. If you did <i>not</i> define 
+		<strong>XQAID</strong> when
+		creating the alert, Alert Handler sets <strong>XQAID</strong> input variable to "<strong>NO-ID</strong>"
+		followed by the two additional semicolon pieces.</P>
+	  </LI> 
+	  <LI> 
+	    <P>Alert Handler runs the routine or any option specified in the
+		<strong>XQAOPT</strong> or <strong>XQAROU</strong> input variables.</P>
+      </LI>
+	  <LI> 
+		<p>You can refer to the three input variables listed above (i.e., <strong>XQADATA</strong>, <strong>XQAID</strong>, and 
+		<strong>XQAKILL</strong>) in the option or routine that processes the alert.</p>
+      </LI> 
+	  <LI> 
+	    <P>Once the routine or option finishes, Alert Handler deletes the alert, under the following conditions:</P> 
+		<UL> 
+		  <LI> 
+		    <P>If <strong>XQAKILL</strong> remains at the value of <strong>1</strong> as it was set in Step 1, the alert is deleted for the current user only.</p>
+	      </LI> 
+		  <LI> 
+		    <P>To prevent the alert from being deleted, <strong>KILL XQAKILL</strong> during
+			Step 2. You may <i>not</i> want the alert to be deleted if processing, such as
+			entering an electronic signature, was <i>not</i> completed.</P>
+		  </LI> 
+		  <LI> 
+		    <P>To delete the alert for all recipients of the alert, <i>not</i> just
+			the current user, set <strong>XQAKILL</strong> to <strong>zero</strong> (<strong>0</strong>) during Step 2. When 
+            <strong>XQAKILL</strong> is set to <strong>0</strong>, Alert Handler searches for any alerts with a matching Alert Identifier, all
+			three semicolon pieces:</P> 
+			<UL> 
+			  <LI>
+			    Original Package Identifier.
+			    <BR>
+			    <BR>
+			  </LI> 
+			  <LI>
+			    Alert sender.
+			    <BR>
+			    <BR>
+			  </LI> 
+			  <LI>
+			    Date/Time the alert was sent.
+			  </LI> 
+			</UL> 
+		    <P>It purges them so that other users need <i>not</i> be notified of an
+			obsolete alert.</p>
+			<p><strong>NOTE:</strong> To delete an alert for all recipients, you <i>must</i>
+			define <strong>XQAID</strong> with appropriate specificity when creating the alert.</P>
+			<br>
+		  </LI> 
+		</UL>
+	  </LI> 
+	  <LI> 
+	    <P>Finally, the Alert Handler cleans up by <strong>KILL</strong>ing <strong>XQADATA</strong>, 
+		<strong>XQAID</strong>, and
+		<strong>XQAKILL</strong>. Alert Handler returns the user to the View Alerts listing if pending
+		alerts remain. Otherwise, Alert Handler returns the user to their last menu prompt.</P>
+	  </LI> 
+	</OL> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>Alerts: Call to send an alert sample:</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       CELLPADDING="3"
+	       CELLSPACING="3"
+	       ID="table1"> 
+	  <TR> 
+	    <TD> 
+		  <PRE>;send an alert
+;assume DFN is for patient KRNPATIENT,ONE
+N XQA,XQAARCH,XQADATA,XQAFLG,XQAGUID,XQAID,XQAMSG,XQAOPT,XQAROU,XQASUPV,XQASURO,XQATEXT,XQALERR
+S XQA(161)=&quot;&quot; ; recipient is user `161
+S XQAMSG=&quot;Elevated CEA for &quot;_$$GET1^DIQ(2,DFN_&quot;,&quot;,.01)_&quot; (&quot;_$E($$GET1^DIQ(2,DFN_&quot;,&quot;,9),6,9)_&quot;)
+ Schedule follow-up exam in Surgical Clinic.&quot;
+D SETUP^XQALERT
+Q</PRE>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<P>Alerts: Resulting alert, from View Alerts option</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       CELLPADDING="3"
+	       CELLSPACING="3"> 
+	  <TR> 
+	    <TD> 
+		  <PRE>Select Systems Manager Menu Option: <B>"VA</B>
+
+
+
+ 1.I  Elevated CEA for KRNPATIENT,ONE (5345).  Schedule follow-up exam in Surgical Clinic.
+          Select from 1 to 1
+          or enter ?, A, I, P, M, R, or ^ to exit:</PRE>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/setup-xqalert.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

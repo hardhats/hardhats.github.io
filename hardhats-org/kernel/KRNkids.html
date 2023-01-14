@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <title>Kernel KIDS</title>
+  <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+</head>
+<body bgcolor="#ffffff" link="#000066" text="#000000" vlink="#336633">
+<table border="0" cellpadding="6" cellspacing="6" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><img src="../images/logo.gif" height="79"
+ width="120"><br>
+      <font face="Arial" size="+2"><b>KIDS</b></font></td>
+      <td align="center" width="80%">
+      <p align="center"><a href="../index.html"><img
+ src="../images/shopSHomeOff.gif" alt="Home Page" align="top" border="0"
+ height="76" width="54"></a> <a href="../m/Mmain.html"><img
+ src="../images/shopSMOff.gif" alt="M |" align="top" border="0"
+ height="76" width="54"></a> <a href="../fileman/FMmain.html"><img
+ src="../images/shopSFmOff.gif" alt="FileMan |" align="top" border="0"
+ height="76" width="54"></a> <a href="KRNmain.html"><img
+ src="../images/shopSKrnOn.gif" alt="Kernel |" align="top" border="0"
+ height="76" width="54"></a> <a href="../cs/CSmain.html"><img
+ src="../images/shopSCsOff.gif" alt="CS/MM/Web |" align="top" border="0"
+ height="86" width="62"></a> <a href="../tools/TOOLSmain.html"><img
+ src="../images/shopSPgmOff.gif" alt="Programmer Tools |" align="top"
+ border="0" height="86" width="54"></a> <a href="../apps/APPSmain.html"><img
+ src="../images/shopSAppOff.gif" alt="Applications" align="top"
+ border="0" height="76" width="54"></a> </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div align="center">
+<center>
+<table cellpadding="6" cellspacing="6" width="100%">
+  <tbody>
+    <tr>
+      <td bgcolor="#e6e6e6" valign="top" width="30%">
+      <p align="center"><font face="Arial" size="+1"><b>Contents</b></font>
+      </p>
+      <ul>
+        <li><a href="#KIDS">KIDS</a></li>
+        <li><a href="#Advantages">Advantages</a></li>
+        <li><a href="#Tip">Importing Distribution Tip</a></li>
+	<li><a href="../projects/New/UpdatingAVistASystem.html">Instructions for Installing KIDS builds</a></li>
+      </ul>
+      </td>
+      <td bgcolor="#fff" valign="top" width="70%"><a name="KIDS"></a><font
+ color="#ff0000" face="arial"><b>KIDS<br>
+      <br>
+      </b></font>The Kernel Installation and Distribution System (KIDS)
+is a new tool introduced in Kernel V8.0. It introduces significant
+revisions to the process of exporting packages over the previous export
+mechanism, DIFROM. The KIDS tools provide a standard interface for
+distribution of packages from the platform to another.
+      <p>Distribution is the mechanism KIDS uses to export packages.
+The system manager creates transport globals from build entries. KIDS
+stores these transport globals in a global. KIDS can then write the
+global to a host file. This file is the distribution file which can be
+distributed to its destination via FTP or a PackMan message in MailMan.</p>
+      <p align="center"><img src="../images/lineNailKRN.gif" alt=""
+ height="16" width="396"> </p>
+      <p><a name="Advantages"></a><font color="#ff0000" face="arial"><b>Advantages<br>
+      <br>
+      </b></font>There are several advantages to using host files over
+INIT routines (Fileman's method of transport). The first advantage is
+that there is no limit to the size of a package you export. The second
+advantage is that you no longer have to overwrite a package's existing
+routines with new routines before running the installation.&nbsp;&nbsp;
+Most importantly, KIDS allows transport of entities like PARAMETERs and
+PROTOCOLs&nbsp; that the FileMan INIT process was not aware of.<br>
+      </p>
+      <p>KIDS provides many supplies for developers to help build and
+install packages. These supplies include tools to verify a build. This
+is useful for developers who are preparing to create a transport
+global. If there are missing components, the developer can either
+create the missing component or remove the component from the building
+entry. Another tool provided by KIDS is the ability to verify package
+integrity after an installation has been completed. After the
+installation, check sums of package components can be compared against
+the check sums of the components when they were originally transported.</p>
+      <p><a name="Advantages"></a><a name="Tip"></a><font
+ color="#ff0000" face="arial"><b>Importing Distribution Tip</b></font></p>
+      <p>You may discover problems when trying to load KIDS
+Distributions from files. The 'Load a Distribution' option asks for a
+Host File name that should include a path. &nbsp; However, the
+combination of path and file name cannot exceed 75 characters. &nbsp;
+Here is a work around to make loading distributions from anywhere a
+snap.</p>
+      <p>Modify the following line in the Kernel XPDIL routine to allow
+up to 245 characters.</p>
+      <p><font face="Courier New"><strong><font color="#800040"><small>S
+DIR(0)="F^3:245",DIR("A")="Enter a Host File",DIR("?")="Enter a
+filename and/or path to input Distribution."</small></font> </strong></font></p>
+      <p>[Although it is not generally accepted practice to make
+modifications to VistA's infrastructure code, this is one that is
+defendable. It only changes a parameter (from 75 to 245) and the
+consequences, if overwritten by a future release, are not severe.]</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+</div>
+<p align="center">
+<script language="JavaScript"><!--
+
+document.write("</center><font face=\"arial,helv\" size=1> This page last updated on " + document.lastModified+".</font>")
+
+//--></script>
+<!-- Thanks to Metropolitan Community College of Nebraska for thefollowing javascript function //--></p>
+<p align="center"><map name="FPMap0">
+<area href="KRNmain.html" shape="rect" coords="39, 24, 95, 54">
+<area href="KRNintro.html" shape="rect" coords="97, 24, 136, 54">
+<area href="KRNsignon.html" shape="rect" coords="137, 24, 194, 54">
+<area href="KRNmenu.html" shape="rect" coords="195, 24, 271, 54">
+<area href="KRNdevice.html" shape="rect" coords="272, 24, 327, 54">
+<area href="KRNtask.html" shape="rect" coords="329, 24, 386, 54">
+<area href="KRNkids.html" shape="rect" coords="388, 24, 435, 54">
+<area href="KRNrepairs.html" shape="rect" coords="437, 24, 500, 54">
+</map>
+<img rectangle="(137,24) (194,54) KRNsignon.html"
+ src="../images/lineKernel.gif" usemap="#FPMap0" align="middle"
+ border="0" height="58" width="518"></p>
+<p align="center"><a href="KRNmain.html">Overview</a> | <a
+ href="KRNintro.html">Intro</a>
+| <a href="KRNsignon.html">Sign-On/Security</a> | <a
+ href="KRNmenu.html">Menu Management</a>
+|<br>
+<a href="KRNdevice.html">Device Management</a> | <a href="KRNtask.html">Task
+Management</a>
+| <a href="KRNkids.html">KIDS</a> | <a href="KRNrepairs.html">Repairs</a>
+| </p>
+<p align="center"><font face="Arial" size="1">Search | <a
+ href="../index.html">Home</a> | <a href="../m/Mmain.html">MUMPS</a> |
+<a href="../fileman/FMmain.html">Fileman</a> | <a href="KRNmain.html">Kernel</a>
+| <a href="../cs/CSmain.html">C/S, Mailman, Web</a> | <a
+ href="../tools/TOOLSmain.html">Programmer Tools</a> | <a
+ href="../apps/APPSmain.html">Applications</a></font></p>
+</body>
+</html>

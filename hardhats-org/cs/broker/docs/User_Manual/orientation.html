@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>RPC Broker V. 1.1 Systems Manual: Orientation</TITLE></HEAD>
+<BODY>
+<P><FONT SIZE="5" FACE="arial,helv">Orientation</FONT></P>
+<P><FONT SIZE="3" FACE="arial,helv"><B>Topics</B></FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#how_to_use">How to Use this
+Manual</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#terms">Commonly Used Terms</A></FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="#assumptions">Assumptions About
+the Reader</A></FONT></LI></UL>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="how_to_use">How to Use this
+Manual</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Throughout this manual, advice and
+instructions are offered regarding the use of the RPC Broker and the
+functionality it provides for <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+and commercial off-the-shelf (COTS) software products.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">There are no special legal requirements
+involved in the use of the RPC Broker's Interface.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">This manual uses several methods to
+highlight different aspects of the material:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv">	Descriptive text is presented in a
+proportional font (as this is).</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">	&quot;Snapshots&quot; of computer online
+displays (i.e., roll-and-scroll dialogs) and computer source code are shown in a
+non-proportional font and enclosed within a box. Also included are Graphical
+User Interface (GUI) application window images (i.e., Windows' dialog boxes or
+forms).<BR><BR>NOTE:	Author's comments within these snapshots are displayed in
+italics or as &quot;callout&quot; boxes (callout boxes refer to labels or
+descriptions, usually enclosed within a box, which point to specific areas of a
+displayed image). User's responses to online prompts will be boldface.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Object Pascal code uses a combination of
+upper- and lowercase characters. All Object Pascal reserved words are in
+boldface type.</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">All uppercase is reserved for the
+representation of M code, variable names, or the formal name of options, field
+and file names, and security keys (e.g., the XUPROGMODE key).</FONT><BR><BR></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Various symbols are used throughout the
+documentation to alert the reader to special information. The following table
+gives a description of each of these symbols:</FONT></LI></UL>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="BORDER" CELLSPACING="2" CELLPADDING="7" WIDTH="583">
+<TR>
+<TD WIDTH="15%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Symbol</B></FONT></P></TD>
+<TD WIDTH="85%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Description</B></FONT></P></TD></TR>
+<TR>
+<TD WIDTH="15%" VALIGN="TOP">
+<CENTER>
+<P><IMG SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></P></CENTER></TD>
+<TD WIDTH="85%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Used to inform the reader of general
+information including references to additional reading material</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="15%" VALIGN="TOP">
+<CENTER>
+<P><IMG SRC="caution.gif" ALT="Caution icon" WIDTH="43" HEIGHT="43"></P></CENTER></TD>
+<TD WIDTH="85%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Used to caution the reader to take special
+notice of critical information</FONT></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="terms">Commonly Used Terms</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">The following is a list of terms and their
+descriptions that you may find helpful while reading the RPC Broker
+documentation:</FONT></P>
+<P><BR></P>
+<CENTER>
+<TABLE BORDER="BORDER" CELLSPACING="3" CELLPADDING="7" WIDTH="613">
+<TR>
+<TD WIDTH="44%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Term</B></FONT></P></TD>
+<TD WIDTH="56%" VALIGN="TOP" BGCOLOR="#ffffff">
+<P><FONT SIZE="2" FACE="arial,helv"><B>Description</B></FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Client</FONT></P>
+</TD>
+<TD WIDTH="56%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">A single term used interchangeably to
+refer to a user, the workstation (i.e., PC), and the portion of the program that
+runs on the workstation.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Component</FONT></P></TD>
+<TD WIDTH="56%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">A software object that contains data and
+code. A component may or may not be visible.</FONT></P>
+<P><IMG SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32">&nbsp;
+<FONT SIZE="2" FACE="arial,helv"><I>For a more detailed description, see the
+Borland Delphi for Windows User Guide. 
+</I></FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">GUI</FONT></P></TD>
+<TD WIDTH="56%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The Graphical User Interface application
+that is developed for the client workstation.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Host</FONT></P></TD>
+<TD WIDTH="56%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The term Host is used interchangeably with
+the term Server.</FONT></P></TD></TR>
+<TR>
+<TD WIDTH="44%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">Server</FONT></P></TD>
+<TD WIDTH="56%" VALIGN="TOP">
+<P><FONT SIZE="2" FACE="arial,helv">The computer where the data and the RPC
+Broker remote procedure calls reside.</FONT></P></TD></TR></TABLE></CENTER>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>Please see the Glossary for
+additional terms and definitions.</I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR>
+<P><FONT SIZE="3" FACE="arial,helv"><B><A NAME="assumptions">Assumptions
+About the Reader</A></B></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">This manual is written with the assumption
+that the reader is familiar with the following:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>
+computing environment (e.g., Kernel Installation and Distribution System [KIDS])</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">VA FileMan data structures and
+terminology</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Microsoft Windows</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">M programming language</FONT></LI></UL>
+<P><FONT SIZE="2" FACE="arial,helv">No attempt is made to explain how the
+overall <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B> programming system
+is integrated and maintained. Such methods and procedures are documented
+elsewhere. We suggest you look at the various VA home pages on the World Wide
+Web for a general orientation to <B>V</B><I><FONT SIZE="1">IST</FONT></I><B>A</B>.
+For example, check out the following web addresses:<BR><BR><A
+HREF="http://www.va.gov/vama.htm">http://www.va.gov/vama.htm#DHCP</A><BR><BR><A
+HREF="http://www.vista.med.va.gov/_">http://www.vista.med.va.gov/</A></FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">This manual does provide, however, an
+explanation of the RPC Broker, describing how it can be used in a client/server
+environment.</FONT></P>
+<P><FONT SIZE="2" FACE="arial,helv">Readers who wish to learn more about the
+RPC Broker should consult the following:</FONT></P>
+<UL>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="../xwb1_1ig.pdf">RPC Broker V.
+1.1 Installation Guide</A> (PDF)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="../xwb1_1rn.html">RPC Broker V.
+1.1 Release Notes</A> (HTML)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,hel;v"><A HREF="../xwb1_1tm.pdf">RPC Broker V.
+1.1 Technical Manual</A> (PDF)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="../xwb1_1dg.pdf">RPC Broker V.
+1.1 Getting Started with the Broker Development Kit</A> (PDF, written for
+programmers)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv">Online RPC Broker Developer's Guide
+(i.e., BROKER.HLP, designed for programmers)</FONT></LI>
+<LI><FONT SIZE="2" FACE="arial,helv"><A HREF="../../index.html">RPC Broker
+Home Page</A><BR><BR>This site contains additional information and
+documentation (e.g., Frequently Asked Questions [FAQs]) available in Hypertext
+Markup Language (HTML).</FONT></LI></UL>
+<P><BR></P>
+<P><FONT SIZE="2" FACE="arial,helv">Broker documentation is made available
+online, on paper, and in Adobe Acrobat Portable Document Format (.PDF). The .PDF
+documents must be read using the Adobe Acrobat Reader (i.e., ACROREAD.EXE),
+which is freely distributed by Adobe Systems Incorporated at the following web
+address:<BR><BR><A HREF="http://www.adobe.com/_">http://www.adobe.com/</A></FONT></P>
+<P><BR></P>
+<TABLE>
+<TR>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="5%"><IMG
+SRC="info_dot.gif" ALT="Information icon" WIDTH="32" HEIGHT="32"></TD>
+<TD VALIGN="TOP" ALIGN="LEFT" WIDTH="95%">
+<P><FONT SIZE="2" FACE="arial,helv">	<I>For more information on the use of
+the Adobe Acrobat Reader, please refer to the &quot;Adobe Acrobat Quick Guide&quot;
+at the following web address:<BR><BR><A HREF="https://www.hardhats.org/cs/acrobat/index.html">http://www.vista.med.va.gov/softserv/infrastr.uct/acrobat/index.html</A></I></FONT></P></TD></TR></TABLE>
+<P><BR></P>
+<HR></BODY></HTML>

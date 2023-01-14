@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad//DTD HTML 3.2 + extensions for HoTMetaL PRO 3.0(U) 19961211//EN"
+ "hmpro3.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<TITLE>CHCS9</TITLE></HEAD>
+<BODY>
+<H1>IX.  PROGRAMMER-UTILITY INCOMPATIBILITIES CAUSED BY ENHANCEMENTS TO DHCP
+FILEMAN</H1>
+<H2>A. Call to EN^DIB</H2>
+<P>Both versions of FileMan support this (rarely used) entry point, which
+allows the user to edit a self-selected list of fields for a given File. 
+However, DHCP FileMan uses the input variable 'DIE' to specify which File to
+edit, whereas CHCS FileMan uses the variable 'DIC'.</P>
+<P>Portability effect: Requires conversion.  DHCP calls to this enty point
+would need to switch 'DIE' to 'DIC' to run under CHCS.  Vice versa, CHCS calls
+to 'EN^DIB' would need to call the input variable 'DIE', rather than 'DIC'.
+Ouch!</P>
+<H2>B. Calls to the ^DIC routine </H2>
+<P>One of the most vexing discrepancies between the two systems has already
+documented, in Section VI above, as a <A HREF="chcs6.htm#EXACT"> &quot;User-Interaction
+Incompatibility&quot;</A>.  This is the issue of lookup &quot;not stopping at an
+exact match&quot;.</P>
+<P>Portability Effect: Requires conversion.  This issue is even more serious as
+a programming concern than as a user-interaction concern, because of the
+unexpected behavior that could be exhibited by programs that call ^DIC in CHCS. 
+Suppose that a CHCS program calls ^DIC with an input value of 'X' defined, and
+with &quot;E&quot; (but not &quot;A&quot;) in the 'DIC(0)' parameter string. 
+Let us say that the program 'knows' that 'X' is the precise, unique name of one
+of the Entries in the File in question.</P>
+<P>This CHCS program expects the ^DIC routine to simply 'echo' any Identifiers
+for the Entry named by 'X', and then QUIT with the output variable 'Y' defined,
+as always. For example,</P>
+<BLOCKQUOTE>
+<P>SET DIC=4444,DIC(0)=&quot;EQ&quot;,X=&quot;SUSAN&quot; D ^DIC</P></BLOCKQUOTE>
+<P>If this code were to be ported to DHCP, and if, to use the earlier example, &quot;SUSAN&quot;
+and &quot;SUSANNA&quot; were both Entry names to be found in File 4444, then the
+^DIC routine would do a READ from the current device, after presenting</P>
+<BLOCKQUOTE>
+<P>1 SUSAN</P>
+<P>2 SUSANNA</P>
+<P>Choose 1 or 2:</P></BLOCKQUOTE>
+<P>This READ would be behavior unexpected by the original programmer.  One can
+imagine other scenarios that would run afoul of DHCP's ^DIC behavior, and the
+worst thing about these discrepancies is that they would be so hard to detect in
+advance: calls to ^DIC are found in Globals, as well as in almost every CHCS
+MUMPS Routine.</P>
+<P>A general, if onerous, workaround rule would be as follows: All ^DIC calls
+which supply ^DIC with an 'X' value, and which include &quot;E&quot; in the
+'DIC(0)' parameter string, should be modified so that &quot;O&quot; is also
+included in 'DIC(0)'.  (Fortunately, &quot;O&quot; in 'DIC(0)' has no effect in
+a call to ^DIC in CHCS FileMan, so this workaround could be made on code even
+while it still operates with CHCS.)</P>
+<P>DHCP FileMan supports a documented call to the entry point &quot;FILE^DICN&quot;,
+which has the result of &quot;filing&quot; an Entry or sub-Entry. 
+Unfortunately, although a tag named &quot;FILE&quot; can also be found in the
+'DICN' routine that is part of CHCS FileMan, the behavior of the code found
+there is not identical to that of the VA subroutine of the same name.</P>
+<P>Portability Effect: Requires conversion.   VA documentation states that the
+MUMPS variable 'DO' must be killed before calling FILE^DICN.  In CHCS,
+contrariwise, 'DO' must be defined at entry to FILE^DICN.  Hence, at minimum,
+every DHCP call to FILE^DICN would need to be modified to include something like</P>
+<BLOCKQUOTE>
+<P>KILL DO DO DO^DIC1</P></BLOCKQUOTE>
+<P>before the call.  It should be noted, too, that the logic used by CHCS
+FileMan to 'LOCK' and 'UNLOCK' the File being updated is quite different in the
+two systems.</P>
+<H2>C. Calls to the ^DIE routine </H2>
+<P>In DHCP FileMan, the subscripted variable DIE(&quot;NO^&quot;) is allowed to
+have two values which are meaningless in CHCS FileMan.  These values are &quot;BACK&quot;
+and &quot;BACKOUTOK&quot;.</P>
+<P>Portability Effect: Minor.  When ported to CHCS, this &quot;BACK&quot;
+feature would become inoperative.  However, we can assume, hopefully, that it is
+an &quot;ease-of-use&quot; feature in most cases.  One could perversely imagine
+a DHCP Input Template that at somepoint instructed the user</P>
+<BLOCKQUOTE>
+<P>NOW TYPE &quot;^SEX&quot; TO RE-EDIT THE SEX FIELD</P></BLOCKQUOTE>
+<P>which in CHCS FileMan would, shall we say, lead to user frustration.</P>
+<H2>D. Calls to the ^DIK routine </H2>
+<P>DHCP FileMan supports two re-indexing calls to ^DIK under which only certain
+cross-references are re-done.  These Entry points, 'ENALL' and 'EN', do not
+exist in CHCS FileMan, and no similar functionality is supported there.</P>
+<P>Portability effect: SERIOUS  Any calls to 'ENALL^DIK' or 'EN^DIK' in DHCP
+code ported to a CHCS environment would be unworkable there.  If such
+functionality were required in a CHCS environment, the best course would
+probably be to re-do the DHCP code somewhere other than in the ^DIK routine.</P>
+<H2>E. Calls to the ^DIP Routine</H2>
+<P>In DHCP FileMan, 'DIOBEG' is the name of one of the optional input variables
+to the 'DIP' output routine. This variable is a string of MUMPS code which is
+executed before the printout begins.  CHCS FileMan has an equivalent input
+variable, named 'DIOBEGIN'.  The 'DIOBEGIN' code is also &quot;executed before
+the printout begins&quot;. However, in CHCS FileMan, an initial form-feed is
+sent to a printer output device after the 'DIOBEGIN' code is executed. This may
+result in output that looks different in the two systems.</P>
+<P>Portability Effect: Requires Conversion.  Any DHCP code which calls ^DIP
+needs to be examined.  If the optional 'DIOBEG' variable is set, it must be
+re-named 'DIOBEGIN' in code ported to CHCS, and the form-feed discrepancy
+mentioned above must be considered.</P>
+<P>'DIASKHD' is the name of another optional input variable to DHCP FileMan's
+'DIP' routine.  If present, it forces the user to type in the Header of the
+report at run time.  As mentioned above, CHCS FileMan has no equivalent
+variable.</P>
+<P>Portability effect: Requires conversion.  DHCP code which used the 'DIASKHD'
+variable in calling '^DIP' would not work as designed if ported to a CHCS
+environment.  The workaround would be to add this code before the call:</P>
+<BLOCKQUOTE>
+<P>SET DHD=&quot;?&quot;</P></BLOCKQUOTE>
+<P>With this change, the only difference in behavior between the two systems
+would be that, in the new CHCS environment, the user would answer the HEADER:
+question without seeing a default prompt.</P>
+<P>DHCP FileMan (in conjunction with the VA Kernel's Task Manager module)
+allows the programmer to use the variables 'DISTOP' and 'DISTOP(&quot;C&quot;)'
+to help control output that is queued in the course of a call to ^DIP.  CHCS
+FileMan offers no equivalent functionality.</P>
+<P>Portability effect: Uncertain.  DHCP programmers who have availed themselves
+of this kind of control over queued output are probably designing a
+special-purpose application that will never be ported.  Nevertheless, code
+transported to CHCS should be examined for the occurrence of these 'DISTOP'
+variables, since they would be ignored under CHCS FileMan and Kernel.</P>
+<H2>F. Calls to the ^DIQ Routine </H2>
+<P>In DHCP FileMan, an optional input variable, 'DIQ(0)', can be used in the
+call</P>
+<BLOCKQUOTE>
+<P>DO EN^DIQ</P></BLOCKQUOTE>
+<P>to tell the DIQ routine to display either computed fields, or audit records,
+for the selected Entry.  Contrary to some CHCS documentation (&quot;MISO 108&quot;),
+this functionality is not available in the corresponding EN^DIQ call in CHCS
+FileMan.</P>
+<P>Portability Effect: Uncertain.  Clearly, a DHCP routine containing a
+'DIQ(0)' parameter in its EN^DIQ call would, if ported to CHCS, generate less
+information for the end user in that environment.  It is unlikely, however, that
+crucial information would be displayed in this way.  A workaround to the problem
+might be to create a Print Template to display the computed or audit data
+required.  Note that any CHCS FileMan File can be printed using two special
+Print Templates not present in DHCP: the &quot;CHANGES CAPTIONED&quot; Template,
+and the &quot;HISTORICAL CAPTIONED OUTPUT&quot; Template.  These Templates show
+audit-trail information on any Field that has been changed.  Note, too, that
+CHCS FileMan has a Computed-Field Function called &quot;PRIOR&quot;, which can
+be used to display previous values of data in Files that have been audited. 
+This Function is multiple-valued; specifying a &quot;PRINT FIELD&quot; that
+looks like</P>
+<BLOCKQUOTE>
+<P>PRIOR(NAME)</P></BLOCKQUOTE>
+<P>might generate a vector of values like</P>
+<BLOCKQUOTE>
+<P>BUSH</P>
+<P>REAGAN</P>
+<P>CARTER</P>
+<P>FORD</P></BLOCKQUOTE>
+<P>if a particular NAME Field's value had changed four times since auditing of
+the File had begun.</P>
+<H2>G. Listing and Deleting Files </H2>
+<P>CHCS FileMan has no entry point, such as &quot;EN^DIU2&quot; in DHCP
+FileMan, whereby a programmer can delete a File and/or its Data Dictionary. 
+Presumably, calls to this DHCP utility are quite rare!</P>
+<P>Portability effect: Requires conversion.  Fortunately, a DHCP call to
+EN^DIU2 is essentially a call to ^DIU0, and there is no &quot;DIU0&quot; routine
+in CHCS FileMan. Therefore, the simplest way to retain the &quot;EN^DIU2&quot;
+functionality within CHCS (should that be desired) is simply to move the DHCP
+version of ^DIU0 into CHCS, and change what few calls there may be from &quot;EN^DIU2&quot;
+to &quot;^DIU0&quot;.</P>
+<P>CHCS FileMan also does not have an Entry Point like &quot;EN^DID&quot;
+(documented in Version 21 of DHCP FileMan) to output a Data Dictionary listing.</P>
+<P>Portability effect: Requires conversion.  If emulation of this (new) Entry
+point were required within CHCS, its name would need to be changed, and some
+re-interfacing done with the CHCS &quot;DID&quot; routine.</P>
+<H2>H.  Calls to Routines Non-existent in CHCS </H2>
+<P>Finally, we itemize a number of Entry Points, routines, and namespaces that
+are callable as DHCP FileMan utilities, but which do not exist in any comparable
+version in CHCS.  ^DIAC and the ^DIR* routines could easily be moved into the
+CHCS FileMan suite, as suggested below.  Calls to the other utilities listed
+below, however, must be considered non-portable to CHCS.</P>
+<H3>DDBR* Namespace</H3>
+<P>The &quot;Browser&quot; utilities of Version 21 are unavailable in CHCS.</P>
+<H3>^DIAC</H3>
+<P>This simple &quot;File Access Determination&quot; routine could easily be
+inserted into the CHCS FileMan suite, but it does not exist there now.  (Note: &quot;DIAC^DIC&quot;
+does something rather different in CHCS.)</P>
+<H3>^DIALOG</H3>
+<P>The Version 21 Database Server does not exist in CHCS FileMan.</P>
+<H3>EN^DIAXU</H3>
+<P>The &quot;Data Extractor&quot; is not available in CHCS.</P>
+<H3>DDS* Namespace</H3>
+<P>As we hope was made clear in Section VII., none of the DHCP ScreenMan calls
+will work in the CHCS environment.</P>
+<H3>DIFG* Namespace</H3>
+<P>'FileGrams' are electronic-mail messages which capture data from FileMan
+databases, and can be read by software, to transfer such data from one FileMan
+system to another.  They will be discussed below, in <A HREF="chcs10.htm">the
+next Section</A>.  DHCP FileMan provides programmers two MUMPS Entry points,
+EN^DIFGG and ^DIFG, which can be used to generate and install FileGrams. 
+Although CHCS FileMan supports the concept of a FileGram in a rudimentary way,
+no programmer calls equivalent to the entry points EN^DIFGG or ^DIFG exist
+within CHCS FileMan.</P>
+<H3>EN^DIKZ</H3>
+<P>Although CHCS FileMan actually includes a kind of &quot;Cross-Reference
+Compilation&quot;, derived from the VA work, and a DIKZ routine, this DHCP Entry
+point has no CHCS equivalent.</P>
+<H3>^DILF* Namespace</H3>
+<P>CHCS FileMan has no Library functions such as &quot;&quot;$$ROUSIZE^DILF&quot;.
+ The CHCS Kernel includes some special &quot;%&quot;-routines that might include
+equivalent fuctionality.</P>
+<H3>DIR* namespace</H3>
+<P>CHCS FileMan has no &quot;reader&quot; utility analogous to the ^DIR
+routines in DHCP FileMan.  Actually, CHCS FileMan includes some routines in the
+&quot;DIR*&quot; routine namespace for another purpose, that of archiving (<A
+HREF="chcs10.htm">see next Section</A>), but these are pretty much unused.  Any
+effort to port DHCP software to a CHCS environment should surely include
+transferring the DHCP ^DIR logic into CHCS FileMan, since &quot;^DIR&quot; is
+widely used in DHCP.  The easiest way to do this would simply be to write over
+the CHCS routines.  If the archiving functionality of those CHCS routines is to
+be retained, it would be easier to rework their namespace, rather than
+transferring the DHCP DIR* routines to some other namespace, and changing all
+programmer calls from &quot;^DIR&quot; to that new routine name.</P>
+<P ALIGN="RIGHT"><A HREF="chcs10.htm"><IMG
+SRC="../images/next.gif" WIDTH="87" HEIGHT="39"></A></P></BODY></HTML>

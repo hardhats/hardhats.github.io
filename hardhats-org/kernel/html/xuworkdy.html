@@ -1,0 +1,243 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: ^XUWORKDY (Obsolete)">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,^XUWORKDY,XUWORKDY,miscellaneous,supported,obsolete">
+    <meta name="description"
+	      content="Kernel APIs: ^XUWORKDY (Obsolete)">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: ^XUWORKDY (Obsolete)</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+	<H3><A NAME="navskip">^XUWORKDY</A>: Workday Calculation (Obsolete)</H3> 
+	<P><B>NOTE:</B> Calling the XUWORKDY routine from the top is obsolete. The ^XUWORKDY API was replaced by the 
+	<A HREF="x-en-xuworkdy.html"
+	   TITLE="$$EN^XUWORKDY API"
+	   class="bodylink">$$EN^XUWORKDY</A> API. This API is dependent on the HOLIDAY (#40.5) file being updated by the sites.</P>
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Miscellaneous,
+	<B>ICR#:</B> 10046</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>To use the ^XUWORKDY APIs, you <I>must</I> make sure that the HOLIDAY (#40.5) file is populated with each
+	year's holidays for the workday calculation to work correctly. If it is <em>not</em>
+	populated, you need to populate it yourself (Kernel distributes this file
+	without data). Only enter holidays that fall on weekdays, however.
+	<BR>
+	<BR>
+	You can call the ^XUWORKDY routine to calculate the number of workdays between two
+	dates (<strong>X</strong>, <strong>X1</strong>). It returns a positive value if 
+	<strong>X&lt;X1</strong> and a negative value if 
+	<strong>X&gt;X1</strong>. If either date is imprecisely specified, or if the 
+	<strong>HOLIDAY</strong> global is 
+	empty, then ^XUWORKDY returns a <strong>NULL</strong> string.</p>
+	<ul>
+	  <li>
+	    The first <strong>FOR</strong> loop in ^XUWORKDY checks the <strong>HOLIDAY</strong> global
+	    and sets <strong>%H</strong> equal to the number of holidays between the two dates. It is
+	    assumed that the <strong>HOLIDAY</strong> global contains only weekday holidays.
+	    <BR>
+	    <BR>
+	  </li>
+	  <li>
+	  	The second <strong>FOR</strong> loop (<strong>F %J=%J:1 ... </strong>) steps forward from the earliest date and stops
+	    at the first Sunday or at the ending date (whichever comes first) counting the
+	    number of workdays.
+	    <BR>
+	    <BR>
+	  </li>
+	  <li>
+	    The third <strong>FOR</strong> loop (<strong>F %K=%K:-1 ...</strong> ) steps backward
+	    from the latest date and stops at the first Sunday or at the beginning date
+	    (whichever comes first), counting the workdays.
+	    <BR>
+	    <BR>
+	  </li>
+	  <li>
+	    Then <strong>%I</strong> is set equal to
+	    the number of days between the two Sundays.
+	    <BR>
+	    <BR>
+	  </li>
+	  <li>
+	    Finally, <strong>X</strong> is set equal to
+	    the total counted days minus the number of weekend days between the two Sundays
+	    (<strong> -(%I\7*2) </strong>).
+	  </li>
+	</ul>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  ^XUWORKDY</PRE> 
+	<H4><A NAME="input_parameters">Input Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>X:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) Starting date in VA FileMan internal format (e.g., 2850420).</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>X1:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) Ending date in VA FileMan internal format (e.g., 2850707).</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>X:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>The number of workdays in the interval.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S X=2850420,X1=2850707 D ^XUWORKDY W X</B>
+55</PRE>          
+        </td>
+      </tr>
+    </table> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/xuworkdy.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

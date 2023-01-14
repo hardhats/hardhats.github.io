@@ -1,0 +1,289 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel Toolkit APIs: XT*7.3*111 Patch Description">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,VUID,DATA STANDARDIZATION,TERM,REPLACEMENT TERM,VistA Legacy,OED,Office of Enterprise Development,VHA Unique ID (VUID),Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,toolkit,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,Patch XT*7.3*111,111,data standardization,supported">
+    <meta name="description"
+	      content="Kernel Toolkit APIs: XT*7.3*111 Patch Description">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180820">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel Toolkit APIs: Toolkit&#8212;Data Standardization APIs</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/toolkit_heading_APIs.gif"
+			   ALT="Kernel Toolkit 7.3 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">Data Standardization APIs</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Toolkit-Data 
+	Standardization,
+	<B>ICR#:</B> 5078</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The Data Standardization API set was developed to support Data Standardization's effort to allow the mapping of one term to another term. Mapping of terms is done via the REPLACED BY VHA STANDARD TERM 
+	(#99.97) field and provides the high level goals of:</P>
+    <ul>
+	  <li>
+	    Non-standard terms inheriting standardized characteristics.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Deprecating a term and replacing it with a new term.
+	    <br>
+	    <br>
+	  </li>
+    </ul>
+    The Data Standardization API set:
+    <Ol>
+	  <li>
+	    Maps one term to another term.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Obtains the term in which another term is mapped.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Extracts field values from the term in which another term is mapped.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Shows the mapping relationships that a term has with other terms.
+	    <br>
+	    <br>
+	  </li>
+    </ol>
+    Keywords:
+    <ul>
+	  <li>
+	    VHA Unique ID (VUID)
+	  </li>
+	  <li>
+	    Data Standardization
+	  </li>
+	  <li>
+	    Term
+	  </li>
+	  <li>
+	    Replacement Term
+	  </li>
+    </ul>
+    <p><strong>NOTE:</strong> This Data Standardization API set was released with Kernel Toolkit Patch XT*7.3*111.</p>
+    <h4>
+    <b><a name="Replacement_Relationships">Replacement Relationships</a></b></h4>
+    <p>Use the following replacement relationships to map the Data Standardization 
+    API set in context.</p>
+    <table width="100%"
+       border="1"
+       cellspacing="3"
+       cellpadding="3">
+      <tr>
+        <td>
+          <pre>     A --&gt; B --&gt; C --&gt; D      A is replaced by B     G is replaced by C 
+    ^ ^         ^ ^           B is replaced by C     H is replaced by C 
+    |  \        |  \          C is replaced by D     I is replaced by F 
+    |   \       |   \         D has no replacement   J is replaced by F 
+    |    \      |    \        E is replaced by A     K is replaced by H 
+    |     F     |     H       F is replaced by A     L is replaced by H 
+    |    ^ ^    |    ^ ^
+    |   /   \   |   /   \
+    E  I     J  G  K     L 
+    
+   $$GETRPLC(B) would return C 
+    
+   $$RPLCMNT(B) would return D 
+    
+   $$RPLCVALS(J) would return the requested field values from entry D 
+    
+   $$RPLCTRL(G) in both directions would return D and the output array would
+   be set as follows: 
+    
+    OutArr(&#8220;BY&#8221;,A) = B                  OutArr(&#8220;FOR&#8221;,A,E) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,B) = C                  OutArr(&#8220;FOR&#8221;,A,F) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,C) = D                  OutArr(&#8220;FOR&#8221;,B,A) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,D) = &#8220;&#8221;                 OutArr(&#8220;FOR&#8221;,C,B) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,E) = A                  OutArr(&#8220;FOR&#8221;,C,G) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,F) = A                  OutArr(&#8220;FOR&#8221;,C,H) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,G) = C                  OutArr(&#8220;FOR&#8221;,D,C) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,H) = C                  OutArr(&#8220;FOR&#8221;,F,I) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,I) = F                  OutArr(&#8220;FOR&#8221;,F,J) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,J) = F                  OutArr(&#8220;FOR&#8221;,H,K) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,K) = H                  OutArr(&#8220;FOR&#8221;,H,L) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,L) = H 
+    
+   $$RPLCTRL(L) in the forward direction would return D and the output array
+   would be set as follows: 
+    
+    OutArr(&#8220;BY&#8221;,C) = D                  OutArr(&#8220;FOR&#8221;,C,H) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,D) = &#8220;&#8221;                 OutArr(&#8220;FOR&#8221;,D,C) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,H) = C                  OutArr(&#8220;FOR&#8221;,H,L) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,L) = H 
+    
+   $$RPLCTRL(B) in the backward direction would return D and the output array
+   would be set as follows: 
+    
+    OutArr(&#8220;BY&#8221;,A) = B                  OutArr(&#8220;FOR&#8221;,A,E) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,E) = A                  OutArr(&#8220;FOR&#8221;,A,F) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,F) = A                  OutArr(&#8220;FOR&#8221;,B,A) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,I) = F                  OutArr(&#8220;FOR&#8221;,F,I) = &#8220;&#8221; 
+    OutArr(&#8220;BY&#8221;,J) = F                  OutArr(&#8220;FOR&#8221;,F,J) = &#8220;&#8221; 
+    
+   $$RPLCLST(G) in both directions would return D and the output array would
+   be set as follows: 
+    
+    OutArr(1) = G ^ 0                   OutArr(&#8220;INDEX&#8221;,A) = 8 
+    OutArr(2) = C ^ 0                   OutArr(&#8220;INDEX&#8221;,B) = 7 
+    OutArr(3) = D ^ 1                   OutArr(&#8220;INDEX&#8221;,C) = 2 
+    OutArr(4) = H ^ 0                   OutArr(&#8220;INDEX&#8221;,D) = 3 
+    OutArr(5) = K ^ 0                   OutArr(&#8220;INDEX&#8221;,E) = 9 
+    OutArr(6) = L ^ 0                   OutArr(&#8220;INDEX&#8221;,F) = 10 
+    OutArr(7) = B ^ 0                   OutArr(&#8220;INDEX&#8221;,G) = 1 
+    OutArr(8) = A ^ 0                   OutArr(&#8220;INDEX&#8221;,H) = 4 
+    OutArr(9) = E ^ 0                   OutArr(&#8220;INDEX&#8221;,I) = 11 
+    OutArr(10) = F ^ 0                  OutArr(&#8220;INDEX&#8221;,J) = 12 
+    OutArr(11) = I ^ 0                  OutArr(&#8220;INDEX&#8221;,K) = 5 
+    OutArr(12) = J ^ 0                  OutArr(&#8220;INDEX&#8221;,L) = 6 
+    
+   $$RPLCLST(L) in the forward direction would return D and the output array 
+   would be set as follows if the status history was also included: 
+    
+    OutArr(1) = L ^ 0                   OutArr(&#8220;INDEX&#8221;,C) = 3 
+    OutArr(1,3080101.0954) = 0          OutArr(&#8220;INDEX&#8221;,D) = 4 
+    OutArr(2) = H ^ 0                   OutArr(&#8220;INDEX&#8221;,H) = 2 
+    OutArr(2,3080101.1308) = 1          OutArr(&#8220;INDEX&#8221;,L) = 1 
+    OutArr(2,3080105.09) = 0 
+    OutArr(3) = C ^ 0 
+    OutArr(3,3080105.0859) = 1 
+    OutArr(3,3080112.1722) = 0 
+    OutArr(4) = D ^ 1 
+    OutArr(4,3080112.1723) = 1 
+    
+   $$RPLCLST(B) in the backward direction would return D and the output array
+   would be set as follows: 
+    
+    OutArr(1) = A ^ 0                   OutArr(&#8220;INDEX&#8221;,A) = 1 
+    OutArr(2) = E ^ 0                   OutArr(&#8220;INDEX&#8221;,E) = 2 
+    OutArr(3) = F ^ 0                   OutArr(&#8220;INDEX&#8221;,F) = 3 
+    OutArr(4) = I ^ 0                   OutArr(&#8220;INDEX&#8221;,I) = 4 
+    OutArr(5) = J ^ 0                   OutArr(&#8220;INDEX&#8221;,J) = 5</pre>         
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/20/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/xt_7_3_111_patch_desc.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

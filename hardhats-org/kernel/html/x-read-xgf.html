@@ -1,0 +1,383 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: $$READ^XGF">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,$$READ^XGF,$$READ,XGF,xgf function library,supported">
+    <meta name="description"
+	      content="Kernel APIs: $$READ^XGF">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180814">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: $$READ^XGF</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+	<H3><A NAME="navskip">$$READ^XGF</A>(): Read Using Escape Processing</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> XGF Function Library,
+	<B>ICR#:</B> 3173</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The $$READ^XGF extrinsic function provides a way to perform <strong>READ</strong>s using escape
+    processing. <strong>READ</strong>s, when escape processing is turned on, are terminated by:</P>
+    <ul>
+	  <li>
+	    <B>&lt;UP-ARROW&gt; (&quot;&#8593;&quot;)</B>
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <B>&lt;DOWN-ARROW&gt; (&quot;&#8595;&quot;)</B>
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <B>&lt;PREV&gt; (&quot;&lt;--&quot;)</B>
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <B>&lt;NEXT&gt;&nbsp;(&quot;--&gt;&quot;)</B>
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    <B>&lt;TAB&gt;</B>
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Other special keystrokes.
+	  </li>
+    </ul>
+    <P>$$READ^XGF is a low-level reader compared to the VA FileMan
+	reader. In some respects it is as simple as using the M <strong>READ</strong> command. This 
+	<strong>READ</strong>
+	function incorporates escape processing, which puts the burden on the operating
+	system to <strong>READ</strong> the arrow, function, and all other keys.</P>
+    <P>A call to  
+	<a href="initkb-xgf.html"
+	   title="INITKB^XGF API"
+	   class="bodylink">INITKB^XGF</a>
+	or 
+	<a href="prep-xgf.html"
+	   title="PREP^XGF API"
+	   class="bodylink">PREP^XGF</a> <em>must</em> be made at some point <em>prior</em> to calling $$READ^XGF.</P>
+    <P>If the number of characters you request with the first
+	parameter is <em>not</em> entered, the <strong>READ</strong> does <em>not</em> terminate until some terminating
+	character is pressed (or the timeout period is reached).</P>
+    <P>If you do <em>not</em> pass the timeout parameter, <strong>DTIME</strong> is used for the timeout period. If the 
+	<strong>READ</strong> times out, caret (<B>^</B>) is returned and <strong>DTOUT</strong> is left defined.</P>
+    <P>The list of mnemonics for keys that can terminate <strong>READ</strong>s is:</P>
+    <P><strong><a name="XGF_Function_Library">XGF Function Library</a>&#8212;Mnemonics for Keys that Terminate READs</strong></P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3"> 
+	  <TR> 
+		<Th WIDTH="10%"
+		    align="left">
+		  Key Type
+		</Th> 
+		<Th WIDTH="90%"
+		    align="left">
+		  Mnemonic
+		</Th> 
+	  </TR> 
+	  <TR> 
+		<TD valign="top">
+		  Control
+		</TD> 
+		<TD valign="top">
+		  <strong>^A</strong>, <strong>^B</strong>, <strong>^C</strong>, <strong>^D</strong>, <strong>^E</strong>, <strong>^F</strong>, <strong>^G</strong>, <strong>^H</strong>, <strong>^J</strong>, <strong>^K</strong>, <strong>^L</strong>, <strong>^N</strong>, <strong>^O</strong>, <strong>^P</strong>,
+		  <strong>^Q</strong>, <strong>^R</strong>, <strong>^S</strong>, <strong>^T</strong>, <strong>^U</strong>, <strong>^V</strong>, <strong>^W</strong>, <strong>^X</strong>, <strong>^Y</strong>, <strong>^Z</strong>, <strong>^\</strong>, <strong>^]</strong>, <strong>^6</strong>, <strong>^_</strong>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+		<TD valign="top">
+		  Cursor
+		</TD> 
+		<TD valign="top">
+		  <strong>UP</strong>, <strong>DOWN</strong>, <strong>RIGHT</strong>, <strong>LEFT</strong>, <strong>PREV</strong>, <strong>NEXT</strong>
+		</TD> 
+	  </TR> 
+      <TR> 
+		<TD valign="top">
+		  Editing
+		</TD> 
+		<TD valign="top">
+		  <strong>FIND</strong>, <strong>INSERT</strong>, <strong>REMOVE</strong>, <strong>SELECT</strong>
+		</TD> 
+	  </TR> 
+	  <TR> 
+		<TD valign="top">
+		  Function
+		</TD> 
+	    <TD valign="top">
+		  <strong>F6</strong> to <strong>F14</strong>, <strong>HELP</strong>, <strong>DO</strong>, <strong>F17</strong> to <strong>F20</strong>
+		</TD> 
+      </TR> 
+	  <TR> 
+		<TD valign="top">
+		  Keyboard
+		</TD> 
+		<TD valign="top">
+		  <strong>TAB</strong>, <strong>CR</strong>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+		<TD valign="top">
+		  Keypad
+		</TD> 
+		<TD valign="top">
+		  <strong>KP0</strong> to <strong>KP9</strong>, <strong>KP-</strong>, <strong>KP+</strong>, <strong>KP.</strong>, <strong>KPENTER</strong>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD valign="top">
+		  PF
+		</TD> 
+		<TD valign="top">
+		  <strong>PF1</strong>, <strong>PF2</strong>, <strong>PF3</strong>, <strong>PF4</strong>
+	    </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  $$READ^XGF([no_of_char][,timeout])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+      <TR> 
+        <TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>no_of_char:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(optional) Maximum number of characters to <strong>READ</strong>.</P>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+		<TD VALIGN="TOP">
+		  <B>timeout:</B>
+		</TD> 
+		<TD VALIGN="TOP"> 
+	      <P>(optional) Maximum duration of <strong>READ</strong>, in seconds.</P>
+	    </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4><A NAME="output_variables">Output Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>XGRT:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Set to the mnemonic of the key that terminated the <strong>READ</strong>.
+		  <BR>
+		  <BR>
+		  <strong>NOTE:</strong> For a list of possible values, see the 
+		  <a href="#XGF_Function_Library">list in the table above</a> or the table in routine <strong>XGKB</strong>.</P>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+		  <B>DTOUT:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>If defined, signifies that the <strong>READ</strong> timed out.</P>
+	    </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4><A NAME="output">Output</A></H4>
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>returns:</B>
+		</TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Returns the string <strong>READ</strong> from the user.</P>
+	    </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4>Examples</H4>
+    <H4><A NAME="example">Example 1</A></H4> 
+	<P>To <strong>READ</strong> a name (with a maximum length of <strong>30</strong>) from input and display that
+	name on the screen, do the following:</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3"> 
+	  <TR> 
+	    <TD> 
+		  <PRE> <B>D INITKB^XGF("*")
+ W "Name: " S NM=$$READ^XGF(30)
+ D SAY^XGF(10,20,"Hello " NM)</B></PRE>
+        </TD> 
+	  </TR> 
+    </TABLE> 
+	<H4>Example 2</H4> 
+	<P>To accept only <B>&lt;Up-Arrow&gt;</B>&nbsp;(&quot;<B>&#8593;</B>&quot;) or <B>&lt;Down-Arrow&gt;</B>&nbsp;(&quot;<strong>&#8595;</strong>&quot;) keys
+	to exit a routine, do the following:</P> 
+	<TABLE WIDTH="100%"
+	       BORDER="1"
+	       cellspacing="3"
+	       cellpadding="3"> 
+	  <TR> 
+	    <TD> 
+		  <PRE> ;Only accept UP or DOWN arrow keys
+ F  S %=$$READ^XGF(1) Q:XGRT="UP"!(XGRT="DOWN")</PRE>
+        </TD> 
+	  </TR> 
+    </TABLE>
+	<P><strong>NOTE:</strong> When you set up the <strong>XGF</strong> keyboard environment using 
+	<a href="initkb-xgf.html"
+	   title="INITKB^XGF API"
+	   class="bodylink">INITKB^XGF</a>
+	rather than 
+	<a href="prep-xgf.html"
+	   title="PREP^XGF API"
+	   class="bodylink">PREP^XGF</a>, the keypad is <em>not</em> automatically set to application mode.
+	For <strong>READ</strong>s to be terminated by the keypad keys (<B>&lt;KP0&gt;</B> to
+	<B>&lt;KP9&gt;</B>, <B>&lt;KPENTER&gt;</B>, <B>&lt;KP+&gt;</B>,
+	<B>&lt;KP-&gt;</B>, and <B>&lt;KP&gt;</B>), the keypad <em>must</em> be in application
+	mode. You can put the keypad in application mode by using an M <strong>WRITE</strong> statement
+	(<strong>W IOKPAM</strong> to set application mode, <strong>IOKPNM</strong> to set numeric mode). Take care to
+	preserve the value of <strong>$X</strong> when using a direct M <strong>WRITE</strong>, so that relative
+	positioning in <strong>XGF</strong> cursor/text output calls is <em>not</em> thrown off:</P>
+	<PRE>  &gt;<B>S X=$X W IOKPAM S $X=X</B></PRE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/14/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/x-read-xgf.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

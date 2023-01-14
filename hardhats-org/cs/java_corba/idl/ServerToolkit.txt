@@ -1,0 +1,16 @@
+module gov {
+  module va {
+    module vista {
+      module kernel {
+        interface ServerToolkit {
+          string getDevice();
+          string getIntro();
+          string getUCI();
+          string getVistaServer();
+          string getVolume();
+          string getTitle();
+        };
+      };
+    };
+  };
+};

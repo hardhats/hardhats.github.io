@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN" "html.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>RPC Broker Home Page</title>
+</head>
+
+<body BGCOLOR="#ffffff">
+
+<table WIDTH="100%">
+  <tr>
+    <td VALIGN="TOP" NOWRAP="nowrap"><font SIZE="6" COLOR="#005588" FACE="ARIAL,HELV">RPC
+    Broker</font><br>
+    <font SIZE="-1" COLOR="red" FACE="ARIAL,HELV">Current version: 1.1</font><br>
+    </td>
+    <td ALIGN="CENTER"><img SRC="brk_anim.gif" ALT="RPC Broker 1.1" WIDTH="451" HEIGHT="103"> </td>
+  </tr>
+  <tr>
+    <td VALIGN="TOP"><font FACE="ARIAL,HELV"><b><i>Ask Dr. Broker</i></b></font> 
+      <ul>
+        <li><a TARGET="_top" href="docs/Broker_FAQ.html"><font SIZE="2" FACE="ARIAL,HELV">System 
+          Mgr. FAQ</font></a></li>
+        <li><a TARGET="_top" href="docs/Broker_Dev_FAQ.html"><font SIZE="2" FACE="ARIAL,HELV">Developer 
+          (BDK) FAQ</font></a></li>
+        <li><a HREF="docs/winsock.html"><font size="2" face="ARIAL,HELV">Winsock 
+          Messages</font></a></li>
+        <li><font face="ARIAL,HELV" size="2"><a href="../../foia.html">Get the 
+          Broker via VA sources</a></font></li>
+      </ul>
+    <hr SIZE="2">
+    <p><font FACE="ARIAL,HELV"><b>V. 1.1 Manuals (HTML)</b></font> <ul>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/xwb1_1rn.html">Release Notes</a></font></li>
+      <li><a HREF="docs/User_Manual/toc.html"><font SIZE="2" FACE="ARIAL,HELV">Systems Manual</font></a></li>
+      <li><font SIZE="2" FACE="ARIAL,HELV">Developer's Guide</font></li>
+    </ul>
+    <hr SIZE="2">
+    <p><font FACE="ARIAL,HELV"><b>V. 1.1 Manuals (PDF)</b></font> <ul>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/xwb1_1rn.pdf" TARGET="_top">Release Notes</a></font></li>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/xwb1_1rm.txt" TARGET="_top">Readme</a><br>
+        <small>(Read this prior to installing the Broker.)</small></font></li>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/xwb1_1ig.pdf" TARGET="_top">Installation
+        Guide</a></font></li>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/xwb1_1sm.pdf" TARGET="_top">Systems
+        Manual</a></font></li>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/xwb1_1dg.pdf" TARGET="_top">Getting
+        Started w/ BDK</a></font></li>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/xwb1_1tm.pdf" TARGET="_top">Technical
+        Manual</a></font></li>
+    </ul>
+    <hr SIZE="2">
+    <p><font FACE="ARIAL,HELV"><b>Features</b></font> <ul>
+      <li><font SIZE="2" FACE="ARIAL,HELV"><a HREF="docs/broker.html">Monograph</a></font></li>
+    </ul>
+    <hr SIZE="2">
+    <p><font FACE="ARIAL,HELV"><b>Presentations/Papers</b></font> <ul>
+      <li><a HREF="finn1.htm"><font SIZE="2" FACE="arial,helv">RPC Broker in Finland</font></a></li>
+      <li><a HREF="docs/Whats_New/finland2.html"><font SIZE="2" FACE="arial,helv">RPC Broker in
+        Finland (pt. 2)</font></a></li>
+    </ul>
+    </td>
+    <td VALIGN="TOP"><div align="center"><center><table BORDER="0" WIDTH="90%" BGCOLOR="#e6e6e6">
+      <tr>
+        <td ALIGN="CENTER"><font SIZE="4" FACE="arial"><b>New Features in Version 1.1</b></font></td>
+      </tr>
+    </table>
+    </center></div><div align="center"><center><table BORDER="0" WIDTH="90%" BGCOLOR="#ffffff">
+      <tr>
+        <td><ul>
+          <li><i><b>For End-Users</b></i> <ul>
+              <li>Single Signon</li>
+              <li>Client Agent</li>
+            </ul>
+          </li>
+          <li><i><b>For Site Managers</b></i> <ul>
+              <li>Multiple Listener Support</li>
+              <li>Open M for NT 7.0 Support</li>
+              <li>RPCTest Diagnostic Tool</li>
+            </ul>
+          </li>
+          <li><i><b>For Developers</b></i> <ul>
+              <li>The full BDK (Broker Development Kit)</li>
+              <li>The Broker DLL (Dynamic Link Library)</li>
+              <li>Delphi 3.0 Support</li>
+            </ul>
+          </li>
+        </ul>
+        </td>
+      </tr>
+    </table>
+    </center></div><div align="center"><center><table BORDER="0" WIDTH="90%" BGCOLOR="#e6e6e6">
+      <tr>
+        <td ALIGN="CENTER"><font SIZE="4" FACE="arial"><b>New V. 1.1 FAQs (Ask Dr. Broker!) </b></font></td>
+      </tr>
+    </table>
+    </center></div><div align="center"><center><table BORDER="0" WIDTH="90%" BGCOLOR="#ffffff">
+      <tr>
+        <td><b><a NAME="SERVERLIST">Q: What happened to VISTA.INI?</a></b> <p><b>Dr. Broker: </b>Applications
+        compiled with V. 1.0 of the RPC Broker use a workstation's VISTA.INI file. This file
+        contains settings made by a site manager and is used to determine the location of the
+        Client Manager, server(s) and listener port(s) to connect to, and programmer preferences
+        of the Broker component.</p>
+        <p>Applications compiled with V. 1.1 of the RPC Broker no longer look at the VISTA.INI
+        file. Instead, they look at the what the site manager specifies in a workstation's Windows
+        Registry. The VISTA.INI settings are copied to the Window's Registry during the end-user
+        workstation installation of version 1.1 of the Broker. The Registry is used to determine
+        the location of the Client Agent, server(s) and listener port(s) that a workstation can
+        connect to, signon screen user customizations, and programmer preferences of the Broker
+        component.</p>
+        <p>To modify the list of servers in the Windows Registry, use the SERVERLIST.EXE program
+        provided with the Broker Development Kit.</p>
+        <p>If your site is supporting applications compiled with both V. 1.1 <i>and</i> 1.0 of the
+        RPC Broker, you need to maintain the list of servers to connect to in both places (Windows
+        Registry <i>and</i> VISTA.INI) until all of your applications are recompiled with V. 1.1
+        of the RPC Broker.</p>
+        <p><b>For more questions and answers, see:</b><ul>
+          <li><a HREF="docs/Broker_FAQ.html" TARGET="_top"><font SIZE="2" FACE="ARIAL,HELV">System
+            Mgr. FAQ</font></a></li>
+          <li><a HREF="docs/Broker_Dev_FAQ.html" TARGET="_top"><font SIZE="2" FACE="ARIAL,HELV">Developer
+            (BDK) FAQ</font></a></li>
+        </ul>
+        </td>
+      </tr>
+    </table>
+    </center></div><div align="center"><center><table BORDER="0" WIDTH="90%" BGCOLOR="#6699ff">
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+
+<hr SIZE="5" WIDTH="100%">
+<script LANGUAGE="JavaScript"> <!--
+document.write("<font size=1 face=\"arial,helv\">This page updated on " + document.lastModified + "")
+//--></script>
+
+</body>
+</html>

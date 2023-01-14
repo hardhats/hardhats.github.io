@@ -1,0 +1,306 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: UPDCOMP^XLFNAME2">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,UPDCOMP^XLFNAME2,updcomp,xlfname2,name standardization,controlled subscription">
+    <meta name="description"
+	      content="Kernel APIs: UPDCOMP^XLFNAME2">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: UPDCOMP^XLFNAME2</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">UPDCOMP^XLFNAME2</A>(): Update Name Components Entry</H3> 
+	<P><B>Reference Type:</B> Controlled Subscription, <B>Category:</B> Name
+	Standardization, <B>ICR#:</B> 3066</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The UPDCOMP^XLFNAME2 API updates an entry in the NAME COMPONENTS (#20) file. Optionally,
+	the pointer in the source file that points to the name components entry is also
+	updated.</P>
+    <P>This API is designed to be used in the <strong>SET</strong> logic of a MUMPS
+	cross-reference on the NAME field in a source file, to keep the NAME field and
+	the associated name components in sync. For an example of its use, see the
+	<strong>ANAME</strong> index in the INDEX (#.11) file. The <strong>ANAME</strong> index is a MUMPS
+	cross-reference on the NAME (#.01) field of the NEW PERSON (#200) file. If an
+	entry's NAME field is edited, the <strong>ANAME</strong> cross-reference updates the associated
+	entry in the NAME COMPONENTS (#20) file.</P>
+    <P><b>NOTE:</b> Existing MUMPS
+	cross-references on the NAME COMPONENTS (#20) file already exist to update the
+	associated NAME field on the source file if the components are edited.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  UPDCOMP^XLFNAME2(file,[.]record,field,[.]name[,ptrfield][,ptrval])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>file:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) The number of the file or Multiple (the "source file")
+		  that contains the name.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>[.]record:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) The IENS or the Internal Entry Number array (that looks
+		  like the <strong>DA</strong> array) of the record in the source file that contains the name.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>field:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) The number of the field in the source file that
+		  contains the name.</P>
+		</TD> 
+	  </TR> 
+      <TR> 
+	    <TD VALIGN="TOP">
+	      <B>[.]name:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(required) An array that contains the component parts of the name
+		  to store in the NAME COMPONENTS (#20) file entry:</P> 
+		  <PRE>                  NAME("FAMILY) = Family Name (required)
+		  NAME("GIVEN") = Given Name(s)(optional)
+		  NAME("MIDDLE") = Middle Name(s)(optional)
+		  NAME("SUFFIX") = Suffix(es) (optional)	  
+		  NAME("PREFIX") = Prefix (optional)
+		  NAME("NOTES") = optional free text string</PRE> 
+		  <P>Alternatively, a name in standard format can be passed in the 
+		  <strong>name</strong>
+		  input parameter. If the <strong>name</strong> input parameter has no 
+		  descendents [i.e.,
+		  <strong>$D(NAME)=1</strong>], UPDCOMP^XLFNAME2 makes a call to the
+		  <A HREF="namecomp-xlfname.html"
+		     TITLE="NAMECOMP^XLFNAME2 API"
+		     CLASS="bodylink">NAMECOMP^XLFNAME(): Component Parts from Standard Name API</A>
+		  to build the <strong>NAME</strong> array for you.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>ptrfield:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) The number of the POINTER field in the source file that
+		  points to the NAME COMPONENTS (#20) file. Only if this parameter is passed 
+		  is the value of this POINTER field be updated with the entry number of the record in
+		  the NAME COMPONENTS (#20) file that was added or edited.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>ptrval:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) The current value of the POINTER field specified by the
+		  <B>ptrfield</B>
+	      input parameter. This parameter can be used to save processing time.
+		  If both 
+	      <B>ptrfield</B>
+	      and <strong>ptrval</strong> are passed, the POINTER field is updated 
+		  only if this value is different from the entry number of the record 
+	      in the NAME COMPONENTS (#20) file that was added or edited.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4>Output</H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>returns:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>Updated entry in the NAME COMPONENTS (#20) file.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4> 
+	<P>Suppose the <strong>.01</strong> field of File #1000 contains a person's name, and the
+	component parts of the name in entry 132 should be updated as follows:</P> 
+	<ul>
+	  <li>
+	    Family (last) name: KRNUSER
+	    <br>
+		<br>
+	  </li>
+	  <li>
+	    Given (first) name: FIFTY HENRY
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Middle name: A.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Suffix: JR.
+	  </li>
+    </ul>
+	<P>Field #1.1 is defined as a pointer to the NAME COMPONENTS (#20) file and
+	has a value of 42, the IEN of a record in the NAME COMPONENTS (#20) file. To update
+	the NAME COMPONENTS (#20) file with this name, you can do the following:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>S MYNAME("FAMILY")=&quot;KRNUSER"</B>
+&gt;<B>S MYNAME("GIVEN")=&quot;FIFTY HENRY"</B>
+&gt;<B>S MYNAME("MIDDLE")="A."</B>
+&gt;<B>S MYNAME("SUFFIX")="JR."</B>
+
+&gt;<B>D UPDCOMP^XLFNAME2(1000,132,.01,.MYNAME,1.1,42)</B></PRE>        
+        </td>
+      </tr>
+    </table>	 
+	<P>If there is an entry in the NAME COMPONENTS (#20) file that corresponds
+	to File #1000, Field #.01, IEN #132, that entry is updated with the name
+	components passed in the MYNAME array. Otherwise, a new entry is added to the
+	name components with this information.</P>
+    <P>If the entry in the name
+	components that was updated or added is record #42, no change is made to the
+	value of the POINTER field #1.1, since 42 was passed in the 6th parameter.</P>
+    <P>MUMPS cross-references on the NAME COMPONENTS (#20) file updates the name
+	in the Field #.01 of File #1000 to "KRNUSER,FIFTY HENRY A JR" if it does <i>not</i>
+	already contain that name.</P> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/updcomp-xlfname2.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

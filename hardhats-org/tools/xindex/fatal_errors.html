@@ -1,0 +1,320 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+	<meta name="language"
+	      content="en">
+	<meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+	<meta name="subject"
+	      content="Kernel Toolkit XINDEX: Fatal M Errors (Hard MUMPS Errors)">
+	<meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Office of Information and Technology,OI&T,OIT,VISTA,kernel,toolkit,programmer,developer,programmer manual,xindex,errors,messages,sacc,sac,Fatal M Errors (Hard MUMPS Errors),Fatal,M Errors,Hard MUMPS Errors,M errors,hard errors,MUMPS">
+	<meta name="description"
+	      content="Kernel Toolkit XINDEX: Fatal M Errors (Hard MUMPS Errors)">
+	<meta name="datecreated"
+	      content="20120124">
+	<meta name="datereviewed"
+	      content="20180720">
+	<meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <TITLE>Kernel Toolkit XINDEX: Fatal M Errors (Hard MUMPS Error)</TITLE>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+  <header>
+<!-- Start Title Banner (image) -->
+    <TABLE BORDER="0"
+           WIDTH="100%"
+           CELLSPACING="3"
+           CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel-toolkit_heading_xindex.jpg"
+			   ALT="Kernel & Toolkit APIs Banner"
+			   WIDTH="429"
+			   HEIGHT="29"
+			   BORDER="0">
+		  <A HREF="#navskip">
+		  <IMG SRC="images/clr_pxl.gif"
+			   ALT="[skip navigation]"
+			   WIDTH="25"
+			   HEIGHT="1"
+			   BORDER="0"></A>
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   WIDTH="429"
+			   HEIGHT="30"
+			   BORDER="0">
+		</TD> 
+	  </TR> 
+    </TABLE>
+<!-- End Title Banner (image) -->
+    </header> 
+<!-- Start Content -->
+    <H3><A NAME="navskip">XINDEX: Fatal M Errors (Hard MUMPS Errors)</A></H3> 
+	<p>These are unrecoverable errors that cause a program to fail if the 
+	commands are executed. It is possible, however, that these types of errors 
+	might exist in routines that run correctly. The error occurs (or may occur, 
+	depending on the underlying implementation) only when the errant commands 
+	are executed.</p>
+    <H4><a name="f_bad_number">F&#8212;Bad Number</a></H4>
+    <P>XINDEX can only check static numbers in code. It does <em>not</em> check the 
+	boundaries of the number, only that it is a legitimate number and 
+	<em>not</em> a string.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_bad_write_syntax">F&#8212;Bad WRITE syntax</a></H4>
+    <P>This error is usually a <strong>WRITE</strong> argument misuse. The most common 
+	occurrence is due to a missing comma after the argument.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_block_structure_mismatch">F&#8212;Block structure mismatch</a></H4>
+    <P>These are potentially one of the most serious types of errors, and may lead to fatal runtime exceptions. However, examination of a number of routines indicates that a significant number of these errors are empty 
+	<strong>DO</strong> blocks. These are still potential logic errors, but do 
+	<em>not</em> cause runtime exceptions under Caché. The <strong>DO</strong> command, Section 8.2.3 of the standard, does 
+	<em>not</em> seem to have a provision for empty blocks, so this is an error.</P>
+    <h5>Example</h5>
+    <p>The following code extract from ENGET^DGRUGMFU is an example of this type of error:</p>
+    <table border="1"
+           width="100%"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+	    <td>
+		  <pre>ENGET() ;DETERMINE DIVISION TO GET SUBSCRIBERS
+ ;
+N I,J,X
+       F I=1:1 X HLNEXT Q:HLQUIT'&gt;0  D
+       .S X(I)=HLNODE,J=0
+       <b>..F  S J=$O(HLNODE(J)) Q:'J  S X(I,J)=HLNODE(J)</b></pre>
+	    </td>
+	  </tr>
+    </table>
+	<p>Because there is no <strong>DO</strong> command before the double dot syntax, that 
+	line is never executed.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_call_to_missing_label">F&#8212;Call to missing label 'label' in this routine</a></H4>
+    <P>In this case, reference is made to a label inside a routine that is <em>not</em> (or no longer) present. There could be many reasons for this. The most likely candidate being removal of code that is no longer used.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_call_to_this_label_missing">F&#8212;Call to this label/routine (MISSING LABEL)</a></H4>
+    <P>This is the complementary situation in which code calls a label/routine that is no longer present on the system. Again, there are a number of reasons why this might occur, including typographical errors and removal of code that is no longer used.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_command_missing_an_argument">F&#8212;Command missing an argument</a></H4>
+    <P>This is another syntax type error. Most M command arguments are optional. This error is usually associated with the 
+	<strong>WRITE</strong> argument tab character, which is the question mark (<strong>?</strong>). It 
+	<em>must</em> be followed by an integer or variable.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_error_in_pattern_code">F&#8212;Error in pattern code</a></H4>
+    <P>XINDEX checks that only the seven pattern codes (i.e., <b>ACELNPU</b>) are used. They also can be lower case (i.e., <b>acelnpu</b>).  The seven pattern codes are defined as:</P>
+    <ul>
+      <li>
+        <strong>A&#8212;</strong>Alphabetic
+        <br>
+        <br>
+      </li>
+	  <li>
+        <strong>C&#8212;</strong>Control
+        <br>
+		<br>
+      </li>
+	  <li>
+        <strong>E&#8212;</strong>Every Character
+        <br>
+		<br>
+      </li>
+	  <li>
+        <strong>L&#8212;</strong>Lowercase
+        <br>
+		<br>
+      </li>
+	  <li>
+        <strong>N&#8212;</strong>Numeric
+        <br>
+		<br>
+      </li>
+	  <li>
+        <strong>P&#8212;</strong>Punctuation
+        <br>
+		<br>
+      </li>
+	  <li>
+        <strong>U&#8212;</strong>Uppercase
+      </li>
+    </ul> 
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_for_command_followed_by_only_one_space">F&#8212;FOR Command followed by only one space</a></H4>
+    <P>This error is only for the argumentless <strong>FOR</strong> command. It 
+	<em>must</em> be followed by two spaces.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_for_command_did_not_contain_equal">F&#8211;FOR Command did not contain '='</a></H4>
+    <P>XINDEX checks that if the <strong>FOR</strong> command has an argument, it 
+	<em>must</em> set a variable.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_general_syntax_error">F&#8212;General Syntax Error</a></H4>
+    <P>This error indicates a construct that is <em>not</em> valid M syntax and is otherwise unrecognized. Almost any malformed code is possible here.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_go_or_do_mismatch_from_block_structure">F&#8212;GO or DO mismatch from block structure (M45)</a></H4>
+    <P>This is another error that has to with the <strong>dot</strong> syntax used to create anonymous blocks in standard M. Typically, a 
+	<strong>GOTO</strong> that jumps from one stack level to another would generate this type of error.</P>
+	<h5>Example</h5>
+	<table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+      <tr>
+	    <td>
+		  <pre>
+TEST        ;test routine
+            F I=1:1 D
+            . S X=1,Y=Z
+            .I Y&gt;0 <b>G QUIT^TESTA</b>
+            .S Z=0</pre>
+	    </td>
+	  </tr>
+    </table>
+	<p>In this example, the code is trying to <strong>GO</strong> out of the 
+	<strong>DO</strong> block to another routine.</p>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_invalid_or_wrong_number_of_arguments">F&#8212;Invalid or wrong number of arguments to a function</a></H4>
+    <P>This error involves calling functions with the wrong number of arguments, or with invalid argument syntax.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_label_is_not_valid" >F&#8212;Label is not valid</a></H4>
+    <P>M allows the arguments to commands (e.g., <strong>DO</strong>) to be specified 
+	indirectly (i.e., via the <strong>@</strong> syntax). What is <em>not</em> standard, 
+	however, is to use indirection just to specify the <em>label</em> in a label^routine combination.</P>
+	<h5>Example</h5>
+	<p>The following code extract from <strong>EN+6^MXMLPRSE</strong> is invalid:</p>
+	<table border="1"
+		   width="100%"
+		   cellspacing="3"
+		   cellpadding="3">
+	  <tr>
+	    <td>
+	      <pre>F  Q:EOD  <b>D</b> READ,EPOS<b>,@ST^MXMLPRS0</b>:'EOD</pre>
+		</td>
+	  </tr>
+    </table>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_missing_argument_to_a_command_post_conditional">F&#8211;Missing argument to a command post-conditional</a></H4>
+    <P>Most M commands allow a post condition, which is designated by a colon and followed by the argument. This error occurs if the argument is missing.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_non-standard_z_command">F&#8212;Non-standard (Undefined) 'Z' command</a></H4>
+    <P>XINDEX flags all uses of <strong>Z</strong> commands. Vendor-specific commands use the 
+	<strong>Z</strong> prefix. The SAC restricts the use of such commands to Kernel. You may occasionally see other packages make use of these commands, but in these cases, an exemption is required.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_quoted_string_not_followed_by_a_separator">F&#8211;Quoted string not followed by a separator</a></H4>
+    <P>XINDEX checks that anywhere a quoted string is used, it <em>must</em> stand alone or have a separator after it.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_reference_to_routine_not_in_uci">F&#8212;Reference to routine '^routine name'. That isn't in this UCI</a></H4>
+    <P>These errors flag references to routines that are <em>not</em> present on the system.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_undefined_command">F&#8212;UNDEFINED COMMAND (rest of line not checked)</a></H4>
+    <P>This is a syntax error. It requires a manual check of the line/routine.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_undefined_function">F&#8212;Undefined Function</a></H4>
+    <P>Checks that a function is part of the M standard.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_undefined_special_variable">F&#8212;Undefined Special Variable</a></H4>
+    <P>This is essentially the same as the "<a href="#f_undefined_function">F&#8212;Undefined Function</a>" error. The only difference is that in M special variables are built-in functions that take no arguments.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_unmatched_parenthesis">F&#8212;Unmatched Parenthesis</a></H4>
+    <P>This is a syntax error. XINDEX checks that the static code has matching parenthesis. It does have problems when indirection is used, which are evaluated during execution.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_unmatched_quotation_marks">F&#8211;Unmatched Quotation Marks</a></H4>
+    <P>This is a syntax error. XINDEX checks that the static code has matching quotation marks. It does have problems when indirection is used, which are evaluated during execution.</P>
+	<p>&nbsp;</p>
+    <HR COLOR="003399"> 
+    <H4><a name="f_unrecognized_argument_in_set_command">F&#8212;Unrecognized argument in SET command</a></H4>
+    <P>XINDEX checks the syntax of the <strong>SET</strong> statement. It does have problems when indirection is used, which are evaluated during execution.</P>
+    <P>&nbsp;</P>
+<!-- End Content -->
+	<footer>
+	<HR COLOR="003399">
+<!-- Start Bottom Links -->
+    <P ALIGN="CENTER">
+	<A HREF="http://www.va.gov/"
+	   CLASS="bodylink"
+	   TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Intranet Home Page">
+	   <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+    <A HREF="http://vaww.va.gov/vhaoi/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information Home Page">
+	   <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+    <A HREF="https://vaww.oit.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Office of Information and Technology Home Page">
+	   <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Home Page">
+	   <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+    <A HREF="http://vista.med.va.gov/termsofuse.htm"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+    <A HREF="http://www.va.gov/privacy/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+    <A HREF="http://www1.va.gov/accessible/"
+       CLASS="bodylink"
+       TARGET="_top"
+	   TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!-- End Bottom Links -->
+<!-- Date Content was Reviewed or Updated -->
+    <p align="center">Reviewed/Updated: 07/20/2018
+    <br>
+    <br>
+    For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+	<A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /kernel/xindex/fatal_errors.html"
+	   TITLE="Send mail to the Webmasters regarding this page"
+	   class="bodylink">Webmasters</A></p> 
+    <P>&nbsp;</P>
+    </footer>
+  </BODY>
+</HTML>

@@ -1,0 +1,243 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: SUROLIST^XQALSURO">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Security and Other Common Services (S&OCS),Infrastructure and Security Services,Information Infrastructure Service,S&OCS,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,SUROLIST^XQALSURO,SUROLIST,XQALSURO,alerts,supported">
+    <meta name="description"
+	      content="Kernel APIs: SUROLIST^XQALSURO">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: SUROLIST^XQALSURO</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">SUROLIST^XQALSURO</A>(): List Surrogates for a User</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Alerts,
+	<B>ICR#:</B> 3213</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The SUROLIST^XQALSURO API returns a list of current or future surrogates for the user that 
+    is defined by the <strong>xqauser</strong> input parameter. It also sets the following surrogate fields in the 
+    ALERT (#8992) file if there is a current surrogate for this user:</P>
+    <UL>
+      <LI>
+        SURROGATE FOR ALERTS (#.02)
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        SURROGATE START DATE/TIME (#.03)
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        SURROGATE END DATE/TIME (#.04)
+      </LI>
+    </UL>
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  SUROLIST^XQALSURO(xqauser,.xqalist)</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%"><B>xqauser:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) This is the Internal Entry Number (IEN, <strong>DUZ</strong> value) in 
+          the NEW PERSON (#200) file for the specified user.</P>
+	    </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>xqalist:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Passed by reference; it contains the name of the output array.</P>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>xqalist</B>
+		</TD> 
+		<TD VALIGN="TOP"
+	        WIDTH="85%"> 
+		  <P>The output contains the list of current and future surrogates for 
+		  the specified user. The data in the list includes the following:</P>
+		  <ul>
+		    <li>
+		      User's internal entry number (<strong>DUZ</strong>)
+		      <br>
+			  <br>
+            </li>
+			<li>
+			  User's name
+			  <br>
+			  <br>
+            </li>
+			<li>
+			  Start and end dates for the surrogate period
+			</li>
+		  </ul>
+		  <P>Set to a number equal to the count of the total number of 
+          surrogates returned in the list:
+          <BR>
+          <BR>
+          &nbsp;&nbsp;&nbsp;&nbsp;<strong>XQALIST(<em>n</em>)</strong>
+          <BR>
+          <BR>
+          Where <B><em>n</em></B> is a sequential integer starting with <strong>1</strong>. Each entry in the 
+          array contains:</P>
+		  <P>&nbsp;&nbsp;&nbsp; <strong>IEN^Name^Start Date/Time^End Date/Time</strong></P>
+	    </TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example</A></H4>
+	<table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>D SUROLIST^XQALSURO(duz,.output)</B>
+
+<B>&gt;ZW OUTPUT</B>
+OUTPUT=2
+OUTPUT(1)="5206652^PERSON,FIRST^3071113.141547^3071113.142"
+OUTPUT(2)="5206656^PERSON,SECOND^3071114^3071114.08"</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/surolist-xqalsuro.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

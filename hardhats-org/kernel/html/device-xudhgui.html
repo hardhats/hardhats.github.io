@@ -1,0 +1,379 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: DEVICE^XUDHGUI">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,DEVICE^XUDHGUI,DEVICE,XUDHGUI,gui,device handler,supported">
+    <meta name="description"
+	      content="Kernel APIs: DEVICE^XUDHGUI">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs: DEVICE^XUDHGUI</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">DEVICE^XUDHGUI</A>(): GUI Device Lookup</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> Device Handler,
+	<B>ICR#:</B> 3771</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The DEVICE^XUDHGUI API allows VistA Graphical User Interface (GUI)-based applications
+	to look up devices. This API retrieves the first <strong>20</strong> devices that meet the
+	specifications passed.</P>
+    <P><strong>NOTE:</strong> This API was made available with Kernel Patch
+	XU*8.0*220.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  DEVICE^XUDHGUI(.list,starting_point[,direction][,right_margin_range])</PRE> 
+	<H4><A NAME="input_parameters">Input Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%"><B>.list:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) Named array to store output.</P>
+		</TD> 
+	  </TR> 
+      <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>starting_point:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>(required) This parameter indicates where to start the $ORDERing
+		  of the Global.</P>
+		  <ul>
+			<li>
+			  <b>P&#8212;</b>Returns devices whose name starts with <b>P</b>.
+			  <br>
+			  <br>
+			</li>
+			<li>
+			  <b>P*&#8212;</b>Returns up to <strong>20</strong> devices the first starting with <b>P</b>.
+			</li>
+		  </ul>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>direction:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) This parameter indicates whether to <strong>$ORDER</strong> up or down
+		  from the <strong>starting_point</strong> parameter. The acceptable values are 1 and -1: </P> 
+		  <UL> 
+		    <LI>
+		      <strong>1&#151;</strong>Up
+		      <BR>
+		      <BR>
+		    </LI> 
+		    <LI>
+		      <strong>-1&#151;</strong>Down
+		    </LI> 
+		  </UL>
+        </TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>right_margin_range:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) This parameter is used to specify a width range of devices:</P> 
+		  <UL> 
+		    <LI>
+		      Exact Width (e.g., "132-132")
+		      <BR>
+		      <BR>
+		    </LI> 
+		    <LI>
+		      At Least Width (e.g., "132")
+		      <BR>
+		      <BR>
+		    </LI> 
+		    <LI>
+		      Range (e.g., "80-132")
+		    </LI> 
+		  </UL>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Parameters</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>.list:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P>The data is returned in this named array. Data is returned in the
+		  following format: </P>
+		  <PRE>  <strong>IEN^NAME^DISPLAY NAME^LOCATION^RIGHT MARGIN^PAGE LENGTH</strong></PRE>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="example">Example 1</A></H4> 
+	<P>This example stores/displays a list of all devices that begin with <b>P</b> in an array (e.g., DEVICES), without passing a direction or
+	right margin range parameter:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>K DEVICES</B>
+&gt;<B>D DEVICE^XUDHGUI(.DEVICES,"P")</B></PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<P>The DEVICES array displays the following results:</P>
+	    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>  &gt;<B>ZW DEVICES</B>
+DEVICES(1)=358^P-MESSAGE-HFS^P-MESSAGE-HFS^HFS FILE=&gt;MESSAGE^255^256
+DEVICES(2)=348^P-MESSAGE-HFS-ONT^P-MESSAGE-HFS-ONT^HFS FILE==&gt; MESSAGE^80^999
+DEVICES(3)=274^P-MESSAGE-HFS-VXD^P-MESSAGE-HFS-VXD^HFS FILE==&gt; MESSAGE^80^256
+DEVICES(4)=292^P-RESMON^P-RESMON^IRM^132^64
+DEVICES(5)=310^P-WINDOC^P-WINDOC^MWI WINDOW DOCUMENT BOX^80^256</PRE>           
+        </td>
+      </tr>
+    </table>	 
+    <P>&nbsp;</P> 
+	<H4>Example 2</H4> 
+	<P>This example stores/displays a list of all devices that begin with <b>P</b> in an array (e.g., DEVICES), without passing a direction
+	parameter but including those devices with a right margin of an exact width of
+	<strong>80</strong>:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>K DEVICES</B>
+&gt;<B>D DEVICE^XUDHGUI(.DEVICES,"P",,"80-80")</B></PRE>           
+        </td>
+      </tr>
+    </table> 
+	<P>The DEVICES array displays the following results:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>  &gt;<B>ZW DEVICES</B>
+DEVICES(1)=348^P-MESSAGE-HFS-ONT^P-MESSAGE-HFS-ONT^HFS FILE==&gt; MESSAGE^80^999
+DEVICES(2)=274^P-MESSAGE-HFS-VXD^P-MESSAGE-HFS-VXD^HFS FILE==&gt; MESSAGE^80^256
+DEVICES(3)=310^P-WINDOC^P-WINDOC^MWI WINDOW DOCUMENT BOX^80^256</PRE>           
+        </td>
+      </tr>
+    </table> 
+	<P></P> 
+	<H4>Example 3</H4> 
+	<P>This example stores/displays a list of all devices that begin with <b>P</b> in an array (e.g., DEVICES), without passing a direction
+	parameter but including those devices with a right margin width range of
+	<strong>80-132</strong>:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>K DEVICES</B>
+&gt;<B>D DEVICE^XUDHGUI(.DEVICES,"P",,"80-132")</B></PRE>           
+        </td>
+      </tr>
+    </table> 
+	<P>The DEVICES array displays the following results:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>  &gt;<B>ZW DEVICES</B>
+DEVICES(1)=348^P-MESSAGE-HFS-ONT^P-MESSAGE-HFS-ONT^HFS FILE==&gt; MESSAGE^80^999
+DEVICES(2)=274^P-MESSAGE-HFS-VXD^P-MESSAGE-HFS-VXD^HFS FILE==&gt; MESSAGE^80^256
+DEVICES(3)=292^P-RESMON^P-RESMON^IRM^132^64
+DEVICES(4)=310^P-WINDOC^P-WINDOC^MWI WINDOW DOCUMENT BOX^80^256</PRE>           
+        </td>
+      </tr>
+    </table>	 
+	<P></P> 
+	<H4>Example 4</H4> 
+	<P>This example stores/displays a list of up to <strong>20</strong> devices, 
+	the first of which starts with <b>P</b>, in an array (e.g., DEVICES), without passing a
+	direction or right margin range parameter:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>&gt;<B>K DEVICES</B>
+&gt;<B>D DEVICE^XUDHGUI(.DEVICES,"P*")</B></PRE>           
+        </td>
+      </tr>
+    </table> 
+	<P>The DEVICES array displays the following results:</P>
+    <table width="100%"
+           border="1"
+           cellspacing="3"
+           cellpadding="3">
+      <tr>
+        <td>
+          <PRE>  &gt;<B>ZW DEVICES</B>
+DEVICES(1)=358^P-MESSAGE-HFS^P-MESSAGE-HFS^HFS FILE=&gt;MESSAGE^255^256
+DEVICES(2)=348^P-MESSAGE-HFS-ONT^P-MESSAGE-HFS-ONT^HFS FILE==&gt; MESSAGE^80^999
+DEVICES(3)=274^P-MESSAGE-HFS-VXD^P-MESSAGE-HFS-VXD^HFS FILE==&gt; MESSAGE^80^256
+DEVICES(4)=292^P-RESMON^P-RESMON^IRM^132^64
+DEVICES(5)=310^P-WINDOC^P-WINDOC^MWI WINDOW DOCUMENT BOX^80^256
+DEVICES(6)=202^C6_SDD_MX3 ROUTINE^ROUTINE <C6_SDD_MX3 ROUTINE>^Next to Jean&#8217;s Office^80^59
+DEVICES(7)=428^SDD DUPLEX P10^SDD DUPLEX P10^SSD DUPLEX PRINTER NEXT TO JACK^80^60
+DEVICES(8)=429^SDD P10^SDD P10^Printer next to Jack.^80^60
+DEVICES(9)=329^C6_SDD_MX3 P10^SS10 <C6_SDD_MX3 P10>^Near Jean&#8217;s Office^80^59
+DEVICES(10)=330^C6_SDD_MX3 P12^SS12 <C6_SDD_MX3 P12>^Near Jean&#8217;s Office^96^57
+DEVICES(11)=331^C6_SDD_MX3 P16^SS16 <C6_SDD_MX3 P16>^Near Jean&#8217;s Office^255^58
+DEVICES(12)=349^C6_SDD_MX3 P16P8L^SS16P8L <C6_SDD_MX3 P16P8L>^Near Jean&#8217;s Office^117^79
+DEVICES(13)=202^C6_SDD_MX3 ROUTINE^SSR <C6_SDD_MX3 ROUTINE>^Next to Jean&#8217;s Office^80^59
+DEVICES(14)=427^SUP$PRT TEST^SUP$PRT TEST^DISK FILE^132^58
+DEVICES(15)=283^SYS$INPUT^SYS$INPUT^SYS$INPUT;^132^64
+DEVICES(16)=198^VMS FILE^VMS FILE^DISK^80^64
+DEVICES(17)=349^C6_SDD_MX3 P16P8L^VPM <C6_SDD_MX3 P16P8L>^Near Jean&#8217;s Office^117^79
+DEVICES(18)=291^VTB255^VTB255^RMS FILE^255^99999
+DEVICES(19)=288^ZBROWSE^ZBROWSE^RMS FILE^255^99999</PRE>           
+        </td>
+      </tr>
+    </table>	 
+    <P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+	      <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+	         <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/device-xudhgui.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

@@ -1,0 +1,156 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Broker Installation and Set-up Tips</title>
+</head>
+
+<body>
+<div align="center"><center>
+
+<table border="0" cellpadding="6" cellspacing="6" width="100%">
+  <tr>
+    <td align="center"><img src="../images/logo.gif" WIDTH="120" HEIGHT="79"><font size="5" face="Arial"><strong><br>
+    Broker<br>
+    Tips</strong></font></td>
+    <td width="80%"><!--webbot bot="Include" u-include="../navicon_plain.html" tag="BODY" startspan -->
+
+<p align="center"><a href="../index.html"><img src="../images/shopSHomeOff.gif" alt="Home Page" align="top" border="0" width="54" height="76"></a><a href="../m/Mmain.html"><img src="../images/shopSMOff.gif" alt="M |" align="top" border="0" width="54" height="76"></a> <a href="../fileman/FMmain.html"><img src="../images/shopSFmOff.gif" alt=" FileMan |" align="top" border="0" width="54" height="76"></a><a href="../kernel/KRNmain.html"><img src="../images/shopSKrnOff.gif" alt=" Kernel |" align="top" border="0" width="54" height="76"></a><a href="CSmain.html"><img src="../images/shopSCsOff.gif" alt=" CS/MM/Web |" align="top" border="0" width="62" height="86"></a><a href="../tools/TOOLSmain.html"><img src="../images/shopSPgmOff.gif" alt=" Programmer Tools |" align="top" border="0" width="54" height="86"></a> <a href="../apps/APPSmain.html"><img src="../images/shopSAppOff.gif" alt="Applications" align="top" border="0" width="54" height="76"></a></p>
+<!--webbot bot="Include" endspan i-checksum="31628" -->
+</td>
+  </tr>
+</table>
+</center></div>
+
+<p>Maintaining that sharing spirit, here are tips submitted by Hardhats who have installed
+the Broker. Please read them carefully and weigh their advice in light of your VISTA
+installation.&nbsp; Some of the things reported you may not experience.</p>
+
+<p><font face="Arial"><strong><big>Installation hints for RPC Broker Version 1.1</big></strong></font><br>
+by Lloyd Milligan<br>
+<br>
+Disclaimer: My VistA environment is not up-to-date or &quot;fully patched&quot;. The
+problems I encountered may be<br>
+caused by old versions of routines, missing patches, etc.<br>
+<br>
+<strong>1.</strong> The RPC Broker Installation guide states that Kernel patch XU*8*59
+must be installed. This<br>
+is a KIDS patch. The version of PackMan on my system choked on the following:</p>
+
+<blockquote>
+  <p><small><font face="Courier">&quot;^DD&quot;,3.081,3.081,9,0)<br>
+  $ZIO (optional)^F^^0;9^K:$L(X)&gt;30!($L(X)&lt;1) X</font></small></p>
+</blockquote>
+
+<p>$ in column 1 tells PackMan to expect $ROU or $KID<br>
+or some such. The code has probably been changed in recent<br>
+versions. To work around this I modified routine ^XMP2,<br>
+adding a section at the end:</p>
+
+<blockquote>
+  <p><small><font face="Courier">ZZ() ;;True if X is not a listed exception<br>
+  Q:X?1&quot;$J &quot;.E 0<br>
+  Q:X?1&quot;$ZIO&quot;.E 0<br>
+  Q 1</font></small></p>
+</blockquote>
+
+<p>These are the two $somethings that occur in column 1 of XU*8*59. Then modify line
+XMP2+52, adding the code to ignore these $ symbols.</p>
+
+<blockquote>
+  <p><font face="Courier"><small><small>F I=1:1 D NT Q:+XCN'=XCN D:$E(X)=&quot;$&quot;
+  S1:X'[&quot;$TXT&quot;&amp;$$ZZ Q:+XCN'=XCN ...</small></small></font></p>
+</blockquote>
+
+<p>Don't do this unless you have to. It is probably fixed in the current version.<br>
+<br>
+<strong>2.</strong> When I installed patch XU*8*59, the RPC multiple in the XUS SIGNON
+option entry was created as text.<br>
+The entry is supposed to be a pointer to the REMOTE PROCEDURE file (#8994). Probably the
+entries did not exist in file 8994 at the time the option was being created. The code at
+RPC+5^XQCS assumes it is a pointer (i.e. numeric in the &quot;B&quot; x-ref); otherwise
+you get the error:</p>
+
+<blockquote>
+  <p>&quot;The remote procedure X is not registered to option Y.&quot;</p>
+</blockquote>
+
+<p>If this happens, confirm that the entries exist in file 8994. Then delete and reenter
+each RPC multiple (5 of them) in the XUS SIGON option.</p>
+
+<p><font color="#0000A0"><em>[Editor Note: Indications from others and the author suggest
+that this - item 2 above - should not happen if you install patch 59 AFTER installing the
+Broker.]</em></font><br>
+<br>
+<strong>3.</strong> Reasonably current versions of ^%Z* routines are needed. Most if not
+all the problems I encountered<br>
+with this install were out-of-sync routines, missing tags or wrong number of parameters
+(&lt;DPARM&gt; errors).<br>
+First I faked a lot of these, but then bit the bullet and loaded new kernel manager
+routines from a recent CD.<br>
+<br>
+<strong>4.</strong> The RPC Broker Listener ^XWBTCPL and ^MSERVER both work (in MSM for
+Windows 95). The RPC Broker Systems Manual (1-19) recommends using MSERVER.</p>
+
+<p><br>
+<font face="Arial"><strong><big>Running RPC Broker Version 1.1 on Cache under Win 95</big></strong></font><br>
+<small>The following information discusses modification of Vista RPC Broker code on the M
+server. Realize that you are taking on the responsibility of maintaining the code if you
+choose to make the modification.&nbsp; Hardhats will not be responsible for any
+consequences of such modification.</small></p>
+
+<p><em><strong>Greg Kreis reported the following problem on the Hardhats mailing list:</strong></em></p>
+
+<p>When I go on the road, I would like to take my Broker/Cache environment with me on my
+Win 95 laptop. So... I copied a working .DAT Vista database to the laptop, updated the
+configuration files so the global and routine mappings are correct and so far, so good....<br>
+<br>
+When I start the Broker on port 9300 and then try the RPC test logon, it reports a NOTOPEN
+error at CAPI+6^XWBBRK2. That line of code is U XWBNULL. If you call D ^%ZIS and specify
+the NULL device, it returns a value of &quot;//./nul&quot;. When I look at the system
+status, the spawned listener has the null device open. BUT,<br>
+when I look at the error trap, XWBNULL is empty and does not contain the value
+&quot;//./nul&quot; as would be expected. Any ideas on why this variable is losing its
+value, when the same database works fine on the NT machine?<br>
+<br>
+Since this is the same database .DAT file and version of Cache (2.1.6) that is on my
+desktop NT system, I am wondering if there is some other configuration I have missed. I am
+using the proper IP and port number when running the test connection.</p>
+
+<p><strong><em>Richard Vertigan posted the following reply (it appears to have solved the
+above problem):</em></strong></p>
+
+<p>There are two things you'll need to do to make this work, and I've just been<br>
+through it with the help of some others who had previously been down this<br>
+road:<br>
+<br>
+1.&nbsp; To ensure the NULL device gets set (why it doesn't all the time is a mystery),
+make the following change to routine XWBTCPC, at line EN+23.&nbsp; Call it a &quot;local
+mod&quot;:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OLD:&nbsp; ELSE&nbsp; S IOP=&quot;NULL&quot; D
+^%ZIS S XWBNULL=IO<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NEW:&nbsp; ELSE&nbsp; D&nbsp; Q:IO=&quot;&quot;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .
+F I=1:1:5 S IOP=&quot;NULL&quot; D ^%ZIS I IO'=&quot;&quot; S XWBNULL=IO Q&nbsp; ;Tries 5
+times<br>
+<br>
+2.&nbsp; Delete, hide, or rename CLAGENT.EXE on your laptop.&nbsp; It's not required and
+it's guaranteed to choke on the large PIDs generated by Cache under Win95.&nbsp; They're
+in excess of 4 billion, which is no longer the integer that CLAGENT.EXE was expecting.
+&nbsp; An exception is the result, followed by the server going bananas and consuming ALL
+system resources.&nbsp; <br>
+<br>
+I'm now up and running after these two changes.</p>
+
+<hr>
+<!--webbot bot="Include" u-include="../navtext.html" tag="BODY" startspan -->
+
+<p align="center"><font size="2">Search | </font><a href="../index.html"><font size="2">Home</font></a><font size="2">
+| </font><a href="../m/Mmain.html"><font size="2">MUMPS</font></a><font size="2"> | </font><a href="../fileman/FMmain.html"><font size="2">Fileman</font></a><font size="2"> | </font><a href="../kernel/KRNmain.html"><font size="2">Kernel</font></a><font size="2"> | </font><a href="CSmain.html"><font size="2">C/S,
+Mailman, Web</font></a><font size="2"> | </font><a href="../tools/TOOLSmain.html"><font size="2">Programmer Tools</font></a><font size="2"> | </font><a href="../apps/APPSmain.html"><font size="2">Applications</font></a></p>
+<!--webbot bot="Include" endspan i-checksum="65380" -->
+
+</body>
+</html>

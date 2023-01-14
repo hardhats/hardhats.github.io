@@ -1,0 +1,26 @@
+module gov {
+  module va {
+    module vista {
+      module kernel {
+        interface User {
+          string getFirstName();
+          long getID();
+          string getLastName();
+        };
+        interface Logon {
+          long getStatus();
+          ::gov::va::vista::kernel::User getUser();
+        };
+        interface LogonManager {
+          ::gov::va::vista::kernel::Logon getLogon(
+            in string arg0,
+            in string arg1
+          );
+          void setLogout(
+            in ::gov::va::vista::kernel::Logon arg0
+          );
+        };
+      };
+    };
+  };
+};

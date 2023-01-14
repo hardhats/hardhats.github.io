@@ -1,0 +1,308 @@
+<HTML> 
+  <HEAD>
+<!--VA Office of Information and Technology (OIT)-->
+<!--Oakland OIFO-->
+<!-- START: META DATA -->
+    <meta http-equiv="Content-Type"
+	      content="text/html; charset=iso-8859-1">
+    <meta name="language"
+	      content="en">
+    <meta name="creator"
+	      content="Department of Veterans Affairs (VA), Office of Information and Technology (OIT), VistA Infrastructure (VI)">
+    <meta name="subject"
+	      content="Kernel APIs: ISQED^%ZTLOAD">
+    <meta name="keywords"
+	      content="VistA Infrastructure,VI,Infrastructure,Infrastructure and Security Services,Information Infrastructure Service,OIT,OI&T,ISS,IIS,VISTA,kernel,programmer,developer,programmer manual,apis,application programming interface,application,programming,interface,entry point,ISQED^%ZTLOAD,ISQED,%ZTLOAD,taskman,supported">
+    <meta name="description"
+	      content="Kernel APIs: ISQED^%ZTLOAD">
+    <meta name="datecreated"
+	      content="20010101">
+    <meta name="datereviewed"
+	      content="20180813">
+    <meta name="type"
+	      content="Homepage">
+<!-- END: META DATA -->
+    <title>Kernel APIs:ISQED^%ZTLOAD</title>
+    <LINK REL="StyleSheet"
+          TYPE="text/css"
+          HREF="common/developer.css"> 
+  </HEAD> 
+  <BODY> 
+    <header>
+<!--Start Title Banner (image)-->
+    <TABLE BORDER="0"
+	       WIDTH="100%"
+	       CELLSPACING="3"
+	       CELLPADDING="3"
+	       SUMMARY="This table is for formatting purposes only"> 
+	  <TR> 
+	    <TD VALIGN="top"
+	        ALIGN="left"> 
+		  <IMG SRC="images/kernel_heading_APIs.gif"
+			   ALT="Kernel 8.0 APIs Banner"
+			   BORDER="0">
+		  <BR>
+		  <IMG SRC="images/oitbanner.gif"
+			   ALT="Office of Information and Technology (OIT) Banner"
+			   BORDER="0">
+	    </TD> 
+	  </TR> 
+    </TABLE>
+	<A HREF="#navskip">
+	<IMG SRC="images/clr_pxl.gif"
+		 ALT="[skip navigation]"
+		 WIDTH="25"
+		 HEIGHT="1"
+		 BORDER="0"></A>
+<!--End Title Banner (image)-->
+    </header>
+<!-- Start Content -->
+    <H3><A NAME="navskip">ISQED^%ZTLOAD</A>: Return Task Status</H3> 
+	<P><B>Reference Type:</B> Supported, <B>Category:</B> TaskMan,
+	<B>ICR#:</B> 10063</P> 
+	<H4><A NAME="description">Description</A></H4> 
+	<P>The ISQED^%ZTLOAD API returns whether a task is currently pending. Pending means that
+	the task is any of the following:</P>
+    <ul>
+	  <li>
+	    Scheduled.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Waiting for an <strong>I/O</strong> device.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Waiting for a volume set link.
+	    <br>
+	    <br>
+	  </li>
+	  <li>
+	    Waiting for a partition in memory.
+	  </li>
+    </ul>
+    <P>It also returns the <strong>DUZ</strong> of the
+	task's creator and the time the task was scheduled to start.</P> 
+	<H4><A NAME="format">Format</A></H4> 
+	<PRE>  ISQED^%ZTLOAD</PRE> 
+    <P>Make sure to perform the following steps before calling this API:</P>
+    <OL>
+      <LI>
+        <strong>NEW</strong> all <i>non</i>-namespaced variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Set all input variables.
+        <BR>
+        <BR>
+      </LI>
+      <LI>
+        Call the API.
+      </LI>
+    </OL>
+	<H4><A NAME="input_parameters">Input Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>ZTSK:</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(required) Task number of the task to look up. The task <em>must</em> be
+		  currently defined on the volume set to be searched, or the lookup fails.</P>
+		</TD> 
+	  </TR> 
+	  <TR> 
+	    <TD VALIGN="TOP">
+	      <B>ZTCPU:</B>
+	    </TD> 
+		<TD VALIGN="TOP"> 
+		  <P>(optional) The volume set TaskMan should search for the task being
+		  looked up. If <em>not</em> passed, TaskMan searches the current volume set. Unlike
+		  the 
+		  <a href="ztload.html"
+		     title="^%ZTLOAD"
+		     class="bodylink">^%ZTLOAD</a> API <strong>ZTCPU</strong> input variable, this one does <em>not</em> accept a second 
+		  <strong>:-piece</strong>
+		  specifying the CPU. It only specifies a volume set to search.</P>
+		</TD> 
+	  </TR> 
+	</TABLE> 
+	<H4><A NAME="output">Output Variables</A></H4> 
+	<TABLE BORDER="1"
+	       CELLPADDING="5"
+	       BGCOLOR="#F1F2F3"
+	       BORDERCOLORLIGHT="#F1F2F3"
+	       BORDERCOLORDARK="#808080"
+	       WIDTH="100%"> 
+	  <TR> 
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+	      <B>ZTSK(0):</B>
+	    </TD> 
+		<TD VALIGN="TOP"
+		    WIDTH="85%"> 
+		  <P><strong>ZTSK(0)</strong> is returned as follows:</P> 
+		  <UL>
+			<LI>
+			  <strong>1&#8212;</strong>Task <strong>ZTSK</strong> is currently 
+			  scheduled or waiting on volume set <strong>ZTCPU</strong>.
+		      <BR>
+			  <BR>
+		    </LI>
+			<LI>
+			  <strong>0&#151;</strong>Task <strong>ZTSK</strong> is <em>not</em> currently scheduled or waiting on volume set 
+			  <strong>ZTCPU</strong>.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>NULL ("")&#151;</strong>The lookup was unsuccessful.
+			</LI>
+		  </UL>
+	    </TD> 
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+		  <B>ZTSK("E"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(sometimes returned) The error code, returned when some error
+		  condition prevented a successful lookup. The codes and their values are:</P>
+	      <UL>
+		    <LI>
+			  <strong>IT&#151;</strong>The task number was <em>not</em> valid (<strong>0</strong>, negative, or 
+			  <em>non</em>-numeric).
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>I&#151;</strong>The task does <em>not</em> exist on the specified volume set.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>IS&#151;</strong>The volume set is <em>not</em> listed in the VOLUME SET (#14.5) file.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>LS&#151;</strong>The link to that volume set is <em>not</em> available.
+			  <BR>
+			  <BR>
+			</LI>
+			<LI>
+			  <strong>U&#151;</strong>An unexpected error arose (e.g., disk full, protection, etc.).
+			</LI>
+	      </UL>
+	    </TD>
+	  </TR>
+	  <TR>
+	    <TD VALIGN="TOP"
+	        WIDTH="15%">
+		  <B>ZTSK("D"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(sometimes returned) The date and time the task was scheduled to
+	      start, in <strong>$HOROLOG</strong> format. It is returned only if 
+		  <strong>ZTSK(0)</strong> equals 
+          <strong>zero</strong> (<strong>0</strong>) or <strong>1</strong>.</P>
+        </TD>
+	  </TR>
+	  <TR>
+		<TD VALIGN="TOP"
+		    WIDTH="15%">
+		  <B>ZTSK("DUZ"):</B>
+		</TD>
+		<TD VALIGN="TOP"
+		    WIDTH="85%">
+		  <P>(sometimes returned) Holds the <strong>DUZ</strong> of the user who created the
+		  task. It is returned only if <strong>ZTSK(0)</strong> equals <strong>zero</strong> (<strong>0</strong>) or 
+		  <strong>1</strong>.</P>
+	    </TD>
+	  </TR> 
+	</TABLE> 
+	<P>&nbsp;</P>
+<!-- End Content -->
+    <footer>
+	<HR COLOR="003399"> 
+	<TABLE WIDTH="100%"
+	       SUMMARY="This table for layout purposes only"
+	       CLASS="white"> 
+	  <TR> 
+	    <TD ALIGN="CENTER"
+	        VALIGN="TOP">
+<!--Start Bottom Links-->
+          <P ALIGN="CENTER">
+          <A HREF="http://www.va.gov/"
+	         CLASS="bodylink"
+	         TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM> (Internet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Intranet Home Page">
+	         <ACRONYM TITLE="Department of Veterans Affairs">VA</ACRONYM>(Intranet)</A> /
+				 
+          <A HREF="http://vaww.va.gov/vhaoi/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information Home Page">
+	         <ACRONYM TITLE="Veterans Health Adminstration Office of Health Information (OHI)">VHA OHI</ACRONYM></A> /				 
+				 
+          <A HREF="https://vaww.oit.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Office of Information and Technology Home Page">
+	         <ACRONYM TITLE="Office of Information and Technology (OIT)">OIT</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Product Development (PD) Home Page">
+             <ACRONYM TITLE="Product Development">PD</ACRONYM></A> /
+
+          <A HREF="http://vista.med.va.gov/termsofuse.htm"
+             CLASS="bodylink"
+             TARGET="_top"
+     	     TITLE="Product Development (PD) Terms of Use Page">Terms of Use</A> /
+
+          <A HREF="http://www.va.gov/privacy/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Privacy Policy">VA Privacy Policy</A> /
+
+          <A HREF="http://www1.va.gov/accessible/"
+             CLASS="bodylink"
+             TARGET="_top"
+	         TITLE="Department of Veterans Affairs Internet Accessibility">Accessibility</A></P>
+<!--End Bottom Links--> 
+<!--Date content was reviewed or updated-->
+          <P ALIGN="CENTER">Reviewed/Updated: 08/13/2018
+		  <BR>
+		  <BR>
+		  For questions, comments, or accessibility issues with this website, please contact us by E-Mail: 
+		  <A HREF="mailto:VHAISFCVTECH@med.va.gov?subject=Web page comments from: /apis/isqed-ztload.html"
+			 TITLE="Send mail to the Webmasters regarding this page"
+			 class="bodylink">Webmasters</A></P> 
+		  <P>&nbsp;</P>
+	    </TD> 
+	  </TR> 
+    </TABLE>
+    </footer>
+  </BODY>
+</HTML>

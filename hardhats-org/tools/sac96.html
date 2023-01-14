@@ -1,0 +1,950 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>DHCP Programming Standards and Conventions (SAC)</title>
+
+</head>
+
+<body bgcolor="#FFFFFF">
+<div align="center"><center>
+
+<table border="0" cellpadding="6" cellspacing="6" width="100%">
+    <tr>
+        <td align="center" width="20%"><img src="../images/logo.gif" alt="hat &amp; gloves" width="120" height="79"><font size="5" face="Arial"><strong><br>
+        SAC</strong></font></td>
+        <td width="80%"><pre><font size="5" face="Arial"><strong>            </strong></font> </pre>
+        <!--webbot bot="Include" u-include="../navicon_plain.html" tag="BODY" startspan -->
+
+<p align="center"><a href="../index.html"><img src="../images/shopSHomeOff.gif" alt="Home Page" align="top" border="0" width="54" height="76"></a><a href="../m/Mmain.html"><img src="../images/shopSMOff.gif" alt="M |" align="top" border="0" width="54" height="76"></a> <a href="../fileman/FMmain.html"><img src="../images/shopSFmOff.gif" alt=" FileMan |" align="top" border="0" width="54" height="76"></a><a href="../kernel/KRNmain.html"><img src="../images/shopSKrnOff.gif" alt=" Kernel |" align="top" border="0" width="54" height="76"></a><a href="../cs/CSmain.html"><img src="../images/shopSCsOff.gif" alt=" CS/MM/Web |" align="top" border="0" width="62" height="86"></a><a href="TOOLSmain.html"><img src="../images/shopSPgmOff.gif" alt=" Programmer Tools |" align="top" border="0" width="54" height="86"></a> <a href="../apps/APPSmain.html"><img src="../images/shopSAppOff.gif" alt="Applications" align="top" border="0" width="54" height="76"></a></p>
+<!--webbot bot="Include" endspan i-checksum="61191" --></td>
+    </tr>
+</table>
+</center></div>
+
+<h1 align="center"><img src="../images/lineNail4.gif" width="396" height="16"></h1>
+
+<h1>DHCP Programming Standards and Conventions (SAC)</h1>
+
+<p>This version of the Programming SAC was adopted by Software
+Services on January 22, 1996.</p>
+
+<p><b>1. General Programming Standards and Conventions</b></p>
+
+<p>The definitions, standards and conventions within this section
+apply to all programming and user environments in use in the
+Decentralized Hospital Computer Program (DHCP). This includes all
+applications that use commercial software products as an integral
+part of DHCP (but not to the commercial application itself) and
+to all development environments including, but not limited to
+programming languages such as <b><i>M</i></b> or Pascal and
+graphical user interface (GUI) environments such as Delphi.</p>
+
+<p>1.1 Definitions applicable to this appendix:</p>
+
+<p>CONVENTIONS - Programming guidelines which are designed to
+promote consistency and safety across DHCP applications.</p>
+
+<p>Exemptions from conventions are not required, but developers
+are strongly encouraged to follow them.</p>
+
+<p>DBA - Database Administrator</p>
+
+<p>DBIC - Database Integration Committee</p>
+
+<p>DHCP - Decentralized Hospital Computer Program</p>
+
+<p>EXEMPTION - Authority granted by the SACC to a specific DHCP
+application which allows that application to not comply with a
+particular section of the SAC for a specified timeframe.</p>
+
+<p>EXTENSIONS - An addition, deletion, or modification to the
+current Standards and Conventions document. Each extension will
+contain an appropriate effective date, and may optionally contain
+an expiration date or event. (The Programming SACC will update
+the SAC quarterly via extensions, which have the full weight of
+the original SAC. Every effort will be made to keep all DHCP
+development standards and conventions in one location.)</p>
+
+<p>IA - Integration Agreement. IA's can be accessed via the DBA
+menu on FORUM.</p>
+
+<p>KERNEL - The Kernel is a set of software utilities that form
+the foundation of DHCP and include elements that start with the
+namespaces <b><tt>XG*, XLF*, XPD*, XQ*, XT*, XU*, XV*, ZI*, ZO*,
+ZT*, ZU*</tt></b>.</p>
+
+<p>MAILMAN - Mailman is a set of software utilities that form the
+foundation of DHCP's electronic mail and communications and
+include elements that start with the namespace <b><tt>XM*</tt></b>.</p>
+
+<p>NAMESPACE - A unique set of between 2 and 4 alpha characters
+assigned by the DBA.</p>
+
+<p>NEW - A way to create a new version of a variable either by
+explicit declaration or implicitly through parameter passing.
+Some protected variables may not be modified through the use of
+either the implicit or explicit <tt>NEW</tt> command.</p>
+
+<p>PACKAGE - A set of routines, files, options, templates,
+security keys, screens, bulletins, functions, help frames, forms,
+blocks, objects, protocols, dialogues, list templates, windows,
+etc. namespaced according to DBA requirements that function as a
+unit.</p>
+
+<p>STANDARD - A rule which all DHCP software must follow.</p>
+
+<p>SUPPORTED REFERENCE - Routine labels, extrinsic functions,
+files or global nodes that are accepted and documented by the
+DBIC and listed on the DBA menu on Forum.</p>
+
+<p>VA FileMan - The Database Management System for DHCP, with
+namespaces <b><tt>DD*, DI*</tt></b> and <b><tt>DM*</tt></b>.</p>
+
+<p>1.2 Files</p>
+
+<p>1.2.1 Naming requirements for files used by DHCP packages.</p>
+
+<p>1.2.1.1 All VA FileMan files in the <b><i>M</i></b> Language
+environment must be number spaced in the number space assigned to
+the package by the DBA.</p>
+
+<p>1.2.1.2 All DOS, VMS or other host files created or exported
+as part of a DHCP application shall be namespaced in the
+namespace assigned by the DBA.</p>
+
+<p>1.2.2 Packages exporting script files should provide script
+files for a variety of the terminal emulation packages commonly
+in use in the VA.</p>
+
+<p>1.2.3 Packages exporting spreadsheet templates should apply
+protection to embedded formulas to prevent accidental deletion by
+a user. Spreadsheet templates should contain documentation
+describing the purpose of the template, complex functions, and
+user help.</p>
+
+<p><b>2. </b><b><i>M</i></b><b> Language Programming Standards
+and Conventions</b></p>
+
+<p>All <b><i>M</i></b>-based DHCP software will meet the
+following standards, and comply with the spirit of the
+conventions.</p>
+
+<p>2.1 The 1995 ANSI/MDC X11.1 Sections 1 and 2 will be adhered
+to unless explicitly modified by this document.</p>
+
+<p>2.2 Routines (Routine structure and format)</p>
+
+<p>2.2.1 The first line of a routine must be in the following
+format: <br>
+routine name&lt;ls&gt;;domain(site)/programmer-brief description
+&lt;space&gt;;date (time is optional).</p>
+
+<p>2.2.1.1 The first line of a routine cannot contain the formal
+list for parameter passing.</p>
+
+<p>2.2.1.2 Routines generated by VA FileMan or Kernel (e.g., <b><tt>INIT</tt></b>s,
+<b><tt>ONIT</tt></b>s, <b><tt>NTEG</tt></b>, and compiled
+routines) and other compiled routines used in exporting a
+package, need not comply with this standard (i.e., 2.2.1).</p>
+
+<p>2.2.2 The second line of a routine must be in the following
+format:<br>
+LABEL-optional)&lt;ls&gt;;;version number; package name;
+**pm,...pn**; version date where:</p>
+
+<p>2.2.2.1 The version number must be the same on all of the
+package-namespaced routines including Inits, Onits, etc.</p>
+
+<p>2.2.2.2 pm,...pn are the applied patch numbers separated by
+commas, this &quot;;&quot; piece is null if there are no patches.</p>
+
+<p>2.2.2.3 The version date must be the same on all of the
+package namespaced routines including Inits, Onits, etc.</p>
+
+<p>2.2.2.4 Routines compiled from templates, cross-referenced,
+etc., by VA FileMan during or after package installation are
+exempt from the second line requirement.</p>
+
+<p>2.2.3 If local modifications to a routine are restricted or
+prohibited by policy or directive, the third line should contain
+an appropriate notice. (e.g., &quot;Per VHA Directive 10-92-142,
+this routine should not be modified&quot;)</p>
+
+<p>2.2.4 Labels are limited to eight (8) characters and may not
+contain lower case characters.</p>
+
+<p>2.2.4.1 <b><tt>LABEL+OFFSET</tt></b> references will not be
+used except for <b><tt>$TEXT</tt></b> references</p>
+
+<p><a href="#ext1">2.2.4.2</a> <a name="main1"></a> Lines
+referenced by <b><tt>$TEXT</tt></b> for use other than to check
+for the existence of the routine must be in the following format:
+(LABEL-optional)&lt;ls&gt;;;text or <b><i>M</i></b> code.</p>
+
+<p>2.2.5 The linebody must contain at least 1 character, must not
+exceed 245 characters in length, and must contain only the ASCII
+characters values 32-126. Commands, functions, local and global
+variable names, system variables, SSVNs, etc. must be uppercase.</p>
+
+<p>2.2.6 Package routine names of the following forms will not be
+used:</p>
+
+<p>2.2.6.1 <b><tt>NAMESPACE_I*</tt></b> (with the exceptions of
+Kernel, VA FileMan, and routines created to support the <b><tt>INIT</tt></b>
+process).</p>
+
+<p>2.2.6.2 <b><tt>NAMESPACE_NTE*</tt></b> (with the exception of
+the package integrity routines).</p>
+
+<p>2.2.7 The maximum routine size, as determined by executing <b><tt>^%ZOSF(&quot;SIZE&quot;)</tt></b>,
+is 10,000 characters. The combination of routine and symbol table
+must run in the partition size specified in the appropriate VA
+operating system cookbook.</p>
+
+<p>2.2.8 Vendor specific subroutines may not be called directly
+except by Kernel, Mailman and VA FileMan.</p>
+
+<p>2.2.9 All applications will use documented TaskMan utilities
+to interface with TaskMan globals.</p>
+
+<p>2.2.10 Naked references must either be appropriately preceded
+by the full reference defining it or be documented.</p>
+
+<p>2.2.10.1 An appropriate preceding full reference is one that
+is on the same physical routine line as the naked reference and
+has no code between it and the naked reference that branches in
+any manner to other lines of code or executables.</p>
+
+<p>2.2.10.2 Those naked references requiring documentation must
+be documented within the routine in the immediate vicinity of the
+naked reference. Those naked references that are preceded by a
+full reference which is outside of the routine where the naked
+reference is used must have documentation in both the routine
+containing the full reference and the routine containing the
+naked reference. This documentation must be in the immediate
+vicinity of the appropriate reference.</p>
+
+<p>2.2.10.3 Uses of naked references in called utilities are
+exempt, e.g.,<br>
+<b><tt>S
+DIC=200,DIC(0)=&quot;AEQ&quot;,DIC(&quot;S&quot;)=&quot;I
+$L($P($G(^(1)),&quot;^&quot;,9))&quot; D ^DIC</tt></b> <br>
+is a legitimate use of the naked reference.</p>
+
+<p>2.2.11 <b><tt>%</tt></b> Routines</p>
+
+<p>2.2.11.1 No application will distribute <b><tt>%</tt></b>
+routines. (Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.2.11.2 No <b><tt>%</tt></b> routines shall execute variables
+which could be set by a programmer prior to executing the code.</p>
+
+<p>2.2.11.3 No routine which will be resident in the Library (<b><tt>MGR</tt></b>)
+account will use <b><tt>VIEW</tt></b> commands using variables as
+arguments which could be set by a programmer prior to executing
+the code.</p>
+
+<p>2.2.12 <b><tt>Z</tt></b> Routines</p>
+
+<p>2.2.12.1 No application will export routines whose names start
+with the letter &quot;<b><tt>Z</tt></b>&quot;. (Exemption:
+Kernel)</p>
+
+<p>2.2.13 Routines may not be invoked using the extended
+reference syntax,<br>
+i.e., <b><tt>D ^|&quot;VAH&quot;|TAG^ROUTINE</tt></b> is illegal.</p>
+
+<p>2.3 Variables</p>
+
+<p>2.3.1 Local Variables</p>
+
+<p><a href="#ext2">2.3.1.1</a> <a name="main2"></a> Lowercase
+characters in local variable names are prohibited.</p>
+
+<p>2.3.1.2 The full evaluated length of a local variable name
+including subscripts must not exceed 200 characters. The
+evaluated length is calculated as follows.</p>
+
+<p>Example subscripted variable: <b><tt>NAME(sub1,sub2,...,subn)</tt></b></p>
+
+<p>1) <b><tt>+$L(NAME)+3</tt></b></p>
+
+<p>2) <b><tt>+$L(sub1) + $L(sub2) + ... +$L(subn)</tt></b></p>
+
+<p>3) <b><tt>+ 2 *</tt></b> number of subscripts n</p>
+
+<p>4) <b><tt>+15</tt></b></p>
+
+<p><b><tt>VAR(&quot;XXX&quot;,123,1,2,0)</tt></b> would evaluate
+to a string length of 42, (6+11+10+15)=42.</p>
+
+<p>2.3.1.3 System Wide Variables</p>
+
+<p>2.3.1.3.1 The following are system wide variables. Any
+application setting system wide variables must conform to the
+following definitions.</p>
+
+<p><b><tt>AGE</tt></b> - Patient age in years from date of birth
+to DT expressed as an integer, or, if deceased, the date of
+death.</p>
+
+<p><b><tt>DFN</tt></b> - Internal number of an entry in the
+Patient File (#2).</p>
+
+<p><b><tt>DOB</tt></b> - Patient date of birth expressed in
+internal VA FileMan format.</p>
+
+<p><b><tt>SEX</tt></b> - Patient sex; either &quot;F&quot; or
+&quot;M&quot;.</p>
+
+<p><b><tt>SSN</tt></b> - Social security number with 9 contiguous
+digits, or 9 digits and a &quot;<b><tt>P</tt></b>&quot;.</p>
+
+<p><b><tt>VA(&quot;BID&quot;)</tt></b> - Brief patient identifier
+up to 7 characters.</p>
+
+<p><b><tt>VA(&quot;PID&quot;)</tt></b> - Patient identifier; up
+to 15 characters.</p>
+
+<p>2.3.1.3.2 The following variables, referenced elsewhere in
+this document, are set by Kernel during sign-on, or by VA
+FileMan, and can be assumed to exist by all DHCP applications.</p>
+
+<p><b><tt>DT</tt></b> - Current date, without time, in internal
+VA FileMan format. DTIME - Time-out parameter for a read command
+in seconds.</p>
+
+<p><b><tt>DUZ</tt></b> array - Contains user specific
+information.</p>
+
+<p><b><tt>U</tt></b> - Circumflex (i.e., &quot;^&quot;).</p>
+
+<p><b><tt>IO</tt></b> - The hardware name of the last selected
+in/output device. IO(0) - The assigned principal device (primary
+device).</p>
+
+<p><b><tt>ION</tt></b> - The logical name of the IO device.</p>
+
+<p><b><tt>IOST</tt></b> - The last selected input/output device's
+subtype from the Terminal Type file.</p>
+
+<p><b><tt>IOST(0)</tt></b> - The internal entry number in the
+Terminal Type file of the last selected IO device's terminal
+type.</p>
+
+<p><b><tt>IOM</tt></b> - The width of the IO device.</p>
+
+<p><b><tt>IOSL</tt></b> - The length of the IO device.</p>
+
+<p><b><tt>IOF</tt></b> - The code to start output at the top of a
+page (e.g., <b><tt>W @IOF</tt></b>).</p>
+
+<p><b><tt>IOBS</tt></b> - The backspace of the IO device.</p>
+
+<p>2.3.1.4 DHCP packages are not allowed to <b><tt>KILL, NEW,
+SET, MERGE, READ</tt></b> (into) or otherwise modify the variable
+<b><tt>DUZ</tt></b> or any <b><tt>DUZ</tt></b> array element.
+(Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.3.1.5 The variables<tt> </tt><b><tt>DT, DTIME</tt></b>, and <b><tt>U</tt></b>
+have no array elements and shall be initially defined by Kernel
+or VA FileMan.</p>
+
+<p>2.3.1.5.1 The variable <b><tt>U</tt></b> will not be <b><tt>KILL</tt></b>ed
+or <b><tt>NEW</tt></b>ed or changed from the value defined by
+Kernel or VA FileMan. (It is legal to <b><tt>SET U=&quot;^&quot;</tt></b>.)</p>
+
+<p>2.3.1.5.2 The variable <b><tt>DT</tt></b> will not be <b><tt>KILL</tt></b>ed
+or <b><tt>NEW</tt></b>ed. If changed it must be set using the
+supported reference <b><tt>S DT=$$DT^XLFDT</tt></b>.</p>
+
+<p>2.3.1.5.3 The variable <b><tt>DTIME</tt></b> may be changed,
+but must be restored to its original value before exiting the
+option.</p>
+
+<p>2.3.1.5.3.1 All locations where <b><tt>DTIME</tt></b> is
+changed but not restored, must be documented in the Technical
+manual.</p>
+
+<p>2.3.1.5.3.2 The Kernel supported reference <b><tt>$$DTIME^XUP</tt></b>
+will reset <b><tt>DTIME</tt></b> to its original value,<br>
+e.g., <b><tt>S DTIME=$$DTIME^XUP(DUZ)</tt></b>.</p>
+
+<p>2.3.1.6 DHCP packages are not allowed to <b><tt>KILL, NEW,
+SET, MERGE, READ</tt></b> (into) or otherwise modify IO
+namespaced variables and any of their array elements except those
+documented as modifiable in the Kernel System Manual. (Exemption:
+Kernel, Mailman, and VA FileMan)</p>
+
+<p>2.3.1.7 DHCP packages are not allowed to <b><tt>KILL, NEW,
+SET, MERGE, READ</tt></b> (into) or otherwise modify <b><tt>%</tt></b>
+variables. Exceptions to this are the single character variable
+&quot;<b><tt>%</tt></b>&quot; and the variables set for and/or
+returned by Kernel and VA FileMan supported references.
+(Exemption: Kernel, VA FileMan and MailMan)</p>
+
+<p>2.3.1.8 A DHCP package may declare namespaced, local variables
+as package-wide. The variables and all of their array elements
+must be described in the package technical manual. A DHCP package
+may not kill or change another DHCP package's packagewide
+variables.</p>
+
+<p>2.3.1.8.1 Documentation on how to create and kill package-wide
+variables created by an option that is removed from its exported
+menu path must be included in the technical manual.</p>
+
+<p>2.3.1.9 All supported references must leave the lock tables
+and local symbol tables unchanged upon exit with the exception of
+the following:</p>
+
+<ul>
+    <li>Documented input and output variables (including
+        globals). </li>
+    <li>Supported reference namespaced variables may be changed
+        or killed (for example, the VA FileMan <b><tt>^DIC</tt></b>
+        call kills the variable <b><tt>DIE</tt></b>, which may
+        exist in the symbol table prior to the call). </li>
+    <li>Documented side effects, such as lock table changes, and
+        changes to files. </li>
+    <li>Variables composed of a single alpha character followed
+        optionally by one numeric. </li>
+    <li>The variable <b><tt>%</tt></b>. </li>
+</ul>
+
+<p>These supported references must be documented in the package
+technical manual and on FORUM with a descriptive list of ALL
+input and resulting output variables.</p>
+
+<p>2.3.1.10 Naming requirements for variables passed between
+packages.</p>
+
+<p>2.3.1.10.1 Input variables in an Actual List passed by
+reference between packages must be package namespaced.</p>
+
+<p>Legal: <b><tt>D
+BLD^DIALOG(3500010,&quot;&quot;,.IBDATA,&quot;IBX&quot;)</tt></b><br>
+Illegal: <b><tt>D
+BLD^DIALOG(3500010,&quot;&quot;,.Y,&quot;IBX&quot;)</tt></b></p>
+
+<p>2.3.1.10.2 Input variables that represent local variables into
+which data will be exchanged must represent a data location that
+is package namespaced.</p>
+
+<p>Legal: <b><tt>S
+DA=10,DR=&quot;.01;.104&quot;,DIC=&quot;^DPT(&quot;,DIQ=&quot;IBX&quot;
+D EN^DIQ1</tt></b><br>
+Illegal: <b><tt>S
+DA=10,DR=&quot;.01;.104&quot;,DIC=&quot;^DPT(&quot;,DIQ=&quot;Y&quot;
+D EN^DIQ1</tt></b></p>
+
+<p>2.3.2 Global Variables</p>
+
+<p>2.3.2.1 Lowercase characters in global names and global
+subscripts are prohibited. (Exemption: Cross-references created
+using field values containing lowercase characters and subscripts
+used in the <b><tt>^TMP</tt></b> and <b><tt>^XTMP</tt></b>
+globals.)</p>
+
+<p>2.3.2.2 The full evaluated length of a global reference must
+not exceed 200 characters. The evaluated length is calculated as
+follows.</p>
+
+<p>Example subscripted variable: <b><tt>^NAME(sub1,sub2,...,subn)</tt></b>
+</p>
+
+<p>(1.) <b><tt>+$L(NAME)+3</tt></b></p>
+
+<p>(2.) <b><tt>+$L(sub1) + $L(sub2) + ... +$L(subn)</tt></b></p>
+
+<p>(3.) <b><tt>+ 2 *</tt></b> number of subscripts n</p>
+
+<p>(4.) <b><tt>+15</tt></b></p>
+
+<p><b><tt>^TMP(&quot;XXX&quot;,123,1,2,0)</tt></b> would evaluate
+to a string length of 42 (6+11+10+15)=42.</p>
+
+<p>2.3.2.3 The <b><tt>KILL</tt></b>ing of unsubscripted globals
+is prohibited.</p>
+
+<p>(VA FileMan's <b><tt>EN^DIU2</tt></b> utility allows the
+deletion of files stored in unsubscripted globals, and therefore
+it allows the killing of unsubscripted globals. Application
+developers must document when calls to <b><tt>EN^DIU2</tt></b>
+are made to delete files stored in unsubscripted globals).</p>
+
+<p>2.3.2.4 <b><tt>READ</tt></b>ing, <b><tt>KILL</tt></b>ing, <b><tt>SET</tt></b>ting
+or <b><tt>MERG</tt></b>ing <b><tt>^%</tt></b> globals is
+prohibited. (Exemption: Kernel)</p>
+
+<p>2.3.2.5 All globals must be VA FileMan compatible. <b><tt>^TMP,
+^XTMP</tt></b> and <b><tt>^UTILITY</tt></b> have a standing
+exemption from this requirement.</p>
+
+<p>2.3.2.5.1 The global <b><tt>^TMP</tt></b> will be used as a
+scratch global within a session. The first subscript shall be <b><tt>$J</tt></b>,
+or the first two subscripts shall be a package namespaced
+subscript followed by <b><tt>$J</tt></b>.</p>
+
+<p>2.3.2.5.2 The global <b><tt>^XTMP</tt></b> will be translated,
+with one copy for the entire DHCP production system at each site.
+The structure of each top node shall follow the format <b><tt>^XTMP(</tt></b>namespaced-subscript<b><tt>,0)=</tt></b>purge
+date^create date^optional descriptive information, and both dates
+will be in VA FileMan internal date format.</p>
+
+<p>2.3.2.6 Fields in VA FileMan files which contain executable
+code must be write protected in the <b><tt>DD</tt></b> with
+&quot;<b><tt>@</tt></b>&quot; (e.g.,<tt> </tt><b><tt>^DD(file,field,9)=&quot;@&quot;</tt></b>),
+or be defined as VA FileMan data type of &quot;MUMPS&quot;.</p>
+
+<p>2.3.2.7 References to the<tt> </tt><b><tt>DD</tt></b> Global
+requires a formal Data Base Integration Agreement (DBIA) with the
+VA FileMan Development team and must be registered with the Data
+Base Administrator.</p>
+
+<p>2.3.2.8 All global variables executed by <b><tt>%</tt></b>
+routines must be in write protected globals.</p>
+
+<p>2.3.2.9 Extended reference syntax may not be used to reference
+global variables, i.e.,<br>
+<b><tt>S X=^|&quot;VAH&quot;|GLOBAL(1,1)</tt></b> is illegal.</p>
+
+<p>2.3.3 Intrinsic (system) Variables</p>
+
+<p>2.3.3.1 Lowercase Intrinsic Variables are prohibited.</p>
+
+<p>2.3.3.2 No DHCP package may use the following intrinsic
+(system) variables unless they are accessed using Kernel or VA
+FileMan supported references: <b><tt>$D[EVICE], $EC[ODE],
+$ES[TACK], $ET[RAP], $I[O], $K[EY], $P[RINCIPAL], $Q[UIT],
+$ST[ACK], $SY[STEM], $Z*</tt></b>. (Exemption: Kernel and VA
+FileMan)</p>
+
+<p>2.3.4 Structured System Variables (SSVNs)</p>
+
+<p>2.3.4.1 Lowercase SSVNs are prohibited.</p>
+
+<p>2.3.4.2 The following Structured System Variables may be used
+only by Kernel or VA FileMan or through their supported
+references: <b><tt>^$CHARACTER, ^$DEVICE, ^$DISPLAY, ^$EVENT,
+^$GLOBAL, ^$JOB, ^$LOCK, ^$ROUTINE, ^$SYSTEM, ^$Z*</tt></b>, and <b><tt>^$WINDOW</tt></b>.</p>
+
+<p>2.4 Commands</p>
+
+<p>2.4.1 Lowercase commands are prohibited</p>
+
+<p>2.4.2 <b><tt>BREAK</tt></b> Command</p>
+
+<p>2.4.2.1 Direct use of the <b><tt>BREAK</tt></b> command is
+prohibited. Use <b><tt>^%ZOSF(&quot;BRK&quot;)</tt></b> and <b><tt>^%ZOSF(&quot;NBRK&quot;)</tt></b>.
+(Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.4.3 <b><tt>CLOSE</tt></b> Command</p>
+
+<p>2.4.3.1 Direct use of the <b><tt>CLOSE</tt></b> command is
+prohibited. Use the routine <b><tt>^%ZISC</tt></b>. (Exemptions:
+Kernel, Mailman and VA FileMan)</p>
+
+<p>2.4.4 <b><tt>HALT</tt></b> Command</p>
+
+<p>2.4.4.1 Direct use of the <b><tt>HALT</tt></b> command is
+prohibited. Use the supported reference <b><tt>H^XUS</tt></b>.
+(Exemption: Kernel and VA FileMan)</p>
+
+<p>2.4.5 <b><tt>JOB</tt></b> Command</p>
+
+<p>2.4.5.1 Direct use of the <b><tt>JOB</tt></b> command is
+prohibited. Use the Kernel Task Manager's supported calls to
+create jobs. (Exemption: Kernel and MailMan)</p>
+
+<p>2.4.6 <b><tt>KILL</tt></b> Command</p>
+
+<p>2.4.6.1 The argumentless form of the <b><tt>KILL</tt></b>
+command is prohibited. (Exemption: Kernel)</p>
+
+<p>2.4.6.2 The exclusive form of the <b><tt>KILL</tt></b> command
+is prohibited. (Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.4.7 <b><tt>LOCK</tt></b> Command</p>
+
+<p>2.4.7.1 All <b><tt>LOCK</tt></b>s shall be of the incremental
+or decremental form. (Exemption: Kernel)</p>
+
+<p>2.4.7.2 All incremental <b><tt>LOCK</tt></b>s must have a
+timeout.</p>
+
+<p>2.4.8 <b><tt>NEW</tt></b> Command</p>
+
+<p>2.4.8.1 The argumentless form of the <b><tt>NEW</tt></b>
+command is prohibited. 2.4.8.2 The exclusive form of the <b><tt>NEW</tt></b>
+command is prohibited. </p>
+
+<p>2.4.9 <b><tt>OPEN</tt></b> Command</p>
+
+<p>2.4.9.1 The use of the <b><tt>OPEN</tt></b> command is
+prohibited. (Exemptions: Kernel, Mailman and VA FileMan)</p>
+
+<p>2.4.10 <b><tt>READ</tt></b> Command</p>
+
+<p>2.4.10.1 All <b><tt>READ</tt></b> commands shall read into
+local variables, or one of the non-VA FileMan compatible globals <b><tt>^TMP</tt></b>
+or <b><tt>^XTMP</tt></b>.</p>
+
+<p>2.4.10.2 All user input <b><tt>READ</tt></b>s must have a
+timeout. If the duration of the timeout is not specified by the
+variable <b><tt>DTIME</tt></b> and the duration exceeds 300
+seconds, documentation in the package Technical Manual is
+required.</p>
+
+<p>2.4.10.3 All user input <b><tt>READ</tt></b> commands shall be
+terminated by a carriage return. (Exemption: Kernel and VA
+FileMan)</p>
+
+<p>(Developers desiring to implement escape processing [function
+keys, arrow keys, etc.] must use Kernel supplied supported
+references [<b><tt>XGF</tt></b>].)</p>
+
+<p>2.4.11 Transaction Processing Commands</p>
+
+<p>2.4.11.1 No DHCP package may use transaction processing
+commands at this time. When transaction processing is fully
+supported by those <b><i>M</i></b> operating systems in
+widespread use in DHCP, the SACC will issue an appropriate
+extension.</p>
+
+<p>2.4.12 <b><tt>USE</tt></b> Command</p>
+
+<p>2.4.12.1 The use of the <b><tt>USE</tt></b> command with
+parameters is prohibited. (Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.4.13 <b><tt>VIEW</tt></b> Command</p>
+
+<p>2.4.13.1 The use of the <b><tt>VIEW</tt></b> command is
+prohibited. (Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.4.14 MWAPI Commands</p>
+
+<p>2.4.14.1 No DHCP package may use the MWAPI Commands: <b><tt>ESTART,
+ESTOP, ETRIGGER</tt></b>. (Exemption: Kernel)</p>
+
+<p>2.4.15 Commands</p>
+
+<p>2.4.15.1 The use of <b><tt>Z</tt></b>* commands is prohibited.
+(Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.5 Functions</p>
+
+<p>2.5.1 Lowercase functions are prohibited</p>
+
+<p>2.5.2 Intrinsic Functions</p>
+
+<p>2.5.2.1 Use of the <b><tt>$NEXT</tt></b> function is
+prohibited. All DHCP packages should remove all occurrences of <b><tt>$NEXT</tt></b>.
+This includes occurrences generated by VA FileMan.</p>
+
+<p>2.5.2.2 The use of the <b><tt>$VIEW</tt></b> function is
+prohibited. (Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.5.2.3 The use of <b><tt>$Z</tt></b>* functions are
+prohibited. (Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.5.3 Extrinsic Functions</p>
+
+<p>2.5.3.1 Supported References that use parameters will document
+the elements of the formal list internally within the routine and
+in the package Technical or Programmer manual.</p>
+
+<p>Documentation will specify which elements of the formal list
+are required and which are optional, if any, and those elements
+which must be passed by reference.</p>
+
+<p>2.5.3.2 Supported Extrinsic special variables - extrinsic
+functions with an empty formal list - will be documented within
+the routine and in the Technical or Programmer manual.</p>
+
+<p>2.6 Name Requirements</p>
+
+<p>2.6.1 Unless approved by the DBIC, routine, global, security
+key, option, template, bulletin, function, screen, help frame,
+protocol, form, block, list templates, objects, dialogues, remote
+procedures, etc. names must be consistent with the assigned DBA
+namespace.</p>
+
+<p>2.7 Options (Option file entries)</p>
+
+<p>2.7.1 Option selection must be made through Menu Manager.
+Hardcoded menu management systems are not allowed.</p>
+
+<p>2.7.2 All options in a package must be path independent once
+the steps described in the Technical manual for creating and
+killing package-wide variables have been taken.</p>
+
+<p>2.7.3 The following must not exist after exiting an option</p>
+
+<p>2.7.3.1 All documented output variables created by a called
+supported reference.</p>
+
+<p>2.7.3.2 All documented locks created by a called supported
+reference.</p>
+
+<p>2.7.3.3 All documented temporary scratch global nodes (e.g., <b><tt>^TMP</tt></b>
+and <b><tt>^UTILITY</tt></b>) created by a called supported
+reference, with the exception of <b><tt>^XTMP</tt></b> global
+data.</p>
+
+<p>2.7.3.4 All local variables, locks, and scratch global nodes
+(except <b><tt>^XTMP</tt></b>, or other scratch globals designed
+to be passed between parts of a package) created by the
+application.</p>
+
+<p>2.8 Device Handling</p>
+
+<p>2.8.1 All device selection and closing will be made through
+the use of the Kernel supported references. See Sections 2.4.3
+and</p>
+
+<p>2.4.9 for specific information about the <b><tt>CLOSE</tt></b>
+and <b><tt>OPEN</tt></b> commands. (Exemption: Kernel and VA
+FileMan)</p>
+
+<p>2.8.2 All output to a hard copy device (e.g., printer) must
+allow for queuing.</p>
+
+<p>2.8.3 Any output directed to a hard copy device (e.g.,
+printer) will not start with a form feed or line feeds with the
+purpose of creating a form feed, and will leave the device at
+top-of form when the output is finished.</p>
+
+<p>2.9 Miscellaneous</p>
+
+<p>2.9.1 Application software must use documented Kernel
+supported references to perform all <b><i>M</i></b> operating
+system specific functions. (Exemptions: Kernel and VA FileMan)</p>
+
+<p>2.9.2 Any data element which may be interpreted as a number
+must contain no more than 15 significant digits.</p>
+
+<p>2.9.3 Packages may phase out supported references (as callable
+from outside the application and documented by DBA) by providing
+a minimum 18 month notice to the <b><tt>PROGRAMMER</tt></b>, <b><tt>CHIEF
+PROJECT MANAGER</tt></b> and <b><tt>SITEMANAGERS NATIONAL</tt></b>
+mail groups on FORUM.</p>
+
+<p>2.9.4 All globals and routines will use only the <b><i>M</i></b>
+character set profile.</p>
+
+<p>2.10 Supported Type A Extensions</p>
+
+<p>2.10.1 No Type A extensions to the <b><i>M</i></b> Language
+standard are currently approved for use. Type A extensions may be
+made available through a SAC extension, after all operating
+systems in wide use in the VA have implemented the Type A
+extension.</p>
+
+<p>2.11 Conventions</p>
+
+<p>2.11.1 Only Kernel and VA FileMan and existing Supported
+References should use <b><tt>^UTILITY</tt></b>.</p>
+
+<p>2.11.2 Tasks should be deleted from Task Manager's list by <b><tt>SET</tt></b>ting
+the variable <b><tt>ZTREQ</tt></b> equal to &quot;<b><tt>@</tt></b>&quot;
+just prior to the application <b><tt>QUIT</tt></b>ing.</p>
+
+<p>2.11.3 VA FileMan conventions should be used for editing data
+and for formatting date and time (see the VA FileMan Users
+guide).</p>
+
+<p>2.11.4 Routine documentation</p>
+
+<p>2.11.4.1 Routine line tags referenced from outside the routine
+should be documented before, on or after the line tag.
+Documentation should include a description of function.</p>
+
+<p>2.11.4.2 All supported references or routines invoked
+initially from an option or protocol should contain documentation
+explaining the functionality and any required, passed input and
+output variables.</p>
+
+<p>2.11.5 <b><tt>READ</tt></b> commands should not be used in the
+data dictionary.</p>
+
+<p>2.11.6 <b><tt>WRITE</tt></b> commands should not be used in
+data dictionaries (except for VA FileMan generated ID nodes). The
+call to <b><tt>EN^DDIOL</tt></b> should be used.</p>
+
+<p>2.11.7 The proper method of determining if a device is a CRT
+is to check that the variable <b><tt>IOST</tt></b> starts with
+the string &quot;<b><tt>C-</tt></b>&quot;. (e.g.,<tt> </tt><b><tt>I
+$E(IOST,1,2)=&quot;C-&quot;)</tt></b></p>
+
+<p>2.11.8 Developers are encouraged to include other descriptive
+information on the third piece of the <b><tt>0</tt></b> node of
+the <b><tt>XTMP</tt></b> global, such as task description and
+creator <b><tt>DUZ</tt></b>.</p>
+
+<p>2.11.9 The line body of a routine must contain at least 1
+character. Generally a single semicolon is used to demarcate a
+blank line.</p>
+
+<p><b>3. Interface Programming Standards and Conventions</b></p>
+
+<p>It is the intention of this section of the Standards and
+Conventions to provide a consistent path for users as
+applications migrate from scrolling mode to a screen mode (either
+Screenman, List Manager, or screen oriented editors) to a GUI
+environment.</p>
+
+<p>3.1 User Interface Standards for Scroll Mode and Screen Mode.</p>
+
+<p>3.1.1 Deletion of a data value, if permissible, must be
+initiated by the user entering the at-sign &quot;<b><tt>@</tt></b>&quot;.</p>
+
+<p>3.1.2 All user-input <b><tt>READ</tt></b>s which are in any
+way evaluated by the application must be escapable by entering a
+circumflex &quot;<b><tt>^</tt></b>&quot;, which takes an action
+other than a reread.</p>
+
+<p>3.1.3 All prompts requesting user input must provide
+additional help when the user enters a question mark (&quot;<b><tt>?</tt></b>&quot;).
+Any unrecognized or inappropriate response must be handled
+properly; i.e., at a minimum in a manner similar to the way VA
+FileMan handles responses (see VA FileMan User's Manual).
+Responses to <b><tt>READ</tt></b>s that are in no way evaluated
+by the application are excluded from this requirement.</p>
+
+<p>3.1.4 In scrolling mode, defaults must be so indicated with a
+double slash (&quot;//&quot;) or &quot;replace&quot; indicating
+that &quot;replace/with&quot; editing is allowed. The null
+response (i.e., typing only the RETURN key) shall select the
+default.</p>
+
+<p>3.1.5 When a user input <b><tt>READ</tt></b> command times
+out, if the argument of the read is in any way evaluated by the
+application, the program must return to the Menu Manager with no
+more than one intervening read. A timeout at the menu level must
+halt through <b><tt>H^XUS</tt></b>.</p>
+
+<p>3.2 User Interface Conventions for Scroll Mode and Screen
+Mode.</p>
+
+<p>3.2.1 Developers are encouraged to use the following
+terminology.</p>
+
+<p>3.2.1.1 Exit - Exit ends a function or application and removes
+from the screen all windows and pop-ups associated with that
+function or application. If information has been changed, the
+application may automatically save the information, or prompt the
+user to save or discard the information.</p>
+
+<p>3.2.1.2 Quit - Like Exit, Quit ends a function or application
+and removes from the screen all windows and pop-ups associated
+with that function or application. If information has been
+changed, the application may automatically discard the
+information, or prompt the user to save or discard the
+information.</p>
+
+<p>3.2.1.3 Cancel - Cancel allows users to back out of a function
+or application, one pop-up at a time, until they reach the
+highest level window. At that point, another Cancel request has
+the same effect as an Exit action.</p>
+
+<p>When users Cancel a pop-up, the application can decide whether
+to discard or retain the information in that pop-up, depending on
+how the application wants to establish the default values the
+next time the pop-up is displayed. If the information is
+discarded and the pop-up is later redisplayed, the pop-up
+contains the default values set by the application. If the
+information is retained and the pop-up is later re-displayed, the
+pop-up contains the same values as it did when the user canceled
+the pop-up.</p>
+
+<p>3.2.1.4 Close - Synonymous with Cancel.</p>
+
+<p>3.2.2 Developers are encouraged to use the following key
+assignments:</p>
+
+<p>3.2.2.1 <b><tt>PF1</tt></b> key - Gold. May result in
+different actions based on the next key selected.</p>
+
+<p>3.2.2.2 <b><tt>PF2</tt></b> key - Context-Sensitive Help.
+Provides context sensitive help about a specific item, field, or
+window.</p>
+
+<p>3.2.2.3 <b><tt>PF3</tt></b> key - Exit. Exit is defined in
+3.2.1.1 above.</p>
+
+<p>3.2.2.4 <b><tt>PF4</tt></b> key - Backtab. Moves the cursor to
+the previous entry field. The cursor moves from right to left,
+bottom to top.</p>
+
+<p>3.2.2.5 <b><tt>F10</tt></b> key - Menu Bar. Moves the cursor
+to the menu bar, if one is available, at the top of the window or
+pop-up currently in focus.</p>
+
+<p>3.2.2.6 <b><tt>F12</tt></b> key - Cancel. Cancel is defined in
+3.2.1.3 above.</p>
+
+<p>3.2.2.7 <b><tt>TAB</tt></b> key - Tab. Moves the cursor to the
+next entry field. The cursor moves from left-to-right,
+top-to-bottom.</p>
+
+<p>3.2.2.8 <b><tt>PF1,H</tt></b> key sequence - Application Help.
+Provides information about the particular segment of the
+application being used.</p>
+
+<p>3.2.3 If a user is waiting for a lock which times out, then
+appropriate notification should be given to the user.</p>
+
+<p>3.3 User Interface Conventions for GUI Mode.</p>
+
+<p>3.3.1 DHCP packages should follow the guidelines for GUI
+applications set forward in the DHCP GUI Standards document
+approved by Software Services.</p>
+
+<h2>The following extensions have been approved by Director,
+Software Service, effective 9/17/96:</h2>
+
+<p>1. Use <b><tt>$TEXT</tt></b> to check for line label in
+routine:</p>
+
+<p><a name="ext1"></a> <a href="#main1">SECTION: 2.2.4.2</a></p>
+
+<p>OLD WORDING:</p>
+
+<p>Lines referenced by <b><tt>$TEXT</tt></b> for use other than
+to check for the existence of the routine must be in the
+following format: (LABEL-optional)&lt;ls&gt;;;text or <b><i>M</i></b>
+code.</p>
+
+<p>NEW WORDING (changes <font color="#FF0000">highlighted</font>):</p>
+
+<p>Lines referenced by <b><tt>$TEXT</tt></b> for use other than
+to check for the existence of a routine <font color="#FF0000">or
+a line label in that routine</font> must be in the following
+format: (LABEL-optional)&lt;ls&gt;;;text or M code.</p>
+
+<p>2. Variable names are limited to 8 characters</p>
+
+<p><a name="ext2"></a> <a href="#main2">SECTION: 2.3.1.1</a></p>
+
+<p>OLD WORDING:</p>
+
+<p>Lowercase characters in local variable names are prohibited. </p>
+
+<p>NEW WORDING:</p>
+
+<p>Local variable names <font color="#FF0000">may not exceed
+eight characters</font> and may not contain lowercase characters.</p>
+
+<p align="center"><img src="../images/lineNail4.gif" width="396" height="16"></p>
+<!--webbot bot="Include" u-include="../navtext.html" tag="BODY" startspan -->
+
+<p align="center"><font size="2">Search | </font><a href="../index.html"><font size="2">Home</font></a><font size="2">
+| </font><a href="../m/Mmain.html"><font size="2">MUMPS</font></a><font size="2"> | </font><a href="../fileman/FMmain.html"><font size="2">Fileman</font></a><font size="2"> | </font><a href="../kernel/KRNmain.html"><font size="2">Kernel</font></a><font size="2"> | </font><a href="../cs/CSmain.html"><font size="2">C/S,
+Mailman, Web</font></a><font size="2"> | </font><a href="TOOLSmain.html"><font size="2">Programmer Tools</font></a><font size="2"> | </font><a href="../apps/APPSmain.html"><font size="2">Applications</font></a></p>
+<!--webbot bot="Include" endspan i-checksum="61709" -->
+</body>
+</html>
