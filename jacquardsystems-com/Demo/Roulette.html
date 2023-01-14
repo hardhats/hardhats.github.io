@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>Roulette</title>
+<style type="text/css">body {font-family: Arial;}
+</style>
+<link type="text/css" rel="stylesheet" href="../jquery/jquery_ui_1_9_0.css"/>
+<script type="text/javascript" src="../jquery/jquery_1_8_2.js"></script>
+<script type="text/javascript" src="../jquery/jquery_ui_1_9_0.js"></script>
+</head>
+
+<body bgcolor="#4c76ac" text="#ecd264" link="#fcf274" vlink="#ecd264">
+<table cellspacing="0" width="100%" border="0">
+<tr><td bgcolor="#4c76ac">&nbsp;&nbsp;<a href="mailto:demoel@jacquardsystems.com?subject=Roulette&amp;body=Hallo%20Ed%2c%0a%0aThis%20e%2dmail%20message%20is%20about%20your%20web%2dpage%20at%20%2fDemo%2fRoulette%0a%0aI%20want%20you%20to%20know%20that%20%2e%2e%2e%0a%0aSincerely%2c%20%2e%2e%2e%0a%0aP%2eS%2e%3a%20Information%20that%20may%20be%20helpful%20to%20you%3a%0aCookie%20%3d%20%22%22%0aCall%20From%20%3d%20%22108%2e16%2e205%2e149%22%0aPage%20requested%20at%2014%20January%202023%2010%3a52%3a35%0a%0a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%0aThis%20electronic%20mail%20transmission%20contains%20confidential%20and%2for%0aprivileged%20information%20intended%20only%20for%20the%20person%28s%29%20named%2e%0aAny%20use%2c%20distribution%2c%20copying%20or%20disclosure%20by%20another%20person%0ais%20strictly%20prohibited%2e%0a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%0a"><img alt="Ed de Moel" border="0" src="../image/edm.gif" width="46" height="64"/></a></td><td valign="bottom" bgcolor="#4c76ac"><h1><font color="#ecd264" face="Arial" id="PageTitle">Roulette</font></h1></td></tr></table>
+
+<form name="form" method="post" action="Roulette.html">
+<table width="100%"><tr><td width="50%" valign="top">
+<p>So... you think you have a system...<br/>
+Here's your opportunity to try it out without losing any money.</p>
+<p><input type="radio" name="Which" value="1" checked="checked"/>&nbsp;Use European lay-out (one zero)<br/>
+<input type="radio" name="Which" value="2"/>&nbsp;Use American lay-out (zero and double zero)</p>
+<table bgcolor="#ffffff" border="0" cellpadding="2" cellspacing="1">
+<tr>
+<td align="center" bgcolor="green">&nbsp;</td>
+<td align="center" colspan="4" bgcolor="green"><font size="+2">Manque</font></td>
+<td align="center" colspan="4" bgcolor="green"><font size="+2">Impair</font></td>
+<td align="center" colspan="4" bgcolor="red"><font size="+2">Rouge</font></td>
+<td align="center" bgcolor="green" colspan="2">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" id="E0" rowspan="3" bgcolor="green">&nbsp;0&nbsp;</td>
+<td align="center" id="E3" bgcolor="red">&nbsp;&nbsp;3&nbsp;</td>
+<td align="center" id="E6" bgcolor="black">&nbsp;&nbsp;6&nbsp;</td>
+<td align="center" id="E9" bgcolor="red">&nbsp;&nbsp;9&nbsp;</td>
+<td align="center" id="E12" bgcolor="red">&nbsp;12&nbsp;</td>
+<td align="center" id="E15" bgcolor="black">&nbsp;15&nbsp;</td>
+<td align="center" id="E18" bgcolor="red">&nbsp;18&nbsp;</td>
+<td align="center" id="E21" bgcolor="red">&nbsp;21&nbsp;</td>
+<td align="center" id="E24" bgcolor="black">&nbsp;24&nbsp;</td>
+<td align="center" id="E27" bgcolor="red">&nbsp;27&nbsp;</td>
+<td align="center" id="E30" bgcolor="red">&nbsp;30&nbsp;</td>
+<td align="center" id="E33" bgcolor="black">&nbsp;33&nbsp;</td>
+<td align="center" id="E36" bgcolor="red">&nbsp;36&nbsp;</td>
+<td align="center" id="ED12" bgcolor="#00c000">D<sup>12</sup></td>
+<td align="center" id="EC3" bgcolor="green"><font size="-1">col</font></td>
+</tr>
+<tr>
+<td align="center" id="E2" bgcolor="black">&nbsp;&nbsp;2&nbsp;</td>
+<td align="center" id="E5" bgcolor="red">&nbsp;&nbsp;5&nbsp;</td>
+<td align="center" id="E8" bgcolor="black">&nbsp;&nbsp;8&nbsp;</td>
+<td align="center" id="E11" bgcolor="black">&nbsp;11&nbsp;</td>
+<td align="center" id="E14" bgcolor="red">&nbsp;14&nbsp;</td>
+<td align="center" id="E17" bgcolor="black">&nbsp;17&nbsp;</td>
+<td align="center" id="E20" bgcolor="black">&nbsp;20&nbsp;</td>
+<td align="center" id="E23" bgcolor="red">&nbsp;23&nbsp;</td>
+<td align="center" id="E26" bgcolor="black">&nbsp;26&nbsp;</td>
+<td align="center" id="E29" bgcolor="black">&nbsp;29&nbsp;</td>
+<td align="center" id="E32" bgcolor="red">&nbsp;32&nbsp;</td>
+<td align="center" id="E35" bgcolor="black">&nbsp;35&nbsp;</td>
+<td align="center" id="EM12" bgcolor="green">M<sup>12</sup></td>
+<td align="center" id="EC2" bgcolor="green"><font size="-1">col</font></td>
+</tr>
+<tr>
+<td align="center" id="E1" bgcolor="red">&nbsp;&nbsp;1&nbsp;</td>
+<td align="center" id="E4" bgcolor="black">&nbsp;&nbsp;4&nbsp;</td>
+<td align="center" id="E7" bgcolor="red">&nbsp;&nbsp;7&nbsp;</td>
+<td align="center" id="E10" bgcolor="black">&nbsp;10&nbsp;</td>
+<td align="center" id="E13" bgcolor="black">&nbsp;13&nbsp;</td>
+<td align="center" id="E16" bgcolor="red">&nbsp;16&nbsp;</td>
+<td align="center" id="E19" bgcolor="red">&nbsp;19&nbsp;</td>
+<td align="center" id="E22" bgcolor="black">&nbsp;22&nbsp;</td>
+<td align="center" id="E25" bgcolor="red">&nbsp;25&nbsp;</td>
+<td align="center" id="E28" bgcolor="#303030">&nbsp;28&nbsp;</td>
+<td align="center" id="E31" bgcolor="black">&nbsp;31&nbsp;</td>
+<td align="center" id="E34" bgcolor="red">&nbsp;34&nbsp;</td>
+<td align="center" id="EP12" bgcolor="green">P<sup>12</sup></td>
+<td align="center" id="EC1" bgcolor="#00c000"><font size="-1">col</font></td>
+</tr>
+<tr>
+<td align="center" bgcolor="green">&nbsp;</td>
+<td align="center" colspan="4" bgcolor="#00c000"><font size="+2">Passe</font></td>
+<td align="center" colspan="4" bgcolor="#00c000"><font size="+2">Pair</font></td>
+<td align="center" colspan="4" bgcolor="#303030"><font size="+2">Noir</font></td>
+<td align="center" bgcolor="green" colspan="2">&nbsp;</td>
+</tr>
+</table>
+<h3>28, Noir, Pair, Passe, Premier Colonne, Dernier Douzaine</h3>
+<p>Budget <input type="text" name="Budget" value="1000"/> Units</p>
+<div id="NOinstructions" style="display: block;">
+<p><img alt="Expand" src="../image/Ballads/plus.gif" onclick="document.getElementById('Instructions').style.display='block';document.getElementById('NOinstructions').style.display='none';"/> Instructions</p></div>
+<div id="Instructions" style="display: none;"><h3><img alt="Collapse" src="../image/Ballads/minus.gif" onclick="document.getElementById('Instructions').style.display='none';document.getElementById('NOinstructions').style.display='block';"/> Instructions</h3>
+<p>Enter your bets in the right-hand column.<br/>
+For the options where the selected numbers are pre-assigned (short input-field), enter only the number of units to be put at stake.<br/>
+For the other ones, enter the list of numbers, followed by a slash and the wagered amount.</p>
+<p>E.g.: For single numbers: 1/5 (five units on number 1)</p><p>For a Street (three numbers on a horizontal line) or a Double Street (six numbers on two consecutive lines) only one of the numbers from each of the lines needs to be specified, i.e. 11/5 and 10+11+12/5 both indicate a wager of 5 units on the line containing 10, 11 and 12.</p>
+<p>For groups of four ("Corner", four numbers in a square) all four numbers must be mentioned.</p>
+<p>With a group, numbers may be in any sequence, e.g.: a wager of 6 units on the lines containg 16, 17, 18 and 19, 20, 21 can be specified as 16+21/6, or 16+17+18+19+20+21/6 or 21+18/6, etc.</p>
+</div>
+<p><input type="submit" value="Spin the wheel..."/></p>
+</td>
+<td width="50%" valign="top">
+<h3>Your bet:</h3>
+<table>
+<tr><td valign="top" align="right">Bet:&nbsp;</td>
+<td valign="top" colspan="5">Selection(s)</td></tr>
+<tr><td valign="top" align="right">Single:&nbsp;</td>
+<td valign="top" colspan="5"><input type="text" size="60" name="Single"/></td></tr>
+<tr><td valign="top" align="right">Split:&nbsp;</td>
+<td valign="top" colspan="5"><input type="text" size="60" name="Split"/></td></tr>
+<tr><td valign="top" align="right">Street:&nbsp;</td>
+<td valign="top" colspan="5"><input type="text" size="60" name="Street"/></td></tr>
+<tr><td valign="top" align="right">Corner/Square:&nbsp;</td>
+<td valign="top" colspan="5"><input type="text" size="60" name="Corner"/></td></tr>
+<tr><td valign="top" align="right">Double Street:&nbsp;</td>
+<td valign="top" colspan="5"><input type="text" size="60" name="Six"/></td></tr>
+<tr><td valign="top" align="right">0+1+2:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Trio1"/></td>
+<td valign="top" align="right">0+2+3:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Trio2"/></td></tr>
+<tr><td valign="top" align="right">Manque:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Manque"/></td>
+<td valign="top" align="right" colspan="3">Passe:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Passe"/></td></tr>
+<tr><td valign="top" align="right">Rouge:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Rouge"/></td>
+<td valign="top" align="right" colspan="3">Noir:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Noir"/></td></tr>
+<tr><td valign="top" align="right">Impair:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Impair"/></td>
+<td valign="top" align="right" colspan="3">Pair:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Pair"/></td></tr>
+<tr><td valign="top" align="right">1-12:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="D1"/></td>
+<td valign="top" align="right">13-24:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="D2"/></td>
+<td valign="top" align="right">25-35:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="D3"/></td></tr>
+<tr><td valign="top" align="right">Column 1-4-7...:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="C1"/></td>
+<td valign="top" align="right">Column 2-5-8...:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="C2"/></td>
+<td valign="top" align="right">Column 3-6-9...:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="C3"/></td></tr>
+<tr><td valign="top" align="right" colspan="5">1+5+9+12+14+16+19+23+27+30+32+34:&nbsp;</td>
+<td valign="top"><input type="text" size="5" name="Snake"/></td></tr>
+</table></td></tr></table>
+</form>
+</body>
+</html>

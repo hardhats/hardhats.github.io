@@ -1,0 +1,308 @@
+#!/usr/bin/perl
+
+# This program is copyright Priam Software Ltd.
+# Rewritten by Cliff Hulcoop 2000
+# Read the form data returned from web server
+
+$ORDNO="ORDNO=1234";
+
+read(STDIN,$GN_QUERY,$ENV{CONTENT_LENGTH});  
+# Use the CGI module - used for cookies and Socket for email
+
+# end of debugging code.
+
+use Socket;
+use CGI qw/:standard/;
+use CGI::Cookie;
+CGI->nph(1);
+#chdir("testpriam/counter");
+#my $cfile='perlcon2.txt';
+#open(CF,">$cfile") || die "Cannot open $countfile: $!";
+#print headerpl
+
+# Fetch our cookie ("ORDNO")
+%cookies = fetch CGI::Cookie;
+#$ID = $cookies{'Session'};
+$ORDNO = $cookies{'ORDNO'};
+#$USER = $cookies{'USER'};
+#$LINK = $cookies{'LINK'};
+#$SRC = $cookies{'SRC'};
+#$ID = $cookies{'ID'};
+
+# Use socket modules
+use IO::Socket;
+use IO::Select;
+
+# Create a socket to listen on.
+$host="192.168.2.112";
+$port="2009";
+
+# Connect to a socket
+my $sock = IO::Socket::INET->new(PeerAddr => $host,
+                                    PeerPort => $port,
+                                    Proto    => 'tcp',
+                                    Timeout  => 60);
+if (not defined($sock)) {
+   $dom = $ENV{'HTTP_HOST'};
+   $target="http://${dom}/sockerr.htm";
+   print "HTTP/1.0 302 Redirect\r\n";
+   print "HTTP/1.0\r\n";
+   print "Content-Type: text/html\n";
+   print "Location: $target\n\n";
+   exit;
+}
+
+# Is anyone on the other end?
+die "Can't create socket for listening to: " unless $sock;
+
+# Print form definitions+cookie to socket (then MSM) 
+if (defined($MP)) {
+#   print $sock "MP=$MP&$GN_QUERY&$ORDNO&$USER&$LINK&$SRC&$ID\r\n";
+    print $sock "MP=$MP&$ORDNO&$GN_QUERY&$ID\r\n";
+   } else {
+#  print $sock "$GN_QUERY&$ORDNO&$USER&$LINK&$SRC&$ID\r\n";
+   print $sock "$GN_QUERY&$ORDNO&$ID\r\n";
+}
+
+# Read data back from socket and send to HTML
+$text = <$sock>;
+
+while( defined $text ){
+# Test is it an email request
+#   print CF $text;
+   if (index($text,"<PARISEMAIL>",0) > -1) {
+        manage_email();
+   }
+   else
+   {
+        print "$text";
+   }
+   $text = <$sock>;
+}
+
+sub manage_email() {
+# The next line is needed by the email program        
+        $WEB_SERVER = <$sock>;
+        if (!defined $WEB_SERVER) {return;};
+        rm_crlf($WEB_SERVER);
+        $SMTP_SERVER = <$sock>;
+        if (!defined $SMTP_SERVER) {return;};
+        rm_crlf($SMTP_SERVER);
+        $from=<$sock>;
+        if (!defined $from) {return;};
+        rm_crlf($from);
+        $to = <$sock>;
+        if (!defined $to) {return;};
+        rm_crlf($to);
+        $subject = <$sock>;
+        if (!defined $subject) {return;};
+        rm_crlf($subject);
+        $body='';
+        $line='';
+        while ( index($line,"<ENDPARISEMAIL>",0) < 0) {
+                $body = "$body$line";
+                $line = <$sock>;
+                # note only remove line feed
+                rm_cr($line)
+        }
+
+        send_email_message();
+}
+               
+sub rm_lf($) {
+# remove line feeds ( Decimal 10)
+        $_[0]=~ s /\n//;
+}
+
+sub rm_cr($) {
+# remove carriage returns (Decimal 13 Octal 15, Perl (like C) uses octal. )
+        $_[0]=~ s /\15//;
+}
+
+sub rm_crlf($) {
+# remove line feeds and carriage returns
+
+        rm_lf ($_[0]);
+        rm_cr ($_[0]);
+
+}
+
+sub send_email_message {
+        
+
+        if (&send_email($subject, $from, $to, '', '', $body)) {
+                # fail code
+        }
+        else {
+                # success code
+        }
+}
+#close (CF);
+
+1;
+
+sub send_email {
+
+    local($subject, $from, $to, $cc, $bcc, $body) = @_;
+    local($i, $error, $name, $status, $message) = '';
+
+    # Attempt to set default values if globals aren't set
+    
+    if (!$WEB_SERVER) { $WEB_SERVER = $ENV{'SERVER_NAME'} }
+    if (!$WEB_SERVER) {
+        $Error_Message = "$WEB_SERVER is not set.";
+        return(1);
+    }
+    
+    if (!$SMTP_SERVER) { 
+        $SMTP_SERVER = "smtp.$WEB_SERVER";
+        $SMTP_SERVER =~ s/^smtp\.[^.]+\.([^.]+\.)/smtp.$1/;
+    }
+    
+    # Split the input into arrays where needed, since values are passed
+    # as strings separated by commas.
+
+    local(@to) = split(/, */, $to);
+    local(@cc) = split(/, */, $cc);
+    local(@bcc) = split(/, */, $bcc);
+
+    # SMTP commands end in CRLF (\015\012)
+    
+    local($CRLF) = "\015\012";
+    
+    # Set up other variables
+    
+    local($SMTP_SERVER_PORT) = 25;
+    local($AF_INET) = ($] > 5 ? AF_INET : 2);
+    local($SOCK_STREAM) = ($] > 5 ? SOCK_STREAM : 1);
+    local(@bad_addresses) = ();
+    $, = ', ';
+    $" = ', ';
+    
+    # Translate hostnames to corresponding addresses and pack
+    
+    local($local_address) = (gethostbyname($WEB_SERVER))[4];
+    local($local_socket_address) = pack('S n a4 x8', $AF_INET, 0, $local_address);
+
+    local($server_address) = (gethostbyname($SMTP_SERVER))[4];
+    local($server_socket_address) = pack('S n a4 x8', $AF_INET, $SMTP_SERVER_PORT, $server_address);
+
+    # Translate protocol name to corresponding number
+    
+    local($protocol) = (getprotobyname('tcp'))[2];
+    
+    # Make the socket filehandle
+    
+    if (!socket(SMTP, $AF_INET, $SOCK_STREAM, $protocol)) {
+        $Error_Message = "Could not make socket filehandle ($!).";
+        return(1);
+    }
+    
+    # Give the socket an address
+    
+    bind(SMTP, $local_socket_address);
+    
+    # Connect to the server
+    
+    if (!(connect(SMTP, $server_socket_address))) {
+        $Error_Message = "Could not connect to server ($!).";
+        return(1);
+    }
+    
+    # Set the socket to be line buffered
+    
+    
+    local($old_selected) = select(SMTP); 
+    $| = 1; 
+    select($old_selected);
+   
+    # Set regex to handle multiple line strings
+    
+    $* = 1;
+    
+    # Read first response from server (wait for .75 seconds first)
+    
+    select(undef, undef, undef, .75);
+    sysread(SMTP, $_, 1024);
+
+    # Initiate a conversation with the server
+    
+    print SMTP "HELO $WEB_SERVER$CRLF";
+    sysread(SMTP, $_, 1024);
+    while (/(^|(\r?\n))[^0-9]*((\d\d\d).*)$/g) { $status = $4; $message = $3}
+    if ($status != 250) { $Error_Message = $message; return(3) }
+
+    # Tell the server where we're sending from
+    
+    print SMTP "MAIL FROM:<$from>$CRLF";
+    sysread(SMTP, $_, 1024);
+    if (!/[^0-9]*250/) { $Error_Message = $_; return(4) }
+    
+    # Tell the server where we're sending to
+    
+    local($good_addresses) = 0;
+    foreach $address (@to, @cc, @bcc) {
+        
+        if ($address) {
+        
+            # Make sure address is enclosed in <>
+            
+            $address =~ /(\(.*\))/;
+            $name = $1 ? "$1 " : '';
+            $address =~ /([^<)\s]+@\S+\.[^>(\s]+)/;
+            $address = "<$1>";
+
+            # Hand it to the server
+            print SMTP "RCPT TO:$address$CRLF";
+            sysread(SMTP, $_, 1024);
+            /[^0-9]*(\d\d\d)/;
+# bug on following line fixed by cliff
+#            if ($1 ne '250') { push(@bad_addresses, $name$address, $_ ) }
+            if ($1 ne '250') { push(@bad_addresses, "$name$address" , $_ ) }
+            else { ++$good_addresses }
+        }
+    }
+    if (!$good_addresses) {
+        $Error_Message = $_;
+        return(5, @bad_addresses)
+    }
+
+    # Give the server the message header
+    
+    print SMTP "DATA$CRLF";
+    sysread(SMTP, $_, 1024);
+    if (!/[^0-9]*354/) { $Error_Message = $_; return(6) }
+    print SMTP "To: @to$CRLF";
+    print SMTP "From: $from$CRLF";
+    print SMTP "CC: @cc$CRLF" if $cc;
+    print SMTP "Subject: $subject$CRLF";
+
+    print SMTP $CRLF;
+
+    # Output the message body.
+        
+    if ($body) {
+        if (!($body =~ /^[\\\/:]/) && ($body =~ /\s/)) { print SMTP $body }
+        elsif (-e $body && -T $body) { &parse_template($body, *SMTP) }
+    }
+    print SMTP $CRLF;
+    
+    # End the conversation
+    
+    print SMTP "$CRLF.$CRLF";
+    sysread(SMTP, $_, 1024);
+    if (!/[^0-9]*250/) { $Error_Message = $_; return(7) }
+        
+    # Disconnect from the server
+    
+    if (!shutdown(SMTP, 2)) { 
+        $Error_Message = "Could not shut down server ($!).";
+        return(8, @bad_addresses);
+    }
+    elsif (@bad_addresses) {
+        return(2, @bad_addresses);
+    }
+    else { return(0) }
+}
+
+1;

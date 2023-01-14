@@ -1,0 +1,56 @@
+#!/usr/bin/perl
+
+# This program is copyright Priam Software Ltd.
+# used to link to PRIAM backoffice system without
+# submit buttons.
+use CGI qw(:all);
+$args = $ENV{'QUERY_STRING'};
+$ORDNO="ORDNO=1234";
+
+# Use the CGI module - used for cookies and Socket for email
+
+use Socket;
+use CGI qw/:standard/;
+use CGI::Cookie;
+CGI->nph(1);
+
+# Fetch our cookies
+%cookies = fetch CGI::Cookie;
+$ORDNO = $cookies{'ORDNO'};
+$USER = $cookies{'USER'};
+$LINK = $cookies{'LINK'};
+$SRC = $cookies{'SRC'};
+$ID = $cookies{'ID'};
+# Use socket modules
+use IO::Socket;
+use IO::Select;
+
+# Create a socket to listen on.
+$host="192.168.2.112";
+$port="2009";
+my $tcp=remote_host;
+$tcp="IP=$tcp";
+my $ref=referer;
+$ref="NAME=$ref";
+my $MP="MP=M21^GINT56";
+
+&Connect_Priam;
+
+exit;
+
+sub Connect_Priam {
+# Connect to a socket
+    my $sock = IO::Socket::INET->new(PeerAddr => $host,
+            PeerPort => $port,
+            Proto    => 'tcp',
+            Timeout  => 60);
+
+# Print form definitions+cookie to socket (then MSM) 
+    if (defined($sock))
+    {
+        print $sock "$args&$ORDNO&$USER&$LINK&$SRC&$ID&$tcp&$ref&$MP&\r\n";
+    }
+# Read data back from socket and send to HTML
+}
+
+

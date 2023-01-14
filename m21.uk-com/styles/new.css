@@ -1,0 +1,458 @@
+body
+{
+	text-align: center;
+	background-color: #9999cc;
+	font-size: 12px;
+	font-family: verdana;
+	margin-top: 5px;
+	margin-left: 0px;
+}
+
+table.background
+{
+	background-color: #000066;
+	font-size: 12px;
+	font-family: verdana;
+	border: thin #000066 solid;
+	border-collapse: collapse
+}
+
+.strap
+{
+	height: 70px;
+	width; 525px;
+	background-color: #9999cc;
+	font-size: 28px;
+	color: #FFFFCC;
+	font-style: italic;
+	border-style: none;
+}
+
+table.leftmenu
+{
+	border-style: none;
+	border-collapse: collapse;
+	height: 390px;
+	background-color: #9999cc;
+}
+
+td.link
+{
+	width: 150px;
+	height: 35px;
+	text-align: center
+}
+
+td.spacer
+{
+	background-color: #adadde;
+	height: 4px;
+	width: 150px
+}
+
+a.leftlink
+{
+	vertical-align: center;
+	text-align: center;
+	font-size: 12px;
+	font-family: verdana;
+	font-weight: bold;
+	color: #000066;
+	text-decoration: none
+}
+
+a.leftlink:hover
+{
+	vertical-align: center;
+	text-align: center;
+	font-size: 12px;
+	font-family: verdana;
+	font-weight: bold;
+	color: #ffffcc;
+	text-decoration: none;
+}
+
+td.justcenter
+{
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	vertical-align: top;
+	font-size: 11pt;
+	font-family: verdana, arial, sans-serif;
+}
+
+td.newsbox
+{
+	padding-left: 0px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	vertical-align: top
+}
+
+td.newslinks
+{
+	font-size: 12px;
+	font-family: verdana, arial, sans-serif;
+	text-align: left;
+	padding-left: 8px;
+	padding-right: 5px;
+	padding-top: 8px;
+	padding-bottom: 0px;
+	vertical-align: top
+}
+
+td.newsheading
+{
+	background-color: #9999cc;
+	color: #ffffff;
+	font-size: 14pt;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: top;
+	border-bottom: 1px #000066 solid;
+}
+
+a
+{
+	color:#000066;
+	text-decoration:none;
+}
+
+a:hover	
+{
+	color:#000066;
+	text-decoration:underline;
+}
+
+table.maintext
+{
+	border-collapse: collapse;
+	border: thin #000066 solid;
+	width: 550px;
+	height: 300px;
+	background-color: #ffffff;
+}
+
+table.newstable
+{
+	border-collapse: collapse;
+	border: 1px #000066 solid;
+	width: 150px;
+}
+
+table.layout
+{
+	border-collapse: collapse;
+	width: 775px;
+	outer-border: 0;
+	inner-border: 0;
+	border-style: none;
+	border-color: #9999cc;
+}
+
+td.layout
+{
+	vertical-align: top;
+	border-style: none;
+}
+
+a.testlink
+{
+	border-top: 1px #666699 solid;
+	border-left: 1px #000000 solid;
+	border-right: 1px #666699 solid;
+	border-bottom: 1px #000000 solid;
+	text-decoration: none;
+	font-family: verdana;
+	font-size: 10pt;
+	color: #ffffff;
+	background-color: #006;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 80px;
+	text-align: center
+}
+
+a.testlink:hover
+{
+	border-top: 1px #ffffcc solid;
+	border-right: 1px #ffffcc solid;
+	border-bottom: 1px #000000 solid;
+	border-left: 1px #000000 solid;
+	text-decoration: none;
+	font-family: verdana;
+	font-size: 10pt;
+	color: #ffffcc;
+	background-color: #000066
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+td.spacing
+{
+	padding-left: 5px;
+	padding-right: 20px;
+	padding-top: 2px;
+	padding-bottom: 8px;
+	padding-right: 5px
+}
+
+td.leftspacing
+{
+	padding-left: 75px;
+	padding-right: 20px;
+	padding-top: 2px;
+	padding-bottom: 8px;
+	padding-right: 5px
+}
+
+table.feedback
+{
+	font-size: 11pt;
+	font-family: verdana, arial, sans-serif;
+	border-collapse: collapse;
+}
+
+table.feedback td
+{
+	font-size: 11pt;
+	font-family: verdana, arial, sans-serif;
+	vertical-align:top;
+	text-align: left
+}
+
+table.feedback th
+{
+	font-size: 11pt;
+	font-family: verdana, arial, sans-serif;
+	font-weight: bold;
+	vertical-align:top;
+	text-align: left
+}
+
+a.pricelink
+{
+	border-top: 1px #cccc99 solid;
+	border-left: 1px #cccc99 solid;
+	border-bottom: 1px #000000 solid;
+	border-right: 1px #000000 solid;	
+	text-decoration: none;
+	font-family: "times new roman", times, serif;
+	font-size: 12pt;
+	font-weight: bold;
+	color: #9966cc;
+	background-color: #ffffcc;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center
+}
+
+a.pricelink:visited
+{
+}
+
+a.pricelink:hover
+{
+	border-top: 1px #cccc99 solid;
+	border-right: 1px #cccc99 solid;
+	border-bottom: 1px #000000 solid;
+	border-right: 1px #000000 solid;	
+	text-decoration: none;
+	font-family: "times new roman", times, serif;
+	font-size: 12pt;
+	font-weight: bold;
+	color: #cc0000;
+	background-color: #ffffcc
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center
+}
+
+.licencetable
+{
+	border-collapse: collapse;
+	border: thin #000066 solid;
+	align: center;
+	padding-top: 10px
+}
+
+.licencetable th
+{
+	text-decoration: underline;
+	text-weight: bold;
+	font-size: 11pt;
+	font-family: verdana, arial, sans-serif;
+	border: 1px #000066 solid;
+}
+
+.licencetable td
+{
+	vertical-align: top;
+	font-size: 11pt;
+	font-family: verdana, arial, sans-serif;
+	border: 1px #000066 solid;
+	padding-left: 8px;
+	padding-right: 8px
+}
+
+div.centralise
+{
+	text-align: center
+}
+
+hr
+{
+	 color: #000066
+}
+
+.documents
+{
+	border-collapse: collapse
+}
+
+.documents td
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: top;
+	font-size: 11pt;
+	font-family: verdana, arial, sans-serif;	
+}
+
+a.doclink
+{
+	color: #0000ff;
+	font-size: 10pt;
+	font-family: "times new roman", times, serif;
+	font-weight: bold;
+	text-decoration: none
+}
+
+a.doclink:hover
+{
+	color: #0000ff;
+	font-size: 10pt;
+	font-family: "times new roman", times, serif;
+	font-weight: bold
+	text-decoration: underline
+}
+
+td.html
+{
+	padding-right: 10px;
+	padding-left: 70px
+}
+
+td.pdf
+{
+	padding-left: 10px
+}
+
+table.wine
+{
+	border: 1px #000066 solid;
+	width: 180;
+	border-collapse: collapse;
+}
+
+table.wine th
+{
+	font-size: 13pt;
+	font-family: verdana, arial, sans-serif;
+	color: 9999ff;
+	background-color: #000066;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+table.wine td
+{
+	font-size: 10pt;
+	font-family: verdana, arial, sans-serif;	
+	vertical-align: top;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px
+}
+
+ul.spaced li
+{
+	padding-bottom: 20px;
+	padding-left: 0px;
+	margin-left: -20px;
+}
+
+ul
+{
+	padding-left: 25px;
+	margin-left: 0px
+}
+
+ul li
+{
+	padding-left: 5px
+}
+
+ul.newslist
+{
+	margin-left: -8 px
+}
+
+ul.newslist li
+{
+	padding-bottom: 20px;
+	padding-left: 0px;
+	margin-left: 0px
+}
+
+span.emph
+{
+	font-weight: bold;
+	font-size: 11pt
+}
+
+span.company
+{
+	font-style: italic
+}
+
+a.submitbutton
+{
+	background-color: #000066;
+	width: 117px;
+	color: #ffffff;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12pt;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-weight: bold;	
+	text-decoration: none
+}
+
+a.submitbutton:hover
+{
+	background-color: #000066;
+	width: 117px;
+	text-align: center;
+	color: #ffffff;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12pt;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-weight: bold;
+	text-decoration: none
+}
+
+table.container
+{
+	background-color: #ffffff;
+	width: 775px;
+	height: 390px;
+	border: none;
+	border-collapse: collapse
+}

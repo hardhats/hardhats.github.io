@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>Help with KenKen puzzles</title>
+<style type="text/css">body {font-family: Arial;}
+</style>
+<link type="text/css" rel="stylesheet" href="../jquery/jquery_ui_1_9_0.css"/>
+<script type="text/javascript" src="../jquery/jquery_1_8_2.js"></script>
+<script type="text/javascript" src="../jquery/jquery_ui_1_9_0.js"></script>
+</head>
+
+<body bgcolor="#4c76ac" text="#ecd264" link="#fcf274" vlink="#ecd264">
+<table cellspacing="0" width="100%" border="0">
+<tr><td bgcolor="#4c76ac">&nbsp;&nbsp;<a href="mailto:demoel@jacquardsystems.com?subject=Help%20with%20KenKen%20puzzles&amp;body=Hallo%20Ed%2c%0a%0aThis%20e%2dmail%20message%20is%20about%20your%20web%2dpage%20at%20%2fDemo%2fKenKen%0a%0aI%20want%20you%20to%20know%20that%20%2e%2e%2e%0a%0aSincerely%2c%20%2e%2e%2e%0a%0aP%2eS%2e%3a%20Information%20that%20may%20be%20helpful%20to%20you%3a%0aCookie%20%3d%20%22%22%0aCall%20From%20%3d%20%22108%2e16%2e205%2e149%22%0aPage%20requested%20at%2014%20January%202023%2010%3a52%3a34%0a%0a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%0aThis%20electronic%20mail%20transmission%20contains%20confidential%20and%2for%0aprivileged%20information%20intended%20only%20for%20the%20person%28s%29%20named%2e%0aAny%20use%2c%20distribution%2c%20copying%20or%20disclosure%20by%20another%20person%0ais%20strictly%20prohibited%2e%0a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%0a"><img alt="Ed de Moel" border="0" src="../image/edm.gif" width="46" height="64"/></a></td><td valign="bottom" bgcolor="#4c76ac"><h1><font color="#ecd264" face="Arial" id="PageTitle">Help with KenKen puzzles</font></h1></td></tr></table>
+
+<form name="form" action="KenKen.html" method="post">
+<table>
+<tr><td align="right"><b>Number of cells</b></td>
+<td><input type="radio" name="Long" value="1"/>&nbsp;1 &nbsp; &nbsp; <input type="radio" name="Long" value="2"/>&nbsp;2 &nbsp; &nbsp; <input type="radio" name="Long" value="3"/>&nbsp;3 &nbsp; &nbsp; <input type="radio" name="Long" value="4"/>&nbsp;4 &nbsp; &nbsp; <span id="Long_6"><input type="radio" name="Long" value="5"/>&nbsp;5 &nbsp; &nbsp; <input type="radio" name="Long" value="6"/>&nbsp;6 &nbsp; &nbsp; </span><span id="Long_8" style="display: none;"><input type="radio" name="Long" value="7"/>&nbsp;7 &nbsp; &nbsp; <input type="radio" name="Long" value="8"/>&nbsp;8</span></td></tr>
+<tr><td align="right"><b>Operator</b></td>
+<td><input type="radio" name="Operator" value="+"/>&nbsp;+ &nbsp; &nbsp; <input type="radio" name="Operator" value="-"/>&nbsp;&ndash; &nbsp; &nbsp; <input type="radio" name="Operator" value="*"/>&nbsp;&#215; &nbsp; &nbsp; <input type="radio" name="Operator" value=":"/>&nbsp;&#247;</td></tr>
+<tr><td align="right"><b>Result</b></td>
+<td><input type="text" size="2" name="Result" value=""/></td></tr>
+<tr><td align="right"><b>Cells in one row or column</b></td>
+<td><input type="radio" name="Linear" value="1"/>&nbsp;Yes &nbsp; &nbsp; <input type="radio" name="Linear" value="0" checked="checked"/>&nbsp;No</td></tr>
+<tr><td align="right"><b>Number of possible digits</b></td>
+<td><input type="radio" name="Number" value="4" onclick="document.getElementById('Long_6').style.display='none';document.getElementById('Long_8').style.display='none';document.getElementById('Used_6').style.display='none';document.getElementById('Used_8').style.display='none';"/>&nbsp;4 &nbsp; &nbsp; 
+<input type="radio" name="Number" value="5" onclick="document.getElementById('Long_6').style.display='none';document.getElementById('Long_8').style.display='none';document.getElementById('Used_6').style.display='none';document.getElementById('Used_8').style.display='none';"/>&nbsp;5 &nbsp; &nbsp; 
+<input type="radio" name="Number" value="6" onclick="document.getElementById('Long_6').style.display='inline';document.getElementById('Long_8').style.display='none';document.getElementById('Used_6').style.display='inline';document.getElementById('Used_8').style.display='none';" checked="checked"/>&nbsp;6 &nbsp; &nbsp; 
+<input type="radio" name="Number" value="7" onclick="document.getElementById('Long_6').style.display='none';document.getElementById('Long_8').style.display='none';document.getElementById('Used_6').style.display='none';document.getElementById('Used_8').style.display='none';"/>&nbsp;7 &nbsp; &nbsp; 
+<input type="radio" name="Number" value="8" onclick="document.getElementById('Long_6').style.display='inline';document.getElementById('Long_8').style.display='inline';document.getElementById('Used_6').style.display='inline';document.getElementById('Used_8').style.display='inline';"/>&nbsp;8 &nbsp; &nbsp; 
+<input type="radio" name="Number" value="9" onclick="document.getElementById('Long_6').style.display='none';document.getElementById('Long_8').style.display='none';document.getElementById('Used_6').style.display='none';document.getElementById('Used_8').style.display='none';"/>&nbsp;9</td></tr>
+<tr><td align="right"><b>Digits already used</b></td>
+<td><input type="checkbox" name="Filter_1"/>&nbsp;1 &nbsp; &nbsp; <input type="checkbox" name="Filter_2"/>&nbsp;2 &nbsp; &nbsp; <input type="checkbox" name="Filter_3"/>&nbsp;3 &nbsp; &nbsp; <input type="checkbox" name="Filter_4"/>&nbsp;4 &nbsp; &nbsp; <span id="Used_6"><input type="checkbox" name="Filter_5"/>&nbsp;5 &nbsp; &nbsp; <input type="checkbox" name="Filter_6"/>&nbsp;6 &nbsp; &nbsp; </span><span id="Used_8" style="display: none;"><input type="checkbox" name="Filter_7"/>&nbsp;7 &nbsp; &nbsp; <input type="checkbox" name="Filter_8"/>&nbsp;8 &nbsp; &nbsp; </span><input type="checkbox" name="Filter_9"/>&nbsp;9</td></tr>
+</table>
+<p><input type="submit" value="Display Possible Combinations"/></p>
+<div id="Grid">&nbsp;</div>
+
+</form>
+<script type="text/javascript">
+//<![CDATA[
+
+function Grid()
+ {
+  var size = document.form.Long.value;
+  var html = '<table border="1">';
+  var row;
+  var col;
+  var ii;
+  if (size != '')
+   {
+    for (row = 1; row <= size; row++)
+     {
+      html += '<tr>';
+      for (col = 1; col <= size; col++)
+       {
+        html += '<td>';
+        for (ii = 1; ii <= size; ii++)
+         {
+          html += '<span id="Cell_' + row + '_' + col + '_' + ii + '"          onclick="Select(row,col,ii);">&nbsp;' + ii +'&nbsp<' + '/span>&nbsp;';
+         }
+        html += '<' + '/td>';
+       }
+      html += '<' + '/tr>';
+    }
+    html += '<' + '/table>';
+   document.getElementById('Grid').innerHTML = html;
+  }
+ }
+
+function Select(row, col, ii)
+ {
+  
+ }
+//]]></script>
+
+</body>
+</html>
